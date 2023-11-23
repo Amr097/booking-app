@@ -1,10 +1,15 @@
 <template>
-  <div>Home</div>
+  <AppHero />
 </template>
 
 <script>
+import AppHero from '../components/Hero.vue'
+
 export default {
-  name: 'App'
+  name: 'AppHome',
+  components: {
+    AppHero
+  }
 }
 </script>
 
