@@ -44,7 +44,7 @@ export default {
 
 <style scoped>
 .header {
-  @apply flex py-6 px-0 justify-between;
+  @apply flex py-6 justify-between px-20;
 }
 .logo {
   @apply flex items-center gap-2;

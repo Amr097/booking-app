@@ -49,11 +49,10 @@
         <a href="" class="text-gray-600 hover:text-gray-400"> {{ item }}</a>
       </li>
     </ul>
-
-    <div class="footer__copyright">
-      <p>Copyright&copy;{{ currentYear }}. All right reserved.</p>
-    </div>
   </footer>
+  <div class="footer__copyright">
+    <p>Copyright&copy;{{ currentYear }}. All right reserved.</p>
+  </div>
 </template>
 
 <script>
@@ -91,6 +90,7 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(16rem, calc(100% / 5.2)));
   justify-items: center;
   margin-bottom: 2.5rem;
+  padding: 0 1.5rem;
   /* grid-template-rows: min-content min-content repeat(auto-fit, minmax(8rem, 1fr)); */
   /* grid-row-gap: 3rem; */
 }
