@@ -17,7 +17,7 @@
       <select class="form__select outline-none">
         <option value="" class="form__option">Where are you going?</option>
         <option
-          value="HII"
+          :value="item.city_name"
           class="form__option"
           v-for="(item, index) in resDestinationData"
           :key="index"
@@ -82,7 +82,6 @@ export default {
       try {
         const response = await axios.request(options)
         resDestinationData.value = response.data.data
-        console.log(resDestinationData.value)
       } catch (error) {
         console.error(error)
       }

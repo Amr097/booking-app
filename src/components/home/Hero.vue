@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import AppSearch from '../components/Search.vue'
+import AppSearch from './Search.vue'
 export default {
   name: 'AppHero',
   components: { AppSearch }
@@ -21,7 +21,6 @@ export default {
 .hero {
   @apply mx-auto my-4 rounded-lg flex flex-col justify-center gap-12 relative;
 
-  width: 90%;
   aspect-ratio: 2.35/1;
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%),
