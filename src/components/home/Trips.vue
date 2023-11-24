@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 .trips {
-  @apply flex flex-col gap-7 mt-14;
+  @apply flex flex-col gap-7 pb-3;
 }
 .trips__title {
   @apply text-3xl font-semibold;

@@ -32,7 +32,9 @@ export default {
 
 <style scoped>
 .gallery {
-  @apply flex flex-col gap-5 mt-16;
+  @apply flex flex-col gap-5 mt-16 pb-16 bg-white;
+  position: relative;
+  z-index: 4;
 }
 
 .gallery__title {

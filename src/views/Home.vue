@@ -18,7 +18,7 @@ import AppHero from '../components/home/Hero.vue'
 import HomeGallery from '../components/home/Gallery.vue'
 import HomeCovid from '../components/home/Covid.vue'
 import HomeTrips from '../components/home/Trips.vue'
-import HomeDownload from '../components/home/Trips.vue'
+import HomeDownload from '../components/home/Download.vue'
 
 export default {
   name: 'AppHome',
@@ -115,7 +115,9 @@ export default {
 
 <style scoped>
 .container {
+  @apply relative bg-white;
   width: 90%;
   margin: 0 auto;
+  z-index: 4;
 }
 </style>

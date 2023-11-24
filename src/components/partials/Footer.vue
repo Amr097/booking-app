@@ -86,11 +86,13 @@ export default {
 
 <style scoped>
 .footer {
+  @apply pt-36 px-8 relative bg-white;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, calc(100% / 5.2)));
   justify-items: center;
   margin-bottom: 2.5rem;
-  padding: 0 1.5rem;
+  z-index: 4;
+
   /* grid-template-rows: min-content min-content repeat(auto-fit, minmax(8rem, 1fr)); */
   /* grid-row-gap: 3rem; */
 }
