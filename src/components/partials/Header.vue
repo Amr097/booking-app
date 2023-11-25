@@ -25,7 +25,13 @@
       </ul>
     </nav>
     <div class="auth">
-      <a class="auth__btn" v-for="(item, index) in authBtns" :key="index">{{ item }}</a>
+      <router-link
+        class="auth__btn"
+        :to="`/auth/${item.toLowerCase()}`"
+        v-for="(item, index) in authBtns"
+        :key="index"
+        >{{ item }}</router-link
+      >
     </div>
   </header>
 </template>
@@ -44,7 +50,10 @@ export default {
 
 <style scoped>
 .header {
-  @apply flex py-6 justify-between px-20;
+  @apply flex py-6 justify-between;
+
+  width: 90%;
+  margin: 0 auto;
 }
 .logo {
   @apply flex items-center gap-2;
