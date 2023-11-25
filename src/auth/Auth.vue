@@ -1,5 +1,6 @@
 <template>
   <div class="auth">
+    <!-- Auth Header -->
     <nav class="auth__header">
       <router-link to="/">
         <figure class="logo">
@@ -20,16 +21,39 @@
         </figure></router-link
       >
     </nav>
-    <AuthLogin />
+    <!-- Auth Login -->
+    <AuthLogin v-if="pathRef === login" @updatePathRef="updatePathRef" />
+    <!-- Auth Register -->
+    <AuthRegister v-if="pathRef === register" @updatePathRef="updatePathRef" />
   </div>
 </template>
 
 <script>
 import AuthLogin from '../components/auth/Login.vue'
+import AuthRegister from '../components/auth/Register.vue'
+import { useRoute } from 'vue-router'
+import { ref } from 'vue'
+
 export default {
   name: 'AppAuth',
   components: {
-    AuthLogin
+    AuthLogin,
+    AuthRegister
+  },
+  setup() {
+    const login = 'login'
+    const register = 'register'
+    const pathRef = ref(null)
+    const route = useRoute()
+    const path = route.params.path
+
+    pathRef.value = path
+
+    function updatePathRef(value) {
+      pathRef.value = value
+    }
+
+    return { login, register, pathRef, updatePathRef }
   }
 }
 </script>

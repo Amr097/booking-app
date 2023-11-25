@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   { name: 'home', path: '/', component: AppHome },
-  { name: 'auth', path: '/auth/:method', component: AppAuth }
+  { name: 'auth', path: '/auth/:path', component: AppAuth }
 ]
 
 const router = createRouter({

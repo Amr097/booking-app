@@ -5,12 +5,20 @@
       <!-- Email -->
       <div class="mb-3">
         <label class="auth__label">Email address</label>
-        <Field name="Email" type="email" class="auth__input" />
+        <Field name="Email" type="email" class="auth__input" :rules="validateEmail" />
+        <ErrorMessage name="Email" class="auth__err" />
       </div>
       <!-- Password -->
-      <div class="mb-3 relative">
+      <div class="mb-3 relative w-min">
         <label class="auth__label">Password</label>
-        <Field name="Password" type="password" class="auth__input" v-bind="field" />
+        <Field
+          v-model="password"
+          name="Password"
+          type="password"
+          class="auth__input"
+          :rules="validatePassword"
+        ></Field>
+        <ErrorMessage name="Password" class="auth__err" />
         <svg class="show-icon" fill="none" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg">
           <path
             d="m12.983 10.5c0 1.65-1.3333 2.9833-2.9833 2.9833-1.65 0-2.9833-1.3333-2.9833-2.9833s1.3333-2.9833 2.9833-2.9833c1.65 0 2.9833 1.3333 2.9833 2.9833z"
@@ -29,9 +37,15 @@
         </svg>
       </div>
       <!-- Confirm Password -->
-      <div class="mb-3 relative">
+      <div class="mb-3 relative w-min">
         <label class="auth__label">Confirm Password</label>
-        <Field name="ConfirmPassword" type="password" class="auth__input" />
+        <Field
+          v-model="confirmPassword"
+          name="ConfirmPassword"
+          type="password"
+          class="auth__input"
+          :rules="validateConfirmPassword"
+        />
         <svg class="show-icon" fill="none" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg">
           <path
             d="m12.983 10.5c0 1.65-1.3333 2.9833-2.9833 2.9833-1.65 0-2.9833-1.3333-2.9833-2.9833s1.3333-2.9833 2.9833-2.9833c1.65 0 2.9833 1.3333 2.9833 2.9833z"
@@ -48,38 +62,95 @@
             stroke-width="1.5"
           />
         </svg>
+        <ErrorMessage name="ConfirmPassword" class="auth__err" />
       </div>
       <!-- Submit Button -->
-      <button
-        type="submit"
-        class="submit__btn"
-        :class="{ 'opacity-75': isLoadingReg }"
-        :disabled="isLoadingReg"
-      >
-        Submit
-      </button>
+      <button type="submit" class="submit__btn">Submit</button>
     </veeForm>
     <!-- Toggle Form -->
     <p class="auth__toggle">
       Already have an account?
-      <router-link class="text-blue-500 hover:text-blue-600" to="/auth/login">Login</router-link>
+      <router-link class="text-blue-500 hover:text-blue-600" to="/auth/login" @click="updatePathRef"
+        >Login</router-link
+      >
     </p>
   </section>
 </template>
 
 <script>
-import { Form as veeForm, Field } from 'vee-validate'
+import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 import { useForm } from 'vee-validate'
+import { ref } from 'vue'
 
 export default {
   name: 'AuthRegister',
   components: {
     veeForm,
-    Field
+    Field,
+    ErrorMessage
   },
-  setup() {
+
+  setup(props, context) {
     const { values } = useForm()
     console.log(values)
+
+    function updatePathRef() {
+      context.emit('updatePathRef', 'login')
+    }
+
+    function validateEmail(value) {
+      // if the field is empty
+      if (!value) {
+        return 'This field is required'
+      }
+      // if the field is not a valid email
+      const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+      if (!regex.test(value)) {
+        return 'This field must be a valid email'
+      }
+      // All is good
+      return true
+    }
+
+    function validatePassword(value) {
+      // if the field is empty
+      if (!value) {
+        return 'This field is required'
+      }
+      // if the field is not a valid email
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i
+      if (!regex.test(value)) {
+        return 'Password must be minimum eight characters, at least one capital letter, one number and one special character'
+      }
+      // All is good
+      return true
+    }
+
+    const password = ref('')
+    const confirmPassword = ref('')
+
+    function validateConfirmPassword(value) {
+      // if the field is empty
+      if (!value) {
+        return 'This field is required'
+      }
+      // if password does not match
+      if (password.value !== confirmPassword.value) {
+        return 'Password does not match'
+      }
+
+      // All is good
+      return true
+    }
+
+    return {
+      updatePathRef,
+      validateEmail,
+      validatePassword,
+      password,
+      confirmPassword,
+      validateConfirmPassword
+    }
   }
 }
 </script>

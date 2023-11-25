@@ -13,6 +13,9 @@
     <HomeDownload />
     <AppFooter />
   </div>
+  <div class="footer__copyright">
+    <p>Copyright&copy;{{ currentYear }}. All right reserved.</p>
+  </div>
 </template>
 
 <script>
@@ -125,5 +128,11 @@ export default {
   width: 90%;
   margin: 0 auto;
   z-index: 4;
+}
+
+.footer__copyright {
+  @apply py-4 text-center bg-gray-200 text-gray-600 text-xl 
+  font-normal leading-7 flex items-center justify-end mt-24 pr-72 relative;
+  width: 100%;
 }
 </style>

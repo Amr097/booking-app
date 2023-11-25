@@ -41,7 +41,7 @@ export default {
   name: 'AppHeader',
   setup() {
     const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
-    const authBtns = ['Register', 'Sign in']
+    const authBtns = ['Register', 'Login']
 
     return { navItems, authBtns }
   }
@@ -52,7 +52,6 @@ export default {
 .header {
   @apply flex py-6 justify-between;
 
-  width: 90%;
   margin: 0 auto;
 }
 .logo {

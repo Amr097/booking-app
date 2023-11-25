@@ -50,9 +50,6 @@
       </li>
     </ul>
   </footer>
-  <div class="footer__copyright">
-    <p>Copyright&copy;{{ currentYear }}. All right reserved.</p>
-  </div>
 </template>
 
 <script>
@@ -126,11 +123,6 @@ export default {
 
 a {
   @apply transition-all duration-200 inline-block  text-xl font-normal tracking-tighter;
-}
-
-.footer__copyright {
-  @apply col-span-full w-screen py-4 text-center bg-gray-200 text-gray-600 text-xl 
-  font-normal leading-7 flex items-center justify-end mt-24 pr-72;
 }
 
 span {
