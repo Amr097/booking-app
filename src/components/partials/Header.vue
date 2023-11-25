@@ -41,7 +41,7 @@ export default {
   name: 'AppHeader',
   setup() {
     const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
-    const authBtns = ['Register', 'Login']
+    const authBtns = ['Register', 'Sign in']
 
     return { navItems, authBtns }
   }
