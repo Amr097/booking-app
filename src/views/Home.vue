@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <AppHeader />
     <AppHero />
     <HomeCovid />
     <HomeGallery
@@ -10,10 +11,13 @@
     <HomeTrips :tripsData="tripsData" />
     <HomeGallery :title="titleHotels" :galleryData="hotelsData" />
     <HomeDownload />
+    <AppFooter />
   </div>
 </template>
 
 <script>
+import AppHeader from '../components/partials/Header.vue'
+import AppFooter from '../components/partials/Footer.vue'
 import AppHero from '../components/home/Hero.vue'
 import HomeGallery from '../components/home/Gallery.vue'
 import HomeCovid from '../components/home/Covid.vue'
@@ -23,6 +27,8 @@ import HomeDownload from '../components/home/Download.vue'
 export default {
   name: 'AppHome',
   components: {
+    AppHeader,
+    AppFooter,
     AppHero,
     HomeGallery,
     HomeCovid,

@@ -25,7 +25,13 @@
       </ul>
     </nav>
     <div class="auth">
-      <a class="auth__btn" v-for="(item, index) in authBtns" :key="index">{{ item }}</a>
+      <router-link
+        class="auth__btn"
+        :to="`/auth/${item.toLowerCase()}`"
+        v-for="(item, index) in authBtns"
+        :key="index"
+        >{{ item }}</router-link
+      >
     </div>
   </header>
 </template>
