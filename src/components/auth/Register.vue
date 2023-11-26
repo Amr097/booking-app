@@ -1,7 +1,7 @@
 <template>
   <section class="auth__modal">
     <h1 class="auth__title">Register</h1>
-    <veeForm class="auth__form">
+    <veeForm class="auth__form" @submit="onSubmit">
       <!-- Email -->
       <div class="mb-3">
         <label class="auth__label">Email address</label>
@@ -16,10 +16,17 @@
           name="Password"
           type="password"
           class="auth__input"
+          id="registerPassword"
           :rules="validatePassword"
         ></Field>
         <ErrorMessage name="Password" class="auth__err" />
-        <svg class="show-icon" fill="none" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          @click="showPassword('registerPassword')"
+          class="show-icon"
+          fill="none"
+          viewBox="0 0 20 21"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="m12.983 10.5c0 1.65-1.3333 2.9833-2.9833 2.9833-1.65 0-2.9833-1.3333-2.9833-2.9833s1.3333-2.9833 2.9833-2.9833c1.65 0 2.9833 1.3333 2.9833 2.9833z"
             stroke="#4F4F4F"
@@ -40,13 +47,20 @@
       <div class="mb-3 relative w-min">
         <label class="auth__label">Confirm Password</label>
         <Field
+          id="confirmPassword"
           v-model="confirmPassword"
           name="ConfirmPassword"
           type="password"
           class="auth__input"
           :rules="validateConfirmPassword"
         />
-        <svg class="show-icon" fill="none" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          class="show-icon"
+          fill="none"
+          viewBox="0 0 20 21"
+          xmlns="http://www.w3.org/2000/svg"
+          @click="showPassword('confirmPassword')"
+        >
           <path
             d="m12.983 10.5c0 1.65-1.3333 2.9833-2.9833 2.9833-1.65 0-2.9833-1.3333-2.9833-2.9833s1.3333-2.9833 2.9833-2.9833c1.65 0 2.9833 1.3333 2.9833 2.9833z"
             stroke="#4F4F4F"
@@ -65,7 +79,7 @@
         <ErrorMessage name="ConfirmPassword" class="auth__err" />
       </div>
       <!-- Submit Button -->
-      <button type="submit" class="submit__btn">Submit</button>
+      <button type="submit" class="submit__btn" :disabled="isSubmitting">Submit</button>
     </veeForm>
     <!-- Toggle Form -->
     <p class="auth__toggle">
@@ -78,8 +92,9 @@
 </template>
 
 <script>
+import showPassword from '../../helper/showPassword.js'
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
-import { useForm } from 'vee-validate'
+import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
 export default {
@@ -91,9 +106,7 @@ export default {
   },
 
   setup(props, context) {
-    const { values } = useForm()
-    console.log(values)
-
+    // Update route state for toggle forms
     function updatePathRef() {
       context.emit('updatePathRef', 'login')
     }
@@ -143,13 +156,30 @@ export default {
       return true
     }
 
+    //handling submission
+
+    const isSubmitting = ref(false)
+    const router = useRouter()
+
+    function onSubmit() {
+      isSubmitting.value = true
+      setTimeout(() => {
+        isSubmitting.value = false
+        context.emit('updatePathRef', 'login')
+        router.push('/auth/login')
+      }, 1000)
+    }
+
     return {
       updatePathRef,
       validateEmail,
       validatePassword,
       password,
       confirmPassword,
-      validateConfirmPassword
+      validateConfirmPassword,
+      showPassword,
+      onSubmit,
+      isSubmitting
     }
   }
 }

@@ -11,8 +11,14 @@
       <!-- Password -->
       <div class="mb-3 relative">
         <label class="auth__label">Password</label>
-        <Field name="Password" type="password" class="auth__input" />
-        <svg class="show-icon" fill="none" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg">
+        <Field name="Password" type="password" class="auth__input" id="loginPassword" />
+        <svg
+          class="show-icon"
+          fill="none"
+          viewBox="0 0 20 21"
+          xmlns="http://www.w3.org/2000/svg"
+          @click="showPassword('loginPassword')"
+        >
           <path
             d="m12.983 10.5c0 1.65-1.3333 2.9833-2.9833 2.9833-1.65 0-2.9833-1.3333-2.9833-2.9833s1.3333-2.9833 2.9833-2.9833c1.65 0 2.9833 1.3333 2.9833 2.9833z"
             stroke="#4F4F4F"
@@ -31,7 +37,7 @@
       </div>
 
       <!-- Submit Button -->
-      <button type="submit" class="submit__btn">Submit</button>
+      <button type="submit" class="submit__btn" :disabled="isSubmitting">Submit</button>
     </veeForm>
     <!-- Toggle Form -->
     <p class="auth__toggle">
@@ -47,8 +53,12 @@
 </template>
 
 <script>
+import showPassword from '../../helper/showPassword.js'
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 import { useForm } from 'vee-validate'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import useUserStore from '../../store/User.js'
 
 export default {
   name: 'AuthLogin',
@@ -60,9 +70,6 @@ export default {
 
   setup(props, context) {
     const { values } = useForm()
-    const onSubmit = (values) => {
-      console.log(values)
-    }
 
     function updatePathRef() {
       context.emit('updatePathRef', 'register')
@@ -82,7 +89,21 @@ export default {
       return true
     }
 
-    return { updatePathRef, onSubmit, values, validateEmail }
+    //handling submission
+    const isSubmitting = ref(false)
+    const router = useRouter()
+    const { userLogin } = useUserStore()
+
+    function onSubmit() {
+      isSubmitting.value = true
+      userLogin()
+      setTimeout(() => {
+        isSubmitting.value = false
+        router.push('/')
+      }, 1000)
+    }
+
+    return { updatePathRef, onSubmit, values, validateEmail, showPassword, isSubmitting }
   }
 }
 </script>
