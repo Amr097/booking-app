@@ -4,7 +4,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   { name: 'home', path: '/', component: AppHome },
-  { name: 'auth', path: '/auth/:path', component: AppAuth }
+  {
+    name: 'auth',
+    path: '/auth/:path',
+    component: AppAuth,
+    beforeEnter: (to, from, next) => {
+      if (sessionStorage.getItem('authToken')) {
+        next('/')
+      }
+    }
+  }
 ]
 
 const router = createRouter({
