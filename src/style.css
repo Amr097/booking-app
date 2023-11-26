@@ -6,6 +6,10 @@
   @apply bg-blue-500  text-white font-bold py-2 px-4 rounded;
 }
 
+.auth__err {
+  @apply inline-block mt-3 text-red-500 text-xl;
+}
+
 *,
 *::before,
 *::after {
@@ -22,7 +26,7 @@ html {
 
 body {
   margin: 0 auto;
-  overflow-x: hidden;
+  position: relative;
 }
 
 a {
@@ -66,4 +70,8 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 9999s ease-in-out 0s;
+}
+
+*:disabled {
+  opacity: 0.7;
 }
