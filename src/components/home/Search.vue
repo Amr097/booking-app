@@ -129,7 +129,10 @@ export default {
 
 <style scoped>
 .form {
-  @apply flex justify-between w-fit p-6 self-center gap-6 bg-white rounded-lg shadow-xl absolute -bottom-14;
+  @apply flex justify-between  p-6 self-center gap-6 bg-white rounded-lg shadow-xl absolute -bottom-14;
+  width: max-content;
+  right: 50%;
+  transform: translateX(50%);
 }
 
 .form__input {
@@ -158,7 +161,7 @@ export default {
 }
 
 .form__btn {
-  @apply rounded-md bg-blue-500 text-white text-2xl 
+  @apply rounded-md bg-blue-500 text-white text-2xl
   font-medium leading-8 tracking-tight flex justify-center items-center hover:bg-blue-600 py-2 px-28;
 }
 
