@@ -10,6 +10,13 @@
   @apply inline-block mt-3 text-red-500 text-xl;
 }
 
+.container {
+  @apply relative bg-white;
+  width: 90%;
+  margin: 0 auto;
+  z-index: 4;
+}
+
 *,
 *::before,
 *::after {

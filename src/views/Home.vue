@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <AppHeader />
+    <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" />
     <AppHero />
     <HomeCovid />
     <HomeGallery
@@ -14,7 +14,7 @@
     <AppFooter />
   </div>
   <div class="footer__copyright">
-    <p>Copyright&copy;{{ currentYear }}. All right reserved.</p>
+    <p>Copyright&copy;2023. All right reserved.</p>
   </div>
 </template>
 
@@ -123,13 +123,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  @apply relative bg-white;
-  width: 90%;
-  margin: 0 auto;
-  z-index: 4;
-}
-
 .footer__copyright {
   @apply py-4 text-center bg-gray-200 text-gray-600 text-xl 
   font-normal leading-7 flex items-center justify-end mt-24 pr-72 relative;

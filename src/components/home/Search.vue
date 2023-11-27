@@ -1,5 +1,5 @@
 <template>
-  <form class="form" action="POST">
+  <form class="form" action="POST" @submit.prevent="onSubmit">
     <div class="form__input">
       <svg class="icon" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -14,7 +14,7 @@
         />
       </svg>
 
-      <select class="form__select outline-none">
+      <select class="form__select outline-none" v-model="destinationValue" required>
         <option value="" class="form__option">Where are you going?</option>
         <option
           :value="item.city_name"
@@ -28,17 +28,34 @@
     </div>
 
     <div class="form__date">
-      <p class="date-text">Check in date</p>
-      <VueDatePicker />
+      <p class="date-text">{{ checkInDate ? '' : 'Check in date' }}</p>
+      <VueDatePicker v-model="checkInDate" :enable-time-picker="false" required />
     </div>
     <div class="form__date">
-      <p class="date-text">Check out date</p>
-      <VueDatePicker />
+      <p class="date-text">{{ checkOutDate ? '' : 'Check out date' }}</p>
+      <VueDatePicker v-model="checkOutDate" :enable-time-picker="false" required />
     </div>
 
-    <div class="form__input" v-for="(item, index) in searchInputs" :key="index">
-      <img :src="item.icon" alt="" />
-      <input class="input outline-none" type="text" :placeholder="item.name" />
+    <div class="form__input">
+      <img src="public/images/user.svg" alt="" />
+      <input
+        class="input outline-none"
+        type="text"
+        placeholder="Guests"
+        v-model="guestsValue"
+        required
+      />
+    </div>
+
+    <div class="form__input">
+      <img src="public/images/room.svg" alt="" />
+      <input
+        class="input outline-none"
+        type="text"
+        placeholder="Rooms"
+        v-model="roomsValue"
+        required
+      />
     </div>
 
     <button type="submit" class="form__btn">Search</button>
@@ -50,22 +67,13 @@ import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'AppSearch',
   components: { VueDatePicker },
   setup() {
-    const searchInputs = [
-      {
-        icon: '../../public/images/user.svg',
-        name: 'Guests'
-      },
-      {
-        name: 'Rooms',
-        icon: '../../public/images/room.svg'
-      }
-    ]
-
+    // fetch destinations
     const options = {
       method: 'GET',
       url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination',
@@ -88,7 +96,33 @@ export default {
     }
     onMounted(getHotelDestinations)
 
-    return { searchInputs, resDestinationData }
+    // search values
+    const checkInDate = ref('')
+    const checkOutDate = ref('')
+    const guestsValue = ref('')
+    const roomsValue = ref('')
+    const destinationValue = ref('')
+
+    //form submisson
+
+    const router = useRouter()
+
+    const onSubmit = () => {
+      const values = { checkInDate, checkOutDate, guestsValue, roomsValue, destinationValue }
+      console.log(values)
+      console.log(sessionStorage.getItem('authToken'))
+      router.push('/auth/login')
+    }
+
+    return {
+      resDestinationData,
+      checkInDate,
+      checkOutDate,
+      guestsValue,
+      roomsValue,
+      destinationValue,
+      onSubmit
+    }
   }
 }
 </script>
@@ -143,6 +177,8 @@ export default {
 </style>
 
 <style>
+.dp__input_wrap {
+}
 .dp__input {
   background-color: #f2f2f2 !important;
   padding: 2rem 1.2rem !important;
@@ -151,6 +187,7 @@ export default {
   height: 100% !important;
   background-clip: text;
   -webkit-background-clip: text;
+  transform: translateX(3rem);
 }
 
 .dp__main {
