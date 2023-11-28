@@ -120,6 +120,32 @@
         </select>
         <span>Sort by</span>
       </div>
+      <!-- results card -->
+      <div class="results__card">
+        <img src="/public/images/h-oculous.webp" alt="" class="result__card--img" />
+        <div class="results__card--info">
+          <h3 class="results__card--title">Julia Dens Resort</h3>
+          <div class="results__card--stars">
+            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+            <p class="results__card--review">4.5(1200 reviews)</p>
+          </div>
+          <a href="" class="results__card--btn">See availbility</a>
+        </div>
+
+        <div class="results__card--prices">
+          <p class="discount--ad">Book now and receive 15% off</p>
+          <p class="discount--percent">5%</p>
+          <div class="price">
+            <p class="price--red">$150</p>
+            <p class="price--black">$130</p>
+            <p class="taxes">Includes taxes and fees</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <HomeCovid />
@@ -254,7 +280,7 @@ export default {
 }
 
 .rating__item {
-  @apply flex items-end p-2 text-lg gap-1 cursor-pointer;
+  @apply flex items-end p-2 text-lg cursor-pointer;
   border-right: 1px solid var(--Gray-5, #e0e0e0);
 }
 
@@ -280,6 +306,48 @@ export default {
   @apply absolute text-gray-500;
   right: 10.5rem;
   top: 0.5rem;
+}
+/* ///////////////////////////////////// */
+.results__card {
+  @apply grid grid-cols-3 p-6 gap-x-4;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+}
+.result__card--img {
+  @apply rounded-md;
+  width: 28.5rem;
+  height: 20rem;
+}
+.results__card--info {
+}
+.results__card--title {
+  @apply text-2xl font-medium tracking-wide;
+  color: #1a1a1a;
+}
+.results__card--stars {
+  @apply flex;
+}
+.results__card--review {
+}
+.results__card--btn {
+}
+.results__card--prices {
+}
+.discount--ad {
+}
+.discount--percent {
+}
+.price {
+}
+.price--red {
+}
+.price--black {
+}
+.taxes {
 }
 
 .icon {
