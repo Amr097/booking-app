@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import AppSearch from './Search.vue'
+import AppSearch from '../reuseables/Search.vue'
 export default {
   name: 'AppHero',
   components: { AppSearch }

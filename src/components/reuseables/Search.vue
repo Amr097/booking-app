@@ -17,7 +17,7 @@
       <select class="form__select outline-none" v-model="destinationValue" required>
         <option value="" class="form__option">Where are you going?</option>
         <option
-          :value="item.city_name"
+          :value="item.dest_id"
           class="form__option"
           v-for="(item, index) in resDestinationData"
           :key="index"
@@ -29,11 +29,25 @@
 
     <div class="form__date">
       <p class="date-text">{{ checkInDate ? '' : 'Check in date' }}</p>
-      <VueDatePicker v-model="checkInDate" :enable-time-picker="false" required />
+      <VueDatePicker
+        v-model="checkInDate"
+        :enable-time-picker="false"
+        :format="formatDate"
+        auto-apply
+        model-type="yyyy-MM-dd"
+        required
+      />
     </div>
     <div class="form__date">
       <p class="date-text">{{ checkOutDate ? '' : 'Check out date' }}</p>
-      <VueDatePicker v-model="checkOutDate" :enable-time-picker="false" required />
+      <VueDatePicker
+        v-model="checkOutDate"
+        :enable-time-picker="false"
+        :format="formatDate"
+        auto-apply
+        model-type="yyyy-MM-dd"
+        required
+      />
     </div>
 
     <div class="form__input">
@@ -65,9 +79,10 @@
 <script>
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import { formatDate } from '../../helper/dateFormat.js'
 
 export default {
   name: 'AppSearch',
@@ -77,9 +92,9 @@ export default {
     const options = {
       method: 'GET',
       url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination',
-      params: { query: 'man' },
+      params: { query: 'egypt' },
       headers: {
-        'X-RapidAPI-Key': '8fe455668bmshd75cea299d71970p11f976jsnc1a70e1a11e9',
+        'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
         'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
       }
     }
@@ -89,29 +104,72 @@ export default {
     const getHotelDestinations = async () => {
       try {
         const response = await axios.request(options)
-        resDestinationData.value = response.data.data
+        resDestinationData.value = response.data.data.filter((item) => {
+          return item.city_name !== ''
+        })
       } catch (error) {
         console.error(error)
       }
     }
     onMounted(getHotelDestinations)
 
-    // search values
+    // form values
     const checkInDate = ref('')
     const checkOutDate = ref('')
     const guestsValue = ref('')
     const roomsValue = ref('')
-    const destinationValue = ref('')
+    const destinationValue = ref({})
+
+    // Function to update search options based on ref variable changes
+    const updateSearchOptions = () => {
+      searchHotelOptions.params.dest_id = destinationValue.value
+      searchHotelOptions.params.arrival_date = checkInDate.value
+      searchHotelOptions.params.departure_date = checkOutDate.value
+      searchHotelOptions.params.adults = guestsValue.value
+      searchHotelOptions.params.room_qty = roomsValue.value
+    }
+
+    // Watchers to trigger updateSearchOptions function on ref variable changes
+    watch([checkInDate, checkOutDate, guestsValue, roomsValue, destinationValue], () => {
+      updateSearchOptions()
+    })
+
+    const searchHotelOptions = {
+      method: 'GET',
+      url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
+      params: {
+        dest_id: destinationValue.value,
+        search_type: 'CITY',
+        arrival_date: checkInDate.value,
+        departure_date: checkOutDate.value,
+        adults: guestsValue.value,
+        children_age: '0,17',
+        room_qty: roomsValue.value,
+        page_number: '1',
+        languagecode: 'en-us',
+        currency_code: 'AED'
+      },
+      headers: {
+        'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+        'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+      }
+    }
 
     //form submisson
-
     const router = useRouter()
 
-    const onSubmit = () => {
-      const values = { checkInDate, checkOutDate, guestsValue, roomsValue, destinationValue }
-      console.log(values)
-      console.log(sessionStorage.getItem('authToken'))
-      router.push('/auth/login')
+    const onSubmit = async () => {
+      if (!sessionStorage.getItem('authToken')) {
+        router.push('/auth/login')
+      } else {
+        try {
+          const response = await axios.request(searchHotelOptions)
+          console.log(response.data)
+          console.log(typeof checkInDate.value)
+        } catch (error) {
+          console.error(error)
+        }
+      }
     }
 
     return {
@@ -121,7 +179,8 @@ export default {
       guestsValue,
       roomsValue,
       destinationValue,
-      onSubmit
+      onSubmit,
+      formatDate
     }
   }
 }

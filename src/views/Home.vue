@@ -23,7 +23,7 @@ import AppHeader from '../components/partials/Header.vue'
 import AppFooter from '../components/partials/Footer.vue'
 import AppHero from '../components/home/Hero.vue'
 import HomeGallery from '../components/home/Gallery.vue'
-import HomeCovid from '../components/home/Covid.vue'
+import HomeCovid from '../components/reuseables/Covid.vue'
 import HomeTrips from '../components/home/Trips.vue'
 import HomeDownload from '../components/home/Download.vue'
 

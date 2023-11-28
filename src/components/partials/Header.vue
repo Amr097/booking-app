@@ -24,7 +24,7 @@
           :key="index"
           :style="{ color: textColor }"
         >
-          <a href=""> {{ item }}</a>
+          <a href="/"> {{ item }}</a>
         </li>
       </ul>
     </nav>
