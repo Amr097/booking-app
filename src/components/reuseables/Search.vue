@@ -72,7 +72,7 @@
       />
     </div>
 
-    <button type="submit" class="form__btn">Search</button>
+    <button type="submit" :disabled="isLoading" class="form__btn">Search</button>
   </form>
 </template>
 
@@ -83,6 +83,7 @@ import { onMounted, ref, watch } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { formatDate } from '../../helper/dateFormat.js'
+import useHotelsStore from '../../store/Hotels.js'
 
 export default {
   name: 'AppSearch',
@@ -111,14 +112,14 @@ export default {
         console.error(error)
       }
     }
-    onMounted(getHotelDestinations)
 
     // form values
     const checkInDate = ref('')
     const checkOutDate = ref('')
     const guestsValue = ref('')
     const roomsValue = ref('')
-    const destinationValue = ref({})
+    const destinationValue = ref('')
+    const isLoading = ref(false)
 
     // Function to update search options based on ref variable changes
     const updateSearchOptions = () => {
@@ -157,20 +158,38 @@ export default {
 
     //form submisson
     const router = useRouter()
+    const { fetchHotels } = useHotelsStore()
 
     const onSubmit = async () => {
       if (!sessionStorage.getItem('authToken')) {
         router.push('/auth/login')
       } else {
-        try {
-          const response = await axios.request(searchHotelOptions)
-          console.log(response.data)
-          console.log(typeof checkInDate.value)
-        } catch (error) {
-          console.error(error)
+        const query = {
+          dest_id: destinationValue.value,
+          arrival_date: checkInDate.value,
+          departure_date: checkOutDate.value,
+          adults: guestsValue.value,
+          room_qty: roomsValue.value
         }
+
+        fetchHotels(searchHotelOptions, query, isLoading)
       }
     }
+
+    // fetch hotel destinations and check for search query in local storage
+    onMounted(() => {
+      getHotelDestinations()
+
+      const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+
+      if (searchQuery) {
+        checkInDate.value = searchQuery.arrival_date
+        checkOutDate.value = searchQuery.departure_date
+        guestsValue.value = searchQuery.adults
+        roomsValue.value = searchQuery.room_qty
+        destinationValue.value = searchQuery.dest_id
+      }
+    })
 
     return {
       resDestinationData,
@@ -180,7 +199,8 @@ export default {
       roomsValue,
       destinationValue,
       onSubmit,
-      formatDate
+      formatDate,
+      isLoading
     }
   }
 }
@@ -222,6 +242,10 @@ export default {
 .form__btn {
   @apply rounded-md bg-blue-500 text-white text-2xl
   font-medium leading-8 tracking-tight flex justify-center items-center hover:bg-blue-600 py-2 px-28;
+}
+
+.form__btn::disabled {
+  @apply bg-blue-200;
 }
 
 .form__date {

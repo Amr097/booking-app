@@ -111,41 +111,19 @@
     <!-- results view -->
     <div class="results__view">
       <div class="results__view--head">
-        <h2 class="results__view--title">Melbourne : 2,582 search results found</h2>
-        <select name="" id="" class="results__view--sort">
+        <h2 class="results__view--title">
+          {{ hotels.length > 0 ? hotels.length + 'search results found' : '' }}
+        </h2>
+        <select class="results__view--sort">
           <option value="">Recommended</option>
-          <option>TEST</option>
-          <option>TEST</option>
-          <option>TEST</option>
+          <option v-for="(item, index) in sortOptions" :key="index" :value="item.id">
+            {{ item.title }}
+          </option>
         </select>
         <span>Sort by</span>
       </div>
-      <!-- results card -->
-      <div class="results__card">
-        <img src="/public/images/h-oculous.webp" alt="" class="result__card--img" />
-        <div class="results__card--info">
-          <h3 class="results__card--title">Julia Dens Resort</h3>
-          <div class="results__card--stars">
-            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-            <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-            <p class="results__card--review">4.5 (1200 reviews)</p>
-          </div>
-          <a href="" class="results__card--btn">See availbility</a>
-        </div>
-
-        <div class="results__card--prices">
-          <p class="discount--ad">Book now and receive 15% off</p>
-          <p class="discount--percent">5%</p>
-          <div class="price">
-            <p class="price--red">$150</p>
-            <p class="price--black">$130</p>
-            <p class="taxes">Includes taxes and fees</p>
-          </div>
-        </div>
-      </div>
+      <!-- Hotel card -->
+      <HotelCard v-if="hotels.length > 0" :hotels="hotels" />
     </div>
   </section>
   <HomeCovid />
@@ -160,10 +138,14 @@ import AppHeader from '../components/partials/Header.vue'
 import AppFooter from '../components/partials/Footer.vue'
 import AppSearch from '../components/reuseables/Search.vue'
 import HomeCovid from '../components/reuseables/Covid.vue'
+import HotelCard from '../components/search-results/HotelCard.vue'
+import useHotelsStore from '../store/Hotels.js'
+import { computed, onMounted, ref } from 'vue'
+import axios from 'axios'
 
 export default {
   name: 'AppSearchResults',
-  components: { AppHeader, AppSearch, AppFooter, HomeCovid },
+  components: { AppHeader, AppSearch, AppFooter, HomeCovid, HotelCard },
 
   setup() {
     const filterRanges = [
@@ -176,7 +158,43 @@ export default {
 
     const startRanges = [1, 2, 3, 4, 5]
 
-    return { filterRanges, startRanges }
+    const { hotelsData } = useHotelsStore()
+    const hotels = computed(() => hotelsData.hotels)
+    const meta = computed(() => hotelsData.meta)
+
+    const sortOptions = ref([])
+
+    onMounted(async () => {
+      const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+      const options = {
+        method: 'GET',
+        url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/getSortBy',
+        params: {
+          dest_id: searchQuery.dest_id,
+          search_type: 'CITY',
+          arrival_date: searchQuery.arrival_date,
+          departure_date: searchQuery.departure_date,
+          adults: searchQuery.adults,
+          children_age: '1,17',
+          room_qty: searchQuery.room_qty
+        },
+        headers: {
+          'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+          'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+        }
+      }
+
+      try {
+        await axios.request(options).then((res) => {
+          sortOptions.value = res.data.data
+          console.log(res)
+        })
+      } catch (error) {
+        console.error(error)
+      }
+    })
+
+    return { filterRanges, startRanges, hotels, meta, sortOptions }
   }
 }
 </script>
@@ -308,66 +326,7 @@ export default {
   top: 0.5rem;
 }
 /* ///////////////////////////////////// */
-.results__card {
-  @apply grid grid-cols-3 p-6 gap-x-6;
-  width: 95%;
-  margin: 0 auto;
-  margin-top: 2rem;
-  border-radius: 5px;
-  border: 1px solid #e0e0e0;
-  background: #fff;
-}
-.result__card--img {
-  @apply rounded-md;
-  width: 28.5rem;
-  height: 20rem;
-}
-.results__card--info {
-  @apply grid  h-full;
-  grid-template-rows: repeat(2, min-content) 1fr;
-}
-.results__card--title {
-  @apply text-2xl font-medium tracking-wide;
-  color: #1a1a1a;
-}
-.results__card--stars {
-  @apply flex items-center;
-}
-.results__card--review {
-  @apply text-lg leading-10;
-  color: #4f4f4f;
-}
-.results__card--btn {
-  @apply text-white text-xl font-medium tracking-wide leading-6 px-7 py-4 bg-blue-500 rounded-md w-fit hover:bg-blue-600;
-  align-self: end;
-}
-.results__card--prices {
-  @apply grid items-end justify-end;
-}
-.discount--ad {
-  @apply self-start text-white w-fit rounded-md text-lg leading-7 tracking-wide py-1 px-2;
-  margin-left: auto;
-  background-color: #eb5757;
-}
-.discount--percent {
-  @apply text-white text-lg font-medium leading-7 tracking-wide rounded-md w-fit py-1 px-2 text-right;
-  margin-left: auto;
-  background-color: #219653;
-}
-.price {
-  @apply grid gap-x-3;
-  grid-template-columns: 1fr min-content;
-  margin-left: auto;
-}
 
-.price--red {
-  @apply text-lg font-medium tracking-wide line-through text-right;
-  color: #eb5757;
-}
-.price--black {
-  @apply text-xl font-medium tracking-wide text-right;
-  color: #333;
-}
 .taxes {
   @apply text-lg font-light tracking-wide;
   grid-column: 1/-1;
