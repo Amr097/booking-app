@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" />
+    <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" />
     <AppHero />
     <HomeCovid />
     <HomeGallery

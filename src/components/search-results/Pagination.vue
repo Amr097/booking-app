@@ -55,11 +55,19 @@
     </button>
 
     <div class="numbers__list">
-      <button :class="{ 'page-active': checkNumbering(1) }">1</button>
-      <button :class="{ 'page-active': checkNumbering(2) }" :disabled="currentPage.number > 3">
+      <button :class="{ 'page-active': checkNumbering(1) }" @click="setPage(1)">1</button>
+      <button
+        :class="{ 'page-active': checkNumbering(2) }"
+        :disabled="currentPage.number > 3"
+        @click="setPage(2)"
+      >
         {{ currentPage.number <= 3 ? 2 : '...' }}
       </button>
-      <button :class="{ 'page-active': checkNumbering(3) || currentPage.number > 3 }">
+      <button
+        :class="{ 'page-active': checkNumbering(3) || currentPage.number > 3 }"
+        :disabled="currentPage.number >= 3"
+        @click="setPage(3)"
+      >
         {{ currentPage.number <= 3 ? 3 : currentPage.number }}
       </button>
       <button>...</button>
@@ -196,12 +204,37 @@ export default {
       fetchHotels(options, searchQuery, isLoading)
     }
 
-    return { currentPage, checkNumbering, increment, decrement, totalPages }
+    const setPage = (page) => {
+      currentPage.number = page
+
+      const options = {
+        method: 'GET',
+        url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
+        params: {
+          dest_id: searchQuery.dest_id,
+          search_type: 'CITY',
+          arrival_date: searchQuery.arrival_date,
+          departure_date: searchQuery.departure_date,
+          adults: searchQuery.adults,
+          children_age: '1,17',
+          room_qty: searchQuery.room_qty,
+          page_number: page
+        },
+        headers: {
+          'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+          'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+        }
+      }
+
+      fetchHotels(options, searchQuery, isLoading)
+    }
+
+    return { currentPage, checkNumbering, increment, decrement, totalPages, setPage }
   }
 }
 </script>
 
-<style>
+<style scoped>
 button {
   @apply cursor-pointer;
 }

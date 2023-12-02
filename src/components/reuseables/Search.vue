@@ -1,21 +1,10 @@
 <template>
   <form class="form" action="POST" @submit.prevent="onSubmit">
     <div class="form__input">
-      <svg class="icon" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="m9.9999 11.192c0.3414 0 0.6795-0.0673 0.995-0.1979 0.3154-0.1307 0.602-0.3222 0.8435-0.5636 0.2414-0.2415 0.4329-0.52808 0.5636-0.84352 0.1307-0.31545 0.1979-0.65354 0.1979-0.99498s-0.0672-0.67953-0.1979-0.99498c-0.1307-0.31544-0.3222-0.60207-0.5636-0.8435-0.2415-0.24143-0.5281-0.43295-0.8435-0.56361-0.3155-0.13066-0.6536-0.19791-0.995-0.19791-0.68956 0-1.3509 0.27393-1.8385 0.76152-0.48759 0.4876-0.76152 1.1489-0.76152 1.8385s0.27393 1.3509 0.76152 1.8385c0.4876 0.4876 1.1489 0.7615 1.8385 0.7615z"
-          stroke="#828282"
-          stroke-width="1.5"
-        />
-        <path
-          d="m3.0168 7.0751c1.6417-7.2167 12.333-7.2083 13.967 0.00834 0.9583 4.2334-1.675 7.8167-3.9833 10.033-0.8066 0.7779-1.8836 1.2126-3.0042 1.2126-1.1206 0-2.1976-0.4347-3.0042-1.2126-2.3-2.2167-4.9333-5.8084-3.975-10.042z"
-          stroke="#828282"
-          stroke-width="1.5"
-        />
-      </svg>
+      <img src="/public/images/location 1.svg" alt="" />
 
       <select class="form__select outline-none" v-model="destinationValue" required>
-        <option value="" class="form__option">Where are you going?</option>
+        <option disabled selected value="" class="form__option">Where are you going?</option>
         <option
           :value="item.dest_id"
           class="form__option"
@@ -100,7 +89,11 @@ export default {
       }
     }
 
-    const resDestinationData = ref(null)
+    const resDestinationData = ref([
+      { dest_id: '1', city_name: 'Cairo' },
+      { dest_id: '2', city_name: 'Hurghada' },
+      { dest_id: '3', city_name: 'Sharm-Alsheikh' }
+    ])
 
     const getHotelDestinations = async () => {
       try {
@@ -215,9 +208,13 @@ export default {
 }
 
 .form__input {
-  @apply flex  justify-center items-center gap-4;
+  @apply flex  justify-center items-center;
 
   background-color: #f2f2f2;
+}
+
+.form__input:not(:first-child) {
+  @apply gap-4;
 }
 
 .form__input,

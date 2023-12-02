@@ -1,4 +1,5 @@
 import AppHome from '../views/Home.vue'
+import HotelDetails from '../views/HotelDetails.vue'
 import AppAuth from '../auth/Auth.vue'
 import AppSearchResults from '../views/SearchResults.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -20,6 +21,17 @@ const routes = [
     name: 'results',
     path: '/search/results',
     component: AppSearchResults,
+    beforeEnter: (to, from, next) => {
+      if (!sessionStorage.getItem('authToken')) {
+        next('/')
+      }
+      next()
+    }
+  },
+  {
+    name: 'details',
+    path: '/hotel/details',
+    component: HotelDetails,
     beforeEnter: (to, from, next) => {
       if (!sessionStorage.getItem('authToken')) {
         next('/')

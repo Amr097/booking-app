@@ -1,145 +1,148 @@
 <template>
   <section class="results__header">
-    <AppHeader :logoColor="'#fff'" :textColor="'#fff'" />
+    <AppHeader :logoColor="'#fff'" :textColor="'#fff'" :bellColor="'#fff'" />
     <AppSearch />
   </section>
-  <section class="results__main">
-    <!-- filter results -->
-    <div class="filter">
-      <!-- by property -->
-      <div class="filter__property">
-        <h3 class="filter__title">Search by property name</h3>
-        <div class="bg-gray-100 p-5 pt-0">
-          <div class="flex bg-white gap-1 p-2 rounded-md">
-            <svg fill="none" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg" class="icon">
-              <path
-                d="m9.1667 16.333c3.6819 0 6.6666-2.9847 6.6666-6.6666 0-3.6819-2.9847-6.6667-6.6666-6.6667-3.6819 0-6.6667 2.9848-6.6667 6.6667 0 3.6819 2.9848 6.6666 6.6667 6.6666z"
-                stroke="#4F4F4F"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-              />
-              <path
-                d="m17.5 18-3.625-3.625"
-                stroke="#4F4F4F"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-              />
-            </svg>
-            <!--property input -->
-            <input class="outline-none" type="text" placeholder="eg. Beach westpalm" />
-          </div>
-        </div>
-      </div>
-      <h3 class="text-gray-600 text-xl font-semibold">Filter by</h3>
-      <!-- by budget -->
-      <div class="filter__budget">
-        <h3 class="filter__title">Your budget per day</h3>
-        <div class="filter__ranges">
-          <!--budget checkboxes -->
-          <ul class="ranges__list">
-            <li class="ranges__item" v-for="(item, index) in filterRanges" :key="index">
-              <input
-                class="ranges__check"
-                type="checkbox"
-                :id="item.name"
-                @change="fetchFilteredHotels(item.min, item.max, $event)"
-              />
-              <label class="ranges__label" :for="item.name"
-                >$ {{ item.min }} - $ {{ item.max }}</label
-              >
-            </li>
-          </ul>
-          <!--set your own budget -->
-          <div class="filter__set">
-            <div class="flex items-center justify-between">
-              <h4 class="text-lg text-gray-600">Set your own budget</h4>
-              <svg
-                fill="none"
-                viewBox="0 0 36 28"
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon-1"
-              >
-                <rect x="4" y="4" width="32" height="16" rx="8" fill="#BDBDBD" />
-                <g filter="url(#a)">
-                  <rect x="4" y="2" width="20" height="20" rx="10" fill="#fff" />
-                </g>
-                <defs>
-                  <filter
-                    id="a"
-                    x="0"
-                    y="0"
-                    width="28"
-                    height="28"
-                    color-interpolation-filters="sRGB"
-                    filterUnits="userSpaceOnUse"
-                  >
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                    <feColorMatrix
-                      in="SourceAlpha"
-                      result="hardAlpha"
-                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    />
-                    <feOffset dy="2" />
-                    <feGaussianBlur stdDeviation="2" />
-                    <feComposite in2="hardAlpha" operator="out" />
-                    <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                    <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_829" />
-                    <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_829" result="shape" />
-                  </filter>
-                </defs>
+  <div class="container">
+    <section class="results__main">
+      <!-- filter results -->
+      <div class="filter">
+        <!-- by property -->
+        <div class="filter__property">
+          <h3 class="filter__title">Search by property name</h3>
+          <div class="bg-gray-100 p-5 pt-0">
+            <div class="flex bg-white gap-1 p-2 rounded-md">
+              <svg fill="none" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg" class="icon">
+                <path
+                  d="m9.1667 16.333c3.6819 0 6.6666-2.9847 6.6666-6.6666 0-3.6819-2.9847-6.6667-6.6666-6.6667-3.6819 0-6.6667 2.9848-6.6667 6.6667 0 3.6819 2.9848 6.6666 6.6667 6.6666z"
+                  stroke="#4F4F4F"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="m17.5 18-3.625-3.625"
+                  stroke="#4F4F4F"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
               </svg>
-            </div>
-            <!--custom budget -->
-            <div class="budget__handler">
-              <input type="text" placeholder="Max budget" class="budget__input" />
-              <input type="text" placeholder="Min budget" class="budget__input" />
-              <p class="budget__handler--text">Press Enter to filter</p>
+              <!--property input -->
+              <input class="outline-none" type="text" placeholder="eg. Beach westpalm" />
             </div>
           </div>
         </div>
-      </div>
-      <!-- rates -->
-      <div class="rating">
-        <h3 class="filter__title">Rating</h3>
-        <div class="rating__main">
-          <p class="w-fit text-lg text-gray-600">Show only ratings more than</p>
-          <ul class="rating__list">
-            <li class="rating__item" v-for="(item, index) in startRanges" :key="index">
-              {{ item }}
-              <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-            </li>
-          </ul>
+        <h3 class="text-gray-600 text-xl font-semibold">Filter by</h3>
+        <!-- by budget -->
+        <div class="filter__budget">
+          <h3 class="filter__title">Your budget per day</h3>
+          <div class="filter__ranges">
+            <!--budget checkboxes -->
+            <ul class="ranges__list">
+              <li class="ranges__item" v-for="(item, index) in filterRanges" :key="index">
+                <input
+                  class="ranges__check"
+                  type="checkbox"
+                  :id="item.name"
+                  @change="fetchFilteredHotels(item.min, item.max, $event)"
+                />
+                <label class="ranges__label" :for="item.name"
+                  >$ {{ item.min }} - $ {{ item.max }}</label
+                >
+              </li>
+            </ul>
+            <!--set your own budget -->
+            <div class="filter__set">
+              <div class="flex items-center justify-between">
+                <h4 class="text-lg text-gray-600">Set your own budget</h4>
+                <svg
+                  fill="none"
+                  viewBox="0 0 36 28"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon-1"
+                >
+                  <rect x="4" y="4" width="32" height="16" rx="8" fill="#BDBDBD" />
+                  <g filter="url(#a)">
+                    <rect x="4" y="2" width="20" height="20" rx="10" fill="#fff" />
+                  </g>
+                  <defs>
+                    <filter
+                      id="a"
+                      x="0"
+                      y="0"
+                      width="28"
+                      height="28"
+                      color-interpolation-filters="sRGB"
+                      filterUnits="userSpaceOnUse"
+                    >
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        result="hardAlpha"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      />
+                      <feOffset dy="2" />
+                      <feGaussianBlur stdDeviation="2" />
+                      <feComposite in2="hardAlpha" operator="out" />
+                      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_829" />
+                      <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_829" result="shape" />
+                    </filter>
+                  </defs>
+                </svg>
+              </div>
+              <!--custom budget -->
+              <div class="budget__handler">
+                <input type="text" placeholder="Max budget" class="budget__input" />
+                <input type="text" placeholder="Min budget" class="budget__input" />
+                <p class="budget__handler--text">Press Enter to filter</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- rates -->
+        <div class="rating">
+          <h3 class="filter__title">Rating</h3>
+          <div class="rating__main">
+            <p class="w-fit text-lg text-gray-600">Show only ratings more than</p>
+            <ul class="rating__list">
+              <li class="rating__item" v-for="(item, index) in startRanges" :key="index">
+                {{ item }}
+                <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- results view -->
-    <div class="results__view">
-      <div class="results__view--head">
-        <h2 class="results__view--title">
-          {{ meta.length > 0 ? meta + ' ' + 'search results found' : '' }}
-        </h2>
-        <select
-          class="results__view--sort"
-          v-model="selectedSortOption"
-          @change="fetchSortedPage(selectedSortOption)"
-        >
-          <option value="">Recommended</option>
-          <option v-for="(item, index) in sortOptions" :key="index" :value="item.id">
-            {{ item.title }}
-          </option>
-        </select>
-        <span>Sort by</span>
+      <!-- results view -->
+      <div class="results__view">
+        <div class="results__view--head">
+          <h2 class="results__view--title">
+            {{ meta.length > 0 ? meta + ' ' + 'search results found' : '' }}
+          </h2>
+          <select
+            class="results__view--sort"
+            v-model="selectedSortOption"
+            @change="fetchSortedPage(selectedSortOption)"
+          >
+            <option value="">Recommended</option>
+            <option v-for="(item, index) in sortOptions" :key="index" :value="item.id">
+              {{ item.title }}
+            </option>
+          </select>
+          <span>Sort by</span>
+        </div>
+        <!-- Hotel card -->
+        <HotelCard :hotels="hotels" />
+        <!--Pagination -->
+        <SearchPagination :meta="meta" />
       </div>
-      <!-- Hotel card -->
-      <HotelCard v-if="hotels.length > 0" :hotels="hotels" />
-      <!--Pagination -->
-      <SearchPagination :meta="meta" />
-    </div>
-  </section>
-  <HomeCovid />
-  <AppFooter />
+    </section>
+    <HomeCovid />
+    <AppFooter />
+  </div>
+
   <div class="footer__copyright">
     <p>Copyright&copy;2023. All right reserved.</p>
   </div>
@@ -178,7 +181,12 @@ export default {
     const hotels = computed(() => hotelsData.hotels)
     const meta = computed(() => (hotelsData.meta[0] ? hotelsData.meta[0].title.split(' ')[0] : ''))
 
-    const sortOptions = ref([])
+    const sortOptions = ref([
+      { id: 'price_low_high', title: 'Entire homes and apartments first' },
+      { id: 'price_high_low', title: 'Price: High to Low' },
+      { id: 'rating_high_low', title: 'Rating: High to Low' },
+      { id: 'rating_low_high', title: 'Rating: Low to High' }
+    ])
     const isLoading = ref(false)
     const selectedSortOption = ref('')
 
@@ -195,7 +203,6 @@ export default {
           arrival_date: searchQuery.arrival_date,
           departure_date: searchQuery.departure_date,
           adults: searchQuery.adults,
-          children_age: '1,17',
           room_qty: searchQuery.room_qty
         },
         headers: {
@@ -224,7 +231,6 @@ export default {
           arrival_date: searchQuery.arrival_date,
           departure_date: searchQuery.departure_date,
           adults: searchQuery.adults,
-          children_age: '1,17',
           room_qty: searchQuery.room_qty,
           sort_by: sortOptionId,
           page_number: currentPage.number
@@ -249,7 +255,6 @@ export default {
           arrival_date: searchQuery.arrival_date,
           departure_date: searchQuery.departure_date,
           adults: searchQuery.adults,
-          children_age: '1,17',
           room_qty: searchQuery.room_qty,
           page_number: currentPage.number
         },
@@ -407,7 +412,7 @@ export default {
 
 .results__view--head span {
   @apply absolute text-gray-500;
-  right: 10.5rem;
+  right: 12.5rem;
   top: 0.5rem;
 }
 /* ///////////////////////////////////// */

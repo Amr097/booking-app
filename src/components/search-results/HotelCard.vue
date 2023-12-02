@@ -1,39 +1,74 @@
 <template>
-  <div class="results__card" v-for="(hotel, index) in hotels" :key="index">
-    <img :src="hotel.property.photoUrls[0]" alt="" class="result__card--img" />
-    <div class="results__card--info">
-      <h3 class="results__card--title">{{ hotel.property.name }}</h3>
-      <div class="results__card--stars">
-        <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-        <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-        <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-        <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-        <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-        <p class="results__card--review">
-          {{ hotel.property.reviewScore }} ({{ hotel.property.reviewCount }} reviews)
-        </p>
+  <div v-if="hotels.length > 0">
+    <div class="results__card" v-for="(hotel, index) in hotels" :key="index">
+      <img :src="hotel.property.photoUrls[0]" alt="" class="result__card--img" />
+      <div class="results__card--info">
+        <h3 class="results__card--title">{{ hotel.property.name }}</h3>
+        <div class="results__card--stars">
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <p class="results__card--review">
+            {{ hotel.property.reviewScore }} ({{ hotel.property.reviewCount }} reviews)
+          </p>
+        </div>
+        <article class="results__card--desc">{{ hotelLabel(hotel) }}</article>
+        <router-link to="/hotel/details" class="results__card--btn">See availbility</router-link>
       </div>
-      <article class="results__card--desc">{{ hotelLabel(hotel) }}</article>
-      <a href="" class="results__card--btn">See availbility</a>
-    </div>
 
-    <div class="results__card--prices">
-      <p class="discount--ad">Book now and receive 15% off</p>
-      <p class="discount--percent" v-if="hotel.property.priceBreakdown.strikethroughPrice">
-        -{{ discount(hotel) }}%
-      </p>
-      <div class="price">
-        <p class="price--red" v-if="hotel.property.priceBreakdown.strikethroughPrice">
-          {{ discountPrice(hotel) + ' ' + hotel.property.priceBreakdown.grossPrice.currency }}
+      <div class="results__card--prices">
+        <p class="discount--ad">Book now and receive 15% off</p>
+        <p class="discount--percent" v-if="hotel.property.priceBreakdown.strikethroughPrice">
+          -{{ discount(hotel) }}% off
         </p>
-        <p class="price--black">
-          {{
-            hotel.property.priceBreakdown.grossPrice.currency +
-            ' ' +
-            Math.ceil(hotel.property.priceBreakdown.grossPrice.value)
-          }}
-        </p>
-        <p class="taxes">Includes taxes and fees</p>
+        <div class="price">
+          <p class="price--red" v-if="hotel.property.priceBreakdown.strikethroughPrice">
+            {{ discountPrice(hotel) + ' ' + hotel.property.priceBreakdown.grossPrice.currency }}
+          </p>
+          <p class="price--black">
+            {{
+              hotel.property.priceBreakdown.grossPrice.currency +
+              ' ' +
+              Math.ceil(hotel.property.priceBreakdown.grossPrice.value)
+            }}
+          </p>
+          <p class="taxes">Includes taxes and fees</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //////////////////////////////// -->
+  <div v-else>
+    <div class="results__card">
+      <img src="/public/images/v-greece.webp" alt="" class="result__card--img" />
+      <div class="results__card--info">
+        <h3 class="results__card--title">Hotel Name</h3>
+        <div class="results__card--stars">
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <p class="results__card--review">480 (1200 reviews)</p>
+        </div>
+        <article class="results__card--desc">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga quae nesciunt repellendus
+          veniam quia, sequi nisi quidem. Aperiam asperiores error unde. Impedit quo minima totam
+          vitae commodi sint, soluta labore!
+        </article>
+        <router-link to="/hotel/details" class="results__card--btn">See availbility</router-link>
+      </div>
+
+      <div class="results__card--prices">
+        <p class="discount--ad">Book now and receive 15% off</p>
+        <p class="discount--percent">-20% off</p>
+        <div class="price">
+          <p class="price--red">1300 USD</p>
+          <p class="price--black">900 USD</p>
+          <p class="taxes">Includes taxes and fees</p>
+        </div>
       </div>
     </div>
   </div>
@@ -104,11 +139,11 @@ export default {
   grid-template-rows: repeat(3, min-content) 1fr;
 }
 .results__card--title {
-  @apply text-2xl font-medium tracking-wide;
+  @apply text-3xl font-medium tracking-wide;
   color: #1a1a1a;
 }
 .results__card--stars {
-  @apply flex items-center;
+  @apply flex items-center mt-2;
 }
 .results__card--review {
   @apply text-lg leading-10;
@@ -116,7 +151,7 @@ export default {
 }
 
 .results__card--desc {
-  @apply text-xl font-medium leading-7 tracking-wide transform translate-y-4;
+  @apply text-xl font-medium leading-7 tracking-wide mt-3;
 
   color: #4f4f4f;
 }
@@ -140,7 +175,7 @@ export default {
 }
 .price {
   @apply grid gap-x-3;
-  grid-template-columns: 1fr min-content;
+  grid-template-columns: 1fr max-content;
   margin-left: auto;
 }
 
@@ -149,7 +184,13 @@ export default {
   color: #eb5757;
 }
 .price--black {
-  @apply text-xl font-medium tracking-wide text-right;
+  @apply text-2xl font-medium tracking-wide text-right;
   color: #333;
+}
+
+.taxes {
+  grid-column: 1/-1;
+  justify-self: end;
+  margin-top: 0.3rem;
 }
 </style>
