@@ -40,12 +40,18 @@
           <!--budget checkboxes -->
           <ul class="ranges__list">
             <li class="ranges__item" v-for="(item, index) in filterRanges" :key="index">
-              <input class="ranges__check" type="checkbox" :id="item.name" />
+              <input
+                class="ranges__check"
+                type="checkbox"
+                :id="item.name"
+                @change="fetchFilteredHotels(item.min, item.max, $event)"
+              />
               <label class="ranges__label" :for="item.name"
                 >$ {{ item.min }} - $ {{ item.max }}</label
               >
             </li>
           </ul>
+          <!--set your own budget -->
           <div class="filter__set">
             <div class="flex items-center justify-between">
               <h4 class="text-lg text-gray-600">Set your own budget</h4>
@@ -112,9 +118,13 @@
     <div class="results__view">
       <div class="results__view--head">
         <h2 class="results__view--title">
-          {{ hotels.length > 0 ? hotels.length + 'search results found' : '' }}
+          {{ meta.length > 0 ? meta + ' ' + 'search results found' : '' }}
         </h2>
-        <select class="results__view--sort">
+        <select
+          class="results__view--sort"
+          v-model="selectedSortOption"
+          @change="fetchSortedPage(selectedSortOption)"
+        >
           <option value="">Recommended</option>
           <option v-for="(item, index) in sortOptions" :key="index" :value="item.id">
             {{ item.title }}
@@ -124,6 +134,8 @@
       </div>
       <!-- Hotel card -->
       <HotelCard v-if="hotels.length > 0" :hotels="hotels" />
+      <!--Pagination -->
+      <SearchPagination :meta="meta" />
     </div>
   </section>
   <HomeCovid />
@@ -139,13 +151,15 @@ import AppFooter from '../components/partials/Footer.vue'
 import AppSearch from '../components/reuseables/Search.vue'
 import HomeCovid from '../components/reuseables/Covid.vue'
 import HotelCard from '../components/search-results/HotelCard.vue'
+import SearchPagination from '../components/search-results/Pagination.vue'
 import useHotelsStore from '../store/Hotels.js'
+import usePageStore from '../store/Page.js'
 import { computed, onMounted, ref } from 'vue'
 import axios from 'axios'
 
 export default {
   name: 'AppSearchResults',
-  components: { AppHeader, AppSearch, AppFooter, HomeCovid, HotelCard },
+  components: { AppHeader, AppSearch, AppFooter, HomeCovid, HotelCard, SearchPagination },
 
   setup() {
     const filterRanges = [
@@ -158,14 +172,20 @@ export default {
 
     const startRanges = [1, 2, 3, 4, 5]
 
-    const { hotelsData } = useHotelsStore()
+    const { hotelsData, fetchHotels } = useHotelsStore()
+    const { currentPage } = usePageStore()
+
     const hotels = computed(() => hotelsData.hotels)
-    const meta = computed(() => hotelsData.meta)
+    const meta = computed(() => (hotelsData.meta[0] ? hotelsData.meta[0].title.split(' ')[0] : ''))
 
     const sortOptions = ref([])
+    const isLoading = ref(false)
+    const selectedSortOption = ref('')
 
+    const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+
+    // fetch sort options on mounting
     onMounted(async () => {
-      const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
       const options = {
         method: 'GET',
         url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/getSortBy',
@@ -183,7 +203,6 @@ export default {
           'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
         }
       }
-
       try {
         await axios.request(options).then((res) => {
           sortOptions.value = res.data.data
@@ -194,7 +213,73 @@ export default {
       }
     })
 
-    return { filterRanges, startRanges, hotels, meta, sortOptions }
+    //fetch sorted page
+    const fetchSortedPage = async (sortOptionId) => {
+      const options = {
+        method: 'GET',
+        url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
+        params: {
+          dest_id: searchQuery.dest_id,
+          search_type: 'CITY',
+          arrival_date: searchQuery.arrival_date,
+          departure_date: searchQuery.departure_date,
+          adults: searchQuery.adults,
+          children_age: '1,17',
+          room_qty: searchQuery.room_qty,
+          sort_by: sortOptionId,
+          page_number: currentPage.number
+        },
+        headers: {
+          'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+          'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+        }
+      }
+      fetchHotels(options, searchQuery, isLoading)
+    }
+
+    //fetch filtered hotels based on budget checkboxes
+
+    const fetchFilteredHotels = async (min, max, event) => {
+      const options = {
+        method: 'GET',
+        url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
+        params: {
+          dest_id: searchQuery.dest_id,
+          search_type: 'CITY',
+          arrival_date: searchQuery.arrival_date,
+          departure_date: searchQuery.departure_date,
+          adults: searchQuery.adults,
+          children_age: '1,17',
+          room_qty: searchQuery.room_qty,
+          page_number: currentPage.number
+        },
+        headers: {
+          'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+          'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+        }
+      }
+
+      if (event.target.checked) {
+        options.params.price_min = min
+        options.params.price_max = max
+      } else {
+        delete options.params.price_min
+        delete options.params.price_max
+      }
+
+      fetchHotels(options, searchQuery, isLoading)
+    }
+
+    return {
+      filterRanges,
+      startRanges,
+      hotels,
+      meta,
+      sortOptions,
+      selectedSortOption,
+      fetchSortedPage,
+      fetchFilteredHotels
+    }
   }
 }
 </script>

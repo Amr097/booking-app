@@ -19,9 +19,11 @@
 
     <div class="results__card--prices">
       <p class="discount--ad">Book now and receive 15% off</p>
-      <p class="discount--percent" v-if="discount">-{{ discount(hotel) }}%</p>
+      <p class="discount--percent" v-if="hotel.property.priceBreakdown.strikethroughPrice">
+        -{{ discount(hotel) }}%
+      </p>
       <div class="price">
-        <p class="price--red" v-if="discount">
+        <p class="price--red" v-if="hotel.property.priceBreakdown.strikethroughPrice">
           {{ discountPrice(hotel) + ' ' + hotel.property.priceBreakdown.grossPrice.currency }}
         </p>
         <p class="price--black">
@@ -43,27 +45,33 @@ export default {
   props: ['hotels'],
   setup() {
     const discount = (hotel) => {
-      if (hotel.property.priceBreakdown.grossPrice && hotel.property.priceBreakdown.excludedPrice) {
+      if (
+        hotel.property.priceBreakdown.grossPrice &&
+        hotel.property.priceBreakdown.strikethroughPrice
+      ) {
         return (
           100 -
           Math.ceil(
             (hotel.property.priceBreakdown.grossPrice.value * 100) /
               Math.ceil(
                 hotel.property.priceBreakdown.grossPrice.value +
-                  hotel.property.priceBreakdown.excludedPrice.value
+                  hotel.property.priceBreakdown.strikethroughPrice.value
               )
           )
         )
       } else {
-        return
+        return false
       }
     }
 
     const discountPrice = (hotel) => {
-      if (hotel.property.priceBreakdown.grossPrice && hotel.property.priceBreakdown.excludedPrice) {
+      if (
+        hotel.property.priceBreakdown.grossPrice &&
+        hotel.property.priceBreakdown.strikethroughPrice
+      ) {
         return Math.ceil(
           hotel.property.priceBreakdown.grossPrice.value +
-            hotel.property.priceBreakdown.excludedPrice.value
+            hotel.property.priceBreakdown.strikethroughPrice.value
         )
       }
     }

@@ -9,6 +9,7 @@ export default defineStore('hotels', () => {
   const router = useRouter()
   const fetchHotels = async (options, query, isLoading) => {
     isLoading.value = true
+    console.log(options)
     try {
       const response = await axios.request(options)
       console.log(response.data)
@@ -17,10 +18,15 @@ export default defineStore('hotels', () => {
       } else if (response.data.status) {
         localStorage.setItem('searchQuery', JSON.stringify(query))
         hotelsData.value.hotels = response.data.data.hotels
-        hotelsData.value.meta = response.data.data.meta
+        if (response.data.data.meta.length > 0) {
+          hotelsData.value.meta = response.data.data.meta
+        }
+
         console.log({ hotels: hotelsData.value.hotels, meta: hotelsData.value.meta })
         isLoading.value = false
-        router.push('/search/results')
+        if (router.path !== '/search/results') {
+          router.push('/search/results')
+        }
       }
     } catch (error) {
       console.error(error)
