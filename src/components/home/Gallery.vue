@@ -34,7 +34,7 @@ export default {
 .gallery {
   @apply flex flex-col gap-5 mt-16 pb-16 bg-white;
   position: relative;
-  z-index: 4;
+  z-index: -1;
 }
 
 .gallery__title {

@@ -1,4 +1,5 @@
 <template>
+  <AppModal v-if="firstLogin.modal" />
   <div class="container">
     <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" />
     <AppHero />
@@ -26,6 +27,9 @@ import HomeGallery from '../components/home/Gallery.vue'
 import HomeCovid from '../components/reuseables/Covid.vue'
 import HomeTrips from '../components/home/Trips.vue'
 import HomeDownload from '../components/home/Download.vue'
+import AppModal from '../components/reuseables/Modal.vue'
+
+import useUserStore from '../store/User.js'
 
 export default {
   name: 'AppHome',
@@ -36,9 +40,12 @@ export default {
     HomeGallery,
     HomeCovid,
     HomeTrips,
-    HomeDownload
+    HomeDownload,
+    AppModal
   },
   setup() {
+    const { firstLogin } = useUserStore()
+
     const titleVacations = 'Enjoy your dream vacation'
     const titleHotels = 'Popular hotels'
 
@@ -117,7 +124,15 @@ export default {
       }
     ]
 
-    return { titleVacations, titleHotels, descVacations, vacationsData, hotelsData, tripsData }
+    return {
+      titleVacations,
+      titleHotels,
+      descVacations,
+      vacationsData,
+      hotelsData,
+      tripsData,
+      firstLogin
+    }
   }
 }
 </script>

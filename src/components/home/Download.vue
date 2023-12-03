@@ -24,13 +24,14 @@ export default {
     linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%),
     url(../../public/images/download.webp) lightgray 0px -72.075px / 100% 165.959% no-repeat;
   height: 28rem;
+  z-index: -3;
 }
 
 .download__image {
   @apply absolute -top-32 right-32 transform -rotate-12;
   width: 71rem;
   height: 50rem;
-  z-index: 1;
+  z-index: -2;
 }
 
 .download__ad {

@@ -92,7 +92,7 @@ export default {
 
 <style scoped>
 .header {
-  @apply flex py-6 justify-between bg-white;
+  @apply flex py-6 justify-between;
 
   margin: 0 auto;
 }
