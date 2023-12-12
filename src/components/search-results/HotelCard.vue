@@ -15,7 +15,7 @@
           </p>
         </div>
         <article class="results__card--desc">{{ hotelLabel(hotel) }}</article>
-        <router-link to="/hotel/details" class="results__card--btn">See availbility</router-link>
+        <router-link to="/hotel/details" class="blue__btn">See availbility</router-link>
       </div>
 
       <div class="results__card--prices">
@@ -58,7 +58,7 @@
           veniam quia, sequi nisi quidem. Aperiam asperiores error unde. Impedit quo minima totam
           vitae commodi sint, soluta labore!
         </article>
-        <router-link to="/hotel/details" class="results__card--btn">See availbility</router-link>
+        <router-link to="/hotel/details" class="blue__btn">See availbility</router-link>
       </div>
 
       <div class="results__card--prices">
@@ -156,10 +156,6 @@ export default {
   color: #4f4f4f;
 }
 
-.results__card--btn {
-  @apply text-white text-xl font-medium tracking-wide leading-6 px-7 py-4 bg-blue-500 rounded-md w-fit hover:bg-blue-600;
-  align-self: end;
-}
 .results__card--prices {
   @apply grid items-end justify-end;
 }

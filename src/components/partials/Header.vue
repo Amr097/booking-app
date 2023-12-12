@@ -20,7 +20,7 @@
       >
     </figure>
 
-    <nav class="nav">
+    <nav class="nav" v-if="showNav">
       <ul class="nav__list">
         <li
           class="nav__list--item"
@@ -68,7 +68,7 @@
 import { onMounted, ref } from 'vue'
 export default {
   name: 'AppHeader',
-  props: { logoColor: String, textColor: String, bellColor: String },
+  props: { logoColor: String, textColor: String, bellColor: String, showNav: Boolean },
   setup() {
     const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
     const authBtns = ['Register', 'Login']

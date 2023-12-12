@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" :style="style">
     <h1 class="footer__title">Explore the world with My Dream Place</h1>
     <h4 class="footer__text">Discover new places and experiences</h4>
     <ul class="footer__list--logo">
@@ -55,6 +55,7 @@
 <script>
 export default {
   name: 'AppFooter',
+  props: { color: Object },
   setup() {
     const companyItems = ['About', 'Jobs', 'Newsroom ', 'Advertising', 'Contact us']
     const termsItems = ['Privacy Policy', 'Terms of use', 'Acessibility', 'Reward system policy']

@@ -1,9 +1,10 @@
 <template>
   <AppModal v-if="firstLogin.modal" />
   <div class="container">
-    <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" />
+    <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" :showNav="true" />
     <AppHero />
-    <HomeCovid />
+    <div class="mt-40"><HomeCovid /></div>
+
     <HomeGallery
       :title="titleVacations"
       :description="descVacations"

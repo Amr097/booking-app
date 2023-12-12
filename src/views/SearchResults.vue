@@ -1,6 +1,6 @@
 <template>
   <section class="results__header">
-    <AppHeader :logoColor="'#fff'" :textColor="'#fff'" :bellColor="'#fff'" />
+    <AppHeader :logoColor="'#fff'" :textColor="'#fff'" :bellColor="'#fff'" :showNav="true" />
     <AppSearch />
   </section>
   <div class="container">
@@ -134,12 +134,14 @@
           <span>Sort by</span>
         </div>
         <!-- Hotel card -->
-        <HotelCard :hotels="hotels" />
+        <div v-for="(item, index) in 80" :key="index"><HotelCard :hotels="hotels" /></div>
+
         <!--Pagination -->
         <SearchPagination :meta="meta" />
       </div>
     </section>
-    <HomeCovid />
+    <div class="px-[5rem]"><HomeCovid /></div>
+
     <AppFooter />
   </div>
 
@@ -298,7 +300,7 @@ export default {
 }
 
 .results__main {
-  @apply grid grid-cols-2 mt-40;
+  @apply grid grid-cols-2 mt-40 mb-28;
   grid-template-columns: min-content 1fr;
   padding: 0 5rem;
 }

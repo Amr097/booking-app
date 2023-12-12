@@ -2,6 +2,8 @@ import AppHome from '../views/Home.vue'
 import HotelDetails from '../views/HotelDetails.vue'
 import AppAuth from '../auth/Auth.vue'
 import AppSearchResults from '../views/SearchResults.vue'
+import HotelCheckout from '../views/HotelCheckout.vue'
+import UserTrips from '../views/UserTrips.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -32,6 +34,28 @@ const routes = [
     name: 'details',
     path: '/hotel/details',
     component: HotelDetails,
+    beforeEnter: (to, from, next) => {
+      if (!sessionStorage.getItem('authToken')) {
+        next('/')
+      }
+      next()
+    }
+  },
+  {
+    name: 'checkout',
+    path: '/hotel/checkout',
+    component: HotelCheckout,
+    beforeEnter: (to, from, next) => {
+      if (!sessionStorage.getItem('authToken')) {
+        next('/')
+      }
+      next()
+    }
+  },
+  {
+    name: 'trips',
+    path: '/trips/:id',
+    component: UserTrips,
     beforeEnter: (to, from, next) => {
       if (!sessionStorage.getItem('authToken')) {
         next('/')

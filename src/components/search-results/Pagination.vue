@@ -71,7 +71,7 @@
         {{ currentPage.number <= 3 ? 3 : currentPage.number }}
       </button>
       <button>...</button>
-      <button>{{ totalPages }}</button>
+      <button>{{ totalPages || 28 }}</button>
     </div>
 
     <button :disabled="!(currentPage.number < 20 && currentPage.number >= 1)" @click="increment">
