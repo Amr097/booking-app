@@ -1,0 +1,48 @@
+@import '/src/global.css';
+
+.btn-blue {
+  @apply bg-blue-500  text-white font-bold py-2 px-4 rounded;
+}
+
+.auth__err {
+  @apply inline-block mt-3 text-red-500 text-xl;
+}
+
+.container-c {
+  @apply relative mx-auto;
+  width: 90%;
+  z-index: 4;
+
+  @media screen and (width <66.25em) {
+    width: 95%;
+  }
+}
+
+.container-white {
+  @apply bg-white;
+}
+
+.container-grey {
+  background-color: #f4f4f4;
+  margin: 0 auto;
+}
+
+.checkout__heading--container {
+  @apply flex gap-4 items-center py-3 px-5;
+  border-radius: 6px 6px 0px 0px;
+  background: var(--Blue-1, #2f80ed);
+}
+
+.room__details {
+  @apply text-white text-2xl leading-9 tracking-wide font-medium;
+}
+
+.card-label {
+  @apply text-xl font-medium leading-7 tracking-wide inline-block h-fit;
+  color: #181818;
+}
+
+.blue__btn {
+  @apply text-white text-xl font-medium tracking-wide leading-6 px-7 py-4 bg-blue-500 rounded-md w-fit hover:bg-blue-600;
+  align-self: end;
+}

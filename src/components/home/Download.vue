@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 .download {
-  @apply rounded-md relative bg-cover flex items-center;
+  @apply rounded-md relative bg-cover flex items-center justify-end sm:justify-normal;
 
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%),
@@ -28,7 +28,7 @@ export default {
 }
 
 .download__image {
-  @apply absolute -top-32 right-32 transform -rotate-12;
+  @apply absolute -top-32 right-[18rem] transform -rotate-12 object-contain sm:right-0;
   width: 71rem;
   height: 50rem;
   z-index: -2;

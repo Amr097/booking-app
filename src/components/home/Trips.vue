@@ -31,12 +31,15 @@ export default {
   color: #181818;
 }
 .trips__list {
-  @apply flex gap-7;
+  @apply sm:flex sm:gap-7 grid grid-cols-2 gap-7;
 }
 .trips__figure {
-  @apply bg-cover rounded-lg flex flex-col gap-4 justify-end pb-7;
-  width: 33.33333%;
+  @apply bg-cover rounded-lg flex flex-col gap-4 justify-end pb-7 shadow-md sm:w-[33.33333%];
   height: 28rem;
+}
+
+.trips__figure:last-child {
+  @apply col-span-full;
 }
 
 .trips__figure--title {

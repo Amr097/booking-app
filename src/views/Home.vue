@@ -1,6 +1,6 @@
 <template>
   <AppModal v-if="firstLogin.modal" />
-  <div class="container">
+  <div class="container-c home">
     <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" :showNav="true" />
     <AppHero />
     <div class="mt-40"><HomeCovid /></div>

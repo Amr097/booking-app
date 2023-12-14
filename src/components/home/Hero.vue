@@ -20,7 +20,7 @@ export default {
 <style scoped>
 .hero {
   @apply mx-auto my-4 rounded-lg flex flex-col justify-center gap-12 relative;
-
+  z-index: -1;
   aspect-ratio: 2.35/1;
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%),
@@ -29,10 +29,10 @@ export default {
 }
 
 .hero__title {
-  @apply text-white text-center text-5xl font-bold;
+  @apply text-white text-center text-4xl sm:text-5xl font-bold;
 }
 
 .hero__desc {
-  @apply text-white text-center text-2xl font-normal leading-relaxed tracking-wide;
+  @apply text-white text-center text-xl sm:text-2xl font-normal leading-relaxed tracking-wide;
 }
 </style>

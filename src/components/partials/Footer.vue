@@ -89,7 +89,7 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(16rem, calc(100% / 5.2)));
   justify-items: center;
   margin-bottom: 2.5rem;
-  z-index: 4;
+  z-index: -1;
 
   /* grid-template-rows: min-content min-content repeat(auto-fit, minmax(8rem, 1fr)); */
   /* grid-row-gap: 3rem; */

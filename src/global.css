@@ -10,50 +10,6 @@
   /* Add more src declarations for other font formats if needed */
 }
 
-.btn-blue {
-  @apply bg-blue-500  text-white font-bold py-2 px-4 rounded;
-}
-
-.auth__err {
-  @apply inline-block mt-3 text-red-500 text-xl;
-}
-
-.container {
-  @apply relative mx-auto;
-  width: 90%;
-  z-index: 4;
-}
-
-.container-white {
-  @apply bg-white;
-}
-
-.container-grey {
-  background-color: #f4f4f4;
-  margin: 0 auto;
-}
-
-.checkout__heading--container {
-  @apply flex gap-4 items-center py-3 px-5;
-  border-radius: 6px 6px 0px 0px;
-  background: var(--Blue-1, #2f80ed);
-}
-
-.room__details {
-  @apply text-white text-2xl leading-9 tracking-wide font-medium;
-}
-
-.card-label {
-  @apply text-xl font-medium leading-7 tracking-wide inline-block h-fit;
-
-  color: #181818;
-}
-
-.blue__btn {
-  @apply text-white text-xl font-medium tracking-wide leading-6 px-7 py-4 bg-blue-500 rounded-md w-fit hover:bg-blue-600;
-  align-self: end;
-}
-
 *,
 *::before,
 *::after {
@@ -66,11 +22,68 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+
+  @media screen and (width < 250em) {
+    font-size: 130%;
+  }
+
+  @media screen and (width < 187.5em) {
+    font-size: 120%;
+  }
+
+  @media screen and (width < 168.75em) {
+    font-size: 110%;
+  }
+
+  @media screen and (width < 154.8125em) {
+    font-size: 100%;
+  }
+
+  @media screen and (width < 141.25em) {
+    font-size: 90%;
+  }
+
+  @media screen and (width < 141.25em) {
+    font-size: 90%;
+  }
+
+  @media screen and (width < 125.25em) {
+    font-size: 80%;
+  }
+
+  @media screen and (width < 113.75em) {
+    font-size: 70%;
+  }
+
+  @media screen and (width < 100em) {
+    font-size: 62.5%;
+  }
+
+  @media screen and (width < 90.625em) {
+    font-size: 56.5%;
+  }
+
+  @media screen and (width <78.125em) {
+    font-size: 50%;
+  }
+
+  @media screen and (width <78.125em) {
+    font-size: 50%;
+  }
+
+  @media screen and (width <71.875em) {
+    font-size: 45%;
+  }
+
+  @media screen and (width <25.875em) {
+    font-size: 40%;
+  }
 }
 
 body {
   margin: 0 auto;
   position: relative;
+  width: 100%;
 }
 
 a {

@@ -1,7 +1,7 @@
 <template>
   <form class="form" action="POST" @submit.prevent="onSubmit">
     <div class="form__input">
-      <img src="/public/images/location 1.svg" alt="" />
+      <img src="/public/images/location 1.svg" alt="icon" class="icon" />
 
       <select class="form__select outline-none" v-model="destinationValue" required>
         <option disabled selected value="" class="form__option">Where are you going?</option>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="form__input">
-      <img src="public/images/user.svg" alt="" />
+      <img src="public/images/user.svg" alt="icon" class="icon" />
       <input
         class="input outline-none"
         type="text"
@@ -51,7 +51,7 @@
     </div>
 
     <div class="form__input">
-      <img src="public/images/room.svg" alt="" />
+      <img src="public/images/room.svg" alt="icon" class="icon" />
       <input
         class="input outline-none"
         type="text"
@@ -200,15 +200,16 @@ export default {
 </script>
 
 <style scoped>
+@import '/src/styles/containers/search.css';
+
 .form {
-  @apply flex justify-between  p-6 self-center gap-6 bg-white rounded-lg shadow-xl absolute -bottom-14;
-  width: max-content;
+  @apply flex justify-between px-3 py-4 self-center gap-3 lg:gap-6 bg-white rounded-lg shadow-xl absolute -bottom-14 sm:p-6  md:w-[87%] w-[97%];
   right: 50%;
   transform: translateX(50%);
 }
 
 .form__input {
-  @apply flex  justify-center items-center;
+  @apply flex justify-around items-center flex-1;
 
   background-color: #f2f2f2;
 }
@@ -226,19 +227,25 @@ export default {
 .input,
 .form__option,
 .form__select {
-  @apply text-xl font-normal tracking-tighter;
+  @apply text-xl font-normal tracking-tighter ml-2;
   color: #4f4f4f;
   background-color: #f2f2f2;
 }
 
+select,
+input {
+  @apply w-full;
+}
+
 .icon {
+  @apply translate-x-2;
   width: 2.4rem;
   height: 2.4rem;
 }
 
 .form__btn {
   @apply rounded-md bg-blue-500 text-white text-2xl
-  font-medium leading-8 tracking-tight flex justify-center items-center hover:bg-blue-600 py-2 px-28;
+  font-medium leading-8 tracking-tight flex justify-center items-center hover:bg-blue-600 py-2 sm:px-[3.5rem] md:px-[5rem] lg:px-28;
 }
 
 .form__btn::disabled {
@@ -257,11 +264,11 @@ export default {
   left: 4.3rem;
   color: #4f4f4f;
 }
+
+/* container query */
 </style>
 
 <style>
-.dp__input_wrap {
-}
 .dp__input {
   background-color: #f2f2f2 !important;
   padding: 2rem 1.2rem !important;
@@ -280,5 +287,16 @@ export default {
 .dp__input_icons {
   width: 2.4rem;
   height: 2.4rem;
+
+  @media screen and (width< 40.3125em) {
+    width: 0;
+    height: 0;
+  }
+}
+
+.dp__pointer {
+  @media screen and (width< 40.3125em) {
+    padding: 1.2rem !important;
+  }
 }
 </style>

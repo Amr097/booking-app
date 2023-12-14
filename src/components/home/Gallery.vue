@@ -43,20 +43,19 @@ export default {
 }
 
 .gallery__desc {
-  @apply text-lg font-medium leading-relaxed tracking-wide w-1/3;
+  @apply text-lg font-medium leading-relaxed tracking-wide w-9/12 sm:w-1/3;
   color: #333;
 }
 .gallery__figures {
-  @apply flex gap-7;
+  @apply flex gap-7 flex-wrap sm:flex-nowrap;
 }
 
 .gallery__item {
-  @apply flex flex-col gap-4;
-  width: 25%;
+  @apply flex flex-col gap-4 w-[47.5%] sm:w-1/4;
 }
 
 .gallery__image {
-  @apply rounded-lg;
+  @apply rounded-lg shadow-md;
   object-fit: cover;
 }
 
