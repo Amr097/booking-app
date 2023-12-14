@@ -1,3 +1,83 @@
+<script>
+import showPassword from '../../helper/showPassword.js'
+import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
+import { useForm } from 'vee-validate'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import useUserStore from '../../store/User.js'
+import { auth, signInWithEmailAndPassword } from '/src/services/firebase.js'
+
+export default {
+  name: 'AuthLogin',
+  components: {
+    veeForm,
+    Field,
+    ErrorMessage
+  },
+
+  setup(props, context) {
+    const { values } = useForm()
+
+    function updatePathRef() {
+      context.emit('updatePathRef', 'register')
+    }
+
+    function validateEmail(value) {
+      // if the field is empty
+      if (!value) {
+        return 'This field is required'
+      }
+      // if the field is not a valid email
+      const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+      if (!regex.test(value)) {
+        return 'This field must be a valid email'
+      }
+      // All is good
+      return true
+    }
+
+    //handling submission
+    const email = ref('')
+    const password = ref('')
+    const message = ref('')
+
+    const isSubmitting = ref(false)
+    const router = useRouter()
+    const { userLogin } = useUserStore()
+
+    function onSubmit() {
+      isSubmitting.value = true
+
+      signInWithEmailAndPassword(auth, email.value, password.value)
+        .then(() => {
+          // Signed in
+          // ...
+          isSubmitting.value = false
+          userLogin()
+          router.push('/')
+        })
+        .catch((error) => {
+          message.value = error.message
+          password.value = ''
+          isSubmitting.value = false
+        })
+    }
+
+    return {
+      updatePathRef,
+      onSubmit,
+      values,
+      validateEmail,
+      showPassword,
+      isSubmitting,
+      message,
+      email,
+      password
+    }
+  }
+}
+</script>
+
 <template>
   <section class="auth__modal">
     <h1 class="auth__title">Login</h1>
@@ -5,13 +85,25 @@
       <!-- Email -->
       <div class="mb-3">
         <label class="auth__label">Email address</label>
-        <Field name="Email" type="email" class="auth__input" :rules="validateEmail" />
+        <Field
+          v-model="email"
+          name="Email"
+          type="email"
+          class="auth__input"
+          :rules="validateEmail"
+        />
         <ErrorMessage name="Email" class="auth__err" />
       </div>
       <!-- Password -->
       <div class="mb-3 relative">
         <label class="auth__label">Password</label>
-        <Field name="Password" type="password" class="auth__input" id="loginPassword" />
+        <Field
+          v-model="password"
+          name="Password"
+          type="password"
+          class="auth__input"
+          id="loginPassword"
+        />
         <svg
           class="show-icon"
           fill="none"
@@ -49,64 +141,13 @@
         >Register</router-link
       >
     </p>
+
+    <div class="flex gap-4 items-center justify-center mt-12" v-if="message">
+      <img class="w-[2.4rem] h-[2.4rem]" src="/public/images/error.webp" alt="error icon" />
+      <p class="text-red-500 text-3xl text-center font-semibold">{{ message }}.</p>
+    </div>
   </section>
 </template>
-
-<script>
-import showPassword from '../../helper/showPassword.js'
-import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
-import { useForm } from 'vee-validate'
-import { useRouter } from 'vue-router'
-import { ref } from 'vue'
-import useUserStore from '../../store/User.js'
-
-export default {
-  name: 'AuthLogin',
-  components: {
-    veeForm,
-    Field,
-    ErrorMessage
-  },
-
-  setup(props, context) {
-    const { values } = useForm()
-
-    function updatePathRef() {
-      context.emit('updatePathRef', 'register')
-    }
-
-    function validateEmail(value) {
-      // if the field is empty
-      if (!value) {
-        return 'This field is required'
-      }
-      // if the field is not a valid email
-      const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-      if (!regex.test(value)) {
-        return 'This field must be a valid email'
-      }
-      // All is good
-      return true
-    }
-
-    //handling submission
-    const isSubmitting = ref(false)
-    const router = useRouter()
-    const { userLogin } = useUserStore()
-
-    function onSubmit() {
-      isSubmitting.value = true
-      userLogin()
-      setTimeout(() => {
-        isSubmitting.value = false
-        router.push('/')
-      }, 1000)
-    }
-
-    return { updatePathRef, onSubmit, values, validateEmail, showPassword, isSubmitting }
-  }
-}
-</script>
 
 <style scoped>
 .auth__modal {

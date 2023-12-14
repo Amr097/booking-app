@@ -1,3 +1,92 @@
+<script>
+import showPassword from '../../helper/showPassword.js'
+import { validateEmail, validatePassword } from '../../helper/RegValidation.js'
+import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
+import { useRouter } from 'vue-router'
+import { ref, reactive } from 'vue'
+import { auth, createUserWithEmailAndPassword } from '/src/services/firebase.js'
+
+export default {
+  name: 'AuthRegister',
+  components: {
+    veeForm,
+    Field,
+    ErrorMessage
+  },
+
+  setup(props, context) {
+    // Update route state for toggle forms
+    function updatePathRef() {
+      context.emit('updatePathRef', 'login')
+    }
+
+    const email = ref('')
+    const password = ref('')
+    const confirmPassword = ref('')
+
+    function validateConfirmPassword(value) {
+      // if the field is empty
+      if (!value) {
+        return 'This field is required'
+      }
+      // if password does not match
+      if (password.value !== confirmPassword.value) {
+        return 'Password does not match'
+      }
+
+      // All is good
+      return true
+    }
+
+    //handling submission
+
+    const isSubmitting = ref(false)
+    const router = useRouter()
+
+    const message = reactive({
+      value: '',
+      type: ''
+    })
+
+    function onSubmit() {
+      isSubmitting.value = true
+      createUserWithEmailAndPassword(auth, email.value, password.value)
+        .then(() => {
+          // Signed up
+          isSubmitting.value = false
+          message.type = 'success'
+          message.value = 'Successfully registered, redirecting to login page. '
+          setTimeout(() => {
+            context.emit('updatePathRef', 'login')
+            router.push('/auth/login')
+          }, 1500)
+          // ...
+        })
+        .catch((error) => {
+          message.value = error.message
+          message.type = 'error'
+          isSubmitting.value = false
+          // ..
+        })
+    }
+
+    return {
+      updatePathRef,
+      validateEmail,
+      validatePassword,
+      password,
+      confirmPassword,
+      validateConfirmPassword,
+      showPassword,
+      onSubmit,
+      isSubmitting,
+      email,
+      message
+    }
+  }
+}
+</script>
+
 <template>
   <section class="auth__modal">
     <h1 class="auth__title">Register</h1>
@@ -5,7 +94,13 @@
       <!-- Email -->
       <div class="mb-3">
         <label class="auth__label">Email address</label>
-        <Field name="Email" type="email" class="auth__input" :rules="validateEmail" />
+        <Field
+          v-model="email"
+          name="Email"
+          type="email"
+          class="auth__input"
+          :rules="validateEmail"
+        />
         <ErrorMessage name="Email" class="auth__err" />
       </div>
       <!-- Password -->
@@ -81,6 +176,7 @@
       <!-- Submit Button -->
       <button type="submit" class="submit__btn" :disabled="isSubmitting">Submit</button>
     </veeForm>
+
     <!-- Toggle Form -->
     <p class="auth__toggle">
       Already have an account?
@@ -88,102 +184,28 @@
         >Login</router-link
       >
     </p>
+    <div
+      class="flex gap-4 items-center justify-center mt-12"
+      v-if="message.value && message.type === 'error'"
+    >
+      <img class="w-[2.4rem] h-[2.4rem]" src="/public/images/error.webp" alt="error icon" />
+      <p class="text-red-500 text-3xl text-center font-semibold">{{ message.value }}.</p>
+    </div>
+
+    <div
+      class="flex gap-4 items-end justify-center mt-12"
+      v-if="message.value && message.type === 'success'"
+    >
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <p class="text-green-600 text-3xl text-center font-semibold">{{ message.value }} .</p>
+    </div>
   </section>
 </template>
-
-<script>
-import showPassword from '../../helper/showPassword.js'
-import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
-import { useRouter } from 'vue-router'
-import { ref } from 'vue'
-
-export default {
-  name: 'AuthRegister',
-  components: {
-    veeForm,
-    Field,
-    ErrorMessage
-  },
-
-  setup(props, context) {
-    // Update route state for toggle forms
-    function updatePathRef() {
-      context.emit('updatePathRef', 'login')
-    }
-
-    function validateEmail(value) {
-      // if the field is empty
-      if (!value) {
-        return 'This field is required'
-      }
-      // if the field is not a valid email
-      const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-      if (!regex.test(value)) {
-        return 'This field must be a valid email'
-      }
-      // All is good
-      return true
-    }
-
-    function validatePassword(value) {
-      // if the field is empty
-      if (!value) {
-        return 'This field is required'
-      }
-      // if the field is not a valid email
-      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i
-      if (!regex.test(value)) {
-        return 'Password must be minimum eight characters, at least one capital letter, one number and one special character'
-      }
-      // All is good
-      return true
-    }
-
-    const password = ref('')
-    const confirmPassword = ref('')
-
-    function validateConfirmPassword(value) {
-      // if the field is empty
-      if (!value) {
-        return 'This field is required'
-      }
-      // if password does not match
-      if (password.value !== confirmPassword.value) {
-        return 'Password does not match'
-      }
-
-      // All is good
-      return true
-    }
-
-    //handling submission
-
-    const isSubmitting = ref(false)
-    const router = useRouter()
-
-    function onSubmit() {
-      isSubmitting.value = true
-      setTimeout(() => {
-        isSubmitting.value = false
-        context.emit('updatePathRef', 'login')
-        router.push('/auth/login')
-      }, 1000)
-    }
-
-    return {
-      updatePathRef,
-      validateEmail,
-      validatePassword,
-      password,
-      confirmPassword,
-      validateConfirmPassword,
-      showPassword,
-      onSubmit,
-      isSubmitting
-    }
-  }
-}
-</script>
 
 <style scoped>
 .auth__modal {

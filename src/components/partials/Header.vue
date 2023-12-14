@@ -97,8 +97,6 @@ export default {
 </template>
 
 <style scoped>
-@import '/src/styles/containers/home.css';
-
 .header {
   @apply flex py-6 justify-between relative;
 
