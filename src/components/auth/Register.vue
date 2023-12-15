@@ -188,7 +188,7 @@ export default {
       class="flex gap-4 items-center justify-center mt-12"
       v-if="message.value && message.type === 'error'"
     >
-      <img class="w-[2.4rem] h-[2.4rem]" src="/public/images/error.webp" alt="error icon" />
+      <img class="w-[2.4rem] h-[2.4rem]" src="/images/error.webp" alt="error icon" />
       <p class="text-red-500 text-3xl text-center font-semibold">{{ message.value }}.</p>
     </div>
 

@@ -1,7 +1,7 @@
 <template>
   <form class="form" action="POST" @submit.prevent="onSubmit">
     <div class="form__input">
-      <img src="/public/images/location 1.svg" alt="icon" class="icon" />
+      <img src="/images/location 1.svg" alt="icon" class="icon" />
 
       <select class="form__select outline-none" v-model="destinationValue" required>
         <option disabled selected value="" class="form__option">Where are you going?</option>

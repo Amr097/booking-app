@@ -109,7 +109,7 @@
             <ul class="rating__list">
               <li class="rating__item" v-for="(item, index) in startRanges" :key="index">
                 {{ item }}
-                <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+                <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
               </li>
             </ul>
           </div>

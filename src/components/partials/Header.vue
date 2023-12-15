@@ -93,7 +93,7 @@ export default {
         <circle cx="17" cy="6" r="5" fill="#EB5757" stroke="logoColor" stroke-width="2" />
       </svg>
       <div class="relative">
-        <img src="/public/images/user.webp" alt="User image" class="user__img" tabindex="0" />
+        <img src="/images/user.webp" alt="User image" class="user__img" tabindex="0" />
         <ul class="user__list">
           <li class="user__item" v-for="(item, index) in userListItems" :key="index">{{ item }}</li>
           <li class="user__item" @click="signUserOut">Sign out (i work)</li>

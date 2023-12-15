@@ -5,11 +5,11 @@
       <div class="results__card--info">
         <h3 class="results__card--title">{{ hotel.property.name }}</h3>
         <div class="results__card--stars">
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
           <p class="results__card--review">
             {{ hotel.property.reviewScore }} ({{ hotel.property.reviewCount }} reviews)
           </p>
@@ -42,15 +42,15 @@
   <!-- //////////////////////////////// -->
   <div v-else>
     <div class="results__card">
-      <img src="/public/images/v-greece.webp" alt="" class="result__card--img" />
+      <img src="/images/v-greece.webp" alt="" class="result__card--img" />
       <div class="results__card--info">
         <h3 class="results__card--title">Hotel Name</h3>
         <div class="results__card--stars">
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
           <p class="results__card--review">480 (1200 reviews)</p>
         </div>
         <article class="results__card--desc">

@@ -2,8 +2,8 @@
   <div class="modal">
     <div class="modal__card">
       <div class="modal__frame">
-        <img class="frame-2" src="/public/images/Frame-1.svg" alt="Boy image" />
-        <img class="frame-1" src="/public/images/Frame.svg" alt="Boy image" />
+        <img class="frame-2" src="/images/Frame-1.svg" alt="Boy image" />
+        <img class="frame-1" src="/images/Frame.svg" alt="Boy image" />
       </div>
       <div class="modal__content">
         <h1 class="modal__title">Welcome to My Dream Place</h1>

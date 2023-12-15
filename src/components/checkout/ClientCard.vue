@@ -1,7 +1,7 @@
 <template>
   <section class="client">
     <div class="checkout__heading--container">
-      <img src="/public/images/security-user.svg" alt="icon" />
+      <img src="/images/security-user.svg" alt="icon" />
       <slot name="room"></slot>
     </div>
     <div class="client__data">

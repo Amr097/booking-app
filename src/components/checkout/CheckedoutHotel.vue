@@ -1,15 +1,15 @@
 <template>
   <figure class="card">
-    <img src="/public/images/details-3.webp" alt="" class="card__img" />
+    <img src="/images/details-3.webp" alt="" class="card__img" />
     <div class="p-6">
       <figcaption class="card__title">Lakeside Motel Warefront</figcaption>
       <div class="card__rating">
         <div class="rating--stars">
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
         </div>
         <p class="review">4.5 (1200 Reviews)</p>
       </div>

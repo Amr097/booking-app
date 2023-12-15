@@ -1,16 +1,11 @@
 <script setup>
-const icons = [
-  '/public/images/pay.webp',
-  '/public/images/visa.webp',
-  '/public/images/ae.webp',
-  '/public/images/dis.webp'
-]
+const icons = ['/images/pay.webp', '/images/visa.webp', '/images/ae.webp', '/images/dis.webp']
 </script>
 
 <template>
   <div class="pay">
     <div class="checkout__heading--container">
-      <img src="/public/images/card-tick.svg" alt="icon" />
+      <img src="/images/card-tick.svg" alt="icon" />
       <p class="room__details mt-1">Payment options</p>
     </div>
 

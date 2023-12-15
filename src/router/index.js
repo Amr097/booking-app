@@ -1,18 +1,12 @@
-import AppHome from '../views/Home.vue'
-import HotelDetails from '../views/HotelDetails.vue'
-import AppAuth from '../auth/Auth.vue'
-import AppSearchResults from '../views/SearchResults.vue'
-import HotelCheckout from '../views/HotelCheckout.vue'
-import UserTrips from '../views/UserTrips.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import useUserStore from '../store/User.js'
 
 const routes = [
-  { name: 'home', path: '/', component: AppHome },
+  { name: 'home', path: '/', component: () => import('../views/Home.vue') },
   {
     name: 'auth',
     path: '/auth/:path',
-    component: AppAuth,
+    component: () => import('../auth/Auth.vue'),
     meta: {
       authPath: true
     }
@@ -20,7 +14,7 @@ const routes = [
   {
     name: 'results',
     path: '/search/results',
-    component: AppSearchResults,
+    component: () => import('../views/SearchResults.vue'),
     meta: {
       requiresAuth: true
     }
@@ -28,7 +22,7 @@ const routes = [
   {
     name: 'details',
     path: '/hotel/details',
-    component: HotelDetails,
+    component: () => import('../views/HotelDetails.vue'),
     meta: {
       requiresAuth: true
     }
@@ -36,7 +30,7 @@ const routes = [
   {
     name: 'checkout',
     path: '/hotel/checkout',
-    component: HotelCheckout,
+    component: () => import('../views/HotelCheckout.vue'),
     meta: {
       requiresAuth: true
     }
@@ -44,11 +38,22 @@ const routes = [
   {
     name: 'trips',
     path: '/trips/:id',
-    component: UserTrips,
+    component: () => import('../views/UserTrips.vue'),
     meta: {
       requiresAuth: true
     }
-  }
+  },
+  {
+    name: '404',
+    path: '/oppsy/daisy',
+    component: () => import('../components/partials/NotFound.vue')
+  },
+  {
+    name: '403',
+    path: '/freeze',
+    component: () => import('../components/partials/AccessDenied.vue')
+  },
+  { path: '/:catchAll(.*)*', redirect: { name: '404' } }
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -67,7 +72,7 @@ router.beforeEach(async (to, from, next) => {
   const { isLogged } = useUserStore()
 
   if (to.meta.authPath) {
-    isLogged.logged ? next(from.fullPath) : next()
+    isLogged.logged ? next({ name: '403' }) : next()
   } else if (!to.meta.requiresAuth) {
     next()
   } else {

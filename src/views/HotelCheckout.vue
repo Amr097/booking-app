@@ -181,7 +181,7 @@ const onSubmit = () => {
                 />
                 <ErrorMessage name="nameCard" class="auth__err row-start-3 col-start-1" />
                 <img
-                  src="/public/images/tick-circle.svg"
+                  src="/images/tick-circle.svg"
                   alt="icon"
                   class="row-start-1 col-start-2 self-center"
                   v-if="formData.isCardName"
@@ -200,7 +200,7 @@ const onSubmit = () => {
                 />
                 <ErrorMessage name="cardNumber" class="auth__err row-start-3 col-start-1" />
                 <img
-                  src="/public/images/tick-circle.svg"
+                  src="/images/tick-circle.svg"
                   alt="icon"
                   class="row-start-1 col-start-2 self-center"
                   v-if="formData.isCardNumber"
@@ -224,7 +224,7 @@ const onSubmit = () => {
               </select>
 
               <img
-                src="/public/images/tick-circle.svg"
+                src="/images/tick-circle.svg"
                 alt="icon"
                 class="row-start-2 col-start-3 self-center"
                 v-if="formData.expireMonth && formData.expireYear"
@@ -241,7 +241,7 @@ const onSubmit = () => {
               />
               <ErrorMessage name="secCode" class="auth__err row-start-3 col-start-1" />
               <img
-                src="/public/images/tick-circle.svg"
+                src="/images/tick-circle.svg"
                 alt="icon"
                 class="row-start-2 col-start-3 self-center"
                 v-if="formData.isSecCode && formData.isZipCode"

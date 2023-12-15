@@ -5,9 +5,9 @@
   <div class="container-grey">
     <section class="hotel__images">
       <div class="container container-2">
-        <img class="left-img" src="/public/images/details-1.webp" alt="Room image" />
-        <img class="right-img" src="/public/images/details-3.webp" alt="Room image" />
-        <img class="right-img" src="/public/images/details-2.webp" alt="Room image" />
+        <img class="left-img" src="/images/details-1.webp" alt="Room image" />
+        <img class="right-img" src="/images/details-3.webp" alt="Room image" />
+        <img class="right-img" src="/images/details-2.webp" alt="Room image" />
       </div>
 
       <div class="details-toggle">
@@ -194,14 +194,14 @@ export default {
   setup() {
     const roomCard = [
       {
-        image: '/public/images/room-1.webp',
+        image: '/images/room-1.webp',
         title: 'Standard twin ben, Multiple beds',
         space: '300 sq ft',
         rooms: 'Sleeps 3',
         beds: '1 double bed and 1 twin bed'
       },
       {
-        image: '/public/images/room-2.webp',
+        image: '/images/room-2.webp',
         title: 'Standard twin ben, 1 Queen bed',
         space: '300 sq ft',
         rooms: 'Sleeps 3',

@@ -2,11 +2,7 @@
   <div class="modal">
     <div class="modal__card">
       <div class="modal__frame">
-        <img
-          class="frame"
-          src="/public/images/26a298da1dad51e79d8acb1dba146a7f.webp"
-          alt="Boy image"
-        />
+        <img class="frame" src="/images/26a298da1dad51e79d8acb1dba146a7f.webp" alt="Boy image" />
       </div>
       <div class="modal__content">
         <h1 class="modal__title">Booking Successful</h1>

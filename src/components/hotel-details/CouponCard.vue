@@ -1,6 +1,6 @@
 <template>
   <figure class="coupon">
-    <img src="/public/images/Frame.svg" alt="frame" class="coupon__image" />
+    <img src="/images/Frame.svg" alt="frame" class="coupon__image" />
     <div class="coupon__title">
       <svg
         xmlns="http://www.w3.org/2000/svg"

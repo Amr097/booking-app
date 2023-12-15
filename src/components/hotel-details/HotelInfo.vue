@@ -4,11 +4,11 @@
       <slot name="title"></slot>
       <div class="reviews">
         <div class="results__card--stars">
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/public/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
           <p class="results__card--review">4.5 (1200 Reviews)</p>
         </div>
         <div class="location">
@@ -69,12 +69,12 @@
 
 <script setup>
 const TopFacilities = [
-  { icon: '/public/images/wifi.svg', label: 'Free wifi' },
-  { icon: '/public/images/wind.svg', label: 'Air Conditioning' },
-  { icon: '/public/images/car.svg', label: 'Parking available' },
-  { icon: '/public/images/bag-tick.svg', label: 'Business Services' },
-  { icon: '/public/images/lifebuoy.svg', label: 'Swimming pool' },
-  { icon: '/public/images/like.svg', label: 'Top rated in area' }
+  { icon: '/images/wifi.svg', label: 'Free wifi' },
+  { icon: '/images/wind.svg', label: 'Air Conditioning' },
+  { icon: '/images/car.svg', label: 'Parking available' },
+  { icon: '/images/bag-tick.svg', label: 'Business Services' },
+  { icon: '/images/lifebuoy.svg', label: 'Swimming pool' },
+  { icon: '/images/like.svg', label: 'Top rated in area' }
 ]
 </script>
 
