@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer" :style="style">
+  <footer class="footer">
     <h1 class="footer__title">Explore the world with My Dream Place</h1>
     <h4 class="footer__text">Discover new places and experiences</h4>
     <ul class="footer__list--logo">

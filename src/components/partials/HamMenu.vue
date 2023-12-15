@@ -1,6 +1,8 @@
 <script setup>
-import { computed } from 'vue'
-const userToken = computed(() => sessionStorage.getItem('authToken'))
+import useUserStore from '../../store/User.js'
+
+const { isLogged } = useUserStore()
+
 const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
 </script>
 
@@ -14,15 +16,15 @@ const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
     <nav class="nav">
       <!-- Navigation List 1 -->
       <ul class="nav__list">
-        <li class="nav__list--auth" v-if="!userToken">
+        <li class="nav__list--auth" v-if="!isLogged.logged">
           <router-link class="auth__btn" to="/auth/login"> Login </router-link>
         </li>
-        <li class="nav__list--auth" v-if="!userToken">
+        <li class="nav__list--auth" v-if="!isLogged.logged">
           <router-link class="auth__btn inline-block mb-4" to="/auth/register">
             Register
           </router-link>
         </li>
-        <hr v-if="!userToken" />
+        <hr v-if="!isLogged.logged" />
         <li class="nav__list--item" v-for="(item, index) in navItems" :key="index">
           <router-link :to="`/auth/${item.toLowerCase()}`">{{ item }}</router-link>
         </li>

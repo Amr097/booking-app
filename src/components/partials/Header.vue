@@ -1,6 +1,8 @@
 <script>
-import { onMounted, ref } from 'vue'
+import useUserStore from '../../store/User.js'
+import { auth, signOut } from '/src/services/firebase.js'
 import HamMenu from '/src/components/partials/HamMenu.vue'
+
 export default {
   name: 'AppHeader',
   props: { logoColor: String, textColor: String, bellColor: String, showNav: Boolean },
@@ -10,18 +12,24 @@ export default {
     const authBtns = ['Register', 'Login']
     const userListItems = ['Manage account', 'My trips', 'Reward and wallet']
 
-    const isLogged = ref(false)
-
-    const signOut = () => {
-      sessionStorage.removeItem('authToken')
-      location.reload()
+    const signUserOut = () => {
+      signOut(auth)
+        .then(() => {
+          // Sign-out successful.
+          location.reload()
+          sessionStorage.removeItem('authToken')
+        })
+        .catch(() => {
+          // An error happened.
+          alert(
+            'Failed to sign user out, if the problem presists please report the problem to the app developer.'
+          )
+        })
     }
 
-    onMounted(() => {
-      sessionStorage.getItem('authToken') ? (isLogged.value = true) : null
-    })
+    const { isLogged } = useUserStore()
 
-    return { navItems, authBtns, isLogged, userListItems, signOut }
+    return { navItems, authBtns, isLogged, userListItems, signUserOut }
   }
 }
 </script>
@@ -62,7 +70,7 @@ export default {
       </ul>
     </nav>
     <!-- AUTH -->
-    <div class="auth" v-if="!isLogged">
+    <div class="auth" v-if="!isLogged.logged">
       <router-link
         class="auth__btn"
         :to="`/auth/${item.toLowerCase()}`"
@@ -72,7 +80,7 @@ export default {
       >
     </div>
     <!-- USER -->
-    <div class="user" v-if="isLogged">
+    <div class="user" v-if="isLogged.logged">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="user__bell">
         <path
           d="m19.34 14.49-1-1.66c-0.21-0.37-0.4-1.07-0.4-1.48v-2.53c-0.0012-1.116-0.3183-2.2088-0.9147-3.152s-1.4476-1.6984-2.4553-2.178c-0.2571-0.45666-0.6323-0.83586-1.0861-1.098-0.4539-0.26211-0.9698-0.3975-1.4939-0.39203-1.09 0-2.07 0.59-2.59 1.52-1.95 0.97-3.3 2.98-3.3 5.3v2.53c0 0.41-0.19 1.11-0.4 1.47l-1.01 1.67c-0.4 0.67-0.49 1.41-0.24 2.09 0.24 0.67 0.81 1.19 1.55 1.44 1.94 0.66 3.98 0.98 6.02 0.98 2.04 0 4.08-0.32 6.02-0.97 0.7-0.23 1.24-0.76 1.5-1.45s0.19-1.45-0.2-2.09z"
@@ -88,7 +96,7 @@ export default {
         <img src="/public/images/user.webp" alt="User image" class="user__img" tabindex="0" />
         <ul class="user__list">
           <li class="user__item" v-for="(item, index) in userListItems" :key="index">{{ item }}</li>
-          <li class="user__item" @click="signOut">Sign out (i work)</li>
+          <li class="user__item" @click="signUserOut">Sign out (i work)</li>
         </ul>
       </div>
     </div>

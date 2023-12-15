@@ -5,6 +5,7 @@ import AppSearchResults from '../views/SearchResults.vue'
 import HotelCheckout from '../views/HotelCheckout.vue'
 import UserTrips from '../views/UserTrips.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import useUserStore from '../store/User.js'
 
 const routes = [
   { name: 'home', path: '/', component: AppHome },
@@ -12,55 +13,40 @@ const routes = [
     name: 'auth',
     path: '/auth/:path',
     component: AppAuth,
-    beforeEnter: (to, from, next) => {
-      if (sessionStorage.getItem('authToken')) {
-        next('/')
-      }
-      next()
+    meta: {
+      authPath: true
     }
   },
   {
     name: 'results',
     path: '/search/results',
     component: AppSearchResults,
-    beforeEnter: (to, from, next) => {
-      if (!sessionStorage.getItem('authToken')) {
-        next('/')
-      }
-      next()
+    meta: {
+      requiresAuth: true
     }
   },
   {
     name: 'details',
     path: '/hotel/details',
     component: HotelDetails,
-    beforeEnter: (to, from, next) => {
-      if (!sessionStorage.getItem('authToken')) {
-        next('/')
-      }
-      next()
+    meta: {
+      requiresAuth: true
     }
   },
   {
     name: 'checkout',
     path: '/hotel/checkout',
     component: HotelCheckout,
-    beforeEnter: (to, from, next) => {
-      if (!sessionStorage.getItem('authToken')) {
-        next('/')
-      }
-      next()
+    meta: {
+      requiresAuth: true
     }
   },
   {
     name: 'trips',
     path: '/trips/:id',
     component: UserTrips,
-    beforeEnter: (to, from, next) => {
-      if (!sessionStorage.getItem('authToken')) {
-        next('/')
-      }
-      next()
+    meta: {
+      requiresAuth: true
     }
   }
 ]
@@ -70,15 +56,28 @@ const router = createRouter({
 })
 
 // clear local storage on route change from search/results to '/'
-function onRouteChange(to, from, next) {
+function onRouteChange(to, from) {
   if (from.fullPath === '/search/results') {
     localStorage.clear()
   }
-  next()
 }
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   onRouteChange(to, from, next)
+  const { isLogged } = useUserStore()
+
+  if (to.meta.authPath) {
+    isLogged.logged ? next(from.fullPath) : next()
+  } else if (!to.meta.requiresAuth) {
+    next()
+  } else {
+    if (isLogged.logged) {
+      next()
+    } else {
+      next('/auth/login')
+    }
+  }
+  next()
 })
 
 export default router

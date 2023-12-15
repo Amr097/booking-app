@@ -1,6 +1,6 @@
 <template>
   <section class="download">
-    <img class="download__image" src="../../../public/images/phone.webp" alt="" />
+    <img class="download__image" src="/public/images/phone.webp" alt="" />
     <div class="download__ad">
       <h1 class="download__title">
         Download the mobile application for bonus coupons and travel codes

@@ -1,15 +1,23 @@
 import { defineStore } from 'pinia'
-import { generateUniqueToken } from '../helper/tokenHandler.js'
+import { auth, onAuthStateChanged } from '../services/firebase.js'
 import { ref } from 'vue'
 
 export default defineStore('user', () => {
   const firstLogin = ref({ modal: false })
+  const isLogged = ref({ logged: false })
 
   const userLogin = () => {
-    const token = generateUniqueToken()
     firstLogin.value.modal = true
-    sessionStorage.setItem('authToken', token)
   }
 
-  return { userLogin, firstLogin }
+  const setUserStatus = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        isLogged.value.logged = true
+      } else {
+        isLogged.value.logged = false
+      }
+    })
+  }
+  return { userLogin, firstLogin, setUserStatus, isLogged }
 })

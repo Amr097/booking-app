@@ -55,25 +55,25 @@ export default {
 
     const vacationsData = [
       {
-        image: '../../public/images/v-australia.webp',
+        image: '/public/images/v-australia.webp',
         name: 'Australia',
         properties: '2246 properties',
         height: '22rem'
       },
       {
-        image: '../../public/images/v-japan.webp',
+        image: '/public/images/v-japan.webp',
         name: 'Japan',
         properties: '1278 properties',
         height: '22rem'
       },
       {
-        image: '../../public/images/v-zeland.webp',
+        image: '/public/images/v-zeland.webp',
         name: 'New Zealand',
         properties: '480 properties',
         height: '22rem'
       },
       {
-        image: '../../public/images/v-greece.webp',
+        image: '/public/images/v-greece.webp',
         name: 'Greece',
         properties: '320 properties',
         height: '22rem'
@@ -82,25 +82,25 @@ export default {
 
     const hotelsData = [
       {
-        image: '../../public/images/h-lakeside.webp',
+        image: '/public/images/h-lakeside.webp',
         name: 'Lakeside Motel Warefront',
         properties: '2246 properties',
         height: '30rem'
       },
       {
-        image: '../../public/images/h-recce.webp',
+        image: '/public/images/h-recce.webp',
         name: 'Recce Graham resort',
         properties: '1278 properties',
         height: '30rem'
       },
       {
-        image: '../../public/images/h-fireside.webp',
+        image: '/public/images/h-fireside.webp',
         name: 'Fireside Dinners',
         properties: '480 properties',
         height: '30rem'
       },
       {
-        image: '../../public/images/h-oculous.webp',
+        image: '/public/images/h-oculous.webp',
         name: 'Fireside Dinners',
         properties: '320 properties',
         height: '30rem'
@@ -109,17 +109,17 @@ export default {
 
     const tripsData = [
       {
-        bg: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(../../public/images/t-sydney.webp)',
+        bg: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(/public/images/t-sydney.webp)',
         title: 'Sydeny’s 10 most fashionable 5 star hotels',
         desc: 'Browse the fastest growing tourism sector in the heart of Australia tourism capital ....'
       },
       {
-        bg: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(../../public/images/t-vegan.webp)',
+        bg: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(/public/images/t-vegan.webp)',
         title: 'Top cities for Vegan Travellers',
         desc: 'Top sites where you do not have to worry about being a vegan. Our tourist guide is here...'
       },
       {
-        bg: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(../../public/images/t-pcovid.webp)',
+        bg: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(/public/images/t-pcovid.webp)',
         title: 'World’s top destinations during and post covid timeline',
         desc: 'Pandemic is still intact and will be here for a longer time. Here’s where your next destination...'
       }
