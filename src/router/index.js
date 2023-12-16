@@ -82,7 +82,6 @@ router.beforeEach(async (to, from, next) => {
       next('/auth/login')
     }
   }
-  next()
 })
 
 export default router

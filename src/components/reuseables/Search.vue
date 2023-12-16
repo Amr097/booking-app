@@ -1,9 +1,147 @@
+<script>
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
+import { useRouter } from 'vue-router'
+import { formatDate } from '../../helper/dateFormat.js'
+import { ref, reactive } from 'vue'
+import useUserStore from '/src/store/User.js'
+import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
+import { validateInput } from '../../helper/SearchValidation.js'
+
+export default {
+  name: 'AppSearch',
+  components: { VueDatePicker, veeForm, Field, ErrorMessage },
+  setup() {
+    const resDestinationData = ref([
+      { dest_id: '1', city_name: 'Cairo' },
+      { dest_id: '2', city_name: 'Hurghada' },
+      { dest_id: '3', city_name: 'Sharm-Alsheikh' }
+    ])
+
+    const isLoading = ref(false)
+
+    const searchData = reactive({
+      checkInDate: '',
+      checkOutDate: '',
+      guestsValue: '',
+      roomsValue: '',
+      destinationValue: ''
+    })
+
+    const datpickerErr = reactive({
+      state: false,
+      message: ''
+    })
+
+    const destErr = reactive({
+      state: false,
+      message: ''
+    })
+
+    //Validating Select
+
+    const validateSelect = () => {
+      if (destErr.state) {
+        destErr.state = false
+        destErr.message = ''
+      }
+    }
+
+    // Validating Datepicker
+
+    const validateCheckin = () => {
+      const currentDate = new Date()
+      const checkInDate = new Date(searchData.checkInDate)
+      const checkOutDate = new Date(searchData.checkOutDate)
+
+      if (checkInDate && checkInDate <= currentDate) {
+        datpickerErr.state = true
+        datpickerErr.message = "Date can't be eariler than today."
+        return
+      }
+      if (searchData.checkOutDate && (checkInDate > checkOutDate || checkInDate === checkOutDate)) {
+        datpickerErr.state = true
+        datpickerErr.message = "Check in can't be earlier than check out."
+        return
+      }
+      console.log({ checkInDate, currentDate })
+      datpickerErr.state = false
+      datpickerErr.message = ''
+    }
+
+    const validateCheckout = () => {
+      const currentDate = new Date()
+      const checkInDate = new Date(searchData.checkInDate)
+      const checkOutDate = new Date(searchData.checkOutDate)
+
+      if (checkOutDate && checkOutDate <= currentDate) {
+        console.log({ checkInDate, checkOutDate })
+        datpickerErr.state = true
+        datpickerErr.message = "Date can't be eariler than today."
+        return
+      }
+      if (searchData.checkInDate && (checkInDate > checkOutDate || checkInDate === checkOutDate)) {
+        datpickerErr.state = true
+        datpickerErr.message = "Check out can't be earlier than check in."
+        return
+      }
+
+      datpickerErr.state = false
+      datpickerErr.message = ''
+    }
+
+    //On Submit
+
+    const router = useRouter()
+
+    const { isLogged } = useUserStore()
+
+    const onSubmit = () => {
+      if (!isLogged.logged) {
+        router.push('/auth/login')
+      } else {
+        if (!(searchData.checkInDate && searchData.checkOutDate)) {
+          datpickerErr.state = true
+          datpickerErr.message = 'This field is required'
+          return
+        } else if (!searchData.destinationValue) {
+          destErr.state = true
+          destErr.message = 'This field is required'
+          return
+        }
+        localStorage.setItem('searchQuery', JSON.stringify(searchData))
+        router.push({ name: 'results' })
+      }
+    }
+
+    return {
+      onSubmit,
+      resDestinationData,
+      searchData,
+      isLoading,
+      formatDate,
+      validateInput,
+      validateCheckin,
+      validateCheckout,
+      datpickerErr,
+      destErr,
+      validateSelect
+    }
+  }
+}
+</script>
+
 <template>
-  <form class="form" action="POST" @submit.prevent="onSubmit">
+  <veeForm class="form" action="POST" @submit="onSubmit">
     <div class="form__input">
       <img src="/images/location 1.svg" alt="icon" class="icon" />
 
-      <select class="form__select outline-none" v-model="destinationValue" required>
+      <select
+        name="dest"
+        class="form__select outline-none"
+        v-model="searchData.destinationValue"
+        @change="validateSelect"
+      >
         <option disabled selected value="" class="form__option">Where are you going?</option>
         <option
           :value="item.dest_id"
@@ -14,190 +152,67 @@
           {{ item.city_name }}
         </option>
       </select>
+      <span v-show="destErr.state" name="dest" class="auth__err bot">{{ destErr.message }}</span>
+      <span v-show="destErr.state" class="cone-up"></span>
     </div>
 
     <div class="form__date">
-      <p class="date-text">{{ checkInDate ? '' : 'Check in date' }}</p>
+      <p class="date-text">{{ searchData.checkInDate ? '' : 'Check in date' }}</p>
       <VueDatePicker
-        v-model="checkInDate"
+        v-model="searchData.checkInDate"
         :enable-time-picker="false"
         :format="formatDate"
         auto-apply
         model-type="yyyy-MM-dd"
-        required
+        @blur="validateCheckin"
       />
+      <span v-show="datpickerErr.state" class="auth__err top date">{{ datpickerErr.message }}</span>
+      <span v-show="datpickerErr.state" class="cone-down date"></span>
     </div>
     <div class="form__date">
-      <p class="date-text">{{ checkOutDate ? '' : 'Check out date' }}</p>
+      <p class="date-text">{{ searchData.checkOutDate ? '' : 'Check out date' }}</p>
       <VueDatePicker
-        v-model="checkOutDate"
+        v-model="searchData.checkOutDate"
         :enable-time-picker="false"
         :format="formatDate"
         auto-apply
         model-type="yyyy-MM-dd"
         required
+        @blur="validateCheckout"
       />
     </div>
 
     <div class="form__input">
       <img src="public/images/user.svg" alt="icon" class="icon" />
-      <input
+      <Field
+        name="guests"
         class="input outline-none"
         type="text"
         placeholder="Guests"
-        v-model="guestsValue"
-        required
+        v-model="searchData.guestsValue"
+        :rules="validateInput"
       />
+      <ErrorMessage name="guests" class="auth__err bot" />
+      <ErrorMessage name="guests"><span class="cone-up cone-down"></span></ErrorMessage>
     </div>
 
     <div class="form__input">
       <img src="public/images/room.svg" alt="icon" class="icon" />
-      <input
+      <Field
+        name="rooms"
         class="input outline-none"
         type="text"
         placeholder="Rooms"
-        v-model="roomsValue"
-        required
+        v-model="searchData.roomsValue"
+        :rules="validateInput"
       />
+      <ErrorMessage name="rooms" class="auth__err top" />
+      <ErrorMessage name="rooms"><span class="cone-down"></span></ErrorMessage>
     </div>
 
     <button type="submit" :disabled="isLoading" class="form__btn">Search</button>
-  </form>
+  </veeForm>
 </template>
-
-<script>
-import VueDatePicker from '@vuepic/vue-datepicker'
-import '@vuepic/vue-datepicker/dist/main.css'
-import { onMounted, ref, watch } from 'vue'
-import axios from 'axios'
-import { useRouter } from 'vue-router'
-import { formatDate } from '../../helper/dateFormat.js'
-import useHotelsStore from '../../store/Hotels.js'
-
-export default {
-  name: 'AppSearch',
-  components: { VueDatePicker },
-  setup() {
-    // fetch destinations
-    const options = {
-      method: 'GET',
-      url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination',
-      params: { query: 'egypt' },
-      headers: {
-        'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
-        'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
-      }
-    }
-
-    const resDestinationData = ref([
-      { dest_id: '1', city_name: 'Cairo' },
-      { dest_id: '2', city_name: 'Hurghada' },
-      { dest_id: '3', city_name: 'Sharm-Alsheikh' }
-    ])
-
-    const getHotelDestinations = async () => {
-      try {
-        const response = await axios.request(options)
-        resDestinationData.value = response.data.data.filter((item) => {
-          return item.city_name !== ''
-        })
-      } catch (error) {
-        console.error(error)
-      }
-    }
-
-    // form values
-    const checkInDate = ref('')
-    const checkOutDate = ref('')
-    const guestsValue = ref('')
-    const roomsValue = ref('')
-    const destinationValue = ref('')
-    const isLoading = ref(false)
-
-    // Function to update search options based on ref variable changes
-    const updateSearchOptions = () => {
-      searchHotelOptions.params.dest_id = destinationValue.value
-      searchHotelOptions.params.arrival_date = checkInDate.value
-      searchHotelOptions.params.departure_date = checkOutDate.value
-      searchHotelOptions.params.adults = guestsValue.value
-      searchHotelOptions.params.room_qty = roomsValue.value
-    }
-
-    // Watchers to trigger updateSearchOptions function on ref variable changes
-    watch([checkInDate, checkOutDate, guestsValue, roomsValue, destinationValue], () => {
-      updateSearchOptions()
-    })
-
-    const searchHotelOptions = {
-      method: 'GET',
-      url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
-      params: {
-        dest_id: destinationValue.value,
-        search_type: 'CITY',
-        arrival_date: checkInDate.value,
-        departure_date: checkOutDate.value,
-        adults: guestsValue.value,
-        children_age: '0,17',
-        room_qty: roomsValue.value,
-        page_number: '1',
-        languagecode: 'en-us',
-        currency_code: 'AED'
-      },
-      headers: {
-        'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
-        'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
-      }
-    }
-
-    //form submisson
-    const router = useRouter()
-    const { fetchHotels } = useHotelsStore()
-
-    const onSubmit = async () => {
-      if (!sessionStorage.getItem('authToken')) {
-        router.push('/auth/login')
-      } else {
-        const query = {
-          dest_id: destinationValue.value,
-          arrival_date: checkInDate.value,
-          departure_date: checkOutDate.value,
-          adults: guestsValue.value,
-          room_qty: roomsValue.value
-        }
-
-        fetchHotels(searchHotelOptions, query, isLoading)
-      }
-    }
-
-    // fetch hotel destinations and check for search query in local storage
-    onMounted(() => {
-      getHotelDestinations()
-
-      const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
-
-      if (searchQuery) {
-        checkInDate.value = searchQuery.arrival_date
-        checkOutDate.value = searchQuery.departure_date
-        guestsValue.value = searchQuery.adults
-        roomsValue.value = searchQuery.room_qty
-        destinationValue.value = searchQuery.dest_id
-      }
-    })
-
-    return {
-      resDestinationData,
-      checkInDate,
-      checkOutDate,
-      guestsValue,
-      roomsValue,
-      destinationValue,
-      onSubmit,
-      formatDate,
-      isLoading
-    }
-  }
-}
-</script>
 
 <style scoped>
 @import '/src/styles/containers/search.css';
@@ -220,7 +235,7 @@ export default {
 
 .form__input,
 .form__select {
-  @apply p-2.5 rounded-md;
+  @apply p-2.5 rounded-md relative;
 }
 
 .input::placeholder,
@@ -265,7 +280,50 @@ input {
   color: #4f4f4f;
 }
 
-/* container query */
+.auth__err {
+  @apply absolute bg-[#f2f2f2] px-5 py-3 rounded-md;
+}
+
+.top,
+.bot {
+  @apply left-1/2 -translate-x-1/2 rounded-md -top-24 px-[1rem] py-[1.2rem] sm:px-[1.7rem] sm:py-[2rem] sm:-top-[8rem];
+
+  width: max-content;
+}
+
+.bot {
+  @apply top-[6rem] !important;
+}
+
+.auth__err.top.date {
+  @apply left-[4rem] sm:left-[15rem];
+}
+
+.cone-down.date {
+  @apply left-[3rem] sm:left-[13.5rem];
+}
+
+.cone-up,
+.cone-down {
+  @apply sm:left-[5.5rem];
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -1.5rem;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  border-top: 1.5rem solid #f2f2f2;
+}
+
+.cone-up {
+  width: 0;
+  height: 0;
+  top: 5.5rem !important;
+  border-left: 1.5rem solid transparent !important;
+  border-right: 1.5rem solid transparent !important;
+  border-bottom: 1.5rem solid #f2f2f2 !important;
+  border-top: none !important;
+}
 </style>
 
 <style>
@@ -278,6 +336,10 @@ input {
   background-clip: text;
   -webkit-background-clip: text;
   transform: translateX(3rem);
+
+  @media screen and (width<=41.875em) {
+    transform: none;
+  }
 }
 
 .dp__main {
@@ -300,3 +362,125 @@ input {
   }
 }
 </style>
+
+<!-- <script>
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
+import { useRouter } from 'vue-router'
+import { formatDate } from '../../helper/dateFormat.js'
+import { ref, reactive } from 'vue'
+import useUserStore from '/src/store/User.js'
+// import axios from 'axios'
+// import useHotelsStore from '../../store/Hotels.js'
+
+export default {
+  name: 'AppSearch',
+  components: { VueDatePicker },
+  setup() {
+    //     // fetch destinations
+    //     const options = {
+    //       method: 'GET',
+    //       url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination',
+    //       params: { query: 'egypt' },
+    //       headers: {
+    //         'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+    //         'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+    //       }
+    //     }
+    //     const resDestinationData = ref([
+    //       { dest_id: '1', city_name: 'Cairo' },
+    //       { dest_id: '2', city_name: 'Hurghada' },
+    //       { dest_id: '3', city_name: 'Sharm-Alsheikh' }
+    //     ])
+    //     const getHotelDestinations = async () => {
+    //       try {
+    //         const response = await axios.request(options)
+    //         resDestinationData.value = response.data.data.filter((item) => {
+    //           return item.city_name !== ''
+    //         })
+    //       } catch (error) {
+    //         console.error(error)
+    //       }
+    //     }
+    //     // form values
+    //     const checkInDate = ref('')
+    //     const checkOutDate = ref('')
+    //     const guestsValue = ref('')
+    //     const roomsValue = ref('')
+    //     const destinationValue = ref('')
+    //     const isLoading = ref(false)
+    //     // Function to update search options based on ref variable changes
+    //     const updateSearchOptions = () => {
+    //       searchHotelOptions.params.dest_id = destinationValue.value
+    //       searchHotelOptions.params.arrival_date = checkInDate.value
+    //       searchHotelOptions.params.departure_date = checkOutDate.value
+    //       searchHotelOptions.params.adults = guestsValue.value
+    //       searchHotelOptions.params.room_qty = roomsValue.value
+    //     }
+    //     // Watchers to trigger updateSearchOptions function on ref variable changes
+    //     watch([checkInDate, checkOutDate, guestsValue, roomsValue, destinationValue], () => {
+    //       updateSearchOptions()
+    //     })
+    //     const searchHotelOptions = {
+    //       method: 'GET',
+    //       url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
+    //       params: {
+    //         dest_id: destinationValue.value,
+    //         search_type: 'CITY',
+    //         arrival_date: checkInDate.value,
+    //         departure_date: checkOutDate.value,
+    //         adults: guestsValue.value,
+    //         children_age: '0,17',
+    //         room_qty: roomsValue.value,
+    //         page_number: '1',
+    //         languagecode: 'en-us',
+    //         currency_code: 'AED'
+    //       },
+    //       headers: {
+    //         'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+    //         'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+    //       }
+    //     }
+    //     //form submisson
+    //     const router = useRouter()
+    //     const { fetchHotels } = useHotelsStore()
+    //     const onSubmit = async () => {
+    //       if (!sessionStorage.getItem('authToken')) {
+    //         router.push('/auth/login')
+    //       } else {
+    //         const query = {
+    //           dest_id: destinationValue.value,
+    //           arrival_date: checkInDate.value,
+    //           departure_date: checkOutDate.value,
+    //           adults: guestsValue.value,
+    //           room_qty: roomsValue.value
+    //         }
+    //         fetchHotels(searchHotelOptions, query, isLoading)
+    //       }
+    //     }
+    //     // fetch hotel destinations and check for search query in local storage
+    //     onMounted(() => {
+    //       getHotelDestinations()
+    //       const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+    //       if (searchQuery) {
+    //         checkInDate.value = searchQuery.arrival_date
+    //         checkOutDate.value = searchQuery.departure_date
+    //         guestsValue.value = searchQuery.adults
+    //         roomsValue.value = searchQuery.room_qty
+    //         destinationValue.value = searchQuery.dest_id
+    //       }
+    //     })
+    //     return {
+    //       resDestinationData,
+    //       checkInDate,
+    //       checkOutDate,
+    //       guestsValue,
+    //       roomsValue,
+    //       destinationValue,
+    //       onSubmit,
+    //       formatDate,
+    //       isLoading
+    //     }
+  }
+}
+</script> -->

@@ -5,7 +5,7 @@
 }
 
 .auth__err {
-  @apply inline-block mt-3 text-red-500 text-xl;
+  @apply inline-block mt-3 text-red-500 text-lg sm:text-xl;
 }
 
 .container-c {
