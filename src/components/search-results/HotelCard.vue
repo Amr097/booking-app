@@ -1,5 +1,5 @@
 <template>
-  <div v-if="hotels.length > 0">
+  <!-- <div v-if="hotels.length > 0">
     <div class="results__card" v-for="(hotel, index) in hotels" :key="index">
       <img :src="hotel.property.photoUrls[0]" alt="" class="result__card--img" />
       <div class="results__card--info">
@@ -38,9 +38,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- //////////////////////////////// -->
-  <div v-else>
+  <div>
     <div class="results__card">
       <img src="/images/v-greece.webp" alt="" class="result__card--img" />
       <div class="results__card--info">
@@ -77,7 +77,7 @@
 <script>
 export default {
   name: 'HotelCard',
-  props: ['hotels'],
+
   setup() {
     const discount = (hotel) => {
       if (

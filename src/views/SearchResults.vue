@@ -1,3 +1,50 @@
+<script>
+import AppHeader from '../components/partials/Header.vue'
+import AppFooter from '../components/partials/Footer.vue'
+import AppSearch from '../components/reuseables/Search.vue'
+import HomeCovid from '../components/reuseables/Covid.vue'
+import HotelCard from '../components/search-results/HotelCard.vue'
+import SearchPagination from '../components/search-results/Pagination.vue'
+
+// import usePageStore from '../store/Page.js'
+import { ref } from 'vue'
+
+export default {
+  name: 'AppSearchResults',
+  components: { AppHeader, AppSearch, AppFooter, HomeCovid, HotelCard, SearchPagination },
+
+  setup() {
+    const filterRanges = [
+      { name: '0-200', min: 0, max: 200 },
+      { name: '200-500', min: 200, max: 500 },
+      { name: '500-1000', min: 500, max: 1000 },
+      { name: '1000-2000', min: 1000, max: 2000 },
+      { name: '2000-3000', min: 2000, max: 3000 }
+    ]
+
+    const startRanges = [1, 2, 3, 4, 5]
+
+    // const { currentPage } = usePageStore()
+
+    const sortOptions = ref([
+      { id: 'price_low_high', title: 'Entire homes and apartments first' },
+      { id: 'price_high_low', title: 'Price: High to Low' },
+      { id: 'rating_high_low', title: 'Rating: High to Low' },
+      { id: 'rating_low_high', title: 'Rating: Low to High' }
+    ])
+
+    const selectedSortOption = ref('')
+
+    return {
+      filterRanges,
+      startRanges,
+      sortOptions,
+      selectedSortOption
+    }
+  }
+}
+</script>
+
 <template>
   <section class="results__header">
     <AppHeader :logoColor="'#fff'" :textColor="'#fff'" :bellColor="'#fff'" :showNav="true" />
@@ -119,7 +166,7 @@
       <div class="results__view">
         <div class="results__view--head">
           <h2 class="results__view--title">
-            {{ meta.length > 0 ? meta + ' ' + 'search results found' : '' }}
+            <!-- {{ meta.length > 0 ? meta + ' ' + 'search results found' : '' }} -->
           </h2>
           <select
             class="results__view--sort"
@@ -134,10 +181,10 @@
           <span>Sort by</span>
         </div>
         <!-- Hotel card -->
-        <div v-for="(item, index) in 80" :key="index"><HotelCard :hotels="hotels" /></div>
+        <div v-for="(item, index) in 80" :key="index"><HotelCard /></div>
 
         <!--Pagination -->
-        <SearchPagination :meta="meta" />
+        <SearchPagination />
       </div>
     </section>
     <div class="px-[5rem]"><HomeCovid /></div>
@@ -150,7 +197,7 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
 import AppHeader from '../components/partials/Header.vue'
 import AppFooter from '../components/partials/Footer.vue'
 import AppSearch from '../components/reuseables/Search.vue'
@@ -289,7 +336,7 @@ export default {
     }
   }
 }
-</script>
+</script> -->
 
 <style scoped>
 .results__header {

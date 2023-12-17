@@ -39,8 +39,8 @@ export default {
 
 <style scoped>
 .covid-alert {
-  @apply flex rounded-lg items-center px-8 py-6 gap-6 relative;
-  z-index: -5;
+  @apply flex rounded-lg items-center px-8 py-6 gap-6;
+
   background-color: #fcefca;
 }
 

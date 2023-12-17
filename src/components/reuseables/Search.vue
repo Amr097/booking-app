@@ -3,10 +3,11 @@ import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import { useRouter } from 'vue-router'
 import { formatDate } from '../../helper/dateFormat.js'
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, watch } from 'vue'
 import useUserStore from '/src/store/User.js'
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 import { validateInput } from '../../helper/SearchValidation.js'
+import { validateCheckin, validateCheckout } from '../../helper/dateValidation.js'
 
 export default {
   name: 'AppSearch',
@@ -38,6 +39,38 @@ export default {
       message: ''
     })
 
+    // fetch hotel destinations and check for search query in local storage
+    onMounted(() => {
+      const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+
+      if (searchQuery) {
+        searchData.checkInDate = searchQuery.checkInDate
+        searchData.checkOutDate = searchQuery.checkOutDate
+        searchData.guestsValue = searchQuery.guestsValue
+        searchData.roomsValue = searchQuery.roomsValue
+        searchData.destinationValue = searchQuery.destinationValue
+      }
+    })
+
+    // Watch for Datepicker value changes
+
+    watch(
+      () => [searchData.checkInDate, searchData.checkOutDate],
+      ([newCheckIn, newCheckOut], [oldCheckIn, oldCheckOut]) => {
+        if (!newCheckIn && oldCheckIn) {
+          datpickerErr.state = false
+          datpickerErr.message = ''
+          return
+        }
+        if (!newCheckOut && oldCheckOut) {
+          datpickerErr.state = false
+          datpickerErr.message = ''
+          return
+        }
+      },
+      { deep: true }
+    )
+
     //Validating Select
 
     const validateSelect = () => {
@@ -45,49 +78,6 @@ export default {
         destErr.state = false
         destErr.message = ''
       }
-    }
-
-    // Validating Datepicker
-
-    const validateCheckin = () => {
-      const currentDate = new Date()
-      const checkInDate = new Date(searchData.checkInDate)
-      const checkOutDate = new Date(searchData.checkOutDate)
-
-      if (checkInDate && checkInDate <= currentDate) {
-        datpickerErr.state = true
-        datpickerErr.message = "Date can't be eariler than today."
-        return
-      }
-      if (searchData.checkOutDate && (checkInDate > checkOutDate || checkInDate === checkOutDate)) {
-        datpickerErr.state = true
-        datpickerErr.message = "Check in can't be earlier than check out."
-        return
-      }
-      console.log({ checkInDate, currentDate })
-      datpickerErr.state = false
-      datpickerErr.message = ''
-    }
-
-    const validateCheckout = () => {
-      const currentDate = new Date()
-      const checkInDate = new Date(searchData.checkInDate)
-      const checkOutDate = new Date(searchData.checkOutDate)
-
-      if (checkOutDate && checkOutDate <= currentDate) {
-        console.log({ checkInDate, checkOutDate })
-        datpickerErr.state = true
-        datpickerErr.message = "Date can't be eariler than today."
-        return
-      }
-      if (searchData.checkInDate && (checkInDate > checkOutDate || checkInDate === checkOutDate)) {
-        datpickerErr.state = true
-        datpickerErr.message = "Check out can't be earlier than check in."
-        return
-      }
-
-      datpickerErr.state = false
-      datpickerErr.message = ''
     }
 
     //On Submit
@@ -164,7 +154,7 @@ export default {
         :format="formatDate"
         auto-apply
         model-type="yyyy-MM-dd"
-        @blur="validateCheckin"
+        @blur="validateCheckin(searchData, datpickerErr)"
       />
       <span v-show="datpickerErr.state" class="auth__err top date">{{ datpickerErr.message }}</span>
       <span v-show="datpickerErr.state" class="cone-down date"></span>
@@ -178,12 +168,12 @@ export default {
         auto-apply
         model-type="yyyy-MM-dd"
         required
-        @blur="validateCheckout"
+        @blur="validateCheckout(searchData, datpickerErr)"
       />
     </div>
 
     <div class="form__input">
-      <img src="public/images/user.svg" alt="icon" class="icon" />
+      <img src="/images/user.svg" alt="icon" class="icon" />
       <Field
         name="guests"
         class="input outline-none"
@@ -197,7 +187,7 @@ export default {
     </div>
 
     <div class="form__input">
-      <img src="public/images/room.svg" alt="icon" class="icon" />
+      <img src="/images/room.svg" alt="icon" class="icon" />
       <Field
         name="rooms"
         class="input outline-none"

@@ -3,7 +3,7 @@
   <div class="container-c home">
     <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" :showNav="true" />
     <AppHero />
-    <div class="mt-40"><HomeCovid /></div>
+    <div class="mt-40 relative -z-10"><HomeCovid /></div>
 
     <HomeGallery
       :title="titleVacations"
