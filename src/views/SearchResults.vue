@@ -5,6 +5,7 @@ import AppSearch from '../components/reuseables/Search.vue'
 import HomeCovid from '../components/reuseables/Covid.vue'
 import HotelCard from '../components/search-results/HotelCard.vue'
 import SearchPagination from '../components/search-results/Pagination.vue'
+import { hotelCards } from '../assets/data/hotels.js'
 
 // import usePageStore from '../store/Page.js'
 import { ref } from 'vue'
@@ -39,7 +40,8 @@ export default {
       filterRanges,
       startRanges,
       sortOptions,
-      selectedSortOption
+      selectedSortOption,
+      hotelCards
     }
   }
 }
@@ -50,14 +52,14 @@ export default {
     <AppHeader :logoColor="'#fff'" :textColor="'#fff'" :bellColor="'#fff'" :showNav="true" />
     <AppSearch />
   </section>
-  <div class="container">
+  <div class="container-c">
     <section class="results__main">
       <!-- filter results -->
       <div class="filter">
         <!-- by property -->
         <div class="filter__property">
           <h3 class="filter__title">Search by property name</h3>
-          <div class="bg-gray-100 p-5 pt-0">
+          <div class="filter__body">
             <div class="flex bg-white gap-1 p-2 rounded-md">
               <svg fill="none" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg" class="icon">
                 <path
@@ -76,11 +78,11 @@ export default {
                 />
               </svg>
               <!--property input -->
-              <input class="outline-none" type="text" placeholder="eg. Beach westpalm" />
+              <input class="filter__input" type="text" placeholder="eg. Beach westpalm" />
             </div>
           </div>
         </div>
-        <h3 class="text-gray-600 text-xl font-semibold">Filter by</h3>
+        <h3 class="text-[#333] text-3xl font-semibold my-1 filter-by">Filter by</h3>
         <!-- by budget -->
         <div class="filter__budget">
           <h3 class="filter__title">Your budget per day</h3>
@@ -102,42 +104,11 @@ export default {
             <!--set your own budget -->
             <div class="filter__set">
               <div class="flex items-center justify-between">
-                <h4 class="text-lg text-gray-600">Set your own budget</h4>
-                <svg
-                  fill="none"
-                  viewBox="0 0 36 28"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon-1"
-                >
-                  <rect x="4" y="4" width="32" height="16" rx="8" fill="#BDBDBD" />
-                  <g filter="url(#a)">
-                    <rect x="4" y="2" width="20" height="20" rx="10" fill="#fff" />
-                  </g>
-                  <defs>
-                    <filter
-                      id="a"
-                      x="0"
-                      y="0"
-                      width="28"
-                      height="28"
-                      color-interpolation-filters="sRGB"
-                      filterUnits="userSpaceOnUse"
-                    >
-                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                      <feColorMatrix
-                        in="SourceAlpha"
-                        result="hardAlpha"
-                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                      />
-                      <feOffset dy="2" />
-                      <feGaussianBlur stdDeviation="2" />
-                      <feComposite in2="hardAlpha" operator="out" />
-                      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_829" />
-                      <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_829" result="shape" />
-                    </filter>
-                  </defs>
-                </svg>
+                <h4 class="text-[1.4rem] text-gray-600">Set your own budget</h4>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <span class="slider"></span>
+                </label>
               </div>
               <!--custom budget -->
               <div class="budget__handler">
@@ -152,7 +123,7 @@ export default {
         <div class="rating">
           <h3 class="filter__title">Rating</h3>
           <div class="rating__main">
-            <p class="w-fit text-lg text-gray-600">Show only ratings more than</p>
+            <p class="w-fit text-[1.4rem] text-gray-600">Show only ratings more than</p>
             <ul class="rating__list">
               <li class="rating__item" v-for="(item, index) in startRanges" :key="index">
                 {{ item }}
@@ -168,20 +139,23 @@ export default {
           <h2 class="results__view--title">
             <!-- {{ meta.length > 0 ? meta + ' ' + 'search results found' : '' }} -->
           </h2>
-          <select
-            class="results__view--sort"
-            v-model="selectedSortOption"
-            @change="fetchSortedPage(selectedSortOption)"
-          >
-            <option value="">Recommended</option>
-            <option v-for="(item, index) in sortOptions" :key="index" :value="item.id">
-              {{ item.title }}
-            </option>
-          </select>
-          <span>Sort by</span>
+          <div class="relative">
+            <select
+              class="results__view--sort"
+              v-model="selectedSortOption"
+              @change="fetchSortedPage(selectedSortOption)"
+            >
+              <option value="">Recommended</option>
+              <option v-for="(item, index) in sortOptions" :key="index" :value="item.id">
+                {{ item.title }}
+              </option>
+            </select>
+            <span>Sort by</span>
+          </div>
         </div>
         <!-- Hotel card -->
-        <div v-for="(item, index) in 80" :key="index"><HotelCard /></div>
+
+        <HotelCard v-for="(hotel, index) in hotelCards" :key="index" :hotel="hotel" />
 
         <!--Pagination -->
         <SearchPagination />
@@ -339,6 +313,9 @@ export default {
 </script> -->
 
 <style scoped>
+div.container-c {
+  @apply relative -z-10;
+}
 .results__header {
   position: relative;
   background: linear-gradient(180deg, #2969bf 0%, #144e9d 100%);
@@ -347,13 +324,21 @@ export default {
 }
 
 .results__main {
-  @apply grid grid-cols-2 mt-40 mb-28;
+  @apply grid grid-cols-2 mt-40 mb-28 px-0 gap-x-6 py-0  sm:px-[5rem] sm:gap-x-0;
   grid-template-columns: min-content 1fr;
-  padding: 0 5rem;
+
+  @media screen and (width< 53.75em) {
+    @apply flex flex-col;
+  }
 }
 
 .filter {
   @apply flex flex-col gap-8 rounded-lg;
+  @media screen and (width< 53.75em) {
+    @apply grid mb-20;
+    grid-template-columns: 1fr max-content max-content;
+    grid-template-rows: max-content min-content min-content;
+  }
 }
 
 .filter__budget {
@@ -361,15 +346,44 @@ export default {
   border: 1px solid var(--Gray-5, #e0e0e0);
   background: #fff;
   padding-bottom: 1rem;
+
+  @media screen and (width< 53.75em) {
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 1;
+  }
+}
+
+.filter-by {
+  @media screen and (width< 53.75em) {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 1;
+  }
 }
 
 .filter__property {
   @apply flex flex-col rounded-lg;
+  @media screen and (width< 53.75em) {
+    grid-column: 1 / -1;
+  }
 }
 
 .filter__title {
-  @apply text-lg font-medium tracking-wide px-4 py-3 bg-gray-100;
+  @apply text-2xl font-medium tracking-wide px-6 py-6 bg-gray-100;
+  border-radius: 0.5rem 0.5rem 0 0;
   color: #181818;
+}
+
+.filter__body {
+  @apply bg-gray-100 px-6 pb-7;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.filter__input {
+  @apply outline-none w-full;
+}
+
+.filter__input::placeholder {
+  @apply text-[#4F4F4F] text-xl leading-7 tracking-wide;
 }
 
 .ranges__list {
@@ -381,7 +395,7 @@ export default {
 }
 
 .ranges__label {
-  @apply text-gray-600 text-lg tracking-wide;
+  @apply text-gray-600 text-[1.4rem] tracking-wide;
 }
 
 .filter__set {
@@ -400,13 +414,9 @@ export default {
 }
 
 .budget__input {
-  width: 10rem;
-  height: 3.9rem;
-  text-align: center;
-  border-radius: 4px;
+  @apply w-[10rem] h-[3.9rem] text-center rounded-md outline-none bg-white text-[1.2rem] mt-1;
+
   border: 1px solid var(--Gray-5, #e0e0e0);
-  background: #fff;
-  outline: none;
 }
 
 .budget__input::placeholder {
@@ -414,15 +424,19 @@ export default {
 }
 
 .budget__handler--text {
-  @apply text-base;
+  @apply text-[1.2rem] text-[#4f4f4f];
   grid-column: 1/-1;
-  color: #4f4f4f;
 }
 
 .rating {
   border-radius: 6px;
   border: 1px solid var(--Gray-5, #e0e0e0);
   background: #fff;
+  @media screen and (width< 53.75em) {
+    grid-row: 3 / span 1;
+    grid-column: 3 / span 1;
+    height: min-content;
+  }
 }
 
 .rating__main {
@@ -430,19 +444,23 @@ export default {
 }
 
 .rating__list {
-  @apply flex w-fit;
+  @apply flex w-fit items-start gap-1;
   border-radius: 0px 5px 5px 0px;
   border: 1px solid var(--Gray-5, #e0e0e0);
   background: #fff;
 }
 
 .rating__item {
-  @apply flex items-end p-2 text-lg cursor-pointer;
+  @apply flex items-end p-2 text-[1.6rem] cursor-pointer;
   border-right: 1px solid var(--Gray-5, #e0e0e0);
 }
 
 .results__view--head {
   @apply flex justify-between px-14 relative;
+
+  @media screen and (width< 53.75em) {
+    @apply justify-start px-6;
+  }
 }
 
 .results__view--title {
@@ -450,19 +468,17 @@ export default {
 }
 
 .results__view--sort {
-  @apply rounded-lg bg-white px-6 pb-2 pt-9 outline-none;
+  @apply text-[1.4rem] rounded-lg bg-white px-6 pb-2 pt-9 outline-none;
 
   border: 1px solid #bdbdbd;
 }
 
 .results__view--sort option {
-  @apply text-lg flex flex-col;
+  @apply flex flex-col text-2xl;
 }
 
 .results__view--head span {
-  @apply absolute text-gray-500;
-  right: 12.5rem;
-  top: 0.5rem;
+  @apply absolute text-[1.2rem] text-[#828282] left-[2rem] top-[0.4rem];
 }
 /* ///////////////////////////////////// */
 
@@ -486,8 +502,9 @@ export default {
 }
 
 .icon-2 {
-  width: 1.5rem;
+  width: 1.8rem;
   height: 1.8rem;
+  transform: translateY(-0.35rem);
 }
 
 .footer__copyright {

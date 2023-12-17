@@ -57,6 +57,7 @@ export default {
     watch(
       () => [searchData.checkInDate, searchData.checkOutDate],
       ([newCheckIn, newCheckOut], [oldCheckIn, oldCheckOut]) => {
+        console.log(newCheckIn)
         if (!newCheckIn && oldCheckIn) {
           datpickerErr.state = false
           datpickerErr.message = ''

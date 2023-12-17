@@ -10,7 +10,7 @@
           <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
           <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
           <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <p class="results__card--review">
+          <p class="results__card--review"> 
             {{ hotel.property.reviewScore }} ({{ hotel.property.reviewCount }} reviews)
           </p>
         </div>
@@ -40,35 +40,35 @@
     </div>
   </div> -->
   <!-- //////////////////////////////// -->
-  <div>
-    <div class="results__card">
-      <img src="/images/v-greece.webp" alt="" class="result__card--img" />
-      <div class="results__card--info">
-        <h3 class="results__card--title">Hotel Name</h3>
-        <div class="results__card--stars">
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <p class="results__card--review">480 (1200 reviews)</p>
-        </div>
-        <article class="results__card--desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga quae nesciunt repellendus
-          veniam quia, sequi nisi quidem. Aperiam asperiores error unde. Impedit quo minima totam
-          vitae commodi sint, soluta labore!
-        </article>
-        <router-link to="/hotel/details" class="blue__btn">See availbility</router-link>
-      </div>
 
-      <div class="results__card--prices">
-        <p class="discount--ad">Book now and receive 15% off</p>
-        <p class="discount--percent">-20% off</p>
-        <div class="price">
-          <p class="price--red">1300 USD</p>
-          <p class="price--black">900 USD</p>
-          <p class="taxes">Includes taxes and fees</p>
-        </div>
+  <div class="results__card">
+    <img src="/images/v-greece.webp" alt="" class="result__card--img" />
+    <div class="results__card--info">
+      <h3 class="results__card--title">{{ hotel.name }}</h3>
+      <div class="results__card--stars">
+        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
+        <p class="results__card--review">{{ hotel.rate }} ({{ hotel.reviews }} reviews)</p>
+      </div>
+      <article class="results__card--desc">
+        {{ hotel.desc }}
+      </article>
+      <router-link to="/hotel/details" class="blue__btn card-btn">See availbility</router-link>
+    </div>
+
+    <div class="results__card--prices">
+      <p class="discount--ad" v-if="hotel.offer" :style="{ backgroundColor: hotel.offer.color }">
+        {{ hotel.offer.title }}
+      </p>
+      <p class="discount--percent">-{{ discount(hotel) }}% off</p>
+      <div class="price">
+        <p class="price--red" v-if="price_discount">{{ hotel.price_gross }}</p>
+        <p class="price--black" v-if="price_discount">{{ hotel.price_discount }} EGP</p>
+        <p class="price--black" v-else>{{ hotel.price_gross }} EGP</p>
+        <p class="taxes">Includes taxes and fees</p>
       </div>
     </div>
   </div>
@@ -77,51 +77,61 @@
 <script>
 export default {
   name: 'HotelCard',
+  props: {
+    hotel: Object
+  },
 
   setup() {
     const discount = (hotel) => {
-      if (
-        hotel.property.priceBreakdown.grossPrice &&
-        hotel.property.priceBreakdown.strikethroughPrice
-      ) {
-        return (
-          100 -
-          Math.ceil(
-            (hotel.property.priceBreakdown.grossPrice.value * 100) /
-              Math.ceil(
-                hotel.property.priceBreakdown.grossPrice.value +
-                  hotel.property.priceBreakdown.strikethroughPrice.value
-              )
-          )
-        )
+      if (hotel.price_gross && hotel.price_discount) {
+        return 100 - Math.ceil((hotel.price_discount * 100) / hotel.price_gross)
       } else {
         return false
       }
     }
+    // const discount = (hotel) => {
+    //   if (
+    //     hotel.property.priceBreakdown.grossPrice &&
+    //     hotel.property.priceBreakdown.strikethroughPrice
+    //   ) {
+    //     return (
+    //       100 -
+    //       Math.ceil(
+    //         (hotel.property.priceBreakdown.grossPrice.value * 100) /
+    //           Math.ceil(
+    //             hotel.property.priceBreakdown.grossPrice.value +
+    //               hotel.property.priceBreakdown.strikethroughPrice.value
+    //           )
+    //       )
+    //     )
+    //   } else {
+    //     return false
+    //   }
+    // }
 
-    const discountPrice = (hotel) => {
-      if (
-        hotel.property.priceBreakdown.grossPrice &&
-        hotel.property.priceBreakdown.strikethroughPrice
-      ) {
-        return Math.ceil(
-          hotel.property.priceBreakdown.grossPrice.value +
-            hotel.property.priceBreakdown.strikethroughPrice.value
-        )
-      }
-    }
+    // const discountPrice = (hotel) => {
+    //   if (
+    //     hotel.property.priceBreakdown.grossPrice &&
+    //     hotel.property.priceBreakdown.strikethroughPrice
+    //   ) {
+    //     return Math.ceil(
+    //       hotel.property.priceBreakdown.grossPrice.value +
+    //         hotel.property.priceBreakdown.strikethroughPrice.value
+    //     )
+    //   }
+    // }
 
-    const hotelLabel = (hotel) => (hotel.accessibilityLabel ? hotel.accessibilityLabel : '')
+    // const hotelLabel = (hotel) => (hotel.accessibilityLabel ? hotel.accessibilityLabel : '')
 
-    return { discount, discountPrice, hotelLabel }
+    return { discount }
   }
 }
 </script>
 
 <style scoped>
 .results__card {
-  @apply grid grid-cols-3 p-6 gap-x-6;
-  width: 95%;
+  @apply grid grid-cols-3 p-6 gap-x-6 w-full  sm:w-[95%];
+
   margin: 0 auto;
   margin-top: 2rem;
   border-radius: 5px;
@@ -144,16 +154,29 @@ export default {
 }
 .results__card--stars {
   @apply flex items-center mt-2;
+
+  @media screen and (width< 30em) {
+    @apply grid gap-0;
+    grid-template-columns: repeat(6, max-content);
+  }
 }
 .results__card--review {
-  @apply text-lg leading-10;
+  @apply text-lg leading-10 ml-1;
   color: #4f4f4f;
+
+  @media screen and (width< 30em) {
+    @apply col-span-full row-start-1;
+  }
 }
 
 .results__card--desc {
   @apply text-xl font-medium leading-7 tracking-wide mt-3;
 
   color: #4f4f4f;
+
+  @media screen and (width< 46.875em) {
+    display: none;
+  }
 }
 
 .results__card--prices {
@@ -188,5 +211,15 @@ export default {
   grid-column: 1/-1;
   justify-self: end;
   margin-top: 0.3rem;
+}
+
+.card-btn {
+  @apply row-start-4 self-end;
+}
+
+.icon-2 {
+  @media screen and (width< 46.875em) {
+    @apply w-[1.55rem];
+  }
 }
 </style>
