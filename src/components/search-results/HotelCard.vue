@@ -137,8 +137,8 @@ export default {
 
 <style scoped>
 .results__card {
-  @apply grid  p-6 gap-x-6 w-full  sm:w-[95%];
-  grid-template-columns: 1fr 40% 1fr;
+  @apply grid  p-6 sm:gap-x-6 w-full  sm:w-[95%];
+  grid-template-columns: 1fr 35% 1fr;
   margin: 0 auto;
   margin-top: 2rem;
   border-radius: 5px;
@@ -152,7 +152,7 @@ export default {
   object-fit: cover;
 }
 .results__card--info {
-  @apply grid  h-full;
+  @apply grid  h-full ml-6 sm:ml-0;
   grid-template-rows: repeat(3, min-content) 1fr;
 }
 .results__card--title {
@@ -190,7 +190,7 @@ export default {
   @apply grid items-end justify-end;
 }
 .discount--ad {
-  @apply self-start text-white w-fit rounded-md text-lg leading-7 tracking-wide py-1 px-2;
+  @apply self-start text-white w-fit rounded-md text-lg leading-7 tracking-wide py-1 px-2 text-center;
   margin-left: auto;
   background-color: #eb5757;
 }

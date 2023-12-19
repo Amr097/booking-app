@@ -100,6 +100,7 @@ export default {
           destErr.message = 'This field is required'
           return
         }
+        console.log(searchData)
         localStorage.setItem('searchQuery', JSON.stringify(searchData))
         router.push({ name: 'results' })
       }
@@ -135,7 +136,7 @@ export default {
       >
         <option disabled selected value="" class="form__option">Where are you going?</option>
         <option
-          :value="item.dest_id"
+          :value="item.city_name.toLowerCase()"
           class="form__option"
           v-for="(item, index) in resDestinationData"
           :key="index"

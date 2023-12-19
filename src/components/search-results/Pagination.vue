@@ -5,7 +5,7 @@ import usePageStore from '../../store/Page.js'
 export default {
   name: 'SearchPagination',
   props: {
-    hotelData: Object
+    propertiesNumber: Number
   },
   setup(props) {
     // const isLoading = ref(false)
@@ -15,7 +15,7 @@ export default {
     const maxPerPage = 10
 
     const totalPages = computed(() => {
-      return Math.ceil(+props.hotelData.properties_number / maxPerPage)
+      return props.propertiesNumber ? Math.ceil(+props.propertiesNumber / maxPerPage) : 1
     })
 
     const checkNumbering = (page) => {

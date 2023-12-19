@@ -5,8 +5,10 @@ import AppSearch from '../components/reuseables/Search.vue'
 import HomeCovid from '../components/reuseables/Covid.vue'
 import HotelCard from '../components/search-results/HotelCard.vue'
 import SearchPagination from '../components/search-results/Pagination.vue'
-import { hotelData } from '../assets/data/hotels.js'
+import { onMounted } from 'vue'
+import useHotelsStore from '/src/store/Hotels.js'
 
+// import { hotelData } from '/src/assets/data/hotels.js'
 // import usePageStore from '../store/Page.js'
 import { ref } from 'vue'
 
@@ -25,8 +27,6 @@ export default {
 
     const startRanges = [1, 2, 3, 4, 5]
 
-    // const { currentPage } = usePageStore()
-
     const sortOptions = ref([
       { id: 'price_low_high', title: 'Price: Low to High' },
       { id: 'price_high_low', title: 'Price: High to Low' },
@@ -36,21 +36,31 @@ export default {
 
     const selectedSortOption = ref('')
 
+    const toggleBudget = ref({ state: true })
+
+    const { hotelsData, fetchHotels } = useHotelsStore()
+
+    // const { currentPage } = usePageStore()
+
+    //Handle budget toggle
+
     const handleToggle = (event) => {
       if (event.target.checked) toggleBudget.value.state = false
       else toggleBudget.value.state = true
     }
 
-    const toggleBudget = ref({ state: true })
+    onMounted(async () => {
+      await fetchHotels()
+    })
 
     return {
       filterRanges,
       startRanges,
       sortOptions,
       selectedSortOption,
-      hotelData,
       toggleBudget,
-      handleToggle
+      handleToggle,
+      hotelsData
     }
   }
 }
@@ -156,9 +166,13 @@ export default {
       <div class="results__view">
         <div class="results__view--head">
           <h2 class="results__view--title">
-            <!-- {{ meta.length > 0 ? meta + ' ' + 'search results found' : '' }} -->
+            {{
+              hotelsData.data.properties_number > 0
+                ? hotelsData.data.properties_number + ' ' + 'Search results found'
+                : '0 Search results found'
+            }}
           </h2>
-          <div class="relative">
+          <div class="ml-auto relative">
             <select
               class="results__view--sort"
               v-model="selectedSortOption"
@@ -174,13 +188,13 @@ export default {
         </div>
         <!-- Hotel card -->
 
-        <HotelCard v-for="(hotel, index) in hotelData[0].hotels" :key="index" :hotel="hotel" />
+        <HotelCard v-for="(hotel, index) in hotelsData.data.hotels" :key="index" :hotel="hotel" />
 
         <!--Pagination -->
-        <SearchPagination :hotelData="hotelData[0]" />
+        <SearchPagination :propertiesNumber="hotelsData.data.properties_number" />
       </div>
     </section>
-    <div class="px-[5rem]"><HomeCovid /></div>
+    <div class="px-0 sm:px-[5rem]"><HomeCovid /></div>
 
     <AppFooter />
   </div>
