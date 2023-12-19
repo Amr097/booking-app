@@ -42,31 +42,37 @@
   <!-- //////////////////////////////// -->
 
   <div class="results__card">
-    <img src="/images/v-greece.webp" alt="" class="result__card--img" />
+    <img :src="hotel.image" :alt="hotel.name + 'image'" class="result__card--img" />
     <div class="results__card--info">
-      <h3 class="results__card--title">{{ hotel.name }}</h3>
+      <h3 class="results__card--title">
+        {{ hotel.name.length > 75 ? hotel.name.slice(0, 75) + '...' : hotel.name }}
+      </h3>
       <div class="results__card--stars">
-        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-        <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-        <p class="results__card--review">{{ hotel.rate }} ({{ hotel.reviews }} reviews)</p>
+        <img
+          class="icon-2"
+          src="/images/star-s-fill 5.svg"
+          alt="star icon"
+          v-for="(int, index) in Math.floor(hotel.rating)"
+          :key="index"
+        />
+
+        <p class="results__card--review">{{ hotel.rating }} ({{ hotel.reviews }} reviews)</p>
       </div>
       <article class="results__card--desc">
-        {{ hotel.desc }}
+        {{ hotel.desc.length <= 200 ? hotel.desc : hotel.desc.slice(0, 200) + '...' }}
       </article>
       <router-link to="/hotel/details" class="blue__btn card-btn">See availbility</router-link>
     </div>
 
     <div class="results__card--prices">
       <p class="discount--ad" v-if="hotel.offer" :style="{ backgroundColor: hotel.offer.color }">
-        {{ hotel.offer.title }}
+        {{ hotel.offer.title >= 60 ? hotel.offer.title.slice(0, 60) + '...' : hotel.offer.title }}
       </p>
-      <p class="discount--percent">-{{ discount(hotel) }}% off</p>
+
       <div class="price">
-        <p class="price--red" v-if="price_discount">{{ hotel.price_gross }}</p>
-        <p class="price--black" v-if="price_discount">{{ hotel.price_discount }} EGP</p>
+        <p class="discount--percent" v-if="hotel.price_discount">-{{ discount(hotel) }}% off</p>
+        <p class="price--red" v-if="hotel.price_discount">{{ hotel.price_gross }}</p>
+        <p class="price--black" v-if="hotel.price_discount">{{ hotel.price_discount }} EGP</p>
         <p class="price--black" v-else>{{ hotel.price_gross }} EGP</p>
         <p class="taxes">Includes taxes and fees</p>
       </div>
@@ -89,6 +95,7 @@ export default {
         return false
       }
     }
+
     // const discount = (hotel) => {
     //   if (
     //     hotel.property.priceBreakdown.grossPrice &&
@@ -130,8 +137,8 @@ export default {
 
 <style scoped>
 .results__card {
-  @apply grid grid-cols-3 p-6 gap-x-6 w-full  sm:w-[95%];
-
+  @apply grid  p-6 gap-x-6 w-full  sm:w-[95%];
+  grid-template-columns: 1fr 40% 1fr;
   margin: 0 auto;
   margin-top: 2rem;
   border-radius: 5px;
@@ -188,7 +195,7 @@ export default {
   background-color: #eb5757;
 }
 .discount--percent {
-  @apply text-white text-lg font-medium leading-7 tracking-wide rounded-md w-fit py-1 px-2 text-right;
+  @apply text-white text-lg font-medium leading-7 tracking-wide rounded-md w-fit py-1 px-2 text-right col-span-full mb-12;
   margin-left: auto;
   background-color: #219653;
 }

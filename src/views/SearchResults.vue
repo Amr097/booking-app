@@ -5,7 +5,7 @@ import AppSearch from '../components/reuseables/Search.vue'
 import HomeCovid from '../components/reuseables/Covid.vue'
 import HotelCard from '../components/search-results/HotelCard.vue'
 import SearchPagination from '../components/search-results/Pagination.vue'
-import { hotelCards } from '../assets/data/hotels.js'
+import { hotelData } from '../assets/data/hotels.js'
 
 // import usePageStore from '../store/Page.js'
 import { ref } from 'vue'
@@ -28,20 +28,29 @@ export default {
     // const { currentPage } = usePageStore()
 
     const sortOptions = ref([
-      { id: 'price_low_high', title: 'Entire homes and apartments first' },
+      { id: 'price_low_high', title: 'Price: Low to High' },
       { id: 'price_high_low', title: 'Price: High to Low' },
-      { id: 'rating_high_low', title: 'Rating: High to Low' },
-      { id: 'rating_low_high', title: 'Rating: Low to High' }
+      { id: 'rating_low_high', title: 'Rating: Low to High' },
+      { id: 'rating_high_low', title: 'Rating: High to Low' }
     ])
 
     const selectedSortOption = ref('')
+
+    const handleToggle = (event) => {
+      if (event.target.checked) toggleBudget.value.state = false
+      else toggleBudget.value.state = true
+    }
+
+    const toggleBudget = ref({ state: true })
 
     return {
       filterRanges,
       startRanges,
       sortOptions,
       selectedSortOption,
-      hotelCards
+      hotelData,
+      toggleBudget,
+      handleToggle
     }
   }
 }
@@ -106,14 +115,24 @@ export default {
               <div class="flex items-center justify-between">
                 <h4 class="text-[1.4rem] text-gray-600">Set your own budget</h4>
                 <label class="switch">
-                  <input type="checkbox" />
+                  <input type="checkbox" @change="handleToggle" />
                   <span class="slider"></span>
                 </label>
               </div>
               <!--custom budget -->
               <div class="budget__handler">
-                <input type="text" placeholder="Max budget" class="budget__input" />
-                <input type="text" placeholder="Min budget" class="budget__input" />
+                <input
+                  type="text"
+                  placeholder="Max budget"
+                  class="budget__input"
+                  :disabled="toggleBudget.state"
+                />
+                <input
+                  type="text"
+                  placeholder="Min budget"
+                  class="budget__input"
+                  :disabled="toggleBudget.state"
+                />
                 <p class="budget__handler--text">Press Enter to filter</p>
               </div>
             </div>
@@ -155,10 +174,10 @@ export default {
         </div>
         <!-- Hotel card -->
 
-        <HotelCard v-for="(hotel, index) in hotelCards" :key="index" :hotel="hotel" />
+        <HotelCard v-for="(hotel, index) in hotelData[0].hotels" :key="index" :hotel="hotel" />
 
         <!--Pagination -->
-        <SearchPagination />
+        <SearchPagination :hotelData="hotelData[0]" />
       </div>
     </section>
     <div class="px-[5rem]"><HomeCovid /></div>

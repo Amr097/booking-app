@@ -1,5 +1,111 @@
+<script>
+import { computed } from 'vue'
+// import useHotelsStore from '../../store/Hotels.js'
+import usePageStore from '../../store/Page.js'
+export default {
+  name: 'SearchPagination',
+  props: {
+    hotelData: Object
+  },
+  setup(props) {
+    // const isLoading = ref(false)
+    // const { fetchHotels } = useHotelsStore()
+    const { currentPage } = usePageStore()
+
+    const maxPerPage = 10
+
+    const totalPages = computed(() => {
+      return Math.ceil(+props.hotelData.properties_number / maxPerPage)
+    })
+
+    const checkNumbering = (page) => {
+      return page === currentPage.number
+    }
+
+    // const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+
+    // const increment = () => {
+    //   if (currentPage.number <= 20) {
+    //     currentPage.number = currentPage.number + 1
+    //     const options = {
+    //       method: 'GET',
+    //       url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
+    //       params: {
+    //         dest_id: searchQuery.dest_id,
+    //         search_type: 'CITY',
+    //         arrival_date: searchQuery.arrival_date,
+    //         departure_date: searchQuery.departure_date,
+    //         adults: searchQuery.adults,
+    //         children_age: '1,17',
+    //         room_qty: searchQuery.room_qty,
+    //         page_number: currentPage.number
+    //       },
+    //       headers: {
+    //         'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+    //         'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+    //       }
+    //     }
+
+    //     fetchHotels(options, searchQuery, isLoading)
+    //   }
+    // }
+
+    // const decrement = () => {
+    //   if (currentPage.number > 1) currentPage.number = currentPage.number - 1
+    //   const options = {
+    //     method: 'GET',
+    //     url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
+    //     params: {
+    //       dest_id: searchQuery.dest_id,
+    //       search_type: 'CITY',
+    //       arrival_date: searchQuery.arrival_date,
+    //       departure_date: searchQuery.departure_date,
+    //       adults: searchQuery.adults,
+    //       children_age: '1,17',
+    //       room_qty: searchQuery.room_qty,
+    //       page_number: currentPage.number
+    //     },
+    //     headers: {
+    //       'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+    //       'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+    //     }
+    //   }
+
+    //   fetchHotels(options, searchQuery, isLoading)
+    // }
+
+    // const setPage = (page) => {
+    //   currentPage.number = page
+
+    //   const options = {
+    //     method: 'GET',
+    //     url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
+    //     params: {
+    //       dest_id: searchQuery.dest_id,
+    //       search_type: 'CITY',
+    //       arrival_date: searchQuery.arrival_date,
+    //       departure_date: searchQuery.departure_date,
+    //       adults: searchQuery.adults,
+    //       children_age: '1,17',
+    //       room_qty: searchQuery.room_qty,
+    //       page_number: page
+    //     },
+    //     headers: {
+    //       'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
+    //       'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+    //     }
+    //   }
+
+    //   fetchHotels(options, searchQuery, isLoading)
+    // }
+
+    return { currentPage, checkNumbering, totalPages, maxPerPage }
+  }
+}
+</script>
+
 <template>
-  <div class="pagination">
+  <div class="pagination" v-if="totalPages > 1">
     <button :disabled="!(currentPage.number > 1)" @click="decrement">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -66,12 +172,13 @@
       <button
         :class="{ 'page-active': checkNumbering(3) || currentPage.number > 3 }"
         :disabled="currentPage.number >= 3"
+        v-if="totalPages > 2"
         @click="setPage(3)"
       >
         {{ currentPage.number <= 3 ? 3 : currentPage.number }}
       </button>
-      <button>...</button>
-      <button>{{ totalPages || 28 }}</button>
+      <button v-if="totalPages > 3">...</button>
+      <button v-if="totalPages > 3">{{ totalPages }}</button>
     </div>
 
     <button :disabled="!(currentPage.number < 20 && currentPage.number >= 1)" @click="increment">
@@ -129,110 +236,6 @@
     </button>
   </div>
 </template>
-
-<script>
-import { ref, computed } from 'vue'
-import useHotelsStore from '../../store/Hotels.js'
-import usePageStore from '../../store/Page.js'
-export default {
-  name: 'SearchPagination',
-  props: {
-    meta: String
-  },
-  setup(props) {
-    const isLoading = ref(false)
-    const { fetchHotels } = useHotelsStore()
-    const { currentPage } = usePageStore()
-
-    const totalPages = computed(() => {
-      return Math.ceil(+props.meta / 20)
-    })
-
-    const checkNumbering = (page) => {
-      return page === currentPage.number
-    }
-
-    const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
-
-    const increment = () => {
-      if (currentPage.number <= 20) {
-        currentPage.number = currentPage.number + 1
-        const options = {
-          method: 'GET',
-          url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
-          params: {
-            dest_id: searchQuery.dest_id,
-            search_type: 'CITY',
-            arrival_date: searchQuery.arrival_date,
-            departure_date: searchQuery.departure_date,
-            adults: searchQuery.adults,
-            children_age: '1,17',
-            room_qty: searchQuery.room_qty,
-            page_number: currentPage.number
-          },
-          headers: {
-            'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
-            'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
-          }
-        }
-
-        fetchHotels(options, searchQuery, isLoading)
-      }
-    }
-
-    const decrement = () => {
-      if (currentPage.number > 1) currentPage.number = currentPage.number - 1
-      const options = {
-        method: 'GET',
-        url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
-        params: {
-          dest_id: searchQuery.dest_id,
-          search_type: 'CITY',
-          arrival_date: searchQuery.arrival_date,
-          departure_date: searchQuery.departure_date,
-          adults: searchQuery.adults,
-          children_age: '1,17',
-          room_qty: searchQuery.room_qty,
-          page_number: currentPage.number
-        },
-        headers: {
-          'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
-          'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
-        }
-      }
-
-      fetchHotels(options, searchQuery, isLoading)
-    }
-
-    const setPage = (page) => {
-      currentPage.number = page
-
-      const options = {
-        method: 'GET',
-        url: 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels',
-        params: {
-          dest_id: searchQuery.dest_id,
-          search_type: 'CITY',
-          arrival_date: searchQuery.arrival_date,
-          departure_date: searchQuery.departure_date,
-          adults: searchQuery.adults,
-          children_age: '1,17',
-          room_qty: searchQuery.room_qty,
-          page_number: page
-        },
-        headers: {
-          'X-RapidAPI-Key': import.meta.env.VITE_X_RAPIDAPI_KEY,
-          'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
-        }
-      }
-
-      fetchHotels(options, searchQuery, isLoading)
-    }
-
-    return { currentPage, checkNumbering, increment, decrement, totalPages, setPage }
-  }
-}
-</script>
 
 <style scoped>
 button {
