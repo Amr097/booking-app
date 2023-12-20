@@ -42,24 +42,28 @@
   <!-- //////////////////////////////// -->
 
   <div class="results__card">
-    <img :src="hotel.image" :alt="hotel.name + 'image'" class="result__card--img" />
+    <img
+      :src="hotel.image ? hotel.image : '/images/fallback.webp'"
+      :alt="hotel.name + 'image'"
+      class="result__card--img"
+    />
     <div class="results__card--info">
-      <h3 class="results__card--title">
-        {{ hotel.name.length > 75 ? hotel.name.slice(0, 75) + '...' : hotel.name }}
+      <h3 class="results__card--title" :title="hotel.name">
+        {{ hotel.name.length > 55 ? hotel.name.slice(0, 55) + '...' : hotel.name }}
       </h3>
       <div class="results__card--stars">
         <img
           class="icon-2"
           src="/images/star-s-fill 5.svg"
           alt="star icon"
-          v-for="(int, index) in Math.floor(hotel.rating)"
+          v-for="(int, index) in Math.ceil(hotel.rating)"
           :key="index"
         />
 
         <p class="results__card--review">{{ hotel.rating }} ({{ hotel.reviews }} reviews)</p>
       </div>
       <article class="results__card--desc">
-        {{ hotel.desc.length <= 200 ? hotel.desc : hotel.desc.slice(0, 200) + '...' }}
+        {{ hotel.desc.length <= 170 ? hotel.desc : hotel.desc.slice(0, 170) + '...' }}
       </article>
       <router-link to="/hotel/details" class="blue__btn card-btn">See availbility</router-link>
     </div>

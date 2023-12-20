@@ -8,6 +8,7 @@ import useUserStore from '/src/store/User.js'
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 import { validateInput } from '../../helper/SearchValidation.js'
 import { validateCheckin, validateCheckout } from '../../helper/dateValidation.js'
+import useHotelsStore from '/src/store/Hotels.js'
 
 export default {
   name: 'AppSearch',
@@ -57,7 +58,6 @@ export default {
     watch(
       () => [searchData.checkInDate, searchData.checkOutDate],
       ([newCheckIn, newCheckOut], [oldCheckIn, oldCheckOut]) => {
-        console.log(newCheckIn)
         if (!newCheckIn && oldCheckIn) {
           datpickerErr.state = false
           datpickerErr.message = ''
@@ -87,20 +87,32 @@ export default {
 
     const { isLogged } = useUserStore()
 
+    const { fetchHotels } = useHotelsStore()
+
     const onSubmit = () => {
+      isLoading.value = true
       if (!isLogged.logged) {
         router.push('/auth/login')
       } else {
         if (!(searchData.checkInDate && searchData.checkOutDate)) {
           datpickerErr.state = true
           datpickerErr.message = 'This field is required'
+          isLoading.value = false
+
           return
         } else if (!searchData.destinationValue) {
           destErr.state = true
           destErr.message = 'This field is required'
+          isLoading.value = false
+
           return
         }
-        console.log(searchData)
+
+        if (router.currentRoute.value.name === 'results') {
+          localStorage.setItem('searchQuery', JSON.stringify(searchData))
+          fetchHotels()
+          isLoading.value = false
+        }
         localStorage.setItem('searchQuery', JSON.stringify(searchData))
         router.push({ name: 'results' })
       }

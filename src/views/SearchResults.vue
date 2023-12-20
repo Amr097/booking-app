@@ -1,10 +1,12 @@
 <script>
 import AppHeader from '../components/partials/Header.vue'
 import AppFooter from '../components/partials/Footer.vue'
+import ErrMessage from '../components/partials/ErrMessage.vue'
 import AppSearch from '../components/reuseables/Search.vue'
 import HomeCovid from '../components/reuseables/Covid.vue'
 import HotelCard from '../components/search-results/HotelCard.vue'
 import SearchPagination from '../components/search-results/Pagination.vue'
+import LoadingSpinner from '../components/reuseables/LoadingSpinner.vue'
 import { onMounted } from 'vue'
 import useHotelsStore from '/src/store/Hotels.js'
 
@@ -14,7 +16,16 @@ import { ref } from 'vue'
 
 export default {
   name: 'AppSearchResults',
-  components: { AppHeader, AppSearch, AppFooter, HomeCovid, HotelCard, SearchPagination },
+  components: {
+    AppHeader,
+    AppSearch,
+    AppFooter,
+    HomeCovid,
+    HotelCard,
+    SearchPagination,
+    LoadingSpinner,
+    ErrMessage
+  },
 
   setup() {
     const filterRanges = [
@@ -38,7 +49,7 @@ export default {
 
     const toggleBudget = ref({ state: true })
 
-    const { hotelsData, fetchHotels } = useHotelsStore()
+    const { hotelsData, fetchHotels, isLoading, errMessage } = useHotelsStore()
 
     // const { currentPage } = usePageStore()
 
@@ -60,7 +71,9 @@ export default {
       selectedSortOption,
       toggleBudget,
       handleToggle,
-      hotelsData
+      hotelsData,
+      isLoading,
+      errMessage
     }
   }
 }
@@ -165,7 +178,7 @@ export default {
       <!-- results view -->
       <div class="results__view">
         <div class="results__view--head">
-          <h2 class="results__view--title">
+          <h2 class="results__view--title" v-if="!isLoading.value && !errMessage.state">
             {{
               hotelsData.data.properties_number > 0
                 ? hotelsData.data.properties_number + ' ' + 'Search results found'
@@ -187,11 +200,25 @@ export default {
           </div>
         </div>
         <!-- Hotel card -->
-
-        <HotelCard v-for="(hotel, index) in hotelsData.data.hotels" :key="index" :hotel="hotel" />
+        <LoadingSpinner
+          v-if="isLoading.value"
+          :wrapper="'flex items-center gap-3 mx-auto mt-24 w-fit'"
+          :text="'text-3xl ml-2'"
+        />
+        <ErrMessage
+          v-if="errMessage.state"
+          :message="errMessage.value"
+          class="w-[90%] sm:w-[65%] text-4xl sm:text-5xl font-medium mx-auto text-center flex justify-center h-full leading-relaxed mt-44"
+        />
+        <div v-if="!isLoading.value">
+          <HotelCard v-for="(hotel, index) in hotelsData.data.hotels" :key="index" :hotel="hotel" />
+        </div>
 
         <!--Pagination -->
-        <SearchPagination :propertiesNumber="hotelsData.data.properties_number" />
+        <SearchPagination
+          v-if="!isLoading.value"
+          :propertiesNumber="hotelsData.data.properties_number"
+        />
       </div>
     </section>
     <div class="px-0 sm:px-[5rem]"><HomeCovid /></div>

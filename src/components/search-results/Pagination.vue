@@ -1,7 +1,8 @@
 <script>
 import { computed } from 'vue'
-// import useHotelsStore from '../../store/Hotels.js'
-import usePageStore from '../../store/Page.js'
+import { ref } from 'vue'
+import useHotelsStore from '../../store/Hotels.js'
+
 export default {
   name: 'SearchPagination',
   props: {
@@ -9,8 +10,8 @@ export default {
   },
   setup(props) {
     // const isLoading = ref(false)
-    // const { fetchHotels } = useHotelsStore()
-    const { currentPage } = usePageStore()
+    const currentPage = ref({ number: +localStorage.getItem('currentPage') })
+    const { fetchHotels } = useHotelsStore()
 
     const maxPerPage = 10
 
@@ -19,10 +20,23 @@ export default {
     })
 
     const checkNumbering = (page) => {
-      return page === currentPage.number
+      return page === currentPage.value.number
     }
 
-    // const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+    const increment = () => {
+      const nextPage = currentPage.value.number + 1
+      fetchHotels(nextPage)
+    }
+
+    const decrement = () => {
+      const nextPage = currentPage.value.number - 1
+      fetchHotels(nextPage)
+    }
+
+    const setPage = (page) => {
+      currentPage.value.number = page
+      fetchHotels(page)
+    }
 
     // const increment = () => {
     //   if (currentPage.number <= 20) {
@@ -99,14 +113,14 @@ export default {
     //   fetchHotels(options, searchQuery, isLoading)
     // }
 
-    return { currentPage, checkNumbering, totalPages, maxPerPage }
+    return { currentPage, checkNumbering, totalPages, maxPerPage, increment, decrement, setPage }
   }
 }
 </script>
 
 <template>
   <div class="pagination" v-if="totalPages > 1">
-    <button :disabled="!(currentPage.number > 1)" @click="decrement">
+    <button id="arrow-btn" :disabled="!(currentPage.number > 1)" @click="decrement">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="68"
@@ -161,27 +175,48 @@ export default {
     </button>
 
     <div class="numbers__list">
-      <button :class="{ 'page-active': checkNumbering(1) }" @click="setPage(1)">1</button>
+      <button
+        :class="{ 'page-active': checkNumbering(1) }"
+        :disabled="currentPage.number === 1"
+        @click="setPage(1)"
+      >
+        1
+      </button>
       <button
         :class="{ 'page-active': checkNumbering(2) }"
-        :disabled="currentPage.number > 3"
+        :disabled="currentPage.number > 3 || currentPage.number === 2"
         @click="setPage(2)"
       >
         {{ currentPage.number <= 3 ? 2 : '...' }}
       </button>
       <button
         :class="{ 'page-active': checkNumbering(3) || currentPage.number > 3 }"
+        v-if="totalPages > 2 && currentPage.number !== totalPages"
         :disabled="currentPage.number >= 3"
-        v-if="totalPages > 2"
         @click="setPage(3)"
       >
         {{ currentPage.number <= 3 ? 3 : currentPage.number }}
       </button>
-      <button v-if="totalPages > 3">...</button>
-      <button v-if="totalPages > 3">{{ totalPages }}</button>
+      <button
+        v-if="totalPages > 3 && currentPage.number !== totalPages"
+        :style="{ cursor: 'default' }"
+      >
+        ...
+      </button>
+      <button
+        v-if="totalPages > 3"
+        :class="{ 'page-active': currentPage.number === totalPages }"
+        @click="setPage(totalPages)"
+      >
+        {{ totalPages }}
+      </button>
     </div>
 
-    <button :disabled="!(currentPage.number < 20 && currentPage.number >= 1)" @click="increment">
+    <button
+      id="arrow-btn"
+      :disabled="!(currentPage.number < 20 && currentPage.number >= 1)"
+      @click="increment"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="68"
@@ -241,6 +276,11 @@ export default {
 button {
   @apply cursor-pointer;
 }
+
+.pagination #arrow-btn:hover {
+  @apply transition-all duration-100;
+  scale: 1.02;
+}
 svg {
   fill: #c5c5c5;
 }
@@ -258,12 +298,26 @@ svg {
 }
 
 .numbers__list button {
-  @apply text-lg leading-4 tracking-tight cursor-pointer;
+  @apply text-lg leading-4 tracking-tight cursor-pointer transition-all duration-75;
   color: #9e9e9e;
   padding: 1rem 1.35rem 1rem 1.45rem;
 }
 
+.numbers__list button:hover {
+  @apply text-gray-600;
+  filter: brightness(95%);
+}
+
 .page-active {
   @apply text-white bg-blue-500 rounded-md !important;
+}
+
+button:disabled {
+  cursor: default !important;
+  opacity: 1;
+}
+
+button:disabled:hover {
+  filter: brightness(100%) !important;
 }
 </style>
