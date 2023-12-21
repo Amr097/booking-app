@@ -50,7 +50,7 @@ const routes = [
   },
   {
     name: '403',
-    path: '/freeze',
+    path: '/hold/on/a/second',
     component: () => import('../components/partials/AccessDenied.vue')
   },
   { path: '/:catchAll(.*)*', redirect: { name: '404' } }

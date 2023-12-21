@@ -65,7 +65,7 @@ export default {
           :key="index"
           :style="{ color: textColor }"
         >
-          <a href="/"> {{ item }}</a>
+          <router-link to="/"> {{ item }}</router-link>
         </li>
       </ul>
     </nav>
