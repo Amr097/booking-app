@@ -12,14 +12,16 @@ const filterRanges = [
   { name: '2000-3000', min: 2000, max: 3000 }
 ]
 
-const { handleBudgetFilteration, clearSearch } = useFilterationStore()
+const { handleBudgetFilteration, clearSearch, handleToggleBudget } = useFilterationStore()
 
-const toggleBudget = ref({ state: true })
+const toggleBudget = ref({ state: false })
 
-const handleToggle = (event) => {
-  if (event.target.checked) toggleBudget.value.state = false
-  else toggleBudget.value.state = true
-}
+const customBudget = ref({ min_budget: '', max_budget: '' })
+
+const customBudgetErr = ref({
+  max_display: 'none',
+  min_display: 'none'
+})
 </script>
 
 <template>
@@ -27,7 +29,16 @@ const handleToggle = (event) => {
     <h3 class="filter__title">Your budget per day</h3>
     <label
       class="un-filter"
-      @click.prevent="clearSearch(props.isLoading, props.errMessage, props.hotelsDataSnap)"
+      @click.prevent="
+        clearSearch(
+          props.isLoading,
+          props.errMessage,
+          props.hotelsDataSnap,
+          customBudgetErr,
+          toggleBudget,
+          customBudget
+        )
+      "
       for="budget"
       >x</label
     >
@@ -40,13 +51,14 @@ const handleToggle = (event) => {
             type="radio"
             :id="item.name"
             name="budget"
+            :disabled="toggleBudget.state"
             @change="
               handleBudgetFilteration(
-                $event,
                 { min_budget: item.min, max_budget: item.max },
                 props.hotelsDataSnap,
                 props.isLoading,
-                props.errMessage
+                props.errMessage,
+                customBudgetErr
               )
             "
           />
@@ -58,24 +70,56 @@ const handleToggle = (event) => {
         <div class="flex items-center justify-between">
           <h4 class="text-[1.4rem] text-gray-600">Set your own budget</h4>
           <label class="switch">
-            <input type="checkbox" @change="handleToggle" />
+            <input
+              type="checkbox"
+              @change="
+                handleToggleBudget(
+                  props.isLoading,
+                  props.errMessage,
+                  props.hotelsDataSnap,
+                  toggleBudget,
+                  customBudget,
+                  customBudgetErr
+                )
+              "
+            />
             <span class="slider"></span>
           </label>
         </div>
         <!--custom budget -->
-        <div class="budget__handler">
-          <input
-            type="text"
-            placeholder="Max budget"
-            class="budget__input"
-            :disabled="toggleBudget.state"
-          />
+        <div
+          class="budget__handler"
+          @keyup.enter="
+            handleBudgetFilteration(
+              customBudget,
+              props.hotelsDataSnap,
+              props.isLoading,
+              props.errMessage,
+              customBudgetErr
+            )
+          "
+        >
           <input
             type="text"
             placeholder="Min budget"
             class="budget__input"
-            :disabled="toggleBudget.state"
+            :disabled="!toggleBudget.state"
+            v-model="customBudget.min_budget"
           />
+          <span class="text-red-500 text-3xl mr-1" :style="{ display: customBudgetErr.min_display }"
+            >*</span
+          >
+          <input
+            type="text"
+            placeholder="Max budget"
+            class="budget__input ml-1"
+            :disabled="!toggleBudget.state"
+            v-model="customBudget.max_budget"
+          />
+          <span class="text-red-500 text-3xl" :style="{ display: customBudgetErr.max_display }"
+            >*</span
+          >
+
           <p class="budget__handler--text">Press Enter to filter</p>
         </div>
       </div>
@@ -107,8 +151,7 @@ const handleToggle = (event) => {
 
 .budget__handler {
   display: grid;
-  grid-template-columns: repeat(2, max-content);
-  grid-column-gap: 1.2rem;
+  grid-template-columns: repeat(4, max-content);
   grid-row-gap: 0.8rem;
   border: 1px dashed #d9d9d9;
   border-radius: 4px;
@@ -122,7 +165,7 @@ const handleToggle = (event) => {
 }
 
 .budget__input {
-  @apply w-[10rem] h-[3.9rem] text-center rounded-md outline-none bg-white text-[1.2rem] mt-1;
+  @apply w-[10rem] h-[3.9rem] text-center rounded-md outline-none bg-white text-[1.2rem] mt-1 mr-1;
 
   border: 1px solid var(--Gray-5, #e0e0e0);
 }

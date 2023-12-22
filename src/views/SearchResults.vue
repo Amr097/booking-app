@@ -12,7 +12,6 @@ import useHotelsStore from '/src/store/Hotels.js'
 import useFilterationStore from '/src/store/HotelsFilteration.js'
 import InputSearch from '../components/search-results/InputSearch.vue'
 import BudgetFilter from '../components/search-results/BudgetFilter.vue'
-
 import { ref } from 'vue'
 
 export default {
