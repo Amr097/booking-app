@@ -12,6 +12,7 @@ import useHotelsStore from '/src/store/Hotels.js'
 import useFilterationStore from '/src/store/HotelsFilteration.js'
 import InputSearch from '../components/search-results/InputSearch.vue'
 import BudgetFilter from '../components/search-results/BudgetFilter.vue'
+import RatingFilter from '../components/search-results/RatingFilter.vue'
 import { ref } from 'vue'
 
 export default {
@@ -26,12 +27,11 @@ export default {
     LoadingSpinner,
     ErrMessage,
     InputSearch,
-    BudgetFilter
+    BudgetFilter,
+    RatingFilter
   },
 
   setup() {
-    const startRanges = [1, 2, 3, 4, 5]
-
     const sortOptions = ref([
       { id: 'price_low_high', title: 'Price: Low to High' },
       { id: 'price_high_low', title: 'Price: High to Low' },
@@ -65,7 +65,6 @@ export default {
     })
 
     return {
-      startRanges,
       sortOptions,
       selectedSortOption,
       hotelsDataSnap,
@@ -103,18 +102,12 @@ export default {
           :hotelsDataSnap="hotelsDataSnap"
         />
         <!-- rates -->
-        <div class="rating">
-          <h3 class="filter__title">Rating</h3>
-          <div class="rating__main">
-            <p class="w-fit text-[1.4rem] text-gray-600">Show only ratings more than</p>
-            <ul class="rating__list">
-              <li class="rating__item" v-for="(item, index) in startRanges" :key="index">
-                {{ item }}
-                <img class="icon-input-2" src="/images/star-s-fill 5.svg" alt="star icon-input" />
-              </li>
-            </ul>
-          </div>
-        </div>
+
+        <RatingFilter
+          :isLoading="isLoading"
+          :errMessage="errMessage"
+          :hotelsDataSnap="hotelsDataSnap"
+        />
       </div>
       <!-- results view -->
       <div class="results__view">
@@ -209,33 +202,6 @@ div.container-c {
     grid-row: 2 / span 1;
     grid-column: 1 / span 1;
   }
-}
-
-.rating {
-  border-radius: 6px;
-  border: 1px solid var(--Gray-5, #e0e0e0);
-  background: #fff;
-  @media screen and (width< 53.75em) {
-    grid-row: 3 / span 1;
-    grid-column: 3 / span 1;
-    height: min-content;
-  }
-}
-
-.rating__main {
-  @apply flex flex-col gap-4 p-5;
-}
-
-.rating__list {
-  @apply flex w-fit items-start gap-1;
-  border-radius: 0px 5px 5px 0px;
-  border: 1px solid var(--Gray-5, #e0e0e0);
-  background: #fff;
-}
-
-.rating__item {
-  @apply flex items-end p-2 text-[1.6rem] cursor-pointer;
-  border-right: 1px solid var(--Gray-5, #e0e0e0);
 }
 
 .results__view--head {

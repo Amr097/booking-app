@@ -7,16 +7,30 @@ export default defineStore('filteration', () => {
   const SearchxBudget = 'SearchxBudget'
   const Budget = 'Budget'
   const BudgetxSearch = 'BudgetxSearch'
-  let filteredHotelsBySearchList = []
-  let filteredHotelsByBudgetList = []
+  const Rate = 'Rate'
+  const BudgetxRate = 'BudgetxRate'
+  const SearchxRate = 'SearchxRate'
+  const BudgetxSearchxRate = 'BudgetxSearchxRate'
+  const SearchxBudgetxRate = 'SearchxBudgetxRate'
+
+  let filteredHotelsBySearch = []
+  let filteredHotelsByBudget = []
+  let filteredHotelsByRating = []
   //if already filtered by budget
   let searchBudgetList = []
+  let rateBudgetList = []
   //if already filtered by search
   let filterSearchList = []
+  let rateSearchList = []
+  // if already filtered by search > budget
+  let rateSearchBudgetList = []
+  // if already filtered by budget > search
+  let rateFilterSearchList = []
 
   //lists stack
   const currentOperation = []
 
+  //search filteration
   const handleFilteration = (e, hotelsDataSnap, isLoading, errMessage) => {
     const input = e.target.value
     const hotelsList = hotelsDataSnap.data.hotels
@@ -33,15 +47,15 @@ export default defineStore('filteration', () => {
     //if search was first opertaion
 
     if (currentOperation[currentOperation.length - 1] === Search) {
-      filteredHotelsBySearchList = hotelsList.filter((hotel) => {
+      filteredHotelsBySearch = hotelsList.filter((hotel) => {
         const comparisonHotelName = hotel.name.toLowerCase().replace(/\s/g, '')
         const comparisonInput = input.toLowerCase().replace(/\s/g, '')
         return comparisonHotelName.includes(comparisonInput)
       })
 
-      hotelsSnap.value.data = filteredHotelsBySearchList
+      hotelsSnap.value.data = filteredHotelsBySearch
 
-      if (filteredHotelsBySearchList.length === 0) {
+      if (filteredHotelsBySearch.length === 0) {
         errMessage.state = true
         errMessage.value = '🔎  0 results found for your search'
       }
@@ -49,7 +63,7 @@ export default defineStore('filteration', () => {
 
     //if budget was first opertaion
     else if (currentOperation[currentOperation.length - 1] === BudgetxSearch) {
-      searchBudgetList = filteredHotelsByBudgetList.filter((hotel) => {
+      searchBudgetList = filteredHotelsByBudget.filter((hotel) => {
         const comparisonHotelName = hotel.name.toLowerCase().replace(/\s/g, '')
         const comparisonInput = input.toLowerCase().replace(/\s/g, '')
         return comparisonHotelName.includes(comparisonInput)
@@ -62,10 +76,25 @@ export default defineStore('filteration', () => {
         errMessage.value = '🔎  0 results found for your search'
       }
     }
-
+    //if search bar is reset
     if (input === '') {
-      console.log(currentOperation)
-      currentOperation.pop()
+      currentOperation.length = 0
+      hotelsSnap.value.data = hotelsList
+      const radioBtns = document.querySelectorAll('.ranges__check')
+      filteredHotelsBySearch = []
+      filteredHotelsByBudget = []
+      filteredHotelsByRating = []
+      searchBudgetList = []
+      rateBudgetList = []
+      filterSearchList = []
+      rateSearchList = []
+      rateSearchBudgetList = []
+      rateFilterSearchList = []
+      radioBtns.forEach((btn) => {
+        if (btn.checked === true) {
+          btn.checked = false
+        }
+      })
     }
 
     setTimeout(() => {
@@ -99,8 +128,16 @@ export default defineStore('filteration', () => {
     customBudgetErr.max_display = 'none'
     customBudgetErr.min_display = 'none'
 
-    //if budget was first opertaion
+    //if past operation was neither search nor budget filter
+    if (
+      currentOperation.length !== 0 &&
+      currentOperation[currentOperation.length - 1] !== Search &&
+      currentOperation[currentOperation.length - 1] !== SearchxBudget
+    ) {
+      currentOperation.pop()
+    }
 
+    //if budget was first opertaion
     if (currentOperation.length === 0) {
       currentOperation.push(Budget)
     }
@@ -111,15 +148,15 @@ export default defineStore('filteration', () => {
     }
 
     if (currentOperation[currentOperation.length - 1] === Budget) {
-      filteredHotelsByBudgetList = hotelsList.filter((hotel) => {
+      filteredHotelsByBudget = hotelsList.filter((hotel) => {
         const comparisonPrice = hotel.price_discount || hotel.price_gross
 
         return +comparisonPrice <= +max_budget && +comparisonPrice >= +min_budget
       })
 
-      hotelsSnap.value.data = filteredHotelsByBudgetList
+      hotelsSnap.value.data = filteredHotelsByBudget
 
-      if (filteredHotelsByBudgetList.length === 0) {
+      if (filteredHotelsByBudget.length === 0) {
         errMessage.state = true
         errMessage.value = '🔎  0 results found for your search'
       }
@@ -127,7 +164,7 @@ export default defineStore('filteration', () => {
 
     //
     else if (currentOperation[currentOperation.length - 1] === SearchxBudget) {
-      filterSearchList = filteredHotelsBySearchList.filter((hotel) => {
+      filterSearchList = filteredHotelsBySearch.filter((hotel) => {
         const comparisonPrice = hotel.price_discount || hotel.price_gross
         return comparisonPrice <= +max_budget && +comparisonPrice > +min_budget
       })
@@ -158,10 +195,15 @@ export default defineStore('filteration', () => {
       if (btn.checked === true) {
         btn.checked = false
         document.querySelector('#property-search').value = ''
-        filteredHotelsBySearchList = []
-        filteredHotelsByBudgetList = []
+        filteredHotelsBySearch = []
+        filteredHotelsByBudget = []
+        filteredHotelsByRating = []
         searchBudgetList = []
+        rateBudgetList = []
         filterSearchList = []
+        rateSearchList = []
+        rateSearchBudgetList = []
+        rateFilterSearchList = []
         isLoading.value = true
         errMessage.state = false
         errMessage.value = ''
@@ -172,9 +214,10 @@ export default defineStore('filteration', () => {
 
     if (toggleBudget.state === true) {
       if (currentOperation.length > 0) {
+        document.querySelector('#property-search').value = ''
         isLoading.value = true
-        filteredHotelsBySearchList = []
-        filteredHotelsByBudgetList = []
+        filteredHotelsBySearch = []
+        filteredHotelsByBudget = []
         searchBudgetList = []
         filterSearchList = []
         currentOperation.length = 0
@@ -218,7 +261,7 @@ export default defineStore('filteration', () => {
         btn.checked = false
 
         if (lastOperationCheck === Budget) {
-          if (lastOperation === SearchxBudget) hotelsSnap.value.data = filteredHotelsBySearchList
+          if (lastOperation === SearchxBudget) hotelsSnap.value.data = filteredHotelsBySearch
           else if (lastOperation === Budget) hotelsSnap.value.data = hotelsDataSnap.data.hotels
         }
       }
@@ -234,7 +277,7 @@ export default defineStore('filteration', () => {
 
       if (lastOperationCheck === Budget) {
         isLoading.value = true
-        if (lastOperation === SearchxBudget) hotelsSnap.value.data = filteredHotelsBySearchList
+        if (lastOperation === SearchxBudget) hotelsSnap.value.data = filteredHotelsBySearch
         else if (lastOperation === Budget) hotelsSnap.value.data = hotelsDataSnap.data.hotels
       }
     }
@@ -245,5 +288,88 @@ export default defineStore('filteration', () => {
     toggleBudget.state = !toggleBudget.state
   }
 
-  return { hotelsSnap, handleFilteration, handleBudgetFilteration, clearSearch, handleToggleBudget }
+  const handleRatingFilteration = (item, isLoading, errMessage, hotelsDataSnap) => {
+    const lastOperation = currentOperation[currentOperation.length - 1]
+    const hotelsList = hotelsDataSnap.data.hotels
+    isLoading.value = true
+    errMessage.state = false
+    errMessage.value = ''
+
+    if (currentOperation.length === 0) currentOperation.push(Rate)
+    else if (lastOperation === Budget) currentOperation.push(BudgetxRate)
+    else if (lastOperation === Search) currentOperation.push(SearchxRate)
+    else if (lastOperation === BudgetxSearch) currentOperation.push(BudgetxSearchxRate)
+    else if (lastOperation === SearchxBudget) currentOperation.push(SearchxBudgetxRate)
+
+    if (currentOperation[currentOperation.length - 1] === Rate) {
+      //if search was first opertaion
+      filteredHotelsByRating = hotelsList.filter((hotel) => {
+        return Math.ceil(hotel.rating) === item
+      })
+
+      hotelsSnap.value.data = filteredHotelsByRating
+
+      if (filteredHotelsByRating.length === 0) {
+        errMessage.state = true
+        errMessage.value = '🔎  0 results found for your search'
+      }
+    } else if (currentOperation[currentOperation.length - 1] === BudgetxRate) {
+      rateBudgetList = filteredHotelsByBudget.filter((hotel) => {
+        return Math.ceil(hotel.rating) === item
+      })
+
+      hotelsSnap.value.data = rateBudgetList
+
+      if (rateBudgetList.length === 0) {
+        errMessage.state = true
+        errMessage.value = '🔎  0 results found for your search'
+      }
+    } else if (currentOperation[currentOperation.length - 1] === SearchxRate) {
+      rateSearchList = filteredHotelsBySearch.filter((hotel) => {
+        return Math.ceil(hotel.rating) === item
+      })
+
+      hotelsSnap.value.data = rateSearchList
+
+      if (rateSearchList.length === 0) {
+        errMessage.state = true
+        errMessage.value = '🔎  0 results found for your search'
+      }
+    } else if (currentOperation[currentOperation.length - 1] === BudgetxSearchxRate) {
+      rateSearchBudgetList = searchBudgetList.filter((hotel) => {
+        return Math.ceil(hotel.rating) === item
+      })
+
+      hotelsSnap.value.data = rateSearchBudgetList
+
+      if (rateSearchBudgetList.length === 0) {
+        errMessage.state = true
+        errMessage.value = '🔎  0 results found for your search'
+      }
+    } else if (currentOperation[currentOperation.length - 1] === SearchxBudgetxRate) {
+      rateFilterSearchList = filterSearchList.filter((hotel) => {
+        return Math.ceil(hotel.rating) === item
+      })
+
+      hotelsSnap.value.data = rateFilterSearchList
+
+      if (rateFilterSearchList.length === 0) {
+        errMessage.state = true
+        errMessage.value = '🔎  0 results found for your search'
+      }
+    }
+
+    setTimeout(() => {
+      isLoading.value = false
+    }, 500)
+  }
+
+  return {
+    hotelsSnap,
+    handleFilteration,
+    handleBudgetFilteration,
+    clearSearch,
+    handleToggleBudget,
+    handleRatingFilteration
+  }
 })

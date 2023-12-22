@@ -1,46 +1,4 @@
 <template>
-  <!-- <div v-if="hotels.length > 0">
-    <div class="results__card" v-for="(hotel, index) in hotels" :key="index">
-      <img :src="hotel.property.photoUrls[0]" alt="" class="result__card--img" />
-      <div class="results__card--info">
-        <h3 class="results__card--title">{{ hotel.property.name }}</h3>
-        <div class="results__card--stars">
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <img class="icon-2" src="/images/star-s-fill 5.svg" alt="star icon" />
-          <p class="results__card--review"> 
-            {{ hotel.property.reviewScore }} ({{ hotel.property.reviewCount }} reviews)
-          </p>
-        </div>
-        <article class="results__card--desc">{{ hotelLabel(hotel) }}</article>
-        <router-link to="/hotel/details" class="blue__btn">See availbility</router-link>
-      </div>
-
-      <div class="results__card--prices">
-        <p class="discount--ad">Book now and receive 15% off</p>
-        <p class="discount--percent" v-if="hotel.property.priceBreakdown.strikethroughPrice">
-          -{{ discount(hotel) }}% off
-        </p>
-        <div class="price">
-          <p class="price--red" v-if="hotel.property.priceBreakdown.strikethroughPrice">
-            {{ discountPrice(hotel) + ' ' + hotel.property.priceBreakdown.grossPrice.currency }}
-          </p>
-          <p class="price--black">
-            {{
-              hotel.property.priceBreakdown.grossPrice.currency +
-              ' ' +
-              Math.ceil(hotel.property.priceBreakdown.grossPrice.value)
-            }}
-          </p>
-          <p class="taxes">Includes taxes and fees</p>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- //////////////////////////////// -->
-
   <div class="results__card">
     <img
       :src="hotel.image ? hotel.image : '/images/fallback.webp'"
@@ -99,40 +57,6 @@ export default {
         return false
       }
     }
-
-    // const discount = (hotel) => {
-    //   if (
-    //     hotel.property.priceBreakdown.grossPrice &&
-    //     hotel.property.priceBreakdown.strikethroughPrice
-    //   ) {
-    //     return (
-    //       100 -
-    //       Math.ceil(
-    //         (hotel.property.priceBreakdown.grossPrice.value * 100) /
-    //           Math.ceil(
-    //             hotel.property.priceBreakdown.grossPrice.value +
-    //               hotel.property.priceBreakdown.strikethroughPrice.value
-    //           )
-    //       )
-    //     )
-    //   } else {
-    //     return false
-    //   }
-    // }
-
-    // const discountPrice = (hotel) => {
-    //   if (
-    //     hotel.property.priceBreakdown.grossPrice &&
-    //     hotel.property.priceBreakdown.strikethroughPrice
-    //   ) {
-    //     return Math.ceil(
-    //       hotel.property.priceBreakdown.grossPrice.value +
-    //         hotel.property.priceBreakdown.strikethroughPrice.value
-    //     )
-    //   }
-    // }
-
-    // const hotelLabel = (hotel) => (hotel.accessibilityLabel ? hotel.accessibilityLabel : '')
 
     return { discount }
   }
