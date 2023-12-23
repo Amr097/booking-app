@@ -26,22 +26,27 @@ const customBudgetErr = ref({
 
 <template>
   <div class="filter__budget">
-    <h3 class="filter__title">Your budget per day</h3>
-    <label
-      class="un-filter"
-      @click.prevent="
-        clearSearch(
-          props.isLoading,
-          props.errMessage,
-          props.hotelsDataSnap,
-          customBudgetErr,
-          toggleBudget,
-          customBudget
-        )
-      "
-      for="budget"
-      >x</label
-    >
+    <h3 class="filter__title relative">
+      Your budget per day
+      <label
+        class="un-filter"
+        @click.prevent="
+          clearSearch(
+            props.isLoading,
+            props.errMessage,
+            props.hotelsDataSnap,
+            customBudgetErr,
+            toggleBudget,
+            customBudget
+          )
+        "
+        for="budget"
+      >
+        <span class="text-red-500 inline-block transform -translate-y-[0.5px] mr-1">x</span>
+        Reset</label
+      >
+    </h3>
+
     <div class="filter__ranges">
       <!--budget checkboxes -->
       <ul class="ranges__list">
@@ -129,7 +134,6 @@ const customBudgetErr = ref({
 
 <style scoped>
 .filter__budget {
-  @apply relative;
   border-radius: 6px;
   border: 1px solid var(--Gray-5, #e0e0e0);
   background: #fff;
@@ -142,7 +146,7 @@ const customBudgetErr = ref({
 }
 
 .un-filter {
-  @apply absolute top-[1.2rem] right-8 text-2xl font-medium text-red-500 cursor-pointer hover:text-red-700 p-1;
+  @apply absolute top-[50%] -translate-y-1/2 right-8 text-base font-medium text-gray-700 cursor-pointer hover:text-gray-500 p-1;
 }
 
 .filter__set {
