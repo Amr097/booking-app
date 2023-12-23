@@ -28,6 +28,24 @@ export default defineStore('filteration', () => {
     }, 500)
   }
 
+  //clear search
+  const clearSearch = (isLoading, errMessage, hotelsDataSnap) => {
+    const inputField = document.querySelector('#property-search')
+    const hotelsList = hotelsDataSnap.data.hotels
+
+    isLoading.value = true
+    errMessage.state = false
+    errMessage.value = ''
+    inputField.value = ''
+    queryData.search = null
+
+    hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+
+    setTimeout(() => {
+      isLoading.value = false
+    }, 500)
+  }
+
   //budget filteration
 
   const handleBudgetFilteration = (
@@ -67,29 +85,8 @@ export default defineStore('filteration', () => {
     }, 500)
   }
 
-  //rating filteration
-
-  const handleRatingFilteration = (rate, isLoading, errMessage, hotelsDataSnap) => {
-    const hotelsList = hotelsDataSnap.data.hotels
-    isLoading.value = true
-    errMessage.state = false
-    errMessage.value = ''
-
-    queryData.rate = rate
-    hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
-
-    if (hotelsSnap.value.data.length === 0) {
-      errMessage.state = true
-      errMessage.value = '🔎  0 results found for your search'
-    }
-
-    setTimeout(() => {
-      isLoading.value = false
-    }, 500)
-  }
-
   //reset budget
-  const clearSearch = (
+  const clearBudget = (
     isLoading,
     errMessage,
     hotelsDataSnap,
@@ -144,14 +141,7 @@ export default defineStore('filteration', () => {
   }
 
   //toggle budget
-  const handleToggleBudget = (
-    isLoading,
-    errMessage,
-    hotelsDataSnap,
-    toggleBudget,
-    customBudget,
-    customBudgetErr
-  ) => {
+  const handleToggleBudget = (toggleBudget, customBudget, customBudgetErr) => {
     const radioBtns = document.querySelectorAll('.ranges__check')
 
     radioBtns.forEach((btn) => {
@@ -172,12 +162,87 @@ export default defineStore('filteration', () => {
     toggleBudget.state = !toggleBudget.state
   }
 
+  //rating filteration
+
+  const handleRatingFilteration = (rate, isLoading, errMessage, hotelsDataSnap) => {
+    const hotelsList = hotelsDataSnap.data.hotels
+    isLoading.value = true
+    errMessage.state = false
+    errMessage.value = ''
+
+    queryData.rate = rate
+    hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+
+    if (hotelsSnap.value.data.length === 0) {
+      errMessage.state = true
+      errMessage.value = '🔎  0 results found for your search'
+    }
+
+    setTimeout(() => {
+      isLoading.value = false
+    }, 500)
+  }
+
+  //clear rating
+  const clearRating = (isLoading, errMessage, hotelsDataSnap) => {
+    const ratingList = document.querySelectorAll('.rating-radio')
+    const hotelsList = hotelsDataSnap.data.hotels
+
+    ratingList.forEach((btn) => {
+      if (btn.checked === true) {
+        btn.checked = false
+        isLoading.value = true
+        errMessage.state = false
+        errMessage.value = ''
+        queryData.rate = null
+        hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+
+        if (hotelsSnap.value.data.length === 0) {
+          errMessage.state = true
+          errMessage.value = '🔎  0 results found for your search'
+        }
+
+        return
+      }
+    })
+
+    hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+
+    setTimeout(() => {
+      isLoading.value = false
+    }, 500)
+  }
+
+  //handle sorting
+
+  const sortResults = (option, isLoading, errMessage, hotelsDataSnap) => {
+    const hotelsList = hotelsDataSnap.data.hotels
+    isLoading.value = true
+    errMessage.state = false
+    errMessage.value = ''
+
+    queryData.sortBy = option
+    hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+    console.log(option)
+    if (hotelsSnap.value.data.length === 0) {
+      errMessage.state = true
+      errMessage.value = '🔎  0 results found for your search'
+    }
+
+    setTimeout(() => {
+      isLoading.value = false
+    }, 500)
+  }
+
   return {
     hotelsSnap,
     handleFilteration,
     handleBudgetFilteration,
     clearSearch,
+    clearBudget,
+    clearRating,
     handleToggleBudget,
-    handleRatingFilteration
+    handleRatingFilteration,
+    sortResults
   }
 })

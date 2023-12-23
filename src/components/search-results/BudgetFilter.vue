@@ -12,7 +12,7 @@ const filterRanges = [
   { name: '2000-3000', min: 2000, max: 3000 }
 ]
 
-const { handleBudgetFilteration, clearSearch, handleToggleBudget } = useFilterationStore()
+const { handleBudgetFilteration, clearBudget, handleToggleBudget } = useFilterationStore()
 
 const toggleBudget = ref({ state: false })
 
@@ -26,12 +26,12 @@ const customBudgetErr = ref({
 
 <template>
   <div class="filter__budget">
-    <h3 class="filter__title relative">
+    <h3 class="filter__title">
       Your budget per day
-      <label
+      <span
         class="un-filter"
         @click.prevent="
-          clearSearch(
+          clearBudget(
             props.isLoading,
             props.errMessage,
             props.hotelsDataSnap,
@@ -40,10 +40,9 @@ const customBudgetErr = ref({
             customBudget
           )
         "
-        for="budget"
       >
         <span class="text-red-500 inline-block transform -translate-y-[0.5px] mr-1">x</span>
-        Reset</label
+        Reset</span
       >
     </h3>
 
@@ -77,16 +76,7 @@ const customBudgetErr = ref({
           <label class="switch">
             <input
               type="checkbox"
-              @change="
-                handleToggleBudget(
-                  props.isLoading,
-                  props.errMessage,
-                  props.hotelsDataSnap,
-                  toggleBudget,
-                  customBudget,
-                  customBudgetErr
-                )
-              "
+              @change="handleToggleBudget(toggleBudget, customBudget, customBudgetErr)"
             />
             <span class="slider"></span>
           </label>
@@ -143,10 +133,6 @@ const customBudgetErr = ref({
     grid-row: 3 / span 1;
     grid-column: 1 / span 1;
   }
-}
-
-.un-filter {
-  @apply absolute top-[50%] -translate-y-1/2 right-8 text-base font-medium text-gray-700 cursor-pointer hover:text-gray-500 p-1;
 }
 
 .filter__set {

@@ -3,12 +3,20 @@ import useFilterationStore from '/src/store/HotelsFilteration.js'
 
 const props = defineProps(['hotelsDataSnap', 'isLoading', 'errMessage'])
 
-const { handleFilteration } = useFilterationStore()
+const { handleFilteration, clearSearch } = useFilterationStore()
 </script>
 
 <template>
   <div class="filter__property">
-    <h3 class="filter__title">Search by property name</h3>
+    <h3 class="filter__title">
+      Search by property name
+      <span
+        class="un-filter"
+        @click.prevent="clearSearch(props.isLoading, props.errMessage, props.hotelsDataSnap)"
+      >
+        X</span
+      >
+    </h3>
     <div class="filter__body">
       <div class="flex bg-white gap-1 p-2 rounded-md">
         <svg fill="none" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg" class="icon-input">

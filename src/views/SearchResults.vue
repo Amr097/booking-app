@@ -13,6 +13,7 @@ import useFilterationStore from '/src/store/HotelsFilteration.js'
 import InputSearch from '../components/search-results/InputSearch.vue'
 import BudgetFilter from '../components/search-results/BudgetFilter.vue'
 import RatingFilter from '../components/search-results/RatingFilter.vue'
+import SortResults from '../components/search-results/SortResults.vue'
 import { ref } from 'vue'
 
 export default {
@@ -28,19 +29,11 @@ export default {
     ErrMessage,
     InputSearch,
     BudgetFilter,
-    RatingFilter
+    RatingFilter,
+    SortResults
   },
 
   setup() {
-    const sortOptions = ref([
-      { id: 'price_low_high', title: 'Price: Low to High' },
-      { id: 'price_high_low', title: 'Price: High to Low' },
-      { id: 'rating_low_high', title: 'Rating: Low to High' },
-      { id: 'rating_high_low', title: 'Rating: High to Low' }
-    ])
-
-    const selectedSortOption = ref('')
-
     const { hotelsData, fetchHotels, isLoading, errMessage } = useHotelsStore()
     const { handleFilteration, hotelsSnap, handleBudgetFilteration, clearSearch } =
       useFilterationStore()
@@ -65,8 +58,6 @@ export default {
     })
 
     return {
-      sortOptions,
-      selectedSortOption,
       hotelsDataSnap,
       hotelsSnap,
       isLoading,
@@ -120,19 +111,12 @@ export default {
                 : '0 Search results found'
             }}
           </h2>
-          <div class="ml-auto relative">
-            <select
-              class="results__view--sort"
-              v-model="selectedSortOption"
-              @change="fetchSortedPage(selectedSortOption)"
-            >
-              <option value="">Recommended</option>
-              <option v-for="(item, index) in sortOptions" :key="index" :value="item.id">
-                {{ item.title }}
-              </option>
-            </select>
-            <span>Sort by</span>
-          </div>
+          <!--Sort results-->
+          <SortResults
+            :isLoading="isLoading"
+            :errMessage="errMessage"
+            :hotelsDataSnap="hotelsDataSnap"
+          />
         </div>
         <!-- Hotel card -->
         <LoadingSpinner
@@ -216,19 +200,6 @@ div.container-c {
   @apply text-3xl font-semibold;
 }
 
-.results__view--sort {
-  @apply text-[1.4rem] rounded-lg bg-white px-6 pb-2 pt-9 outline-none;
-
-  border: 1px solid #bdbdbd;
-}
-
-.results__view--sort option {
-  @apply flex flex-col text-2xl;
-}
-
-.results__view--head span {
-  @apply absolute text-[1.2rem] text-[#828282] left-[2rem] top-[0.4rem];
-}
 /* ///////////////////////////////////// */
 
 .taxes {
@@ -248,9 +219,13 @@ div.container-c {
 
 <style>
 .filter__title {
-  @apply text-2xl font-medium tracking-wide px-6 py-6 bg-gray-100;
+  @apply text-2xl font-medium tracking-wide px-6 py-6 bg-gray-100 relative;
   border-radius: 0.5rem 0.5rem 0 0;
   color: #181818;
+}
+
+.un-filter {
+  @apply absolute top-[50%] -translate-y-1/2 right-6 text-base font-medium text-gray-700 cursor-pointer hover:text-gray-600 p-1;
 }
 
 .filter__body {
