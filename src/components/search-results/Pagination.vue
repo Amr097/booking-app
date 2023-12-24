@@ -13,7 +13,7 @@ export default {
     const currentPage = ref({ number: +localStorage.getItem('currentPage') })
     const { fetchHotels } = useHotelsStore()
 
-    const maxPerPage = 10
+    const maxPerPage = 20
 
     const totalPages = computed(() => {
       return props.propertiesNumber ? Math.ceil(+props.propertiesNumber / maxPerPage) : 1

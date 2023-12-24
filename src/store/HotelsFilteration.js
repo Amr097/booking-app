@@ -25,7 +25,7 @@ export default defineStore('filteration', () => {
 
     setTimeout(() => {
       isLoading.value = false
-    }, 500)
+    }, 50)
   }
 
   //clear search
@@ -43,7 +43,7 @@ export default defineStore('filteration', () => {
 
     setTimeout(() => {
       isLoading.value = false
-    }, 500)
+    }, 50)
   }
 
   //budget filteration
@@ -82,7 +82,7 @@ export default defineStore('filteration', () => {
 
     setTimeout(() => {
       isLoading.value = false
-    }, 500)
+    }, 50)
   }
 
   //reset budget
@@ -137,7 +137,7 @@ export default defineStore('filteration', () => {
 
     setTimeout(() => {
       isLoading.value = false
-    }, 500)
+    }, 50)
   }
 
   //toggle budget
@@ -180,7 +180,7 @@ export default defineStore('filteration', () => {
 
     setTimeout(() => {
       isLoading.value = false
-    }, 500)
+    }, 50)
   }
 
   //clear rating
@@ -210,7 +210,7 @@ export default defineStore('filteration', () => {
 
     setTimeout(() => {
       isLoading.value = false
-    }, 500)
+    }, 50)
   }
 
   //handle sorting
@@ -231,7 +231,7 @@ export default defineStore('filteration', () => {
 
     setTimeout(() => {
       isLoading.value = false
-    }, 500)
+    }, 50)
   }
 
   return {

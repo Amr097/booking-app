@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import { doc, getDoc } from 'firebase/firestore'
-import { hotelsCollection } from '../services/firebase'
+import { db, collection } from '../services/firebase'
 import { ref } from 'vue'
+//import { hotelDataCairo } from '../assets/data/hotels'
 
 export default defineStore('hotels', () => {
   const hotelsData = ref({ data: {} })
@@ -17,6 +18,7 @@ export default defineStore('hotels', () => {
     const searchData = JSON.parse(localStorage.getItem('searchQuery'))
     if (searchData) {
       try {
+        const hotelsCollection = collection(db, searchData.destinationValue)
         const hotelRef = doc(hotelsCollection, `${searchData.destinationValue}-${page}`)
         const hotelSnap = await getDoc(hotelRef)
 
@@ -24,14 +26,15 @@ export default defineStore('hotels', () => {
           hotelsData.value.data = hotelSnap.data()
           localStorage.setItem('currentPage', page)
           isLoading.value.value = false
-
-          // } else {
-          //   hotelData.forEach(async (item, index) => {
-          //     const i = index + 1
-          //     const j = i.toString()
-          //     await setDoc(doc(hotelsCollection, `hurghada-${j}`), item)
-          //   })
-        } else {
+        }
+        //else {
+        //   hotelDataCairo.forEach(async (item, index) => {
+        //     const i = index + 1
+        //     const j = i.toString()
+        //     await setDoc(doc(hotelsCollection, `cairo-${j}`), item)
+        //   })
+        // }
+        else {
           hotelsData.value.data = {}
           isLoading.value.value = false
         }

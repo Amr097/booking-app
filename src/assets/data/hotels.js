@@ -1,6 +1,6 @@
 export const hotelData = [
   {
-    properties_number: 41,
+    properties_number: 140,
     hotels: [
       {
         name: 'Sky View Suites Hotel',
@@ -11,7 +11,7 @@ export const hotelData = [
         price_gross: '1000',
         price_discount: '100',
 
-        id: '198641',
+        id: '198650',
         rooms: '5',
         guests: '5',
         image: '/images/details-1.webp'
@@ -109,7 +109,7 @@ export const hotelData = [
         price_gross: '2000',
         price_discount: '300',
 
-        id: '444444',
+        id: '505050',
         rooms: '5',
         guests: '6',
         image: '/images/room-2.webp'
@@ -139,6 +139,139 @@ export const hotelData = [
         rooms: '4',
         guests: '5',
         image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Sky View Suites Hotel',
+        desc: 'Located in Hurghada, a few steps from Harouny Beach, Sky View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'EL Gouna Swan Lake Apartment',
+        desc: 'EL Gouna Swan Lake Apartment is a sustainable apartment in Hurghada, 21 miles from New Marina. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Ali Baba Safaga Hotel',
+        desc: 'Well set in the Soma Bay district of Hurghada, Ali Baba Safaga Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Makadi Saraya Resort',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Hurghada’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Azzurra Sahl Hashesh 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Sahl Hashesh 1 bedroom Apartment with Garden and Sea view! offers accommodations in Hurghada, 17 miles from New Marina and 10 miles from Hurghada Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Sea View Hotel',
+        desc: 'Located in the center of Hurghada just 66 feet from the beach, Sea View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Hurghada’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-australia.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
       }
     ],
     page: 1,
@@ -150,7 +283,7 @@ export const hotelData = [
   },
   ///////////////////////////////////////////////////////////////////////// PAGE 2 ////////////////////////////////////////////////
   {
-    properties_number: 41,
+    properties_number: 140,
     hotels: [
       {
         name: 'Sea View Hotel',
@@ -277,6 +410,141 @@ export const hotelData = [
         id: '101010aedf',
         rooms: '5',
         guests: '6'
+      },
+      {
+        name: 'Elaria Hotel Hurgada',
+        desc: 'Elaria Hotel Hurgada is located in Hurghada, 1.9 mi from New Marina and 4.3 mi from District Court of Hurghada.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Eiffel Hotel Hurghada',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Eiffel Hotel Hurghada.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Kalawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Kalawy offers 5-star accommodations in Hurghada and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Safaga Hotel',
+        desc: 'Well set in the Soma Bay district of Hurghada, Ali Baba Safaga Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only',
+        desc: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only is set in Hurghada, 6.8 mi from New Marina, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Hurghada Marina',
+        desc: 'The Boutique Hotel is located in the Hurghada Marina and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Hurghada',
+        desc: 'This hotel is located in Hurghada and is a 10-minute drive from Hurghada International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Hurghada Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Marina Hurghada.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Hurghada, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
       }
     ],
     page_number: 2,
@@ -287,7 +555,7 @@ export const hotelData = [
   },
   ///////////////////////////////////////////////////////////////////////// PAGE 3 ////////////////////////////////////////////////
   {
-    properties_number: 41,
+    properties_number: 140,
     hotels: [
       {
         name: 'Sea View Hotel',
@@ -346,36 +614,48 @@ export const hotelData = [
         guests: '6',
         image: '/images/v-japan.webp'
       },
-      {
-        name: 'Casablanca beach unit # 124',
-        desc: 'وحده رقم 124 كازابلانكا بيتش offers accommodations in Hurghada, 6.2 miles from New Marina and 12 miles from Hurghada Grand Aquarium. This property offers access to a balcony and free private parking.',
-        rating: '4.5',
-        reviews: '800',
-        offer: { title: 'Lunch package included', color: '#F2994A' },
-        price_gross: '2800',
-        price_discount: '1500',
 
-        id: '222222',
-        rooms: '4',
-        guests: '4',
-        image: '/images/v-zeland.webp'
+      {
+        name: 'Pickalbatros Aqua Park Resort - Hurghada',
+        desc: 'This hotel is located in Hurghada and is a 10-minute drive from Hurghada International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
       },
       {
-        name: 'Azzurra Sahl Hashesh 1 bedroom Apartment with Garden and Sea view!',
-        desc: 'Azzurra Sahl Hashesh 1 bedroom Apartment with Garden and Sea view! offers accommodations in Hurghada, 17 miles from New Marina and 10 miles from Hurghada Grand Aquarium.',
-        rating: '4.0',
-        reviews: '1500',
-        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
-        price_gross: '1200',
+        name: 'Hurghada Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Marina Hurghada.',
+        rating: '2.4',
+        reviews: '1050',
 
-        id: '333333',
-        rooms: '2',
-        guests: '3',
-        image: '/images/t-pcovid.webp'
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
       },
       {
-        name: 'Steigenberger Resort Ras Soma',
-        desc: 'The Steigenberger Resort Ras Soma is a stylish and luxurious resort offering half board accommodations as well as a generous luxury all-inclusive experience.',
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Hurghada, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Sea View Hotel',
+        desc: 'Located in the center of Hurghada just 66 feet from the beach, Sea View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
         rating: '2.6',
         reviews: '1300',
         offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
@@ -384,8 +664,131 @@ export const hotelData = [
 
         id: '77777767867',
         rooms: '2',
-        guests: '3'
+        guests: '3',
+        image: '/images/h-recce.webp'
       },
+      {
+        name: 'Moon Beach Hotel Hurghada',
+        desc: 'Located in Hurghada, a 4-minute walk from Paradise Beach, Moon Beach Hotel Hurghada provides accommodations with an outdoor swimming pool, free private parking, a garden and a private beach area.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Al-Dora Resort Hurghada',
+        desc: 'Located in Hurghada, a 16-minute walk from Qesm Hurghada Public Beach, Al-Dora Resort Hurghada provides accommodations with a fitness center, free private parking, a garden and a shared lounge.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Elaria Hotel Hurgada',
+        desc: 'Elaria Hotel Hurgada is located in Hurghada, 1.9 mi from New Marina and 4.3 mi from District Court of Hurghada.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Eiffel Hotel Hurghada',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Eiffel Hotel Hurghada.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Kalawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Kalawy offers 5-star accommodations in Hurghada and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Safaga Hotel',
+        desc: 'Well set in the Soma Bay district of Hurghada, Ali Baba Safaga Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only',
+        desc: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only is set in Hurghada, 6.8 mi from New Marina, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Hurghada Marina',
+        desc: 'The Boutique Hotel is located in the Hurghada Marina and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
       {
         name: 'Pickalbatros Aqua Park Resort - Hurghada',
         desc: 'This hotel is located in Hurghada and is a 10-minute drive from Hurghada International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
@@ -433,7 +836,7 @@ export const hotelData = [
   },
   ///////////////////////////////////////////////////////////////////////// PAGE 3 ////////////////////////////////////////////////
   {
-    properties_number: 41,
+    properties_number: 140,
     hotels: [
       {
         name: 'Sea View Hotel',
@@ -500,6 +903,46 @@ export const hotelData = [
         id: '222222',
         rooms: '4',
         guests: '4',
+        image: '/images/v-zeland.webp'
+      },
+      {
+        name: 'Azzurra Sahl Hashesh 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Sahl Hashesh 1 bedroom Apartment with Garden and Sea view! offers accommodations in Hurghada, 17 miles from New Marina and 10 miles from Hurghada Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Steigenberger Resort Ras Soma',
+        desc: 'The Steigenberger Resort Ras Soma is a stylish and luxurious resort offering half board accommodations as well as a generous luxury all-inclusive experience.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Casablanca beach unit # 124',
+        desc: 'وحده رقم 124 كازابلانكا بيتش offers accommodations in Hurghada, 6.2 miles from New Marina and 12 miles from Hurghada Grand Aquarium. This property offers access to a balcony and free private parking.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '2800',
+        price_discount: '1500',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
         image: '/images/v-japan.webp'
       },
       {
@@ -514,45 +957,7 @@ export const hotelData = [
         rooms: '2',
         guests: '3'
       },
-      {
-        name: 'Sea View Hotel',
-        desc: 'Located in the center of Hurghada just 66 feet from the beach, Sea View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
-        rating: '2.6',
-        reviews: '1300',
-        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
-        price_gross: '1400',
-        price_discount: '160',
 
-        id: '77777767867',
-        rooms: '2',
-        guests: '3',
-        image: '/images/h-recce.webp'
-      },
-      {
-        name: 'Moon Beach Hotel Hurghada',
-        desc: 'Located in Hurghada, a 4-minute walk from Paradise Beach, Moon Beach Hotel Hurghada provides accommodations with an outdoor swimming pool, free private parking, a garden and a private beach area.',
-        rating: '4.9',
-        reviews: '950',
-        price_gross: '2100',
-
-        id: '88888876867',
-        rooms: '6',
-        guests: '7',
-        image: '/images/t-sydney.webp'
-      },
-      {
-        name: 'Al-Dora Resort Hurghada',
-        desc: 'Located in Hurghada, a 16-minute walk from Qesm Hurghada Public Beach, Al-Dora Resort Hurghada provides accommodations with a fitness center, free private parking, a garden and a shared lounge.',
-        rating: '2.4',
-        reviews: '1050',
-
-        price_gross: '1600',
-        price_discount: '200',
-
-        id: '999999gfhffg',
-        rooms: '3',
-        guests: '4'
-      },
       {
         name: 'The Boutique Hotel Hurghada Marina',
         desc: 'The Boutique Hotel is located in the Hurghada Marina and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
@@ -565,6 +970,141 @@ export const hotelData = [
         rooms: '5',
         guests: '6',
         image: '/images/h-lakeside.webp'
+      },
+      {
+        name: 'Elaria Hotel Hurgada',
+        desc: 'Elaria Hotel Hurgada is located in Hurghada, 1.9 mi from New Marina and 4.3 mi from District Court of Hurghada.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Eiffel Hotel Hurghada',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Eiffel Hotel Hurghada.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Kalawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Kalawy offers 5-star accommodations in Hurghada and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Safaga Hotel',
+        desc: 'Well set in the Soma Bay district of Hurghada, Ali Baba Safaga Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only',
+        desc: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only is set in Hurghada, 6.8 mi from New Marina, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Hurghada Marina',
+        desc: 'The Boutique Hotel is located in the Hurghada Marina and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Hurghada',
+        desc: 'This hotel is located in Hurghada and is a 10-minute drive from Hurghada International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Hurghada Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Marina Hurghada.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Hurghada, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
       }
     ],
     page_number: 4,
@@ -575,7 +1115,7 @@ export const hotelData = [
   },
   ///////////////////////////////////////////////////////////////////////// PAGE 3 ////////////////////////////////////////////////
   {
-    properties_number: 41,
+    properties_number: 140,
     hotels: [
       {
         name: 'Boho Homes',
@@ -712,17 +1252,287 @@ export const hotelData = [
         rooms: '5',
         guests: '6',
         image: '/images/download.webp'
+      },
+      {
+        name: 'Elaria Hotel Hurgada',
+        desc: 'Elaria Hotel Hurgada is located in Hurghada, 1.9 mi from New Marina and 4.3 mi from District Court of Hurghada.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Eiffel Hotel Hurghada',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Eiffel Hotel Hurghada.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Kalawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Kalawy offers 5-star accommodations in Hurghada and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Safaga Hotel',
+        desc: 'Well set in the Soma Bay district of Hurghada, Ali Baba Safaga Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only',
+        desc: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only is set in Hurghada, 6.8 mi from New Marina, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Hurghada Marina',
+        desc: 'The Boutique Hotel is located in the Hurghada Marina and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Hurghada',
+        desc: 'This hotel is located in Hurghada and is a 10-minute drive from Hurghada International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Hurghada Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Marina Hurghada.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Hurghada, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
       }
     ],
-    page_number: 4,
+    page_number: 5,
     meta: {
       location: 'Hurghada',
       coordinates: { latitude: '27.2579', longidtude: '33.8116' }
     }
   },
   {
-    properties_number: 41,
+    properties_number: 140,
     hotels: [
+      {
+        name: 'Elaria Hotel Hurgada',
+        desc: 'Elaria Hotel Hurgada is located in Hurghada, 1.9 mi from New Marina and 4.3 mi from District Court of Hurghada.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Eiffel Hotel Hurghada',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Eiffel Hotel Hurghada.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Kalawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Kalawy offers 5-star accommodations in Hurghada and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Safaga Hotel',
+        desc: 'Well set in the Soma Bay district of Hurghada, Ali Baba Safaga Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only',
+        desc: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only is set in Hurghada, 6.8 mi from New Marina, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Hurghada Marina',
+        desc: 'The Boutique Hotel is located in the Hurghada Marina and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Hurghada',
+        desc: 'This hotel is located in Hurghada and is a 10-minute drive from Hurghada International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Hurghada Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Marina Hurghada.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Hurghada, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
       {
         name: 'Casablanca Beach',
         desc: 'Casablanca Beach is located in Hurghada, just 6.2 miles from New Marina and 12 miles from Hurghada Grand Aquarium. Guests are welcome to go for a swim in the heated pool.',
@@ -735,9 +1545,405 @@ export const hotelData = [
         rooms: '5',
         guests: '6',
         image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Librety Hotel Hurghada',
+        desc: 'Featuring a simple décor, Librety Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Eiffel Hotel Hurghada.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222dfdf222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'Ali Baba Safaga Hotel',
+        desc: 'Well set in the Soma Bay district of Hurghada, Ali Baba Safaga Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '504dgffg504',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only',
+        desc: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only is set in Hurghada, 6.8 mi from New Marina, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666gfdhg666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel II',
+        desc: 'Description for Hotel II',
+        rating: '3.2',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '99999jhkj9gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sea View Hotel',
+        desc: 'Located in the center of Hurghada just 66 feet from the beach, Sea View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777gghfg767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhghfgffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Ashura Sahl Hashesh 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Ashura Sahl Hashesh 1 bedroom Apartment with Garden and Sea view! offers accommodations in Hurghada, 17 miles from New Marina and 10 miles from Hurghada Grand Aquarium.',
+        rating: '4.3',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '2000',
+
+        id: '3333gfhgfhdgf33',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'The Boutique Hotel Hurghada Marina',
+        desc: 'The Boutique Hotel is located in the Hurghada Marina and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '3700',
+
+        id: '10101ghfg0aedf',
+        rooms: '5',
+        guests: '6'
+      },
+      {
+        name: 'Sea View Hotel',
+        desc: 'Located in the center of Hurghada just 66 feet from the beach, Sea View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '0.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '400',
+        price_discount: '160',
+
+        id: '77777ghjghj767867',
+        rooms: '2',
+        guests: '3',
+
+        image: '/images/t-vegan.webp'
       }
     ],
-    page_number: 5,
+    page_number: 6,
+    meta: {
+      location: 'Hurghada',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  {
+    properties_number: 140,
+    hotels: [
+      {
+        name: 'Elaria Hotel Hurgada',
+        desc: 'Elaria Hotel Hurgada is located in Hurghada, 1.9 mi from New Marina and 4.3 mi from District Court of Hurghada.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Eiffel Hotel Hurghada',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Eiffel Hotel Hurghada.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Kalawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Kalawy offers 5-star accommodations in Hurghada and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Safaga Hotel',
+        desc: 'Well set in the Soma Bay district of Hurghada, Ali Baba Safaga Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only',
+        desc: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only is set in Hurghada, 6.8 mi from New Marina, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Hurghada Marina',
+        desc: 'The Boutique Hotel is located in the Hurghada Marina and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Hurghada',
+        desc: 'This hotel is located in Hurghada and is a 10-minute drive from Hurghada International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Hurghada Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Marina Hurghada.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Hurghada, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Sky View Suites Hotel',
+        desc: 'Located in Hurghada, a few steps from Harouny Beach, Sky View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'EL Gouna Swan Lake Apartment',
+        desc: 'EL Gouna Swan Lake Apartment is a sustainable apartment in Hurghada, 21 miles from New Marina. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Ali Baba Safaga Hotel',
+        desc: 'Well set in the Soma Bay district of Hurghada, Ali Baba Safaga Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Makadi Saraya Resort',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Hurghada’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Azzurra Sahl Hashesh 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Sahl Hashesh 1 bedroom Apartment with Garden and Sea view! offers accommodations in Hurghada, 17 miles from New Marina and 10 miles from Hurghada Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Sea View Hotel',
+        desc: 'Located in the center of Hurghada just 66 feet from the beach, Sea View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Hurghada’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-australia.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      }
+    ],
+    page_number: 7,
     meta: {
       location: 'Hurghada',
       coordinates: { latitude: '27.2579', longidtude: '33.8116' }
@@ -784,3 +1990,2942 @@ export const hotelData = [
 //
 
 //
+
+export const hotelDataSharm = [
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Earth View Suites Hotel',
+        desc: 'Located in Sharm, a few steps from Harouny Beach, Earth View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'Nile crocodile Apartment',
+        desc: 'Nile crocodile Apartment is a sustainable apartment in Sharm, 21 miles from New Downtown. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+
+      {
+        name: 'Steigenberger Aldau Beach Hotel',
+        desc: 'Located in Sharm, this 5-star deluxe beach hotel provides a haven of luxury with its large aquatic park and floodlit golf course.',
+        rating: '4.8',
+        reviews: '1350',
+
+        price_gross: '2200',
+        price_discount: '300',
+
+        id: '234567',
+        rooms: '5',
+        guests: '7',
+        image: '/images/h-fireside.webp'
+      },
+      {
+        name: 'Arabella Azur Resort',
+        desc: 'Featuring a lagoon-style pool, a private beach area and a spa center, this property is a 4-star luxury resort. The bright, spacious rooms open onto a balcony overlooking Sharm or the Red Sea.',
+        rating: '4.7',
+        reviews: '1500',
+        offer: { title: 'Book 3 nights, get 1 night free', color: '#FF5733' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '987654',
+        rooms: '6',
+        guests: '8',
+        image: '/images/h-lakeside.webp'
+      },
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Kazaz Motel',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Earth View Suites Hotel',
+        desc: 'Located in Sharm, a few steps from Harouny Beach, Earth View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'Nile crocodile Apartment',
+        desc: 'Nile crocodile Apartment is a sustainable apartment in Sharm, 21 miles from New Downtown. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Kazaz Motel',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view! offers accommodations in Sharm, 17 miles from New Downtown and 10 miles from Sharm Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-australia.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      }
+    ],
+    page_number: 1,
+
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  ///////////////////////////////////////////////////////////////////////// PAGE 2 ////////////////////////////////////////////////
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6'
+      },
+      {
+        name: 'Casablanca Roof unit # 124',
+        desc: 'وحده رقم 124 كازابلانكا بيتش offers accommodations in Sharm, 6.2 miles from New Downtown and 12 miles from Sharm Grand Aquarium. This property offers access to a balcony and free private parking.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '2800',
+        price_discount: '1500',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4'
+      },
+      {
+        name: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view! offers accommodations in Sharm, 17 miles from New Downtown and 10 miles from Sharm Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Moon Beach Hotel Sharm',
+        desc: 'Located in Sharm, a 4-minute walk from Paradise Beach, Moon Beach Hotel Sharm provides accommodations with an outdoor swimming pool, free private parking, a garden and a private beach area.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Al-Dora Resort Sharm',
+        desc: 'Located in Sharm, a 16-minute walk from Qesm Sharm Public Beach, Al-Dora Resort Sharm provides accommodations with a fitness center, free private parking, a garden and a shared lounge.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6'
+      },
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Sharm',
+        desc: 'This hotel is located in Sharm and is a 10-minute drive from Sharm International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Sharm Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Downtown Sharm.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Sharm, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      }
+    ],
+    page_number: 2,
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Earth View Suites Hotel',
+        desc: 'Located in Sharm, a few steps from Harouny Beach, Earth View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'Nile crocodile Apartment',
+        desc: 'Nile crocodile Apartment is a sustainable apartment in Sharm, 21 miles from New Downtown. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+
+      {
+        name: 'Steigenberger Aldau Beach Hotel',
+        desc: 'Located in Sharm, this 5-star deluxe beach hotel provides a haven of luxury with its large aquatic park and floodlit golf course.',
+        rating: '4.8',
+        reviews: '1350',
+
+        price_gross: '2200',
+        price_discount: '300',
+
+        id: '234567',
+        rooms: '5',
+        guests: '7',
+        image: '/images/h-fireside.webp'
+      },
+      {
+        name: 'Arabella Azur Resort',
+        desc: 'Featuring a lagoon-style pool, a private beach area and a spa center, this property is a 4-star luxury resort. The bright, spacious rooms open onto a balcony overlooking Sharm or the Red Sea.',
+        rating: '4.7',
+        reviews: '1500',
+        offer: { title: 'Book 3 nights, get 1 night free', color: '#FF5733' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '987654',
+        rooms: '6',
+        guests: '8',
+        image: '/images/h-lakeside.webp'
+      },
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Kazaz Motel',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Earth View Suites Hotel',
+        desc: 'Located in Sharm, a few steps from Harouny Beach, Earth View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'Nile crocodile Apartment',
+        desc: 'Nile crocodile Apartment is a sustainable apartment in Sharm, 21 miles from New Downtown. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Kazaz Motel',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view! offers accommodations in Sharm, 17 miles from New Downtown and 10 miles from Sharm Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-australia.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      }
+    ],
+    page_number: 3,
+
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  ///////////////////////////////////////////////////////////////////////// PAGE 3 ////////////////////////////////////////////////
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3',
+
+        image: '/images/t-vegan.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-australia.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Sharm',
+        desc: 'This hotel is located in Sharm and is a 10-minute drive from Sharm International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Sharm Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Downtown Sharm.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Sharm, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'Moon Beach Hotel Sharm',
+        desc: 'Located in Sharm, a 4-minute walk from Paradise Beach, Moon Beach Hotel Sharm provides accommodations with an outdoor swimming pool, free private parking, a garden and a private beach area.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Al-Dora Resort Sharm',
+        desc: 'Located in Sharm, a 16-minute walk from Qesm Sharm Public Beach, Al-Dora Resort Sharm provides accommodations with a fitness center, free private parking, a garden and a shared lounge.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Sharm',
+        desc: 'This hotel is located in Sharm and is a 10-minute drive from Sharm International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Sharm Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Downtown Sharm.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Sharm, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      }
+    ],
+    page_number: 4,
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  ///////////////////////////////////////////////////////////////////////// PAGE 3 ////////////////////////////////////////////////
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6'
+      },
+      {
+        name: 'Casablanca Roof unit # 124',
+        desc: 'وحده رقم 124 كازابلانكا بيتش offers accommodations in Sharm, 6.2 miles from New Downtown and 12 miles from Sharm Grand Aquarium. This property offers access to a balcony and free private parking.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '2800',
+        price_discount: '1500',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/v-zeland.webp'
+      },
+      {
+        name: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view! offers accommodations in Sharm, 17 miles from New Downtown and 10 miles from Sharm Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Steigenberger Resort Ras Soma',
+        desc: 'The Steigenberger Resort Ras Soma is a stylish and luxurious resort offering half board accommodations as well as a generous luxury all-inclusive experience.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Casablanca Roof unit # 124',
+        desc: 'وحده رقم 124 كازابلانكا بيتش offers accommodations in Sharm, 6.2 miles from New Downtown and 12 miles from Sharm Grand Aquarium. This property offers access to a balcony and free private parking.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '2800',
+        price_discount: '1500',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/v-japan.webp'
+      },
+      {
+        name: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view! offers accommodations in Sharm, 17 miles from New Downtown and 10 miles from Sharm Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3'
+      },
+
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/h-lakeside.webp'
+      },
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Sharm',
+        desc: 'This hotel is located in Sharm and is a 10-minute drive from Sharm International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Sharm Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Downtown Sharm.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Sharm, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      }
+    ],
+    page_number: 5,
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  ///////////////////////////////////////////////////////////////////////// PAGE 3 ////////////////////////////////////////////////
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Boho Homes',
+        desc: 'Boho Homes offers accommodations in Sharm, 1.2 miles from Albatros White Beach and 1.3 miles from Old Vic Beach. This condo hotel features free private parking and a 24-hour front desk.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '7777awtjtyj776eryes7867',
+        rooms: '2',
+        guests: '3',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Lamera Hotel',
+        desc: 'Lamera Hotel has a shared lounge, terrace, a restaurant and bar in Sharm. With free WiFi, this 3-star hotel offers a shared kitchen and room service.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '8888r3weyraff8876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/h-fireside.webp'
+      },
+      {
+        name: 'Desert Rose Resort',
+        desc: 'This 5-star resort is located in the heart of Sharm and offers air-conditioned rooms with a private balcony.',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '9999wetretes99gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Jaz Casa Del Mar Beach',
+        desc: ' Featuring a private beach in Sharm, this all-inclusive hotel offers air-conditioned rooms with a balcony overlooking the landscaped pool area or Red Sea.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '10101fghjfjhg0aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-zeland.webp'
+      },
+      {
+        name: 'Sharm Suites & Apartments Serviced by Marriott',
+        desc: 'Luxurious apartments served by The Marriott offers comfortable stay wither you are traveling for business or seeking a memorable vacations. Some units have views of the Red Sea.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '2800',
+        price_discount: '1500',
+
+        id: '2222fgjhghfbdfg22',
+        rooms: '4',
+        guests: '4',
+        image: '/images/t-vegan.webp'
+      },
+      {
+        name: 'The Grand Resort',
+        desc: 'Everything at the Grand Resort is on an impressive scale. Lying right on the tourist promenade, at the very heart of the modern resort area of Sharm, it features generously-sized rooms and Luxurious apartments served by The Marriott offers comfortable stay',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333gjhfg333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Solymar Soma Beach',
+        desc: 'Set in Sharm, less than 0.6 mi from Sentido Palm Royale Soma Bay, Solymar Soma Beach offers accommodations with a restaurant, free private parking, an outdoor swimming pool and a bar.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '777777ghjhgj67867',
+        rooms: '2',
+        guests: '3',
+        image: '/images/v-australia.webp'
+      },
+      {
+        name: 'Hilton Sharm Plaza Hotel',
+        desc: 'Offering pristine views of the Red Sea from guest rooms, Hilton Sharm Plaza features a private sandy beach, accompanied by water sports facilities.',
+        rating: '3.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '8888hgjfhj8876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '3.4',
+        reviews: '150',
+
+        price_gross: '1200',
+        price_discount: '200',
+
+        id: '999999gffgghfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Old Palace Resort Sahl HasheeshOpens ',
+        desc: 'Located on a 656 feet private sandy beach, tugged behind Desert Mountains in Sahl Hashish, Sharm, this 5-star resort offers spacious rooms with a balcony overlooking the pool, gardens or Red Sea.',
+        rating: '2.7',
+        reviews: '850',
+
+        price_gross: '900',
+
+        id: '10101ghh0aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Sharm',
+        desc: 'This hotel is located in Sharm and is a 10-minute drive from Sharm International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Sharm Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Downtown Sharm.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Sharm, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      }
+    ],
+    page_number: 6,
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Sharm',
+        desc: 'This hotel is located in Sharm and is a 10-minute drive from Sharm International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Sharm Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Downtown Sharm.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Sharm, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Earth View Suites Hotel',
+        desc: 'Located in Sharm, a few steps from Harouny Beach, Earth View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'Nile crocodile Apartment',
+        desc: 'Nile crocodile Apartment is a sustainable apartment in Sharm, 21 miles from New Downtown. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Kazaz Motel',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view! offers accommodations in Sharm, 17 miles from New Downtown and 10 miles from Sharm Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-australia.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      }
+    ],
+    page_number: 7,
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Sharm',
+        desc: 'This hotel is located in Sharm and is a 10-minute drive from Sharm International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Sharm Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Downtown Sharm.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Sharm, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Casablanca Beach',
+        desc: 'Casablanca Roof is located in Sharm, just 6.2 miles from New Downtown and 12 miles from Sharm Grand Aquarium. Guests are welcome to go for a swim in the heated pool.',
+        rating: '2.7',
+        reviews: '850',
+
+        price_gross: '900',
+
+        id: '10101ghh0aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Librety Hotel Sharm',
+        desc: 'Featuring a simple décor, Librety Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222dfdf222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '504dgffg504',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666gfdhg666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel II',
+        desc: 'Description for Hotel II',
+        rating: '3.2',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '99999jhkj9gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777gghfg767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhghfgffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Ashura Zmalek 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Ashura Zmalek 1 bedroom Apartment with Garden and Sea view! offers accommodations in Sharm, 17 miles from New Downtown and 10 miles from Sharm Grand Aquarium.',
+        rating: '4.3',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '2000',
+
+        id: '3333gfhgfhdgf33',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '3700',
+
+        id: '10101ghfg0aedf',
+        rooms: '5',
+        guests: '6'
+      },
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '0.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '400',
+        price_discount: '160',
+
+        id: '77777ghjghj767867',
+        rooms: '2',
+        guests: '3',
+
+        image: '/images/t-vegan.webp'
+      }
+    ],
+    page_number: 8,
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Sharm Downtown',
+        desc: 'The Boutique Hotel is located in the Sharm Downtown and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Sharm',
+        desc: 'This hotel is located in Sharm and is a 10-minute drive from Sharm International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Sharm Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Downtown Sharm.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Sharm, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Earth View Suites Hotel',
+        desc: 'Located in Sharm, a few steps from Harouny Beach, Earth View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'Nile crocodile Apartment',
+        desc: 'Nile crocodile Apartment is a sustainable apartment in Sharm, 21 miles from New Downtown. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Kazaz Motel',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view! offers accommodations in Sharm, 17 miles from New Downtown and 10 miles from Sharm Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-australia.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      }
+    ],
+    page_number: 9,
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Earth View Suites Hotel',
+        desc: 'Located in Sharm, a few steps from Harouny Beach, Earth View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'Nile crocodile Apartment',
+        desc: 'Nile crocodile Apartment is a sustainable apartment in Sharm, 21 miles from New Downtown. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+
+      {
+        name: 'Steigenberger Aldau Beach Hotel',
+        desc: 'Located in Sharm, this 5-star deluxe beach hotel provides a haven of luxury with its large aquatic park and floodlit golf course.',
+        rating: '4.8',
+        reviews: '1350',
+
+        price_gross: '2200',
+        price_discount: '300',
+
+        id: '234567',
+        rooms: '5',
+        guests: '7',
+        image: '/images/h-fireside.webp'
+      },
+      {
+        name: 'Arabella Azur Resort',
+        desc: 'Featuring a lagoon-style pool, a private beach area and a spa center, this property is a 4-star luxury resort. The bright, spacious rooms open onto a balcony overlooking Sharm or the Red Sea.',
+        rating: '4.7',
+        reviews: '1500',
+        offer: { title: 'Book 3 nights, get 1 night free', color: '#FF5733' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '987654',
+        rooms: '6',
+        guests: '8',
+        image: '/images/h-lakeside.webp'
+      },
+      {
+        name: 'Elaria Hotel Sharm',
+        desc: 'Elaria Hotel Sharm is located in Sharm, 1.9 mi from New Downtown and 4.3 mi from District Court of Sharm.',
+        rating: '4.2',
+        reviews: '1200',
+        offer: { title: 'Book 3 nights: Spa package included', color: '#EB5757' },
+        price_gross: '1500',
+        price_discount: '200',
+
+        id: '111111',
+        rooms: '3',
+        guests: '5',
+        image: '/images/h-oculous.webp'
+      },
+      {
+        name: 'Sharm Tower Hotel',
+        desc: 'Featuring a simple décor, Eiffel Hotel offers air-conditioned rooms with a balcony overlooking the Red Sea. Its outdoor pool is surrounded by sun-loungers and has a pool bar.Sharm Tower Hotel.',
+        rating: '4.5',
+        reviews: '800',
+        offer: { title: 'Lunch package included', color: '#F2994A' },
+        price_gross: '1800',
+        price_discount: '250',
+
+        id: '222222',
+        rooms: '4',
+        guests: '4',
+        image: '/images/h-recce.webp'
+      },
+      {
+        name: 'TUI MAGIC LIFE Malawy',
+        desc: 'Facing the beachfront, TUI MAGIC LIFE Malawy offers 5-star accommodations in Sharm and has a garden, shared lounge and restaurant.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+        price_discount: '150',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3',
+        image: '/images/room-1.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Kazaz Motel',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only',
+        desc: 'Triumph Hotel & Aqua Park Sharm Families and Couples Only is set in Sharm, 6.8 mi from New Downtown, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Earth View Suites Hotel',
+        desc: 'Located in Sharm, a few steps from Harouny Beach, Earth View Suites Hotel has accommodations with an outdoor swimming pool, free private parking, a garden and a shared lounge.',
+        rating: '4.8',
+        reviews: '1200',
+        offer: { title: 'Book now and receive 15% off', color: '#EB5757' },
+        price_gross: '1000',
+        price_discount: '100',
+
+        id: '198650',
+        rooms: '5',
+        guests: '5',
+        image: '/images/details-1.webp'
+      },
+      {
+        name: 'Nile crocodile Apartment',
+        desc: 'Nile crocodile Apartment is a sustainable apartment in Sharm, 21 miles from New Downtown. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Kazaz Motel',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only',
+        desc: 'Gravity Hotel & Aqua Park Hurghada Families and Couples Only is set in Hurghada, 6.8 mi from New Marina, and features a private beach area, 4 outdoor swimming pools and a fitness center.',
+        rating: '4.6',
+        reviews: '900',
+        price_gross: '1700',
+        price_discount: '220',
+
+        id: '666666',
+        rooms: '4',
+        guests: '5',
+        image: '/images/t-sydney.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'The Boutique Hotel Hurghada Marina',
+        desc: 'The Boutique Hotel is located in the Hurghada Marina and has a direct view of the coast with a convenient distance to the best shopping center, dining, nightlife, and excursion opportunities.',
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+        price_discount: '260',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/v-japan.webp'
+      },
+
+      {
+        name: 'Pickalbatros Aqua Park Resort - Hurghada',
+        desc: 'This hotel is located in Hurghada and is a 10-minute drive from Hurghada International Airport. Albatros Aqua Park is located 1969 foot far away from the beach.',
+        rating: '4.9',
+        reviews: '950',
+        price_gross: '2100',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-greece.webp'
+      },
+      {
+        name: 'Hurghada Marriott Red Sea Beach Resort',
+        desc: 'This Marriott resort features an extensive pool, health club and its own island with a private beach. All rooms offer views of the Red Sea.It is a 10-minute drive from Marina Hurghada.',
+        rating: '2.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Sheraton Miramar Resort El Gouna',
+        desc: "Located in Downtown El Gouna, this 5-star beach front resort, 12 mi north of Hurghada, offers an outdoor pool, private beach, jewelry shop, shopping arcade and supervised children's activities.",
+        rating: '4.7',
+        reviews: '850',
+
+        price_gross: '1900',
+
+        id: '101010aedf',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      }
+    ],
+    page: 10,
+
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  },
+  {
+    properties_number: 184,
+    hotels: [
+      {
+        name: 'Nile crocodile Apartment',
+        desc: 'Nile crocodile Apartment is a sustainable apartment in Sharm, 21 miles from New Downtown. This property encourages guests to embrace nature with its eco-friendly arrangements.',
+        rating: '4.2',
+        reviews: '1100',
+
+        price_gross: '950',
+        price_discount: '150',
+
+        id: '654321',
+        rooms: '3',
+        guests: '4',
+        image: '/images/download.webp'
+      },
+      {
+        name: 'Ali Baba Zamalek Hotel',
+        desc: 'Well set in the Soma Bay district of Sharm, Ali Baba Zamalek Hotel is located a 14-minute walk from Sol Y Mar Paradise Beach, one mile from Riviera Plaza Abu Soma Beach and 1.1 miles from Imperial private furnished balcony. It features outdoor heated pools.',
+        rating: '4.8',
+        reviews: '1000',
+        price_gross: '2000',
+        price_discount: '300',
+
+        id: '505050',
+        rooms: '5',
+        guests: '6',
+        image: '/images/room-2.webp'
+      },
+      {
+        name: 'Jaz Kazaz Motel',
+        desc: 'Just 1312 feet from the beach, Jaz Makadi Saraya offers rooms with a private furnished balcony. It features outdoor heated pools.',
+        rating: '4.3',
+        reviews: '1100',
+        price_gross: '1300',
+        price_discount: '180',
+
+        id: '555555',
+        rooms: '3',
+        guests: '4',
+        image: '/images/t-pcovid.webp'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4'
+      },
+      {
+        name: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view!',
+        desc: 'Azzurra Zmalek 1 bedroom Apartment with Garden and Sea view! offers accommodations in Sharm, 17 miles from New Downtown and 10 miles from Sharm Grand Aquarium.',
+        rating: '4.0',
+        reviews: '1500',
+        offer: { title: 'midnight festival package included', color: '#2D9CDB' },
+        price_gross: '1200',
+
+        id: '333333',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Nile View Hotel',
+        desc: 'Located in the center of Sharm just 66 feet from the beach, Nile View Hotel offers a rooftop terrace with Red Sea views. The restaurant serves Asian-inspired cuisine and seafood specialties.',
+        rating: '2.6',
+        reviews: '1300',
+        offer: { title: 'Offer for Hotel G', color: '#E74C3C' },
+        price_gross: '1400',
+        price_discount: '160',
+
+        id: '77777767867',
+        rooms: '2',
+        guests: '3'
+      },
+      {
+        name: 'Royal City Hotel',
+        desc: 'This hotel in Sharm’s center offers rooms and suites is located a 3-minute walk from the beach. It has an Italian restaurant and free Wi-Fi in public areas.',
+        rating: '1.9',
+        reviews: '950',
+
+        price_gross: '2100',
+        price_discount: '280',
+
+        id: '88888876867',
+        rooms: '6',
+        guests: '7',
+        image: '/images/v-australia.webp'
+      },
+      {
+        name: 'Hotel I',
+        desc: 'Description for Hotel I',
+        rating: '4.4',
+        reviews: '1050',
+
+        price_gross: '1600',
+        price_discount: '200',
+
+        id: '999999gfhffg',
+        rooms: '3',
+        guests: '4',
+        image: '/images/v-greece.webp'
+      }
+    ],
+    page: 11,
+
+    meta: {
+      location: 'Sharm',
+      coordinates: { latitude: '27.2579', longidtude: '33.8116' }
+    }
+  }
+]

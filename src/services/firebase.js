@@ -25,7 +25,6 @@ const db = getFirestore(app)
 
 const auth = getAuth()
 const usersCollection = collection(db, 'users')
-const hotelsCollection = collection(db, 'hotels')
 
 export {
   db,
@@ -35,6 +34,6 @@ export {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  hotelsCollection,
-  firebaseConfig
+  firebaseConfig,
+  collection
 }

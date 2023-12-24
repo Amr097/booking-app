@@ -110,6 +110,7 @@ export default {
 
         if (router.currentRoute.value.name === 'results') {
           localStorage.setItem('searchQuery', JSON.stringify(searchData))
+          localStorage.setItem('currentPage', 1)
           fetchHotels()
           isLoading.value = false
         }
