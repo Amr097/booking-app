@@ -1,14 +1,17 @@
+<script setup>
+const explore = [
+  { icon: '/images/bxs-plane.svg', label: 'Hotel Penselvenyia', time: '2 min drive' },
+  { icon: '/images/bxs-map.svg', label: 'Travis Bakery store house', time: '8 min drive' },
+  { icon: '/images/bxs-map.svg', label: 'Olivia Johnson Garden', time: '15 min drive' },
+  { icon: '/images/bxs-map.svg', label: 'Norman Opera Circus', time: '25 min drive' },
+  { icon: '/images/bxs-map.svg', label: 'Rockdeset hotel', time: '32 min drive' }
+]
+</script>
+
 <template>
   <div class="location">
     <div class="map">
-      <iframe
-        width="400"
-        height="240"
-        src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;coord=52.70967533219885, -8.020019531250002&amp;q=1%20Grafton%20Street%2C%20Dublin%2C%20Ireland&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
-        scrolling="no"
-        marginheight="0"
-        marginwidth="0"
-      ></iframe>
+      <slot name="map"></slot>
     </div>
     <div class="explore">
       <h3 class="explore__title">Explore the area</h3>
@@ -25,19 +28,13 @@
   </div>
 </template>
 
-<script setup>
-const explore = [
-  { icon: '/images/bxs-plane.svg', label: 'Hotel Penselvenyia', time: '2 min drive' },
-  { icon: '/images/bxs-map.svg', label: 'Travis Bakery store house', time: '8 min drive' },
-  { icon: '/images/bxs-map.svg', label: 'Olivia Johnson Garden', time: '15 min drive' },
-  { icon: '/images/bxs-map.svg', label: 'Norman Opera Circus', time: '25 min drive' },
-  { icon: '/images/bxs-map.svg', label: 'Rockdeset hotel', time: '32 min drive' }
-]
-</script>
-
 <style scoped>
 .location {
   @apply p-12 flex flex-col gap-10;
+}
+
+.map__frame {
+  width: 100%;
 }
 
 .explore {

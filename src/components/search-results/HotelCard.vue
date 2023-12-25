@@ -1,3 +1,34 @@
+<script>
+import { ref } from 'vue'
+
+export default {
+  name: 'HotelCard',
+  props: {
+    hotel: Object
+  },
+
+  setup() {
+    const discount = (hotel) => {
+      if (hotel.price_gross && hotel.price_discount) {
+        return 100 - Math.ceil((hotel.price_discount * 100) / hotel.price_gross)
+      } else {
+        return false
+      }
+    }
+
+    const queryPrefix = ref('')
+    const currentPage = ref('')
+
+    const searchQuery = localStorage.getItem('searchQuery')
+    const page = localStorage.getItem('currentPage')
+    if (searchQuery) queryPrefix.value = JSON.parse(searchQuery).destinationValue.slice(0, 2)
+    if (page) currentPage.value = page
+
+    return { discount, queryPrefix, page }
+  }
+}
+</script>
+
 <template>
   <div class="results__card">
     <img
@@ -23,7 +54,9 @@
       <article class="results__card--desc">
         {{ hotel.desc.length <= 170 ? hotel.desc : hotel.desc.slice(0, 170) + '...' }}
       </article>
-      <router-link to="/hotel/details" class="blue__btn card-btn">See availbility</router-link>
+      <router-link :to="`/hotel/${hotel.id}*${queryPrefix}$${page}`" class="blue__btn card-btn"
+        >See availbility</router-link
+      >
     </div>
 
     <div class="results__card--prices">
@@ -41,27 +74,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'HotelCard',
-  props: {
-    hotel: Object
-  },
-
-  setup() {
-    const discount = (hotel) => {
-      if (hotel.price_gross && hotel.price_discount) {
-        return 100 - Math.ceil((hotel.price_discount * 100) / hotel.price_gross)
-      } else {
-        return false
-      }
-    }
-
-    return { discount }
-  }
-}
-</script>
 
 <style scoped>
 .results__card {

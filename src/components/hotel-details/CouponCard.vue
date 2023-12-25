@@ -31,6 +31,14 @@
   @apply rounded-md h-[32rem] grid items-center justify-center p-6 gap-x-2;
   background: linear-gradient(180deg, #4796ff 0%, #2366bf 100%);
   grid-template-columns: repeat(2, 1fr);
+
+  @media screen and (width<=46.875em) {
+    grid-column: 1/-1;
+    order: 3;
+    justify-self: center;
+    margin-top: 1rem;
+    width: min(45rem, 100%);
+  }
 }
 .coupon__image {
   @apply self-end h-full;

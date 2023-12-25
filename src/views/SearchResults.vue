@@ -1,20 +1,23 @@
 <script>
+import { onMounted, watch, ref } from 'vue'
+
 import AppHeader from '../components/partials/Header.vue'
 import AppFooter from '../components/partials/Footer.vue'
 import ErrMessage from '../components/partials/ErrMessage.vue'
+
 import AppSearch from '../components/reuseables/Search.vue'
+import LoadingSpinner from '../components/reuseables/LoadingSpinner.vue'
 import HomeCovid from '../components/reuseables/Covid.vue'
+
 import HotelCard from '../components/search-results/HotelCard.vue'
 import SearchPagination from '../components/search-results/Pagination.vue'
-import LoadingSpinner from '../components/reuseables/LoadingSpinner.vue'
-import { onMounted, watch } from 'vue'
-import useHotelsStore from '/src/store/Hotels.js'
-import useFilterationStore from '/src/store/HotelsFilteration.js'
 import InputSearch from '../components/search-results/InputSearch.vue'
 import BudgetFilter from '../components/search-results/BudgetFilter.vue'
 import RatingFilter from '../components/search-results/RatingFilter.vue'
 import SortResults from '../components/search-results/SortResults.vue'
-import { ref } from 'vue'
+
+import useHotelsStore from '/src/store/Hotels.js'
+import useFilterationStore from '/src/store/HotelsFilteration.js'
 
 export default {
   name: 'AppSearchResults',

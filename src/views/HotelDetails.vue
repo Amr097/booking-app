@@ -1,11 +1,79 @@
+<script setup>
+import AppHeader from '../components/partials/Header.vue'
+import AppFooter from '../components/partials/Footer.vue'
+
+import HomeCovid from '../components/reuseables/Covid.vue'
+
+import HotelInfo from '../components/hotel-details/HotelInfo.vue'
+import HotelLocation from '../components/hotel-details/HotelLocation.vue'
+import CouponCard from '../components/hotel-details/CouponCard.vue'
+import RoomCard from '../components/hotel-details/RoomCard.vue'
+
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '/src/services/firebase.js'
+
+const roomCard = [
+  {
+    image: '/images/room-1.webp',
+    title: 'Standard twin ben, Multiple beds',
+    space: '300 sq ft',
+    rooms: 'Sleeps 3',
+    beds: '1 double bed and 1 twin bed'
+  },
+  {
+    image: '/images/room-2.webp',
+    title: 'Standard twin ben, 1 Queen bed',
+    space: '300 sq ft',
+    rooms: 'Sleeps 3',
+    beds: '1 double bed and 1 twin bed'
+  }
+]
+
+const hotel = ref({ data: {} })
+const meta = ref({ latitude: '', longidtude: '' })
+
+onMounted(async () => {
+  const route = useRoute()
+
+  const path = route.params.id
+  const splitPath = path.split('*')
+  const id = splitPath[0]
+  const PagexPrefix = splitPath[1].split('$')
+  const prefix = PagexPrefix[0]
+  const page = PagexPrefix[1]
+
+  if (prefix === 'hu') {
+    const hotelRef = doc(db, 'hurghada', `hurghada-${page}`)
+    const hotelSnap = await getDoc(hotelRef)
+    if (hotelSnap.exists()) {
+      const hotels = hotelSnap.data().hotels
+
+      const currentHotel = hotels.filter((hotel) => {
+        return hotel.id === id
+      })
+      hotel.value.data = currentHotel[0]
+      meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
+      meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
+    }
+  }
+})
+</script>
+
 <template>
-  <div class="container">
+  <div class="container-c">
     <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" :showNav="true" />
   </div>
   <div class="container-grey">
     <section class="hotel__images">
-      <div class="container container-2">
-        <img class="left-img" src="/images/details-1.webp" alt="Room image" />
+      <div class="container-c container-2">
+        <img
+          class="left-img"
+          :src="hotel.data.image ? hotel.data.image : '/images/fallback.webp'"
+          alt="Room image"
+        />
         <img class="right-img" src="/images/details-3.webp" alt="Room image" />
         <img class="right-img" src="/images/details-2.webp" alt="Room image" />
       </div>
@@ -15,11 +83,23 @@
         <button>Room</button>
       </div>
     </section>
-    <div class="container-3 flex">
+    <div class="container-3 flex details-content">
       <HotelInfo>
-        <template v-slot:title> <h1 class="info__title">Lakeside Motel Warefront</h1> </template>
+        <template v-slot:title>
+          <h1 class="info__title">{{ hotel.data.name }}</h1>
+        </template>
       </HotelInfo>
-      <HotelLocation />
+      <HotelLocation>
+        <template v-slot:map>
+          <iframe
+            class="map__frame"
+            :src="`https://maps.google.com/maps?q=${meta.latitude},${meta.longidtude}&hl=es;z=14&amp;output=embed`"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+          ></iframe>
+        </template>
+      </HotelLocation>
     </div>
     <div class="container-3">
       <h2 class="text-4xl font-semibold my-14">Available rooms</h2>
@@ -161,9 +241,10 @@
         </RoomCard>
       </div>
     </div>
-    <div class="container pt-30 mt-40">
+    <div class="container-c pt-30 mt-40">
       <HomeCovid />
-      <AppFooter :style="{ backgroundColor: 'transparent' }" />
+
+      <AppFooter :style="{ backgroundColor: 'transparent', zIndex: '1' }" />
     </div>
     <div class="footer__copyright">
       <p>Copyright&copy;2023. All right reserved.</p>
@@ -171,52 +252,10 @@
   </div>
 </template>
 
-<script>
-import AppHeader from '../components/partials/Header.vue'
-import AppFooter from '../components/partials/Footer.vue'
-import HomeCovid from '../components/reuseables/Covid.vue'
-import HotelInfo from '../components/hotel-details/HotelInfo.vue'
-import HotelLocation from '../components/hotel-details/HotelLocation.vue'
-import CouponCard from '../components/hotel-details/CouponCard.vue'
-import RoomCard from '../components/hotel-details/RoomCard.vue'
-
-export default {
-  name: 'HotelDetails',
-  components: {
-    AppHeader,
-    AppFooter,
-    HomeCovid,
-    HotelInfo,
-    HotelLocation,
-    CouponCard,
-    RoomCard
-  },
-  setup() {
-    const roomCard = [
-      {
-        image: '/images/room-1.webp',
-        title: 'Standard twin ben, Multiple beds',
-        space: '300 sq ft',
-        rooms: 'Sleeps 3',
-        beds: '1 double bed and 1 twin bed'
-      },
-      {
-        image: '/images/room-2.webp',
-        title: 'Standard twin ben, 1 Queen bed',
-        space: '300 sq ft',
-        rooms: 'Sleeps 3',
-        beds: '1 double bed and 1 twin bed'
-      }
-    ]
-
-    return { roomCard }
-  }
-}
-</script>
-
 <style scoped>
 .hotel__images {
-  @apply pt-10;
+  @apply pt-10 relative;
+  z-index: 1;
   background: linear-gradient(180deg, rgba(244, 244, 244, 0.3) 0%, #fff 100%);
 }
 
@@ -225,6 +264,10 @@ export default {
   display: grid;
   grid-template-columns: 70% 1fr;
   grid-template-rows: repeat(3, max-content);
+
+  @media screen and (width<=46.875em) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 img {
@@ -237,11 +280,21 @@ img {
   grid-row: 1 / span 2;
   height: 45rem;
   width: 100%;
+
+  @media screen and (width<=46.875em) {
+    grid-row: 1 / span 1;
+    grid-column: 1 / -1;
+    height: 30rem;
+  }
 }
 
 .right-img {
   grid-column: 2 / span 1;
   aspect-ratio: 2/1;
+
+  @media screen and (width<=46.875em) {
+    grid-column: auto;
+  }
 }
 
 .details-toggle {
@@ -264,6 +317,16 @@ img {
   background: #2f80ed;
 }
 
+.details-content {
+  @media screen and (width<= 40em) {
+    flex-direction: column;
+  }
+}
+
+.info {
+  @apply flex-grow flex-shrink-0 basis-[60%];
+}
+
 .info__title {
   @apply text-5xl font-semibold tracking-wide;
   color: #1a1a1a;
@@ -271,6 +334,11 @@ img {
 
 .room {
   @apply flex flex-col rounded-lg;
+
+  @media screen and (width<=27.875em) {
+    width: min(55rem, 100%);
+    justify-self: center;
+  }
 }
 
 .room__image {
@@ -294,11 +362,21 @@ img {
 
 .cards-container {
   @apply grid grid-cols-3 gap-4;
+  @media screen and (width<=46.875em) {
+    @apply grid-cols-2;
+  }
+  @media screen and (width<=27.875em) {
+    @apply grid-cols-1;
+  }
 }
 
 .container-3 {
   @apply relative mx-auto;
   width: 90%;
+
+  @media screen and (width < 66.25em) {
+    width: 95%;
+  }
 }
 
 .footer__copyright {

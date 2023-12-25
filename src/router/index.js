@@ -21,7 +21,7 @@ const routes = [
   },
   {
     name: 'details',
-    path: '/hotel/details',
+    path: '/hotel/:id',
     component: () => import('../views/HotelDetails.vue'),
     meta: {
       requiresAuth: true
