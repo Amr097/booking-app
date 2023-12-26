@@ -20,6 +20,8 @@ import { useRoute } from 'vue-router'
 
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 
+import { formatDate } from '../helper/dateFormat.js'
+
 const months = [
   'January',
   'February',
@@ -217,10 +219,15 @@ const onSubmit = () => {
           return hotel.value.data.id === trip.id
         })
         if (checkForTrip.length > 0) {
-          console.log(checkForTrip)
           isLoading.value.errMessage = 'You have already reserved this trip.'
         } else {
           try {
+            const date = {
+              checkin: JSON.parse(localStorage.getItem('searchQuery')).checkInDate,
+              checkout: JSON.parse(localStorage.getItem('searchQuery')).checkOutDate
+            }
+            const formattedDate = formatDate(date, 'checkout')
+            hotel.value.data.date = formattedDate
             await updateDoc(doc(usersCollection, user.uid), { trips: arrayUnion(hotel.value.data) })
             formData.showModal = true
           } catch (err) {
@@ -400,7 +407,7 @@ const onSubmit = () => {
 
 <style scoped>
 .container-grey {
-  @apply w-full px-0 pb-40 grid lg:px-20;
+  @apply w-full px-0 pb-40 grid lg:px-20 relative -z-0;
 
   background: #f4f4f4;
 }
@@ -476,5 +483,10 @@ option {
   padding: 1.1rem 1.2rem;
   border-radius: 4px;
   background: #f2f2f2;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 </style>

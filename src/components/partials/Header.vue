@@ -1,7 +1,12 @@
 <script>
 import useUserStore from '../../store/User.js'
-import { auth, signOut } from '/src/services/firebase.js'
+
+import { auth, signOut, usersCollection, onAuthStateChanged } from '/src/services/firebase.js'
+import { doc, getDoc } from 'firebase/firestore'
+
 import HamMenu from '/src/components/partials/HamMenu.vue'
+
+import { onMounted, ref } from 'vue'
 
 export default {
   name: 'AppHeader',
@@ -10,7 +15,7 @@ export default {
   setup() {
     const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
     const authBtns = ['Register', 'Login']
-    const userListItems = ['Manage account', 'My trips', 'Reward and wallet']
+    const userListItems = ['Manage account', 'Reward and wallet']
 
     const signUserOut = () => {
       signOut(auth)
@@ -28,7 +33,27 @@ export default {
 
     const { isLogged } = useUserStore()
 
-    return { navItems, authBtns, isLogged, userListItems, signUserOut }
+    const userTrips = ref(0)
+
+    onMounted(() => {
+      try {
+        onAuthStateChanged(auth, async (user) => {
+          if (user) {
+            const getUserTrips = await getDoc(doc(usersCollection, user.uid))
+
+            if (getUserTrips.exists()) {
+              userTrips.value = +getUserTrips.data().trips.length
+            } else return
+          } else {
+            return ' user does not exist'
+          }
+        })
+      } catch (err) {
+        console.log(err)
+      }
+    })
+
+    return { navItems, authBtns, isLogged, userListItems, signUserOut, userTrips }
   }
 }
 </script>
@@ -94,8 +119,25 @@ export default {
       <div class="relative">
         <img src="/images/user.webp" alt="User image" class="user__img" tabindex="0" />
         <ul class="user__list">
-          <li class="user__item" v-for="(item, index) in userListItems" :key="index">{{ item }}</li>
-          <li class="user__item" @click="signUserOut">Sign out (i work)</li>
+          <li class="user__item">
+            <router-link :to="{ name: 'trips' }" class="trips"
+              >My Trips
+              <span
+                class="bg-blue-500 text-white px-[6px] py-[3px] rounded-full text-base"
+                v-if="userTrips > 0"
+                >{{ userTrips }}</span
+              ></router-link
+            >
+          </li>
+          <li
+            class="user__item"
+            disabled="true"
+            v-for="(item, index) in userListItems"
+            :key="index"
+          >
+            {{ item }}
+          </li>
+          <li class="user__item" @click="signUserOut">Sign out</li>
         </ul>
       </div>
     </div>
@@ -207,6 +249,10 @@ export default {
   color: #4f4f4f;
   border-bottom: 0.3px solid #d6d6d6;
   box-shadow: 0px 0.5px 0px 0px #d6d6d6;
+}
+
+.trips {
+  @apply flex  gap-6 w-full items-center;
 }
 
 .user__item:hover {

@@ -11,9 +11,7 @@
           date.
         </p>
       </div>
-      <router-link :to="'/trips/' + token" class="modal__btn" @click="toggleModal"
-        >View Trip</router-link
-      >
+      <router-link :to="{ name: trips }" @click="toggleModal">View Trip</router-link>
     </div>
   </div>
 </template>
