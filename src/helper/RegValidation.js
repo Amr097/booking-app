@@ -18,7 +18,8 @@ export function validatePassword(value) {
     return 'This field is required'
   }
   // if the field is not a valid email
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i
+
+  const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+~`|\\[\]{}:";'<>?,./-]).{8,}$/
   if (!regex.test(value)) {
     return 'Password must be minimum eight characters, at least one capital letter, one number and one special character'
   }

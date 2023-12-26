@@ -17,7 +17,6 @@ export default {
         .then(() => {
           // Sign-out successful.
           location.reload()
-          sessionStorage.removeItem('authToken')
         })
         .catch(() => {
           // An error happened.

@@ -7,16 +7,18 @@ export const validateCheckin = (searchData, datpickerErr) => {
 
   if (checkInDate && checkInDate.setHours(0, 0, 0, 0) < currentDate.setHours(0, 0, 0, 0)) {
     datpickerErr.state = true
+
     datpickerErr.message = "Date can't be eariler than today."
-    return
+    return false
   }
   if (
     searchData.checkOutDate &&
     checkInDate.setHours(0, 0, 0, 0) > checkOutDate.setHours(0, 0, 0, 0)
   ) {
     datpickerErr.state = true
+
     datpickerErr.message = "Check in can't be later than check out."
-    return
+    return false
   }
 
   const checkInFormatted = new Date(searchData.checkInDate).toLocaleDateString('en-US', options)
@@ -24,12 +26,14 @@ export const validateCheckin = (searchData, datpickerErr) => {
 
   if (searchData.checkInDate && searchData.checkOutDate && checkOutFormatted === checkInFormatted) {
     datpickerErr.state = true
+
     datpickerErr.message = "Check in and check out can't be the same."
-    return
+    return false
   }
 
   datpickerErr.state = false
   datpickerErr.message = ''
+  return true
 }
 
 export const validateCheckout = (searchData, datpickerErr) => {
@@ -40,7 +44,7 @@ export const validateCheckout = (searchData, datpickerErr) => {
   if (checkOutDate && checkOutDate.setHours(0, 0, 0, 0) < currentDate.setHours(0, 0, 0, 0)) {
     datpickerErr.state = true
     datpickerErr.message = "Date can't be eariler than today."
-    return
+    return false
   }
 
   if (
@@ -49,7 +53,7 @@ export const validateCheckout = (searchData, datpickerErr) => {
   ) {
     datpickerErr.state = true
     datpickerErr.message = "Check out can't be earlier than check in."
-    return
+    return false
   }
 
   const checkInFormatted = new Date(searchData.checkInDate).toLocaleDateString('en-US', options)
@@ -58,9 +62,10 @@ export const validateCheckout = (searchData, datpickerErr) => {
   if (searchData.checkInDate && searchData.checkOutDate && checkOutFormatted === checkInFormatted) {
     datpickerErr.state = true
     datpickerErr.message = "Check out and check in can't be the same."
-    return
+    return false
   }
 
   datpickerErr.state = false
   datpickerErr.message = ''
+  return true
 }

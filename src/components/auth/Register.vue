@@ -1,10 +1,18 @@
 <script>
 import showPassword from '../../helper/showPassword.js'
 import { validateEmail, validatePassword } from '../../helper/RegValidation.js'
+
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import { ref, reactive } from 'vue'
-import { auth, createUserWithEmailAndPassword } from '/src/services/firebase.js'
+
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  signOut,
+  usersCollection
+} from '/src/services/firebase.js'
+import { doc, setDoc } from 'firebase/firestore'
 
 export default {
   name: 'AuthRegister',
@@ -51,21 +59,40 @@ export default {
     function onSubmit() {
       isSubmitting.value = true
       createUserWithEmailAndPassword(auth, email.value, password.value)
-        .then(() => {
+        .then(async (res) => {
           // Signed up
+          const id = res.user.auth.currentUser.uid
+
+          try {
+            await setDoc(doc(usersCollection, id), {
+              trips: []
+            })
+          } catch (error) {
+            message.value = error.message
+            message.type = 'error'
+            isSubmitting.value = false
+            console.log(error.message)
+          }
+
           isSubmitting.value = false
           message.type = 'success'
           message.value = 'Successfully registered, redirecting to login page. '
+          await signOut(auth)
           setTimeout(() => {
             context.emit('updatePathRef', 'login')
             router.push('/auth/login')
-          }, 1500)
+          }, 500)
           // ...
         })
         .catch((error) => {
-          message.value = error.message
+          const extractMsg = error.message.split('auth/')[1].split(')')[0]
+          const msgNoHypthens = extractMsg.replace(/-/g, ' ')
+
+          message.value = `${msgNoHypthens.charAt(0).toUpperCase()}${msgNoHypthens.slice(1)}`
+          //console.log(`${error.message.split('auth/')[1].split(')')[0]}`)
           message.type = 'error'
           isSubmitting.value = false
+
           // ..
         })
     }

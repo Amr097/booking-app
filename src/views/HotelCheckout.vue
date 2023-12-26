@@ -14,8 +14,8 @@ import 'vue-tel-input/vue-tel-input.css'
 
 import { computed, reactive, onMounted, ref } from 'vue'
 
-import { doc, getDoc } from 'firebase/firestore'
-import { db } from '/src/services/firebase.js'
+import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore'
+import { db, usersCollection, auth, onAuthStateChanged } from '/src/services/firebase.js'
 import { useRoute } from 'vue-router'
 
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
@@ -45,6 +45,10 @@ const formData = reactive({
   showModal: false
 })
 
+const phoneNumber = ref('')
+
+const isLoading = ref({ value: false, errMessage: '' })
+
 function validateName(value) {
   // if the field is empty
   if (!value) {
@@ -73,20 +77,20 @@ function validateFirstName(value) {
   if (!regex.test(value)) {
     return 'Name cannot contain numbers or symbols'
   }
+  return true
 }
 
 function validateLastName(value) {
   // if the field is empty
   if (!value) {
-    formData.isLastName = false
     return 'This field is required'
   }
   // only characters
   const regex = /^[^\d\s!@#$%^&*()_+=\-[\]{};:'",.<>/?\\|]*$/
   if (!regex.test(value)) {
-    formData.isLastName = false
     return 'Name cannot contain numbers or symbols'
   }
+  return true
 }
 
 function validateCreditCard(value) {
@@ -201,7 +205,33 @@ onMounted(async () => {
 })
 
 const onSubmit = () => {
-  formData.showModal = true
+  isLoading.value.value = true
+  isLoading.value.errMessage = ''
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const userTripsRef = await getDoc(doc(usersCollection, user.uid))
+      if (userTripsRef.exists()) {
+        const userTrips = userTripsRef.data().trips
+
+        const checkForTrip = userTrips.filter((trip) => {
+          return hotel.value.data.id === trip.id
+        })
+        if (checkForTrip.length > 0) {
+          console.log(checkForTrip)
+          isLoading.value.errMessage = 'You have already reserved this trip.'
+        } else {
+          try {
+            await updateDoc(doc(usersCollection, user.uid), { trips: arrayUnion(hotel.value.data) })
+            formData.showModal = true
+          } catch (err) {
+            console.log(err)
+            return err
+          }
+        }
+      }
+    }
+  })
+  isLoading.value.value = false
 }
 </script>
 
@@ -215,7 +245,7 @@ const onSubmit = () => {
       <h1 class="checkout__title">Secure your reservation</h1>
       <HomeCovid />
       <div class="main">
-        <veeForm action="" class="checkout__form" @submit="onSubmit">
+        <veeForm action="POST" class="checkout__form" @submit="onSubmit">
           <!-- ClientCard -->
           <ClientCard>
             <template v-slot:room>
@@ -226,7 +256,7 @@ const onSubmit = () => {
 
             <template v-slot:firstName>
               <Field
-                name="First Name"
+                name="FirstName"
                 id="FirstName"
                 type="text"
                 class="input col-start-1 col-span-1"
@@ -237,7 +267,7 @@ const onSubmit = () => {
 
             <template v-slot:lastName>
               <Field
-                name="Last Name"
+                name="LastName"
                 id="LastName"
                 type="text"
                 class="input col-start-2 col-span-1"
@@ -247,7 +277,7 @@ const onSubmit = () => {
             </template>
 
             <template v-slot:number>
-              <vue-tel-input mode="international"></vue-tel-input>
+              <vue-tel-input v-model="phoneNumber" mode="international"></vue-tel-input>
             </template>
 
             <template v-slot:alert>
@@ -350,7 +380,12 @@ const onSubmit = () => {
 
           <InfoCard>
             <template v-slot:info-btn>
-              <button type="submit" class="blue__btn ml-8">Complete Booking</button>
+              <button :disabled="isLoading.value" type="submit" class="blue__btn ml-8">
+                Complete Booking
+              </button>
+              <p class="ml-8 text-2xl mt-6 text-red-500" v-if="isLoading.errMessage">
+                {{ isLoading.errMessage }}
+              </p>
             </template>
           </InfoCard>
         </veeForm>
