@@ -80,7 +80,7 @@ export default {
       >
     </div>
     <!-- USER -->
-    <div class="user" v-if="isLogged.logged">
+    <div class="user" :style="showNav ? { marginRight: '7rem' } : ''" v-if="isLogged.logged">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="user__bell">
         <path
           d="m19.34 14.49-1-1.66c-0.21-0.37-0.4-1.07-0.4-1.48v-2.53c-0.0012-1.116-0.3183-2.2088-0.9147-3.152s-1.4476-1.6984-2.4553-2.178c-0.2571-0.45666-0.6323-0.83586-1.0861-1.098-0.4539-0.26211-0.9698-0.3975-1.4939-0.39203-1.09 0-2.07 0.59-2.59 1.52-1.95 0.97-3.3 2.98-3.3 5.3v2.53c0 0.41-0.19 1.11-0.4 1.47l-1.01 1.67c-0.4 0.67-0.49 1.41-0.24 2.09 0.24 0.67 0.81 1.19 1.55 1.44 1.94 0.66 3.98 0.98 6.02 0.98 2.04 0 4.08-0.32 6.02-0.97 0.7-0.23 1.24-0.76 1.5-1.45s0.19-1.45-0.2-2.09z"
@@ -100,7 +100,7 @@ export default {
         </ul>
       </div>
     </div>
-    <HamMenu />
+    <HamMenu v-if="showNav" />
   </header>
 </template>
 
@@ -170,7 +170,7 @@ export default {
 }
 
 .user {
-  @apply flex gap-10 items-center mr-28 sm:mr-0;
+  @apply flex gap-10 items-center sm:mr-0;
 }
 
 .user__bell {

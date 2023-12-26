@@ -5,12 +5,14 @@
       <slot name="room"></slot>
     </div>
     <div class="client__data">
-      <div class="w-2/3 flex flex-col gap-8">
+      <div class="w-[100%] lg:w-2/3 flex flex-col gap-8">
         <div class="client__name">
-          <label for="firstName" class="card-label col-start-1 col-span-1">First name</label>
+          <label for="firstName" class="card-label col-start-1 col-span-1"
+            >First name <span class="text-red-500">*</span></label
+          >
           <slot name="firstName"></slot>
           <label for="lastName" class="card-label col-start-2 col-span-1 row-start-1"
-            >Last name</label
+            >Last name <span class="text-red-500">*</span></label
           >
           <slot name="lastName"></slot>
         </div>

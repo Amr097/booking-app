@@ -4929,3 +4929,28 @@ export const hotelDataSharm = [
     }
   }
 ]
+
+for (let i = 3; i <= hotelDataSharm.length - 1; i++) {
+  const duplicateIds = findDuplicateIds(hotelDataSharm[i].hotels)
+
+  if (duplicateIds.length > 0) {
+    console.log('Duplicate IDs:', duplicateIds)
+  } else {
+    console.log('No duplicate IDs found.')
+  }
+}
+
+function findDuplicateIds(hotels) {
+  const idSet = new Set()
+  const duplicates = new Set()
+
+  hotels.forEach((hotel) => {
+    if (idSet.has(hotel.id)) {
+      duplicates.add(hotel.id)
+    } else {
+      idSet.add(hotel.id)
+    }
+  })
+
+  return Array.from(duplicates)
+}

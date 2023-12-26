@@ -1,3 +1,10 @@
+<script setup>
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
+const id = route.params.id
+</script>
+
 <template>
   <div class="room">
     <slot name="image"></slot>
@@ -6,12 +13,10 @@
       <slot name="space"></slot>
       <slot name="sleep"></slot>
       <slot name="beds"></slot>
-      <router-link :to="{ name: 'checkout' }" class="room__btn">Reserve suite</router-link>
+      <router-link :to="`/checkout/${id}`" class="room__btn">Reserve suite</router-link>
     </div>
   </div>
 </template>
-
-<script setup></script>
 
 <style scoped>
 .room {

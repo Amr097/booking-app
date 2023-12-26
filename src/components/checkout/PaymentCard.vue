@@ -18,29 +18,35 @@ const icons = ['/images/pay.webp', '/images/visa.webp', '/images/ae.webp', '/ima
           v-for="(icon, index) in icons"
           :key="index"
         >
-          <img class="w-[4.2rem] h-[2.4rem]" :src="icon" alt="" />
+          <img class="w-[4.2rem] h-[2.4rem]" :src="icon" alt="icon" />
         </div>
       </div>
 
-      <label for="nameCard" class="card-label mt-5">Name on card</label>
+      <label for="nameCard" class="card-label mt-5"
+        >Name on card <span class="text-red-500">*</span></label
+      >
       <slot name="nameCard"></slot>
 
-      <label for="cardNumber" class="card-label mt-8">Debit/Credit card number</label>
+      <label for="cardNumber" class="card-label mt-8"
+        >Debit/Credit card number <span class="text-red-500">*</span></label
+      >
       <slot name="cardNumber"></slot>
 
       <div class="pay__expire mt-8">
-        <label for="cardNumber" class="card-label col-span-full g-row">Expiration Date</label>
+        <label for="cardNumber" class="card-label col-span-full g-row"
+          >Expiration Date <span class="text-red-500">*</span></label
+        >
         <slot name="expireDate"></slot>
       </div>
 
       <div class="pay__code mt-8">
         <label for="secCode" class="card-label col-start-1 col-span-1 row-start-1"
-          >Security Code</label
+          >Security Code <span class="text-red-500">*</span></label
         >
         <slot name="secCode"></slot>
 
         <label for="zipCode" class="card-label col-start-2 col-span-1 row-start-1"
-          >Billing Zip code</label
+          >Billing Zip code <span class="text-red-500">*</span></label
         >
         <slot name="zipCode"></slot>
       </div>
@@ -72,7 +78,7 @@ const icons = ['/images/pay.webp', '/images/visa.webp', '/images/ae.webp', '/ima
 }
 
 .pay__form {
-  @apply px-10 my-12 w-2/3 flex flex-col gap-2;
+  @apply px-10 my-12 w-[100%] md:w-2/3 flex flex-col gap-2;
 }
 
 .pay__icons {
@@ -86,7 +92,7 @@ const icons = ['/images/pay.webp', '/images/visa.webp', '/images/ae.webp', '/ima
 }
 
 .pay__code {
-  @apply grid grid-cols-3 gap-x-4 gap-y-2;
+  @apply grid grid-cols-2 md:grid-cols-3  gap-x-4 gap-y-2;
   grid-template-rows: min-content max-content;
 }
 </style>

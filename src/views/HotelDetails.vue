@@ -58,6 +58,32 @@ onMounted(async () => {
       meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
       meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
     }
+  } else if (prefix === 'ca') {
+    const hotelRef = doc(db, 'cairo', `cairo-${page}`)
+    const hotelSnap = await getDoc(hotelRef)
+    if (hotelSnap.exists()) {
+      const hotels = hotelSnap.data().hotels
+
+      const currentHotel = hotels.filter((hotel) => {
+        return hotel.id === id
+      })
+      hotel.value.data = currentHotel[0]
+      meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
+      meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
+    }
+  } else if (prefix === 'sh') {
+    const hotelRef = doc(db, 'sharm-alsheikh', `sharm-alsheikh-${page}`)
+    const hotelSnap = await getDoc(hotelRef)
+    if (hotelSnap.exists()) {
+      const hotels = hotelSnap.data().hotels
+
+      const currentHotel = hotels.filter((hotel) => {
+        return hotel.id === id
+      })
+      hotel.value.data = currentHotel[0]
+      meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
+      meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
+    }
   }
 })
 </script>
@@ -84,11 +110,29 @@ onMounted(async () => {
       </div>
     </section>
     <div class="container-3 flex details-content">
+      <!-- HOTEL INFO -->
       <HotelInfo>
         <template v-slot:title>
           <h1 class="info__title">{{ hotel.data.name }}</h1>
         </template>
+        <template v-slot:article>
+          <article class="overview__article">
+            <slot name="title"></slot>
+            Featuring free WiFi throughout the property, {{ hotel.data.name }} offers accommodations
+            in Lakes Entrance, 19 mi from Bairnsdale. Free private parking is available on site.
+            <br />
+            <br />Each room at this motel is air conditioned and comes with a flat-screen TV. You
+            will find a kettle, toaster and a microwave in the room. Each room is fitted with a
+            private bathroom. Guests have access to barbecue facilities and a lovely large lawn
+            area. Metung is 6.8 mi from {{ hotel.data.name }}, while Paynesville is 14 mi from the
+            property.
+            <br />
+            <br />
+            Couples in particular like the location – they rated it 9.2 for a two-person trip.
+          </article>
+        </template>
       </HotelInfo>
+      <!-- HOTEL LOCATION -->
       <HotelLocation>
         <template v-slot:map>
           <iframe
@@ -377,6 +421,11 @@ img {
   @media screen and (width < 66.25em) {
     width: 95%;
   }
+}
+
+.overview__article {
+  @apply text-2xl leading-8 tracking-wide mt-7;
+  color: #4f4f4f;
 }
 
 .footer__copyright {

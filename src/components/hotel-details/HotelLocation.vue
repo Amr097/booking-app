@@ -1,10 +1,10 @@
 <script setup>
 const explore = [
-  { icon: '/images/bxs-plane.svg', label: 'Hotel Penselvenyia', time: '2 min drive' },
-  { icon: '/images/bxs-map.svg', label: 'Travis Bakery store house', time: '8 min drive' },
-  { icon: '/images/bxs-map.svg', label: 'Olivia Johnson Garden', time: '15 min drive' },
-  { icon: '/images/bxs-map.svg', label: 'Norman Opera Circus', time: '25 min drive' },
-  { icon: '/images/bxs-map.svg', label: 'Rockdeset hotel', time: '32 min drive' }
+  { icon: '/images/bxs-plane.svg', label: 'Steigenberger Aldau Beach Hotel', time: '2 min drive' },
+  { icon: '/images/bxs-map.svg', label: 'Arabella Bakery store house', time: '8 min drive' },
+  { icon: '/images/bxs-map.svg', label: 'Sky View Garden', time: '15 min drive' },
+  { icon: '/images/bxs-map.svg', label: 'Jaz Makadi Circus', time: '25 min drive' },
+  { icon: '/images/bxs-map.svg', label: 'Swan Lake hotel', time: '32 min drive' }
 ]
 </script>
 

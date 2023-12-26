@@ -1,3 +1,14 @@
+<script setup>
+const TopFacilities = [
+  { icon: '/images/wifi.svg', label: 'Free wifi' },
+  { icon: '/images/wind.svg', label: 'Air Conditioning' },
+  { icon: '/images/car.svg', label: 'Parking available' },
+  { icon: '/images/bag-tick.svg', label: 'Business Services' },
+  { icon: '/images/lifebuoy.svg', label: 'Swimming pool' },
+  { icon: '/images/like.svg', label: 'Top rated in area' }
+]
+</script>
+
 <template>
   <section class="info">
     <div class="header">
@@ -30,31 +41,18 @@
               stroke-width="1.5"
             />
           </svg>
-          <p>Lorem ipsum road, Tantruim-2322, Melbourne, Australia</p>
+          <p>Lorem ipsum road</p>
         </div>
       </div>
     </div>
     <div class="container-white rounded-lg">
       <div class="overview">
         <h3 class="overview__title">Overview</h3>
-        <article class="overview__article">
-          Featuring free WiFi throughout the property, Lakeside Motel Waterfront offers
-          accommodations in Lakes Entrance, 19 mi from Bairnsdale. Free private parking is available
-          on site.
-          <br />
-          <br />Each room at this motel is air conditioned and comes with a flat-screen TV. You will
-          find a kettle, toaster and a microwave in the room. Each room is fitted with a private
-          bathroom. Guests have access to barbecue facilities and a lovely large lawn area. Metung
-          is 6.8 mi from Lakeside Motel Waterfront, while Paynesville is 14 mi from the property.
-          <br />
-          <br />
-          Couples in particular like the location – they rated it 9.2 for a two-person trip.
-        </article>
-
+        <slot name="article"></slot>
         <hr />
 
         <div class="overview__facilities">
-          <h3 class="overview__title">Top facilites</h3>
+          <h3 class="overview__title">Top Facilites</h3>
           <ul class="overview__list">
             <li class="overview__item" v-for="(item, index) in TopFacilities" :key="index">
               <img :src="item.icon" alt="icon" />
@@ -66,17 +64,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-const TopFacilities = [
-  { icon: '/images/wifi.svg', label: 'Free wifi' },
-  { icon: '/images/wind.svg', label: 'Air Conditioning' },
-  { icon: '/images/car.svg', label: 'Parking available' },
-  { icon: '/images/bag-tick.svg', label: 'Business Services' },
-  { icon: '/images/lifebuoy.svg', label: 'Swimming pool' },
-  { icon: '/images/like.svg', label: 'Top rated in area' }
-]
-</script>
 
 <style scoped>
 .info {
@@ -107,10 +94,7 @@ const TopFacilities = [
   @apply text-3xl font-semibold tracking-wide;
   color: #181818;
 }
-.overview__article {
-  @apply text-2xl leading-8 tracking-wide mt-7;
-  color: #4f4f4f;
-}
+
 .overview__facilities {
   @apply flex flex-col gap-8;
 }

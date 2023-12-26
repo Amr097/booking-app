@@ -1,15 +1,23 @@
 <script setup>
 import AppHeader from '/src/components/partials/Header.vue'
+
 import HomeCovid from '/src/components/reuseables/Covid.vue'
+
 import ClientCard from '/src/components/checkout/ClientCard.vue'
 import PaymentCard from '/src/components/checkout/PaymentCard.vue'
 import InfoCard from '/src/components/checkout/InfoCard.vue'
 import CheckedoutHotel from '/src/components/checkout/CheckedoutHotel.vue'
-import PriceDetail from '/src/components/checkout/PriceDetail.vue'
 import CheckoutModal from '/src/components/checkout/CheckoutModal.vue'
+
 import { VueTelInput } from 'vue-tel-input'
-import { computed, reactive } from 'vue'
 import 'vue-tel-input/vue-tel-input.css'
+
+import { computed, reactive, onMounted, ref } from 'vue'
+
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '/src/services/firebase.js'
+import { useRoute } from 'vue-router'
+
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 
 const months = [
@@ -52,6 +60,33 @@ function validateName(value) {
   // All is good
   formData.isCardName = true
   return true
+}
+
+function validateFirstName(value) {
+  // if the field is empty
+
+  if (!value) {
+    return 'This field is required'
+  }
+  // only characters
+  const regex = /^[^\d\s!@#$%^&*()_+=\-[\]{};:'",.<>/?\\|]*$/
+  if (!regex.test(value)) {
+    return 'Name cannot contain numbers or symbols'
+  }
+}
+
+function validateLastName(value) {
+  // if the field is empty
+  if (!value) {
+    formData.isLastName = false
+    return 'This field is required'
+  }
+  // only characters
+  const regex = /^[^\d\s!@#$%^&*()_+=\-[\]{};:'",.<>/?\\|]*$/
+  if (!regex.test(value)) {
+    formData.isLastName = false
+    return 'Name cannot contain numbers or symbols'
+  }
 }
 
 function validateCreditCard(value) {
@@ -114,6 +149,57 @@ const yearOptions = computed(() => {
   return years
 })
 
+const hotel = ref({ data: { rating: '' } })
+
+onMounted(async () => {
+  //fetch hotel from firestore
+  const route = useRoute()
+
+  const path = route.params.id
+  const splitPath = path.split('*')
+  const id = splitPath[0]
+  const PagexPrefix = splitPath[1].split('$')
+  const prefix = PagexPrefix[0]
+  const page = PagexPrefix[1]
+
+  if (prefix === 'hu') {
+    const hotelRef = doc(db, 'hurghada', `hurghada-${page}`)
+    const hotelSnap = await getDoc(hotelRef)
+    if (hotelSnap.exists()) {
+      const hotels = hotelSnap.data().hotels
+
+      const currentHotel = hotels.filter((hotel) => {
+        return hotel.id === id
+      })
+      hotel.value.data = currentHotel[0]
+    }
+  } else if (prefix === 'ca') {
+    const hotelRef = doc(db, 'cairo', `cairo-${page}`)
+
+    const hotelSnap = await getDoc(hotelRef)
+
+    if (hotelSnap.exists()) {
+      const hotels = hotelSnap.data().hotels
+
+      const currentHotel = hotels.filter((hotel) => {
+        return hotel.id === id
+      })
+      hotel.value.data = currentHotel[0]
+    }
+  } else if (prefix === 'sh') {
+    const hotelRef = doc(db, 'sharm-alsheikh', `sharm-alsheikh-${page}`)
+    const hotelSnap = await getDoc(hotelRef)
+    if (hotelSnap.exists()) {
+      const hotels = hotelSnap.data().hotels
+
+      const currentHotel = hotels.filter((hotel) => {
+        return hotel.id === id
+      })
+      hotel.value.data = currentHotel[0]
+    }
+  }
+})
+
 const onSubmit = () => {
   formData.showModal = true
 }
@@ -121,11 +207,11 @@ const onSubmit = () => {
 
 <template>
   <CheckoutModal v-if="formData.showModal" />
-  <div class="container">
+  <div class="container-c">
     <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" :showNav="false" />
   </div>
   <div class="container-grey checkout">
-    <div class="container pt-12 flex flex-col gap-8">
+    <div class="container-c pt-12 flex flex-col gap-8">
       <h1 class="checkout__title">Secure your reservation</h1>
       <HomeCovid />
       <div class="main">
@@ -140,22 +226,24 @@ const onSubmit = () => {
 
             <template v-slot:firstName>
               <Field
-                name="firstName"
-                id="firstName"
+                name="First Name"
+                id="FirstName"
                 type="text"
                 class="input col-start-1 col-span-1"
+                :rules="validateFirstName"
               />
-              <ErrorMessage name="firstName" class="auth__err row-start-3 col-start-1" />
+              <ErrorMessage name="FirstName" class="auth__err row-start-3 col-start-1" />
             </template>
 
             <template v-slot:lastName>
               <Field
-                name="lastName"
-                id="lastName"
+                name="Last Name"
+                id="LastName"
                 type="text"
                 class="input col-start-2 col-span-1"
+                :rules="validateLastName"
               />
-              <ErrorMessage name="lastName" class="auth__err row-start-3 col-start-2" />
+              <ErrorMessage name="LastName" class="auth__err row-start-3 col-start-2" />
             </template>
 
             <template v-slot:number>
@@ -183,7 +271,7 @@ const onSubmit = () => {
                 <img
                   src="/images/tick-circle.svg"
                   alt="icon"
-                  class="row-start-1 col-start-2 self-center"
+                  class="row-start-1 col-start-2 self-center w-[2rem] h-[2rem]"
                   v-if="formData.isCardName"
                 />
               </div>
@@ -202,7 +290,7 @@ const onSubmit = () => {
                 <img
                   src="/images/tick-circle.svg"
                   alt="icon"
-                  class="row-start-1 col-start-2 self-center"
+                  class="row-start-1 col-start-2 self-center w-[2rem] h-[2rem]"
                   v-if="formData.isCardNumber"
                 />
               </div>
@@ -226,7 +314,7 @@ const onSubmit = () => {
               <img
                 src="/images/tick-circle.svg"
                 alt="icon"
-                class="row-start-2 col-start-3 self-center"
+                class="row-start-2 col-start-3 self-center w-[2rem] h-[2rem]"
                 v-if="formData.expireMonth && formData.expireYear"
               />
             </template>
@@ -243,7 +331,7 @@ const onSubmit = () => {
               <img
                 src="/images/tick-circle.svg"
                 alt="icon"
-                class="row-start-2 col-start-3 self-center"
+                class="row-start-2 col-start-3 self-center w-[2rem] h-[2rem]"
                 v-if="formData.isSecCode && formData.isZipCode"
               />
             </template>
@@ -268,8 +356,7 @@ const onSubmit = () => {
         </veeForm>
 
         <div class="checkout__details">
-          <CheckedoutHotel />
-          <PriceDetail />
+          <CheckedoutHotel :hotel="hotel.data" />
         </div>
       </div>
     </div>
@@ -278,15 +365,15 @@ const onSubmit = () => {
 
 <style scoped>
 .container-grey {
-  @apply w-full px-20 pb-40 grid;
+  @apply w-full px-0 pb-40 grid lg:px-20;
 
   background: #f4f4f4;
 }
 
 .main {
-  @apply grid gap-10;
+  @apply grid gap-5 sm:gap-10;
 
-  grid-template-columns: 1fr max-content;
+  grid-template-columns: 1fr 38%;
 }
 
 .checkout__title {
@@ -299,7 +386,6 @@ const onSubmit = () => {
 }
 
 .checkout__details {
-  @apply w-[400px];
 }
 
 /* room */

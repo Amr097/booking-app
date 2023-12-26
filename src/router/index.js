@@ -29,7 +29,7 @@ const routes = [
   },
   {
     name: 'checkout',
-    path: '/hotel/checkout',
+    path: '/checkout/:id',
     component: () => import('../views/HotelCheckout.vue'),
     meta: {
       requiresAuth: true
@@ -61,9 +61,9 @@ const router = createRouter({
 })
 
 // clear local storage on route change from search/results to '/'
-function onRouteChange(to, from) {
-  if (from.fullPath === '/search/results') {
-    localStorage.clear()
+function onRouteChange(to) {
+  if (to.name === 'home') {
+    localStorage.removeItem('searchQuery')
   }
 }
 
