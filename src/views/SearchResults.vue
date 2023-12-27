@@ -56,8 +56,6 @@ export default {
       await fetchHotels()
       hotelsDataSnap.value.data = hotelsData.data
       hotelsSnap.data = hotelsDataSnap.value.data.hotels
-      //let filterQuery = {}
-      // localStorage.setItem('filterQuery', JSON.stringify(filterQuery))
     })
 
     return {

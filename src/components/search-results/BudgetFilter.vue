@@ -76,6 +76,7 @@ const customBudgetErr = ref({
           <label class="switch">
             <input
               type="checkbox"
+              id="budget-switch"
               @change="handleToggleBudget(toggleBudget, customBudget, customBudgetErr)"
             />
             <span class="slider"></span>

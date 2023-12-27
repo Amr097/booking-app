@@ -24,7 +24,7 @@ export default {
   aspect-ratio: 2.35/1;
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%),
-    url(../../public/images/hero-large.webp) lightgray 0px -72.075px / 100% 165.959% no-repeat;
+    url(/images/hero-large.webp) lightgray 0px -72.075px / 100% 165.959% no-repeat;
   background-size: cover;
 }
 

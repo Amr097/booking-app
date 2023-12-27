@@ -13,6 +13,32 @@ export default defineStore('hotels', () => {
   })
 
   const fetchHotels = async (page = localStorage.getItem('currentPage') || 1) => {
+    //clear inputs
+    const searchInput = document.querySelector('#property-search')
+    if (searchInput) searchInput.value = ''
+
+    const budgetBtns = document.querySelectorAll('.ranges__check')
+    budgetBtns.forEach((btn) => {
+      btn.checked = false
+    })
+
+    const budgetSwitch = document.querySelector('#budget-switch')
+    if (budgetSwitch.checked) {
+      const budgetInput = document.querySelectorAll('.budget__input')
+      budgetInput.forEach((input) => {
+        input.value = ''
+      })
+    }
+
+    const ratingRadios = document.querySelectorAll('.rating-radio')
+    ratingRadios.forEach((input) => {
+      input.checked = false
+    })
+
+    const sort = document.querySelector('.results__view--sort')
+    sort.value = ''
+
+    //
     isLoading.value.value = true
     errMessage.value.state = false
     const searchData = JSON.parse(localStorage.getItem('searchQuery'))
@@ -26,15 +52,7 @@ export default defineStore('hotels', () => {
           hotelsData.value.data = hotelSnap.data()
           localStorage.setItem('currentPage', page)
           isLoading.value.value = false
-        }
-        //else {
-        //   hotelDataCairo.forEach(async (item, index) => {
-        //     const i = index + 1
-        //     const j = i.toString()
-        //     await setDoc(doc(hotelsCollection, `cairo-${j}`), item)
-        //   })
-        // }
-        else {
+        } else {
           hotelsData.value.data = {}
           isLoading.value.value = false
         }

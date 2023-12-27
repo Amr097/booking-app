@@ -64,7 +64,7 @@ const routes = [
   { path: '/:catchAll(.*)*', redirect: { name: '404' } }
 ]
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.VITE_BASE_URL),
   routes
 })
 

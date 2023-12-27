@@ -223,7 +223,7 @@ export default defineStore('filteration', () => {
 
     queryData.sortBy = option
     hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
-    console.log(option)
+
     if (hotelsSnap.value.data.length === 0) {
       errMessage.state = true
       errMessage.value = '🔎  0 results found for your search'

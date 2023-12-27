@@ -9,7 +9,6 @@ export default {
     propertiesNumber: Number
   },
   setup(props) {
-    // const isLoading = ref(false)
     const currentPage = ref({ number: +localStorage.getItem('currentPage') })
     const { fetchHotels } = useHotelsStore()
 

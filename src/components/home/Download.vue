@@ -22,7 +22,7 @@ export default {
 
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%),
-    url(../../public/images/download.webp) lightgray 0px -72.075px / 100% 165.959% no-repeat;
+    url(/images/download.webp) lightgray 0px -72.075px / 100% 165.959% no-repeat;
   height: 28rem;
   z-index: -8;
 }
