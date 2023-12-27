@@ -11,7 +11,7 @@ const { handleFilteration, clearSearch } = useFilterationStore()
     <h3 class="filter__title">
       Search by property name
       <span
-        class="un-filter"
+        class="un-filter border-solid border-[1px] border-gray-300 rounded-md hover:border-gray-500 transition-all duration-150"
         @click.prevent="clearSearch(props.isLoading, props.errMessage, props.hotelsDataSnap)"
       >
         X</span
@@ -52,7 +52,7 @@ const { handleFilteration, clearSearch } = useFilterationStore()
 
 <style scoped>
 .filter__property {
-  @apply flex flex-col rounded-lg;
+  @apply flex flex-col rounded-lg shadow-md;
   @media screen and (width< 53.75em) {
     grid-column: 1 / -1;
   }

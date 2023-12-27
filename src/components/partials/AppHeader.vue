@@ -69,7 +69,7 @@ onMounted(() => {
           />
         </svg>
         <figcaption :style="{ color: props.logoColor }" class="logo__caption">
-          Voyage en vue
+          <span class="v">V</span>oyage en <span class="v">v</span>ue
         </figcaption></router-link
       >
     </figure>
@@ -159,16 +159,16 @@ onMounted(() => {
   }
 }
 .logo {
-  @apply flex items-center gap-3;
+  @apply flex items-center gap-1;
 }
 
 .logo__image {
-  @apply w-11 h-11;
+  @apply w-9 h-9 transform translate-y-[0.7px];
 }
 
 .logo__caption {
   @apply text-5xl font-bold tracking-wide ml-3;
-  font-family: 'Parisienne', cursive !important;
+  font-family: 'Caveat', cursive;
 }
 
 .nav {

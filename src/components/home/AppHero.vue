@@ -15,7 +15,7 @@ import AppSearch from '../reuseables/AppSearch.vue'
 
 <style scoped>
 .hero {
-  @apply mx-auto my-4 rounded-lg flex flex-col justify-center gap-12 relative;
+  @apply mx-auto my-4 rounded-lg flex flex-col justify-center gap-12 relative shadow-lg;
   z-index: -1;
   aspect-ratio: 2.35/1;
   background:

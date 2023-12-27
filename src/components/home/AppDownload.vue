@@ -14,7 +14,7 @@
 
 <style scoped>
 .download {
-  @apply rounded-md relative bg-cover flex items-center justify-end sm:justify-normal;
+  @apply rounded-md relative bg-cover flex items-center justify-end sm:justify-normal shadow-md;
 
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%),
@@ -40,7 +40,7 @@
 }
 
 .download__link {
-  @apply rounded-md flex justify-center items-center px-8 py-5 text-xl text-white font-medium hover:bg-blue-600;
+  @apply rounded-md flex justify-center items-center px-8 py-5 text-xl text-white font-medium hover:bg-blue-600 transition-colors ease-in-out;
   background-color: #2f80ed;
 }
 </style>

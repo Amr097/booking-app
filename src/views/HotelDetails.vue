@@ -469,4 +469,12 @@ img {
   font-normal leading-7 flex items-center justify-end mt-24 pr-72 relative;
   width: 100%;
 }
+
+.map__frame {
+  @apply shadow-sm rounded-md w-full;
+}
+
+img {
+  @apply shadow-md;
+}
 </style>

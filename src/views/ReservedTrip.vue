@@ -138,9 +138,9 @@ onMounted(async () => {
 }
 
 img {
+  @apply rounded-md inline-block shadow-md;
   object-fit: cover;
   height: 100%;
-  border-radius: 6px 6px 0 0;
 }
 
 .left-img {

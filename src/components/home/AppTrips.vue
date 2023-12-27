@@ -31,8 +31,9 @@ const props = defineProps(['tripsData'])
   @apply sm:flex sm:gap-7 grid grid-cols-2 gap-7;
 }
 .trips__figure {
-  @apply bg-cover rounded-lg flex flex-col gap-4 justify-end pb-7 shadow-md sm:w-[33.33333%];
+  @apply bg-cover rounded-lg flex flex-col gap-4 justify-end pb-7 sm:w-[33.33333%] shadow-md hover:scale-[1.02] hover:shadow-lg cursor-pointer;
   height: 28rem;
+  transition: all 150ms ease-in-out;
 }
 
 .trips__figure:last-child {

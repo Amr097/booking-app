@@ -14,7 +14,7 @@
           fill="white"
         />
       </svg>
-      <h4>My Dream Place</h4>
+      <h4 class="title">Voyage en vue</h4>
     </div>
     <figcaption class="coupon__caption">
       20% off <br />
@@ -28,7 +28,7 @@
 
 <style scoped>
 .coupon {
-  @apply rounded-md h-[32rem] grid items-center justify-center p-6 gap-x-2;
+  @apply rounded-md  grid items-center justify-center p-6 gap-x-2 shadow-md;
   background: linear-gradient(180deg, #4796ff 0%, #2366bf 100%);
   grid-template-columns: repeat(2, 1fr);
 
@@ -40,6 +40,7 @@
     width: min(45rem, 100%);
   }
 }
+
 .coupon__image {
   @apply self-end h-full;
   grid-column: 2 / span 1;
@@ -51,7 +52,8 @@
 }
 
 .coupon__title h4 {
-  @apply text-white font-medium tracking-wide text-xl w-fit;
+  @apply text-white font-medium tracking-wide text-4xl w-fit;
+  font-family: 'Caveat', cursive;
 }
 
 .coupon__caption {

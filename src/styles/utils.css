@@ -43,10 +43,15 @@
 }
 
 .blue__btn {
-  @apply text-white text-xl font-medium tracking-wide leading-6 px-7 py-4 bg-blue-500 rounded-md w-fit hover:bg-blue-600;
+  @apply text-white text-xl font-medium tracking-wide leading-6 px-7 py-4 bg-blue-500 rounded-md w-fit hover:bg-blue-600 transition-all duration-100;
   align-self: end;
 }
 
+.v {
+  @apply text-[#42b883];
+  text-shadow: 1.2px 1.2px 1.2px #35495e;
+  font-family: 'Caveat', cursive;
+}
 /* Loading Spinner */
 
 .lds-ring {

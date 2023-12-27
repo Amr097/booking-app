@@ -35,7 +35,7 @@
 
 <style scoped>
 .client {
-  @apply rounded-lg;
+  @apply rounded-lg shadow-sm;
   width: 100%;
 }
 

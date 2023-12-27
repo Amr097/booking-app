@@ -36,7 +36,7 @@ const selectedSortOption = ref('')
 
 <style scoped>
 .results__view--sort {
-  @apply text-[1.4rem] rounded-lg bg-white px-6 pb-2 pt-9 outline-none;
+  @apply text-[1.4rem] rounded-lg bg-white px-6 pb-2 pt-9 outline-none cursor-pointer shadow-sm;
 
   border: 1px solid #bdbdbd;
 }

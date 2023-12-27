@@ -20,11 +20,14 @@ const helpItems = [
 
 <template>
   <footer class="footer">
-    <h1 class="footer__title">Explore the world with My Dream Place</h1>
+    <h1 class="footer__title">
+      Explore the world with
+      <span class="logo gray"> <span class="v">V</span>oyage en <span class="v">v</span>ue</span>
+    </h1>
     <h4 class="footer__text">Discover new places and experiences</h4>
     <ul class="footer__list--logo">
       <svg
-        class="logo"
+        class="icon"
         xmlns="http://www.w3.org/2000/svg"
         width="19"
         height="20"
@@ -38,8 +41,11 @@ const helpItems = [
       </svg>
 
       <li class="footer__item footer__text">
-        My Dream Place <br />
-        <span> Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>
+        <span class="logo blue"><span class="v">V</span>oyage en <span class="v">v</span>ue</span>
+        <br />
+        <span class="text-gray-600 text-xl font-normal tracking-tighter;">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span
+        >
       </li>
     </ul>
     <ul class="footer__list">
@@ -82,13 +88,27 @@ const helpItems = [
   z-index: -1;
 }
 
-.logo {
-  width: 2.4rem;
-  height: 2.4rem;
+.icon {
+  @apply transform translate-y-1;
+  width: 2.1rem;
+  height: 2.1rem;
 }
 
 .footer__title {
   @apply col-span-full text-gray-700 text-4xl font-semibold leading-10 mb-4;
+}
+
+.logo {
+  @apply font-semibold leading-10;
+  font-family: 'Caveat', cursive;
+}
+
+.gray {
+  @apply text-5xl text-gray-700;
+}
+
+.logo.blue {
+  @apply text-4xl text-[#2F80ED];
 }
 
 .footer__text {
@@ -111,9 +131,5 @@ const helpItems = [
 
 a {
   @apply transition-all duration-200 inline-block  text-xl font-normal tracking-tighter;
-}
-
-span {
-  @apply text-gray-600 text-xl font-normal tracking-tighter;
 }
 </style>

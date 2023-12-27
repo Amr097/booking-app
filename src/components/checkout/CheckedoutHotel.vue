@@ -79,7 +79,7 @@ onMounted(() => {
 
 <style scoped>
 .card {
-  @apply bg-white rounded-md;
+  @apply bg-white rounded-md shadow-sm;
 }
 
 .card__img {
@@ -109,7 +109,7 @@ onMounted(() => {
 }
 
 .review {
-  @apply text-lg leading-8 tracking-wide flex items-center;
+  @apply text-lg leading-8 tracking-wide flex items-center shadow-sm;
   color: var(--Gray-2, #4f4f4f);
 }
 

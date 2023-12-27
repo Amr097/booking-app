@@ -48,8 +48,8 @@ const props = defineProps(['title', 'description', 'galleryData'])
 }
 
 .gallery__image {
-  @apply rounded-lg shadow-md;
-  object-fit: cover;
+  @apply rounded-lg shadow-md bg-cover cursor-pointer hover:scale-[1.02] hover:shadow-lg;
+  transition: all 150ms ease-in-out;
 }
 
 .gallery__caption {

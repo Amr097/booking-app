@@ -20,11 +20,11 @@ const id = route.params.id
 
 <style scoped>
 .room {
-  @apply flex flex-col;
+  @apply flex flex-col shadow-sm;
 }
 
 .room__btn {
-  @apply flex justify-center items-center py-4 px-7 text-white mt-6 rounded-lg text-2xl font-medium leading-9 tracking-wide hover:bg-blue-600;
+  @apply flex justify-center items-center py-4 px-7 text-white mt-6 rounded-lg text-2xl font-medium leading-9 tracking-wide transition-all duration-100 hover:bg-blue-600;
 
   background-color: #2f80ed;
 }

@@ -56,7 +56,7 @@ const icons = ['/images/pay.webp', '/images/visa.webp', '/images/ae.webp', '/ima
 
 <style scoped>
 .pay {
-  @apply rounded-lg bg-white;
+  @apply rounded-lg bg-white shadow-sm;
   width: 100%;
 }
 

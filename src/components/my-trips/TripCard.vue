@@ -50,10 +50,6 @@
   @apply self-end flex flex-col gap-3;
 }
 
-.results__card--item {
-  @apply text-xl leading-9 tracking-wide;
-}
-
 .results__card--prices {
   @apply grid items-end justify-end;
 }
@@ -68,14 +64,8 @@
   background-color: #219653;
 }
 .price {
-  @apply grid gap-x-3;
+  @apply grid;
   grid-template-columns: 1fr max-content;
   margin-left: auto;
-}
-
-.taxes {
-  grid-column: 1/-1;
-  justify-self: end;
-  margin-top: 0.3rem;
 }
 </style>

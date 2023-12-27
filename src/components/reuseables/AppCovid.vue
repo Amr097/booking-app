@@ -35,7 +35,7 @@
 
 <style scoped>
 .covid-alert {
-  @apply flex rounded-lg items-center px-8 py-6 gap-6;
+  @apply flex rounded-lg items-center px-8 py-6 gap-6 shadow-sm;
 
   background-color: #fcefca;
 }

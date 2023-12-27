@@ -258,7 +258,7 @@ input {
 
 .form__btn {
   @apply rounded-md bg-blue-500 text-white text-2xl
-  font-medium leading-8 tracking-tight flex justify-center items-center hover:bg-blue-600 py-2 sm:px-[3.5rem] md:px-[5rem] lg:px-28;
+  font-medium leading-8 tracking-tight flex justify-center items-center transition-colors ease-in-out hover:bg-blue-600 py-2 sm:px-[3.5rem] md:px-[5rem] lg:px-28;
 }
 
 .form__btn::disabled {

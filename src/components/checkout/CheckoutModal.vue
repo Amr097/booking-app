@@ -38,7 +38,7 @@ export default {
 
 <style scoped>
 .modal {
-  @apply fixed w-full z-10 flex justify-center items-center;
+  @apply fixed w-full z-10 flex justify-center items-center shadow-md;
   height: 100dvh;
   background-color: rgba(0, 0, 0, 0.2);
 }
@@ -72,7 +72,7 @@ export default {
 }
 
 .modal__btn {
-  @apply rounded-lg text-white text-2xl font-medium leading-8 tracking-wide inline-block w-full py-4 text-center hover:bg-blue-600 cursor-pointer;
+  @apply rounded-lg text-white text-2xl font-medium leading-8 tracking-wide inline-block w-full py-4 text-center transition-colors duration-100 hover:bg-blue-600 cursor-pointer;
   background-color: #2f80ed;
 }
 </style>

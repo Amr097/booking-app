@@ -88,7 +88,7 @@ if (page) currentPage.value = page
 
 <style scoped>
 .results__card {
-  @apply grid  p-6 sm:gap-x-6 w-full  sm:w-[95%];
+  @apply grid  p-6 sm:gap-x-6 w-full  sm:w-[95%] shadow-md;
   grid-template-columns: 1fr 35% 1fr;
   margin: 0 auto;
   margin-top: 2rem;
@@ -97,7 +97,7 @@ if (page) currentPage.value = page
   background: #fff;
 }
 .result__card--img {
-  @apply rounded-md;
+  @apply rounded-md shadow-sm;
   width: 28.5rem;
   height: 20rem;
   object-fit: cover;
@@ -172,7 +172,7 @@ if (page) currentPage.value = page
 }
 
 .card-btn {
-  @apply row-start-4 self-end;
+  @apply row-start-4 self-end shadow-sm;
 }
 
 .icon-2 {

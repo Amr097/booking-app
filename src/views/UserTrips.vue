@@ -99,9 +99,12 @@ onMounted(() => {
       </template>
 
       <template v-slot:price>
-        <p class="price--red" v-if="trip.price_discount">{{ trip.price_gross }}</p>
-        <p class="price--black" v-if="trip.price_discount">{{ trip.price_discount }}</p>
-        <p class="price--black" v-if="!trip.price_discount">{{ trip.price_gross }}</p>
+        <div class="flex justify-end gap-4">
+          <p class="price--red" v-if="trip.price_discount">{{ trip.price_gross }}</p>
+          <p class="price--black" v-if="trip.price_discount">{{ trip.price_discount }} EGP</p>
+          <p class="price--black" v-if="!trip.price_discount">{{ trip.price_gross }} EGP</p>
+        </div>
+
         <p class="taxes">Includes taxes and fees</p>
       </template>
 
@@ -124,7 +127,7 @@ onMounted(() => {
 }
 
 .results__card--title {
-  @apply text-2xl font-medium tracking-wide sm:text-3xl;
+  @apply text-2xl font-semibold tracking-wide sm:text-3xl;
   color: #1a1a1a;
 }
 
@@ -151,23 +154,29 @@ onMounted(() => {
   color: #4f4f4f;
 }
 
-.results__card--item {
-  @apply text-xl leading-9 tracking-wide;
-  @media screen and (width<=40em) {
-    @apply flex flex-col;
-  }
-}
-
 .price--red {
-  @apply text-lg font-medium tracking-wide line-through text-right;
+  @apply text-lg font-semibold tracking-wide line-through text-right;
   color: #eb5757;
 }
 .price--black {
-  @apply text-2xl font-medium tracking-wide text-right;
+  @apply text-2xl font-semibold tracking-wide text-right;
   color: #333;
+}
+
+.taxes {
+  @apply row-start-2 col-span-full font-semibold justify-self-end;
 }
 
 .icon-2 {
   @apply w-[1.6rem] h-[1.6rem];
+}
+</style>
+
+<style>
+.results__card--item {
+  @apply text-xl leading-9  font-semibold tracking-wide;
+  @media screen and (width<=40em) {
+    @apply flex flex-col;
+  }
 }
 </style>

@@ -41,7 +41,10 @@ const customBudgetErr = ref({
           )
         "
       >
-        <span class="text-red-500 inline-block transform -translate-y-[0.5px] mr-1">x</span>
+        <span
+          class="text-red-500 inline-block transform -translate-y-[0.5px] mr-1 px-[0.25rem] border-solid border-[1.5px] border-red-300 rounded-md hover:border-red-600 transition-all duration-150"
+          >x</span
+        >
         Reset</span
       >
     </h3>
@@ -125,6 +128,7 @@ const customBudgetErr = ref({
 
 <style scoped>
 .filter__budget {
+  @apply shadow-md;
   border-radius: 6px;
   border: 1px solid var(--Gray-5, #e0e0e0);
   background: #fff;
@@ -137,7 +141,7 @@ const customBudgetErr = ref({
 }
 
 .filter__set {
-  @apply flex flex-col gap-3 justify-between px-4;
+  @apply flex flex-col gap-3 justify-between px-4 shadow-sm;
 }
 
 .budget__handler {

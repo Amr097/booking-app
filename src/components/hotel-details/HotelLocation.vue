@@ -31,10 +31,10 @@ const explore = [
 <style scoped>
 .location {
   @apply p-12 flex flex-col gap-10;
-}
 
-.map__frame {
-  width: 100%;
+  @media screen and (width<=46.875em) {
+    @apply px-0;
+  }
 }
 
 .explore {
@@ -65,9 +65,5 @@ const explore = [
   @apply text-lg leading-8 tracking-wide;
 
   color: #4f4f4f;
-}
-
-iframe {
-  border-radius: 6px;
 }
 </style>
