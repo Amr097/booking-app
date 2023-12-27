@@ -33,6 +33,11 @@
   background: var(--Blue-1, #2f80ed);
 }
 
+.logo__caption {
+  @apply text-5xl font-bold tracking-wide ml-1;
+  font-family: 'Caveat', cursive;
+}
+
 .room__details {
   @apply text-white text-2xl leading-9 tracking-wide font-medium;
 }

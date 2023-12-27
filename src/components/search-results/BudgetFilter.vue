@@ -42,7 +42,7 @@ const customBudgetErr = ref({
         "
       >
         <span
-          class="text-red-500 inline-block transform -translate-y-[0.5px] mr-1 px-[0.25rem] border-solid border-[1.5px] border-red-300 rounded-md hover:border-red-600 transition-all duration-150"
+          class="text-red-500 text-xl inline-block transform -translate-y-[0.5px] px-[0.05rem] mr-1 border-solid border-b-[1px] border-red-500 hover:border-red-600 transition-all duration-150"
           >x</span
         >
         Reset</span

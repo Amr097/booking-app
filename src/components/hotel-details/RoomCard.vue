@@ -13,7 +13,9 @@ const id = route.params.id
       <slot name="space"></slot>
       <slot name="sleep"></slot>
       <slot name="beds"></slot>
-      <router-link :to="`/checkout/${id}`" class="room__btn">Reserve suite</router-link>
+      <router-link :to="`/checkout/${id}`" class="room__btn"
+        >Reserve suite (To checkout page)</router-link
+      >
     </div>
   </div>
 </template>

@@ -14,7 +14,7 @@
           fill="white"
         />
       </svg>
-      <h4 class="title">Voyage en vue</h4>
+      <h4 class="title"><span class="v">V</span>oyage en <span class="v">v</span>ue</h4>
     </div>
     <figcaption class="coupon__caption">
       20% off <br />

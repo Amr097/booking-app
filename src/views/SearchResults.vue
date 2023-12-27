@@ -196,7 +196,7 @@ div.container-c {
 
 .un-filter {
   @apply absolute top-[50%] -translate-y-1/2 right-6 text-base font-medium text-gray-700 
-  cursor-pointer hover:text-gray-600 pb-[0.1rem] pt-[0.2rem] px-[0.5rem];
+  cursor-pointer hover:text-gray-600 px-[0.05rem];
 }
 
 .filter__body {

@@ -166,11 +166,6 @@ onMounted(() => {
   @apply w-9 h-9 transform translate-y-[0.7px];
 }
 
-.logo__caption {
-  @apply text-5xl font-bold tracking-wide ml-3;
-  font-family: 'Caveat', cursive;
-}
-
 .nav {
   display: flex;
 }

@@ -1,6 +1,9 @@
 <script setup>
 import AuthLogin from '../components/auth/AuthLogin.vue'
 import AuthRegister from '../components/auth/AuthRegister.vue'
+
+import TestAccount from '../components/partials/TestAccount.vue'
+
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
 
@@ -36,10 +39,13 @@ function updatePathRef(value) {
               fill="#2F80ED"
             />
           </svg>
-          <figcaption class="logo__caption">My Dream Place</figcaption>
+          <figcaption class="logo__caption text-[#2F80ED]">
+            <span class="v">V</span>oyage en <span class="v">v</span>ue
+          </figcaption>
         </figure></router-link
       >
     </nav>
+    <TestAccount />
     <!-- Auth Login -->
     <AuthLogin v-if="pathRef === login" @updatePathRef="updatePathRef" />
     <!-- Auth Register -->
@@ -61,9 +67,5 @@ function updatePathRef(value) {
 
 .logo__image {
   @apply w-9 h-9;
-}
-
-.logo__caption {
-  @apply text-gray-900 text-3xl font-medium tracking-wide;
 }
 </style>

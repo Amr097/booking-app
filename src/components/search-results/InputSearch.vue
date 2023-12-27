@@ -11,7 +11,7 @@ const { handleFilteration, clearSearch } = useFilterationStore()
     <h3 class="filter__title">
       Search by property name
       <span
-        class="un-filter border-solid border-[1px] border-gray-300 rounded-md hover:border-gray-500 transition-all duration-150"
+        class="un-filter border-solid border-b-[1px] border-gray-800 hover:border-gray-500 transition-all duration-150"
         @click.prevent="clearSearch(props.isLoading, props.errMessage, props.hotelsDataSnap)"
       >
         X</span
