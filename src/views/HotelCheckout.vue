@@ -209,19 +209,25 @@ onMounted(async () => {
 const onSubmit = () => {
   isLoading.value.value = true
   isLoading.value.errMessage = ''
+  console.log('onSubmit fired')
   onAuthStateChanged(auth, async (user) => {
+    console.log('onAuthStateChanged fired')
     if (user) {
+      console.log('user exists')
       const userTripsRef = await getDoc(doc(usersCollection, user.uid))
       if (userTripsRef.exists()) {
+        console.log('tripref exists')
         const userTrips = userTripsRef.data().trips
 
         const checkForTrip = userTrips.filter((trip) => {
           return hotel.value.data.id === trip.id
         })
         if (checkForTrip.length > 0) {
+          console.log('hotel found')
           isLoading.value.errMessage = 'You have already reserved this trip.'
         } else {
           try {
+            console.log('hotel not found')
             const date = {
               checkin: JSON.parse(localStorage.getItem('searchQuery')).checkInDate,
               checkout: JSON.parse(localStorage.getItem('searchQuery')).checkOutDate
@@ -229,6 +235,7 @@ const onSubmit = () => {
             const formattedDate = formatDate(date, 'checkout')
             hotel.value.data.date = formattedDate
             await updateDoc(doc(usersCollection, user.uid), { trips: arrayUnion(hotel.value.data) })
+            console.log('updated doc')
             formData.showModal = true
           } catch (err) {
             console.log(err)
@@ -238,6 +245,7 @@ const onSubmit = () => {
       }
     }
   })
+
   isLoading.value.value = false
 }
 </script>

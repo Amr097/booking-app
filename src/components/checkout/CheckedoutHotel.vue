@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 
 import { formatDate } from '/src/helper/dateFormat.js'
+import { subtractDates } from '/src/helper/subtractDates.js'
 
 const date = ref({ checkin: '', checkout: '' })
 
@@ -43,7 +44,9 @@ onMounted(() => {
       <p class="card__text text-[ #4F4F4F] flex flex-col sm:flex-row">
         Check out: <span>{{ date.checkout }}</span>
       </p>
-      <p class="card__text text-[ #4F4F4F] mt-1">2 night stay</p>
+      <p class="card__text text-[ #4F4F4F] mt-1">
+        {{ subtractDates(date.checkin, date.checkout) }} night stay
+      </p>
     </div>
   </figure>
 
