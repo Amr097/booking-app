@@ -1,8 +1,10 @@
 <script setup>
 import AppHeader from '../components/partials/Header.vue'
 import AppFooter from '../components/partials/Footer.vue'
+import ErrMessage from '../components/partials/ErrMessage.vue'
 
 import HomeCovid from '../components/reuseables/Covid.vue'
+import LoadingSpinner from '../components/reuseables/LoadingSpinner.vue'
 
 import HotelInfo from '../components/hotel-details/HotelInfo.vue'
 import HotelLocation from '../components/hotel-details/HotelLocation.vue'
@@ -35,7 +37,14 @@ const roomCard = [
 const hotel = ref({ data: {} })
 const meta = ref({ latitude: '', longidtude: '' })
 
+const isLoading = ref({ state: false })
+const errMessage = ref({
+  state: false,
+  value: '🤕 Failed to connect to the server please check your connection and try again'
+})
+
 onMounted(async () => {
+  isLoading.value.state = true
   const route = useRoute()
 
   const path = route.params.id
@@ -47,44 +56,60 @@ onMounted(async () => {
 
   if (prefix === 'hu') {
     const hotelRef = doc(db, 'hurghada', `hurghada-${page}`)
-    const hotelSnap = await getDoc(hotelRef)
-    if (hotelSnap.exists()) {
-      const hotels = hotelSnap.data().hotels
+    try {
+      const hotelSnap = await getDoc(hotelRef)
+      if (hotelSnap.exists()) {
+        const hotels = hotelSnap.data().hotels
 
-      const currentHotel = hotels.filter((hotel) => {
-        return hotel.id === id
-      })
-      hotel.value.data = currentHotel[0]
-      meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
-      meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
+        const currentHotel = hotels.filter((hotel) => {
+          return hotel.id === id
+        })
+        hotel.value.data = currentHotel[0]
+        meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
+        meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
+      }
+    } catch (error) {
+      console.log(error)
+      errMessage.value.state = true
     }
   } else if (prefix === 'ca') {
     const hotelRef = doc(db, 'cairo', `cairo-${page}`)
-    const hotelSnap = await getDoc(hotelRef)
-    if (hotelSnap.exists()) {
-      const hotels = hotelSnap.data().hotels
+    try {
+      const hotelSnap = await getDoc(hotelRef)
+      if (hotelSnap.exists()) {
+        const hotels = hotelSnap.data().hotels
 
-      const currentHotel = hotels.filter((hotel) => {
-        return hotel.id === id
-      })
-      hotel.value.data = currentHotel[0]
-      meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
-      meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
+        const currentHotel = hotels.filter((hotel) => {
+          return hotel.id === id
+        })
+        hotel.value.data = currentHotel[0]
+        meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
+        meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
+      }
+    } catch (error) {
+      console.log(error)
+      errMessage.value.state = true
     }
   } else if (prefix === 'sh') {
     const hotelRef = doc(db, 'sharm-alsheikh', `sharm-alsheikh-${page}`)
-    const hotelSnap = await getDoc(hotelRef)
-    if (hotelSnap.exists()) {
-      const hotels = hotelSnap.data().hotels
+    try {
+      const hotelSnap = await getDoc(hotelRef)
+      if (hotelSnap.exists()) {
+        const hotels = hotelSnap.data().hotels
 
-      const currentHotel = hotels.filter((hotel) => {
-        return hotel.id === id
-      })
-      hotel.value.data = currentHotel[0]
-      meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
-      meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
+        const currentHotel = hotels.filter((hotel) => {
+          return hotel.id === id
+        })
+        hotel.value.data = currentHotel[0]
+        meta.value.latitude = hotelSnap.data().meta.coordinates.latitude
+        meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
+      }
+    } catch (error) {
+      console.log(error)
+      errMessage.value.state = true
     }
   }
+  isLoading.value.state = false
 })
 </script>
 
@@ -92,7 +117,18 @@ onMounted(async () => {
   <div class="container-c">
     <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" :showNav="true" />
   </div>
-  <div class="container-grey">
+  <LoadingSpinner
+    v-if="isLoading.state"
+    :wrapper="'flex items-center gap-3 mx-auto mt-44 w-fit'"
+    :text="'text-5xl ml-2'"
+    :details="true"
+  />
+  <ErrMessage
+    v-if="errMessage.state && !isLoading.state"
+    :message="errMessage.value"
+    class="w-[90%] sm:w-[65%] text-4xl sm:text-5xl font-medium mx-auto text-center flex justify-center h-full leading-relaxed mt-44"
+  />
+  <div class="container-grey" v-if="!isLoading.state && !errMessage.state">
     <section class="hotel__images">
       <div class="container-c container-2">
         <img

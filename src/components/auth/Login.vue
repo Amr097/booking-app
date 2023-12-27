@@ -3,7 +3,7 @@ import showPassword from '../../helper/showPassword.js'
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import useUserStore from '../../store/User.js'
 import { auth, signInWithEmailAndPassword } from '/src/services/firebase.js'
 
@@ -39,7 +39,11 @@ export default {
     //handling submission
     const email = ref('')
     const password = ref('')
-    const message = ref('')
+
+    const message = reactive({
+      value: '',
+      type: ''
+    })
 
     const isSubmitting = ref(false)
     const router = useRouter()
@@ -54,13 +58,25 @@ export default {
           // ...
           isSubmitting.value = false
           userLogin()
-          router.push('/')
+          message.type = 'success'
+          message.value = 'Successfully registered, redirecting to login page.'
+          setTimeout(() => {
+            router.push('/')
+          }, 500)
         })
         .catch((error) => {
-          message.value = error.message
-          password.value = ''
+          const extractMsg = error.message.split('auth/')[1].split(')')[0]
+          const msgNoHypthens = extractMsg.replace(/-/g, ' ')
+
+          message.value = `${msgNoHypthens.charAt(0).toUpperCase()}${msgNoHypthens.slice(1)}`
+          //console.log(`${error.message.split('auth/')[1].split(')')[0]}`)
+          message.type = 'error'
           isSubmitting.value = false
+
+          // ..
         })
+
+      isSubmitting.value = false
     }
 
     return {
@@ -142,9 +158,25 @@ export default {
       >
     </p>
 
-    <div class="flex gap-4 items-center justify-center mt-12" v-if="message">
+    <div
+      class="flex gap-4 items-center justify-center mt-12"
+      v-if="message.value && message.type === 'error'"
+    >
       <img class="w-[2.4rem] h-[2.4rem]" src="/images/error.webp" alt="error icon" />
-      <p class="text-red-500 text-3xl text-center font-semibold">{{ message }}.</p>
+      <p class="text-red-500 text-3xl text-center font-semibold">{{ message.value }}.</p>
+    </div>
+
+    <div
+      class="flex gap-4 items-end justify-center mt-12"
+      v-if="message.value && message.type === 'success'"
+    >
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <p class="text-green-600 text-3xl text-center font-semibold">{{ message.value }} .</p>
     </div>
   </section>
 </template>

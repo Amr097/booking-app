@@ -15,7 +15,7 @@ import 'vue-tel-input/vue-tel-input.css'
 import { computed, reactive, onMounted, ref } from 'vue'
 
 import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore'
-import { db, usersCollection, auth, onAuthStateChanged } from '/src/services/firebase.js'
+import { db, auth, onAuthStateChanged } from '/src/services/firebase.js'
 import { useRoute } from 'vue-router'
 
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
@@ -44,12 +44,14 @@ const formData = reactive({
   isCardNumber: false,
   isSecCode: false,
   isZipCode: false,
+  isYear: false,
+  isMonth: false,
   showModal: false
 })
 
 const phoneNumber = ref('')
 
-const isLoading = ref({ value: false, errMessage: '' })
+const isLoading = reactive({ value: false, errMessage: '' })
 
 function validateName(value) {
   // if the field is empty
@@ -126,6 +128,28 @@ function validateCVC(value) {
   }
   // All is good
   formData.isSecCode = true
+  return true
+}
+
+function validateYear(value) {
+  // if the field is empty
+  if (!value) {
+    return 'This field is required'
+  }
+
+  // All is good
+  formData.isYear = true
+  return true
+}
+
+function validateMonth(value) {
+  // if the field is empty
+  if (!value) {
+    return 'This field is required'
+  }
+
+  // All is good
+  formData.isMonth = true
   return true
 }
 
@@ -207,29 +231,23 @@ onMounted(async () => {
 })
 
 const onSubmit = () => {
-  isLoading.value.value = true
-  isLoading.value.errMessage = ''
-  console.log('onSubmit fired')
+  isLoading.value = true
+  isLoading.errMessage = ''
+
   onAuthStateChanged(auth, async (user) => {
-    console.log('onAuthStateChanged fired')
     if (user) {
-      console.log('user exists')
       const userRef = doc(db, 'users', user.uid)
       const userTripsRef = await getDoc(userRef)
-      console.log({ usersCollection, id: user.uid, data: userTripsRef.data() })
-      if (userTripsRef) {
-        console.log('tripref exists')
-        const userTrips = userTripsRef.data().trips
 
+      if (userTripsRef.exists()) {
+        const userTrips = userTripsRef.data().trips
         const checkForTrip = userTrips.filter((trip) => {
           return hotel.value.data.id === trip.id
         })
         if (checkForTrip.length > 0) {
-          console.log('hotel found')
-          isLoading.value.errMessage = 'You have already reserved this trip.'
+          isLoading.errMessage = 'You have already reserved this trip.'
         } else {
           try {
-            console.log('hotel not found')
             const date = {
               checkin: JSON.parse(localStorage.getItem('searchQuery')).checkInDate,
               checkout: JSON.parse(localStorage.getItem('searchQuery')).checkOutDate
@@ -238,18 +256,16 @@ const onSubmit = () => {
             hotel.value.data.date = formattedDate
             const userRef = doc(db, 'users', user.uid)
             await updateDoc(userRef, { trips: arrayUnion(hotel.value.data) })
-            console.log('updated doc')
             formData.showModal = true
           } catch (err) {
-            console.log(err)
+            isLoading.value = false
             return err
           }
         }
       }
     }
+    isLoading.value = false
   })
-
-  isLoading.value.value = false
 }
 </script>
 
@@ -345,19 +361,40 @@ const onSubmit = () => {
             </template>
 
             <template v-slot:expireDate>
-              <select name="" id="" class="select" required v-model="formData.expireMonth">
-                <option value="">Select month</option>
-                <option :value="month" v-for="(month, index) in months" :key="index">
-                  {{ month }}
-                </option>
-              </select>
-
-              <select name="" id="" class="select" required v-model="formData.expireYear">
-                <option value="">Select year</option>
-                <option :value="year" v-for="(year, index) in yearOptions" :key="index">
-                  {{ year }}
-                </option>
-              </select>
+              <div>
+                <Field
+                  name="month"
+                  id="select-month"
+                  as="select"
+                  class="select"
+                  required
+                  v-model="formData.expireMonth"
+                  :rules="validateMonth"
+                >
+                  <option value="">Select month</option>
+                  <option :value="month" v-for="(month, index) in months" :key="index">
+                    {{ month }}
+                  </option>
+                </Field>
+                <ErrorMessage name="month" class="auth__err row-start-3 col-start-2" />
+              </div>
+              <div>
+                <Field
+                  name="year"
+                  id="select-year"
+                  as="select"
+                  class="select"
+                  required
+                  v-model="formData.expireYear"
+                  :rules="validateYear"
+                >
+                  <option value="">Select year</option>
+                  <option :value="year" v-for="(year, index) in yearOptions" :key="index">
+                    {{ year }}
+                  </option>
+                </Field>
+                <ErrorMessage name="year" class="auth__err row-start-3 col-start-2" />
+              </div>
 
               <img
                 src="/images/tick-circle.svg"
@@ -449,7 +486,7 @@ const onSubmit = () => {
 }
 
 .select {
-  @apply rounded-md outline-none py-5 px-3;
+  @apply rounded-md outline-none py-5 px-3 w-full;
 
   background: #f2f2f2;
 }
@@ -496,7 +533,7 @@ option {
   background: #f2f2f2;
 }
 
-button:disabled {
+.blue__btn:disabled {
   opacity: 0.5;
   cursor: default;
 }

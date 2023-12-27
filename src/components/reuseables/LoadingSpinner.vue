@@ -26,7 +26,8 @@
         }"
       ></div>
     </div>
-    <p :class="props.text">Loading search results</p>
+    <p :class="props.text" v-if="!props.details">Loading search results</p>
+    <p :class="props.text" v-if="props.details">Loading trip details</p>
     <div id="wave">
       <span class="dot"></span>
       <span class="dot"></span>
@@ -36,7 +37,7 @@
 </template>
 
 <script setup>
-const props = defineProps(['wrapper', 'text'])
+const props = defineProps(['wrapper', 'text', 'details'])
 </script>
 
 <style scoped>

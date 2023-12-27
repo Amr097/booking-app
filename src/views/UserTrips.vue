@@ -3,6 +3,10 @@ import AppHeader from '/src/components/partials/Header.vue'
 
 import TripCard from '/src/components/my-trips/TripCard.vue'
 
+import ErrMessage from '../components/partials/ErrMessage.vue'
+
+import LoadingSpinner from '../components/reuseables/LoadingSpinner.vue'
+
 import { subtractDates } from '/src/helper/subtractDates.js'
 
 import { doc, getDoc } from 'firebase/firestore'
@@ -13,7 +17,14 @@ import { onMounted, ref } from 'vue'
 const userTrips = ref({ data: [] })
 const id = ref('')
 
+const isLoading = ref({ state: false })
+const errMessage = ref({
+  state: false,
+  value: '🤕 Failed to connect to the server please check your connection and try again'
+})
+
 onMounted(() => {
+  isLoading.value.state = true
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       id.value = user.uid
@@ -25,9 +36,11 @@ onMounted(() => {
           userTrips.value.data = trips
         }
       } catch (error) {
-        console.log(error)
+        errMessage.value.state = true
+        isLoading.value.state = false
       }
     }
+    isLoading.value.state = false
   })
 })
 </script>
@@ -36,7 +49,18 @@ onMounted(() => {
   <div class="container-c">
     <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" :showNav="true" />
   </div>
-  <div class="trips__container container-grey">
+  <LoadingSpinner
+    v-if="isLoading.state"
+    :wrapper="'flex items-center gap-3 mx-auto mt-44 w-fit'"
+    :text="'text-5xl ml-2'"
+    :details="true"
+  />
+  <ErrMessage
+    v-if="errMessage.state && !isLoading.state"
+    :message="errMessage.value"
+    class="w-[90%] sm:w-[65%] text-4xl sm:text-5xl font-medium mx-auto text-center flex justify-center h-full leading-relaxed mt-44"
+  />
+  <div class="trips__container container-grey" v-if="!isLoading.state && !errMessage.state">
     <h1 class="trips__title">My trips</h1>
     <TripCard v-for="(trip, index) in userTrips.data" :key="index">
       <template v-slot:image>

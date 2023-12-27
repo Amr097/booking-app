@@ -1,8 +1,10 @@
 <script setup>
 import AppHeader from '../components/partials/Header.vue'
 import AppFooter from '../components/partials/Footer.vue'
+import ErrMessage from '../components/partials/ErrMessage.vue'
 
 import HomeCovid from '../components/reuseables/Covid.vue'
+import LoadingSpinner from '../components/reuseables/LoadingSpinner.vue'
 
 import HotelInfo from '../components/hotel-details/HotelInfo.vue'
 
@@ -14,7 +16,14 @@ import { usersCollection } from '/src/services/firebase.js'
 
 const trip = ref({ data: {} })
 
+const isLoading = ref({ state: false })
+const errMessage = ref({
+  state: false,
+  value: '🤕 Failed to connect to the server please check your connection and try again'
+})
+
 onMounted(async () => {
+  isLoading.value.state = true
   const route = useRoute()
 
   const path = route.params.id
@@ -23,15 +32,22 @@ onMounted(async () => {
   const tripId = splitPath[1]
 
   const tripRef = doc(usersCollection, userId)
-  const tripSnap = await getDoc(tripRef)
-  if (tripSnap.exists()) {
-    const trips = tripSnap.data().trips
+  try {
+    const tripSnap = await getDoc(tripRef)
+    if (tripSnap.exists()) {
+      const trips = tripSnap.data().trips
 
-    const currentTrip = trips.filter((trip) => {
-      return trip.id === tripId
-    })
-    trip.value.data = currentTrip[0]
+      const currentTrip = trips.filter((trip) => {
+        return trip.id === tripId
+      })
+      trip.value.data = currentTrip[0]
+    }
+  } catch (error) {
+    errMessage.value.state = true
+    isLoading.value.state = false
   }
+
+  isLoading.value.state = false
 })
 </script>
 
@@ -39,7 +55,18 @@ onMounted(async () => {
   <div class="container-c">
     <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" :showNav="true" />
   </div>
-  <div class="container-grey">
+  <LoadingSpinner
+    v-if="isLoading.state"
+    :wrapper="'flex items-center gap-3 mx-auto mt-44 w-fit'"
+    :text="'text-5xl ml-2'"
+    :details="true"
+  />
+  <ErrMessage
+    v-if="errMessage.state && !isLoading.state"
+    :message="errMessage.value"
+    class="w-[90%] sm:w-[65%] text-4xl sm:text-5xl font-medium mx-auto text-center flex justify-center h-full leading-relaxed mt-44"
+  />
+  <div class="container-grey" v-if="!isLoading.state && !errMessage.state">
     <section class="hotel__images">
       <div class="container-c container-2">
         <img

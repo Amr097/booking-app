@@ -22,7 +22,11 @@ onMounted(() => {
 
 <template>
   <figure class="card">
-    <img src="/images/details-3.webp" alt="" class="card__img" />
+    <img
+      :src="props.hotel.image ? props.hotel.image : '/images/fallback.webp'"
+      :alt="props.hotel.name"
+      class="card__img"
+    />
     <div class="p-6">
       <figcaption class="card__title">{{ props.hotel.name }}</figcaption>
       <div class="card__rating">

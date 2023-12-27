@@ -71,12 +71,11 @@ export default {
             message.value = error.message
             message.type = 'error'
             isSubmitting.value = false
-            console.log(error.message)
           }
 
           isSubmitting.value = false
           message.type = 'success'
-          message.value = 'Successfully registered, redirecting to login page. '
+          message.value = 'Successfully registered, redirecting to login page.'
           await signOut(auth)
           setTimeout(() => {
             context.emit('updatePathRef', 'login')
