@@ -1,13 +1,19 @@
 <script setup>
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
+
 import { useRouter } from 'vue-router'
-import { formatDate } from '../../helper/dateFormat.js'
+
 import { ref, reactive, onMounted, watch } from 'vue'
-import useUserStore from '/src/store/User.js'
+
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 import { validateInput } from '../../helper/SearchValidation.js'
+
+import { formatDate } from '../../helper/dateFormat.js'
 import { validateCheckin, validateCheckout } from '../../helper/dateValidation.js'
+
+import useHotelsStore from '/src/store/Hotels.js'
+import useUserStore from '/src/store/User.js'
 
 const resDestinationData = ref([
   { dest_id: '1', city_name: 'Cairo' },
@@ -79,8 +85,9 @@ const validateSelect = () => {
 const router = useRouter()
 
 const { isLogged } = useUserStore()
+const { fetchHotels } = useHotelsStore()
 
-const onSubmit = () => {
+const onSubmit = async () => {
   isLoading.value = true
   if (!isLogged.logged) {
     router.push('/auth/login')
@@ -100,6 +107,7 @@ const onSubmit = () => {
     } else if (!searchData.destinationValue) {
       destErr.state = true
       destErr.message = 'This field is required'
+      await fetchHotels()
       isLoading.value = false
 
       return
@@ -108,6 +116,7 @@ const onSubmit = () => {
     if (router.currentRoute.value.name === 'results') {
       localStorage.setItem('searchQuery', JSON.stringify(searchData))
       localStorage.setItem('currentPage', 1)
+      await fetchHotels()
       isLoading.value = false
     }
     localStorage.setItem('searchQuery', JSON.stringify(searchData))
