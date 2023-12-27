@@ -10,7 +10,7 @@
 
 <style scoped>
 .test {
-  @apply absolute right-48 top-24 border border-solid border-black rounded-md shadow-sm p-4;
+  @apply absolute right-5 top-5 border border-solid border-black rounded-md shadow-sm p-4;
 }
 
 .test h2 {

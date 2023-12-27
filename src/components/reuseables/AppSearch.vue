@@ -107,7 +107,6 @@ const onSubmit = async () => {
     } else if (!searchData.destinationValue) {
       destErr.state = true
       destErr.message = 'This field is required'
-      await fetchHotels()
       isLoading.value = false
 
       return

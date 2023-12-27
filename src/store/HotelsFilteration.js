@@ -33,13 +33,21 @@ export default defineStore('filteration', () => {
     const inputField = document.querySelector('#property-search')
     const hotelsList = hotelsDataSnap.data.hotels
 
-    isLoading.value = true
-    errMessage.state = false
-    errMessage.value = ''
-    inputField.value = ''
-    queryData.search = null
+    if (inputField.value) {
+      isLoading.value = true
+      errMessage.state = false
+      errMessage.value = ''
+      inputField.value = ''
+      queryData.search = null
 
-    hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+      hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+      if (hotelsSnap.value.data.length === 0) {
+        errMessage.state = true
+        errMessage.value = '🔎  0 results found for your search'
+      }
+    } else {
+      return
+    }
 
     setTimeout(() => {
       isLoading.value = false

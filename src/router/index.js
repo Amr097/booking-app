@@ -77,6 +77,7 @@ function onRouteChange(to) {
 
 router.beforeEach(async (to, from, next) => {
   onRouteChange(to, from, next)
+  window.scrollTo(0, 0)
   const { isLogged } = useUserStore()
 
   if (to.meta.authPath) {
