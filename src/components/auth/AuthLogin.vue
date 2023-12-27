@@ -49,7 +49,7 @@ function onSubmit() {
       isSubmitting.value = false
       userLogin()
       message.type = 'success'
-      message.value = 'Successfully registered, redirecting to login page.'
+      message.value = 'Successfully Logged in, redirecting to home page.'
       setTimeout(() => {
         router.push('/')
       }, 500)
