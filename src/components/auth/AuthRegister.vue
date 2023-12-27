@@ -1,10 +1,10 @@
-<script>
+<script setup>
 import showPassword from '../../helper/showPassword.js'
 import { validateEmail, validatePassword } from '../../helper/RegValidation.js'
 
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 import { useRouter } from 'vue-router'
-import { ref, reactive } from 'vue'
+import { ref, reactive, defineEmits } from 'vue'
 
 import {
   auth,
@@ -14,102 +14,78 @@ import {
 } from '/src/services/firebase.js'
 import { doc, setDoc } from 'firebase/firestore'
 
-export default {
-  name: 'AuthRegister',
-  components: {
-    veeForm,
-    Field,
-    ErrorMessage
-  },
+const emits = defineEmits(['updatePathRef'])
+// Update route state for toggle forms
+function updatePathRef() {
+  emits('updatePathRef', 'login')
+}
 
-  setup(props, context) {
-    // Update route state for toggle forms
-    function updatePathRef() {
-      context.emit('updatePathRef', 'login')
-    }
+const email = ref('')
+const password = ref('')
+const confirmPassword = ref('')
 
-    const email = ref('')
-    const password = ref('')
-    const confirmPassword = ref('')
-
-    function validateConfirmPassword(value) {
-      // if the field is empty
-      if (!value) {
-        return 'This field is required'
-      }
-      // if password does not match
-      if (password.value !== confirmPassword.value) {
-        return 'Password does not match'
-      }
-
-      // All is good
-      return true
-    }
-
-    //handling submission
-
-    const isSubmitting = ref(false)
-    const router = useRouter()
-
-    const message = reactive({
-      value: '',
-      type: ''
-    })
-
-    function onSubmit() {
-      isSubmitting.value = true
-      createUserWithEmailAndPassword(auth, email.value, password.value)
-        .then(async (res) => {
-          // Signed up
-          const id = res.user.auth.currentUser.uid
-
-          try {
-            await setDoc(doc(usersCollection, id), {
-              trips: []
-            })
-          } catch (error) {
-            message.value = error.message
-            message.type = 'error'
-            isSubmitting.value = false
-          }
-
-          isSubmitting.value = false
-          message.type = 'success'
-          message.value = 'Successfully registered, redirecting to login page.'
-          await signOut(auth)
-          setTimeout(() => {
-            context.emit('updatePathRef', 'login')
-            router.push('/auth/login')
-          }, 500)
-          // ...
-        })
-        .catch((error) => {
-          const extractMsg = error.message.split('auth/')[1].split(')')[0]
-          const msgNoHypthens = extractMsg.replace(/-/g, ' ')
-
-          message.value = `${msgNoHypthens.charAt(0).toUpperCase()}${msgNoHypthens.slice(1)}`
-          //console.log(`${error.message.split('auth/')[1].split(')')[0]}`)
-          message.type = 'error'
-          isSubmitting.value = false
-
-          // ..
-        })
-    }
-
-    return {
-      updatePathRef,
-      validateEmail,
-      validatePassword,
-      password,
-      confirmPassword,
-      validateConfirmPassword,
-      showPassword,
-      onSubmit,
-      isSubmitting,
-      email,
-      message
-    }
+function validateConfirmPassword(value) {
+  // if the field is empty
+  if (!value) {
+    return 'This field is required'
   }
+  // if password does not match
+  if (password.value !== confirmPassword.value) {
+    return 'Password does not match'
+  }
+
+  // All is good
+  return true
+}
+
+//handling submission
+
+const isSubmitting = ref(false)
+const router = useRouter()
+
+const message = reactive({
+  value: '',
+  type: ''
+})
+
+function onSubmit() {
+  isSubmitting.value = true
+  createUserWithEmailAndPassword(auth, email.value, password.value)
+    .then(async (res) => {
+      // Signed up
+      const id = res.user.auth.currentUser.uid
+
+      try {
+        await setDoc(doc(usersCollection, id), {
+          trips: []
+        })
+      } catch (error) {
+        message.value = error.message
+        message.type = 'error'
+        isSubmitting.value = false
+      }
+
+      isSubmitting.value = false
+      message.type = 'success'
+      message.value = 'Successfully registered, redirecting to login page.'
+      await signOut(auth)
+      setTimeout(() => {
+        emits('updatePathRef', 'login')
+        router.push('/auth/login')
+      }, 500)
+      // ...
+    })
+    .catch((error) => {
+      const extractMsg = error.message.split('auth/')[1].split(')')[0]
+      const msgNoHypthens = extractMsg.replace(/-/g, ' ')
+
+      message.value = `${msgNoHypthens.charAt(0).toUpperCase()}${msgNoHypthens.slice(1)}`
+      //console.log(`${error.message.split('auth/')[1].split(')')[0]}`)
+      message.type = 'error'
+      isSubmitting.value = false
+
+      // ..
+    })
 }
 </script>
 
@@ -139,6 +115,7 @@ export default {
           class="auth__input"
           id="registerPassword"
           :rules="validatePassword"
+          autoComplete="true"
         ></Field>
         <ErrorMessage name="Password" class="auth__err" />
         <svg
@@ -174,6 +151,7 @@ export default {
           type="password"
           class="auth__input"
           :rules="validateConfirmPassword"
+          autoComplete="true"
         />
         <svg
           class="show-icon"

@@ -1,9 +1,13 @@
+<script setup>
+const props = defineProps(['title', 'description', 'galleryData'])
+</script>
+
 <template>
   <section class="gallery">
-    <h2 class="gallery__title">{{ title }}</h2>
-    <p class="gallery__desc">{{ description }}</p>
+    <h2 class="gallery__title">{{ props.title }}</h2>
+    <p class="gallery__desc">{{ props.description }}</p>
     <div class="gallery__figures">
-      <figure class="gallery__item" v-for="(item, index) in galleryData" :key="index">
+      <figure class="gallery__item" v-for="(item, index) in props.galleryData" :key="index">
         <img
           :src="item.image"
           alt="item.name"
@@ -18,17 +22,6 @@
     </div>
   </section>
 </template>
-
-<script>
-export default {
-  name: 'HomeGallery',
-  props: {
-    title: String,
-    description: String,
-    galleryData: Array
-  }
-}
-</script>
 
 <style scoped>
 .gallery {

@@ -1,74 +1,85 @@
-<script>
+<script setup>
 import { ref } from 'vue'
 
-export default {
-  name: 'HotelCard',
-  props: {
-    hotel: Object
-  },
+const props = defineProps(['hotel'])
 
-  setup() {
-    const discount = (hotel) => {
-      if (hotel.price_gross && hotel.price_discount) {
-        return 100 - Math.ceil((hotel.price_discount * 100) / hotel.price_gross)
-      } else {
-        return false
-      }
-    }
-
-    const queryPrefix = ref('')
-    const currentPage = ref('')
-
-    const searchQuery = localStorage.getItem('searchQuery')
-    const page = localStorage.getItem('currentPage')
-    if (searchQuery) queryPrefix.value = JSON.parse(searchQuery).destinationValue.slice(0, 2)
-    if (page) currentPage.value = page
-
-    return { discount, queryPrefix, page }
+const discount = (hotel) => {
+  if (hotel.price_gross && hotel.price_discount) {
+    return 100 - Math.ceil((hotel.price_discount * 100) / hotel.price_gross)
+  } else {
+    return false
   }
 }
+
+const queryPrefix = ref('')
+const currentPage = ref('')
+
+const searchQuery = localStorage.getItem('searchQuery')
+const page = localStorage.getItem('currentPage')
+if (searchQuery) queryPrefix.value = JSON.parse(searchQuery).destinationValue.slice(0, 2)
+if (page) currentPage.value = page
 </script>
 
 <template>
   <div class="results__card">
     <img
-      :src="hotel.image ? hotel.image : '/images/fallback.webp'"
-      :alt="hotel.name + 'image'"
+      :src="props.hotel.image ? props.hotel.image : '/images/fallback.webp'"
+      :alt="props.hotel.name + 'image'"
       class="result__card--img"
     />
     <div class="results__card--info">
-      <h3 class="results__card--title" :title="hotel.name">
-        {{ hotel.name.length > 55 ? hotel.name.slice(0, 55) + '...' : hotel.name }}
+      <h3 class="results__card--title" :title="props.hotel.name">
+        {{
+          props.hotel.name.length > 55 ? props.hotel.name.slice(0, 55) + '...' : props.hotel.name
+        }}
       </h3>
       <div class="results__card--stars">
         <img
           class="icon-2"
           src="/images/star-s-fill 5.svg"
           alt="star icon"
-          v-for="(int, index) in Math.ceil(hotel.rating)"
+          v-for="(int, index) in Math.ceil(props.hotel.rating)"
           :key="index"
         />
 
-        <p class="results__card--review">{{ hotel.rating }} ({{ hotel.reviews }} reviews)</p>
+        <p class="results__card--review">
+          {{ props.hotel.rating }} ({{ props.hotel.reviews }} reviews)
+        </p>
       </div>
       <article class="results__card--desc">
-        {{ hotel.desc.length <= 170 ? hotel.desc : hotel.desc.slice(0, 170) + '...' }}
+        {{
+          props.hotel.desc.length <= 170 ? props.hotel.desc : props.hotel.desc.slice(0, 170) + '...'
+        }}
       </article>
-      <router-link :to="`/hotel/${hotel.id}*${queryPrefix}$${page}`" class="blue__btn card-btn"
+      <router-link
+        :to="`/hotel/${props.hotel.id}*${queryPrefix}$${page}`"
+        class="blue__btn card-btn"
         >See availbility</router-link
       >
     </div>
 
     <div class="results__card--prices">
-      <p class="discount--ad" v-if="hotel.offer" :style="{ backgroundColor: hotel.offer.color }">
-        {{ hotel.offer.title >= 60 ? hotel.offer.title.slice(0, 60) + '...' : hotel.offer.title }}
+      <p
+        class="discount--ad"
+        v-if="props.hotel.offer"
+        :style="{ backgroundColor: props.hotel.offer.color }"
+      >
+        {{
+          props.hotel.offer.title >= 60
+            ? props.hotel.offer.title.slice(0, 60) + '...'
+            : props.hotel.offer.title
+        }}
       </p>
 
       <div class="price">
-        <p class="discount--percent" v-if="hotel.price_discount">-{{ discount(hotel) }}% off</p>
-        <p class="price--red" v-if="hotel.price_discount">{{ hotel.price_gross }}</p>
-        <p class="price--black" v-if="hotel.price_discount">{{ hotel.price_discount }} EGP</p>
-        <p class="price--black" v-else>{{ hotel.price_gross }} EGP</p>
+        <p class="discount--percent" v-if="props.hotel.price_discount">
+          -{{ discount(props.hotel) }}% off
+        </p>
+        <p class="price--red" v-if="props.hotel.price_discount">{{ props.hotel.price_gross }}</p>
+        <p class="price--black" v-if="props.hotel.price_discount">
+          {{ props.hotel.price_discount }} EGP
+        </p>
+        <p class="price--black" v-else>{{ props.hotel.price_gross }} EGP</p>
         <p class="taxes">Includes taxes and fees</p>
       </div>
     </div>

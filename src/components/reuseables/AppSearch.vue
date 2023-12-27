@@ -1,4 +1,4 @@
-<script>
+<script setup>
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import { useRouter } from 'vue-router'
@@ -8,136 +8,110 @@ import useUserStore from '/src/store/User.js'
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 import { validateInput } from '../../helper/SearchValidation.js'
 import { validateCheckin, validateCheckout } from '../../helper/dateValidation.js'
-//import useHotelsStore from '/src/store/Hotels.js'
 
-export default {
-  name: 'AppSearch',
-  components: { VueDatePicker, veeForm, Field, ErrorMessage },
-  setup() {
-    const resDestinationData = ref([
-      { dest_id: '1', city_name: 'Cairo' },
-      { dest_id: '2', city_name: 'Hurghada' },
-      { dest_id: '3', city_name: 'Sharm-Alsheikh' }
-    ])
+const resDestinationData = ref([
+  { dest_id: '1', city_name: 'Cairo' },
+  { dest_id: '2', city_name: 'Hurghada' },
+  { dest_id: '3', city_name: 'Sharm-Alsheikh' }
+])
 
-    const isLoading = ref(false)
+const isLoading = ref(false)
 
-    const searchData = reactive({
-      checkInDate: '',
-      checkOutDate: '',
-      guestsValue: '',
-      roomsValue: '',
-      destinationValue: ''
-    })
+const searchData = reactive({
+  checkInDate: '',
+  checkOutDate: '',
+  guestsValue: '',
+  roomsValue: '',
+  destinationValue: ''
+})
 
-    const datpickerErr = reactive({
-      state: false,
-      message: ''
-    })
+const datpickerErr = reactive({
+  state: false,
+  message: ''
+})
 
-    const destErr = reactive({
-      state: false,
-      message: ''
-    })
+const destErr = reactive({
+  state: false,
+  message: ''
+})
 
-    // fetch hotel destinations and check for search query in local storage
-    onMounted(() => {
-      const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+// fetch hotel destinations and check for search query in local storage
+onMounted(() => {
+  const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
 
-      if (searchQuery) {
-        searchData.checkInDate = searchQuery.checkInDate
-        searchData.checkOutDate = searchQuery.checkOutDate
-        searchData.guestsValue = searchQuery.guestsValue
-        searchData.roomsValue = searchQuery.roomsValue
-        searchData.destinationValue = searchQuery.destinationValue
-      }
-    })
+  if (searchQuery) {
+    searchData.checkInDate = searchQuery.checkInDate
+    searchData.checkOutDate = searchQuery.checkOutDate
+    searchData.guestsValue = searchQuery.guestsValue
+    searchData.roomsValue = searchQuery.roomsValue
+    searchData.destinationValue = searchQuery.destinationValue
+  }
+})
 
-    // Watch for Datepicker value changes
+// Watch for Datepicker value changes
 
-    watch(
-      () => [searchData.checkInDate, searchData.checkOutDate],
-      ([newCheckIn, newCheckOut], [oldCheckIn, oldCheckOut]) => {
-        if (!newCheckIn && oldCheckIn && datpickerErr.checkinErr) {
-          datpickerErr.state = false
-          datpickerErr.message = ''
-          return
-        }
-        if (!newCheckOut && oldCheckOut && datpickerErr.checkoutErr) {
-          datpickerErr.state = false
-          datpickerErr.message = ''
-          return
-        }
-      },
-      { deep: true }
-    )
+watch(
+  () => [searchData.checkInDate, searchData.checkOutDate],
+  ([newCheckIn, newCheckOut], [oldCheckIn, oldCheckOut]) => {
+    if (!newCheckIn && oldCheckIn && datpickerErr.checkinErr) {
+      datpickerErr.state = false
+      datpickerErr.message = ''
+      return
+    }
+    if (!newCheckOut && oldCheckOut && datpickerErr.checkoutErr) {
+      datpickerErr.state = false
+      datpickerErr.message = ''
+      return
+    }
+  },
+  { deep: true }
+)
 
-    //Validating Select
+//Validating Select
 
-    const validateSelect = () => {
-      if (destErr.state) {
-        destErr.state = false
-        destErr.message = ''
-      }
+const validateSelect = () => {
+  if (destErr.state) {
+    destErr.state = false
+    destErr.message = ''
+  }
+}
+
+const router = useRouter()
+
+const { isLogged } = useUserStore()
+
+const onSubmit = () => {
+  isLoading.value = true
+  if (!isLogged.logged) {
+    router.push('/auth/login')
+  } else {
+    if (!(searchData.checkInDate && searchData.checkOutDate)) {
+      datpickerErr.state = true
+      datpickerErr.message = 'both fields are required'
+
+      isLoading.value = false
+
+      return
+    } else if (
+      !(validateCheckin(searchData, datpickerErr) && validateCheckout(searchData, datpickerErr))
+    ) {
+      isLoading.value = false
+      return
+    } else if (!searchData.destinationValue) {
+      destErr.state = true
+      destErr.message = 'This field is required'
+      isLoading.value = false
+
+      return
     }
 
-    //On Submit
-
-    const router = useRouter()
-
-    const { isLogged } = useUserStore()
-
-    // const { fetchHotels } = useHotelsStore()
-
-    const onSubmit = () => {
-      isLoading.value = true
-      if (!isLogged.logged) {
-        router.push('/auth/login')
-      } else {
-        if (!(searchData.checkInDate && searchData.checkOutDate)) {
-          datpickerErr.state = true
-          datpickerErr.message = 'both fields are required'
-
-          isLoading.value = false
-
-          return
-        } else if (
-          !(validateCheckin(searchData, datpickerErr) && validateCheckout(searchData, datpickerErr))
-        ) {
-          isLoading.value = false
-          return
-        } else if (!searchData.destinationValue) {
-          destErr.state = true
-          destErr.message = 'This field is required'
-          isLoading.value = false
-
-          return
-        }
-
-        if (router.currentRoute.value.name === 'results') {
-          localStorage.setItem('searchQuery', JSON.stringify(searchData))
-          localStorage.setItem('currentPage', 1)
-          //fetchHotels()
-          isLoading.value = false
-        }
-        localStorage.setItem('searchQuery', JSON.stringify(searchData))
-        router.push({ name: 'results' })
-      }
+    if (router.currentRoute.value.name === 'results') {
+      localStorage.setItem('searchQuery', JSON.stringify(searchData))
+      localStorage.setItem('currentPage', 1)
+      isLoading.value = false
     }
-
-    return {
-      onSubmit,
-      resDestinationData,
-      searchData,
-      isLoading,
-      formatDate,
-      validateInput,
-      validateCheckin,
-      validateCheckout,
-      datpickerErr,
-      destErr,
-      validateSelect
-    }
+    localStorage.setItem('searchQuery', JSON.stringify(searchData))
+    router.push({ name: 'results' })
   }
 }
 </script>

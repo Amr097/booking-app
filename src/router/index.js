@@ -2,11 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import useUserStore from '../store/User.js'
 
 const routes = [
-  { name: 'home', path: '/', component: () => import('../views/Home.vue') },
+  { name: 'home', path: '/', component: () => import('../views/AppHome.vue') },
   {
     name: 'auth',
     path: '/auth/:path',
-    component: () => import('../auth/Auth.vue'),
+    component: () => import('../auth/AppAuth.vue'),
     meta: {
       authPath: true
     }

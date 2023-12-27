@@ -1,96 +1,70 @@
-<script>
+<script setup>
 import showPassword from '../../helper/showPassword.js'
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
-import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
-import { ref, reactive } from 'vue'
+import { ref, reactive, defineEmits } from 'vue'
 import useUserStore from '../../store/User.js'
 import { auth, signInWithEmailAndPassword } from '/src/services/firebase.js'
 
-export default {
-  name: 'AuthLogin',
-  components: {
-    veeForm,
-    Field,
-    ErrorMessage
-  },
+const emits = defineEmits(['updatePathRef'])
 
-  setup(props, context) {
-    const { values } = useForm()
+function updatePathRef() {
+  emits('updatePathRef', 'register')
+}
 
-    function updatePathRef() {
-      context.emit('updatePathRef', 'register')
-    }
-
-    function validateEmail(value) {
-      // if the field is empty
-      if (!value) {
-        return 'This field is required'
-      }
-      // if the field is not a valid email
-      const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-      if (!regex.test(value)) {
-        return 'This field must be a valid email'
-      }
-      // All is good
-      return true
-    }
-
-    //handling submission
-    const email = ref('')
-    const password = ref('')
-
-    const message = reactive({
-      value: '',
-      type: ''
-    })
-
-    const isSubmitting = ref(false)
-    const router = useRouter()
-    const { userLogin } = useUserStore()
-
-    function onSubmit() {
-      isSubmitting.value = true
-
-      signInWithEmailAndPassword(auth, email.value, password.value)
-        .then(() => {
-          // Signed in
-          // ...
-          isSubmitting.value = false
-          userLogin()
-          message.type = 'success'
-          message.value = 'Successfully registered, redirecting to login page.'
-          setTimeout(() => {
-            router.push('/')
-          }, 500)
-        })
-        .catch((error) => {
-          const extractMsg = error.message.split('auth/')[1].split(')')[0]
-          const msgNoHypthens = extractMsg.replace(/-/g, ' ')
-
-          message.value = `${msgNoHypthens.charAt(0).toUpperCase()}${msgNoHypthens.slice(1)}`
-          //console.log(`${error.message.split('auth/')[1].split(')')[0]}`)
-          message.type = 'error'
-          isSubmitting.value = false
-
-          // ..
-        })
-
-      isSubmitting.value = false
-    }
-
-    return {
-      updatePathRef,
-      onSubmit,
-      values,
-      validateEmail,
-      showPassword,
-      isSubmitting,
-      message,
-      email,
-      password
-    }
+function validateEmail(value) {
+  // if the field is empty
+  if (!value) {
+    return 'This field is required'
   }
+  // if the field is not a valid email
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  if (!regex.test(value)) {
+    return 'This field must be a valid email'
+  }
+  // All is good
+  return true
+}
+
+//handling submission
+const email = ref('')
+const password = ref('')
+
+const message = reactive({
+  value: '',
+  type: ''
+})
+
+const isSubmitting = ref(false)
+const router = useRouter()
+const { userLogin } = useUserStore()
+
+function onSubmit() {
+  isSubmitting.value = true
+
+  signInWithEmailAndPassword(auth, email.value, password.value)
+    .then(() => {
+      // Signed in
+      // ...
+      isSubmitting.value = false
+      userLogin()
+      message.type = 'success'
+      message.value = 'Successfully registered, redirecting to login page.'
+      setTimeout(() => {
+        router.push('/')
+      }, 500)
+    })
+    .catch((error) => {
+      const extractMsg = error.message.split('auth/')[1].split(')')[0]
+      const msgNoHypthens = extractMsg.replace(/-/g, ' ')
+
+      message.value = `${msgNoHypthens.charAt(0).toUpperCase()}${msgNoHypthens.slice(1)}`
+      //console.log(`${error.message.split('auth/')[1].split(')')[0]}`)
+      message.type = 'error'
+      isSubmitting.value = false
+
+      // ..
+    })
 }
 </script>
 
@@ -119,6 +93,7 @@ export default {
           type="password"
           class="auth__input"
           id="loginPassword"
+          autoComplete="true"
         />
         <svg
           class="show-icon"

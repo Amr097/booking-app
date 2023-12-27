@@ -31,11 +31,7 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'HomeCovid'
-}
-</script>
+<script setup></script>
 
 <style scoped>
 .covid-alert {

@@ -1,7 +1,7 @@
 <script setup>
-import AppHeader from '/src/components/partials/Header.vue'
+import AppHeader from '/src/components/partials/AppHeader.vue'
 
-import HomeCovid from '/src/components/reuseables/Covid.vue'
+import HomeCovid from '/src/components/reuseables/AppCovid.vue'
 
 import ClientCard from '/src/components/checkout/ClientCard.vue'
 import PaymentCard from '/src/components/checkout/PaymentCard.vue'

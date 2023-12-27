@@ -1,6 +1,6 @@
 <template>
   <section class="download">
-    <img class="download__image" src="/images/phone.webp" alt="" />
+    <img class="download__image" src="/images/phone.webp" alt="phone" />
     <div class="download__ad">
       <h1 class="download__title">
         Download the mobile application for bonus coupons and travel codes
@@ -10,11 +10,7 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'HomeDownload'
-}
-</script>
+<script setup></script>
 
 <style scoped>
 .download {

@@ -1,13 +1,13 @@
-<script>
+<script setup>
 import { onMounted, watch, ref } from 'vue'
 
-import AppHeader from '../components/partials/Header.vue'
-import AppFooter from '../components/partials/Footer.vue'
+import AppHeader from '../components/partials/AppHeader.vue'
+import AppFooter from '../components/partials/AppFooter.vue'
 import ErrMessage from '../components/partials/ErrMessage.vue'
 
-import AppSearch from '../components/reuseables/Search.vue'
+import AppSearch from '../components/reuseables/AppSearch.vue'
 import LoadingSpinner from '../components/reuseables/LoadingSpinner.vue'
-import HomeCovid from '../components/reuseables/Covid.vue'
+import HomeCovid from '../components/reuseables/AppCovid.vue'
 
 import HotelCard from '../components/search-results/HotelCard.vue'
 import SearchPagination from '../components/search-results/Pagination.vue'
@@ -19,56 +19,25 @@ import SortResults from '../components/search-results/SortResults.vue'
 import useHotelsStore from '/src/store/Hotels.js'
 import useFilterationStore from '/src/store/HotelsFilteration.js'
 
-export default {
-  name: 'AppSearchResults',
-  components: {
-    AppHeader,
-    AppSearch,
-    AppFooter,
-    HomeCovid,
-    HotelCard,
-    SearchPagination,
-    LoadingSpinner,
-    ErrMessage,
-    InputSearch,
-    BudgetFilter,
-    RatingFilter,
-    SortResults
+const { hotelsData, fetchHotels, isLoading, errMessage } = useHotelsStore()
+const { hotelsSnap } = useFilterationStore()
+
+const hotelsDataSnap = ref({ data: {} })
+
+watch(
+  [hotelsData, hotelsDataSnap],
+  ([newHotelsData], [newHotelsDataSnap]) => {
+    if (newHotelsData) hotelsDataSnap.value.data = newHotelsData.data
+    if (newHotelsDataSnap) hotelsSnap.data = newHotelsDataSnap.data.hotels
   },
+  { deep: true }
+)
 
-  setup() {
-    const { hotelsData, fetchHotels, isLoading, errMessage } = useHotelsStore()
-    const { handleFilteration, hotelsSnap, handleBudgetFilteration, clearSearch } =
-      useFilterationStore()
-
-    const hotelsDataSnap = ref({ data: {} })
-
-    watch(
-      [hotelsData, hotelsDataSnap],
-      ([newHotelsData], [newHotelsDataSnap]) => {
-        if (newHotelsData) hotelsDataSnap.value.data = newHotelsData.data
-        if (newHotelsDataSnap) hotelsSnap.data = newHotelsDataSnap.data.hotels
-      },
-      { deep: true }
-    )
-
-    onMounted(async () => {
-      await fetchHotels()
-      hotelsDataSnap.value.data = hotelsData.data
-      hotelsSnap.data = hotelsDataSnap.value.data.hotels
-    })
-
-    return {
-      hotelsDataSnap,
-      hotelsSnap,
-      isLoading,
-      errMessage,
-      handleFilteration,
-      handleBudgetFilteration,
-      clearSearch
-    }
-  }
-}
+onMounted(async () => {
+  await fetchHotels()
+  hotelsDataSnap.value.data = hotelsData.data
+  hotelsSnap.data = hotelsDataSnap.value.data.hotels
+})
 </script>
 
 <template>

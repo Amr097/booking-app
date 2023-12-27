@@ -9,12 +9,8 @@
   </section>
 </template>
 
-<script>
-import AppSearch from '../reuseables/Search.vue'
-export default {
-  name: 'AppHero',
-  components: { AppSearch }
-}
+<script setup>
+import AppSearch from '../reuseables/AppSearch.vue'
 </script>
 
 <style scoped>

@@ -1,3 +1,12 @@
+<script setup>
+import useUserStore from '../../store/User.js'
+
+const { firstLogin } = useUserStore()
+const toggleModal = () => {
+  firstLogin.modal = false
+}
+</script>
+
 <template>
   <div class="modal">
     <div class="modal__card">
@@ -15,23 +24,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import useUserStore from '../../store/User.js'
-
-export default {
-  name: 'AppModal',
-
-  setup() {
-    const { firstLogin } = useUserStore()
-    const toggleModal = () => {
-      firstLogin.modal = false
-    }
-
-    return { toggleModal }
-  }
-}
-</script>
 
 <style scoped>
 .modal {

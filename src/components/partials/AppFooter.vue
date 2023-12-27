@@ -1,3 +1,23 @@
+<script setup>
+const companyItems = ['About', 'Jobs', 'Newsroom ', 'Advertising', 'Contact us']
+const termsItems = ['Privacy Policy', 'Terms of use', 'Acessibility', 'Reward system policy']
+const exploreItems = [
+  'Australia',
+  'New Zealand',
+  'United States Of America (USA)',
+  'Greece',
+  'Maldives',
+  'Singapore'
+]
+const helpItems = [
+  'Support',
+  'Cancel your bookings',
+  'Use Coupon',
+  'Refund Policies',
+  'International Travel Documents'
+]
+</script>
+
 <template>
   <footer class="footer">
     <h1 class="footer__title">Explore the world with My Dream Place</h1>
@@ -52,36 +72,6 @@
   </footer>
 </template>
 
-<script>
-export default {
-  name: 'AppFooter',
-  props: { color: Object },
-  setup() {
-    const companyItems = ['About', 'Jobs', 'Newsroom ', 'Advertising', 'Contact us']
-    const termsItems = ['Privacy Policy', 'Terms of use', 'Acessibility', 'Reward system policy']
-    const exploreItems = [
-      'Australia',
-      'New Zealand',
-      'United States Of America (USA)',
-      'Greece',
-      'Maldives',
-      'Singapore'
-    ]
-    const helpItems = [
-      'Support',
-      'Cancel your bookings',
-      'Use Coupon',
-      'Refund Policies',
-      'International Travel Documents'
-    ]
-    const date = new Date()
-    const currentYear = date.getFullYear()
-
-    return { companyItems, exploreItems, termsItems, helpItems, currentYear }
-  }
-}
-</script>
-
 <style scoped>
 .footer {
   @apply pt-36 px-8 relative bg-white;
@@ -90,9 +80,6 @@ export default {
   justify-items: center;
   margin-bottom: 2.5rem;
   z-index: -1;
-
-  /* grid-template-rows: min-content min-content repeat(auto-fit, minmax(8rem, 1fr)); */
-  /* grid-row-gap: 3rem; */
 }
 
 .logo {

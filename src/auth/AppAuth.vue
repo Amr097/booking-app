@@ -1,3 +1,22 @@
+<script setup>
+import AuthLogin from '../components/auth/AuthLogin.vue'
+import AuthRegister from '../components/auth/AuthRegister.vue'
+import { useRoute } from 'vue-router'
+import { ref } from 'vue'
+
+const login = 'login'
+const register = 'register'
+const pathRef = ref(null)
+const route = useRoute()
+const path = route.params.path
+
+pathRef.value = path
+
+function updatePathRef(value) {
+  pathRef.value = value
+}
+</script>
+
 <template>
   <div class="auth">
     <!-- Auth Header -->
@@ -27,36 +46,6 @@
     <AuthRegister v-if="pathRef === register" @updatePathRef="updatePathRef" />
   </div>
 </template>
-
-<script>
-import AuthLogin from '../components/auth/Login.vue'
-import AuthRegister from '../components/auth/Register.vue'
-import { useRoute } from 'vue-router'
-import { ref } from 'vue'
-
-export default {
-  name: 'AppAuth',
-  components: {
-    AuthLogin,
-    AuthRegister
-  },
-  setup() {
-    const login = 'login'
-    const register = 'register'
-    const pathRef = ref(null)
-    const route = useRoute()
-    const path = route.params.path
-
-    pathRef.value = path
-
-    function updatePathRef(value) {
-      pathRef.value = value
-    }
-
-    return { login, register, pathRef, updatePathRef }
-  }
-}
-</script>
 
 <style scoped>
 .auth {

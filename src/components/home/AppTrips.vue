@@ -1,10 +1,14 @@
+<script setup>
+const props = defineProps(['tripsData'])
+</script>
+
 <template>
   <section class="trips">
     <h2 class="trips__title">Get inspiration for your next trip</h2>
     <div class="trips__list">
       <figure
         class="trips__figure"
-        v-for="(item, index) in tripsData"
+        v-for="(item, index) in props.tripsData"
         :key="index"
         :style="{ backgroundImage: item.bg }"
       >
@@ -14,13 +18,6 @@
     </div>
   </section>
 </template>
-
-<script>
-export default {
-  name: 'HomeTrips',
-  props: { tripsData: Array }
-}
-</script>
 
 <style scoped>
 .trips {

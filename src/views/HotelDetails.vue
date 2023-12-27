@@ -1,9 +1,9 @@
 <script setup>
-import AppHeader from '../components/partials/Header.vue'
-import AppFooter from '../components/partials/Footer.vue'
+import AppHeader from '../components/partials/AppHeader.vue'
+import AppFooter from '../components/partials/AppFooter.vue'
 import ErrMessage from '../components/partials/ErrMessage.vue'
 
-import HomeCovid from '../components/reuseables/Covid.vue'
+import HomeCovid from '../components/reuseables/AppCovid.vue'
 import LoadingSpinner from '../components/reuseables/LoadingSpinner.vue'
 
 import HotelInfo from '../components/hotel-details/HotelInfo.vue'

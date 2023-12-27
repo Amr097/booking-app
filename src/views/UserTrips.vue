@@ -1,5 +1,5 @@
 <script setup>
-import AppHeader from '/src/components/partials/Header.vue'
+import AppHeader from '/src/components/partials/AppHeader.vue'
 
 import TripCard from '/src/components/my-trips/TripCard.vue'
 
