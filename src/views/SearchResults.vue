@@ -105,7 +105,7 @@ onMounted(async () => {
 
         <!--Pagination -->
         <SearchPagination
-          v-if="!isLoading.value"
+          v-if="!isLoading.value && !errMessage.state"
           :propertiesNumber="
             Object.keys(hotelsDataSnap.data).length > 0 ? hotelsDataSnap.data.properties_number : 0
           "

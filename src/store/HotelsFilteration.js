@@ -243,6 +243,7 @@ export default defineStore('filteration', () => {
     clearRating,
     handleToggleBudget,
     handleRatingFilteration,
-    sortResults
+    sortResults,
+    queryData
   }
 })
