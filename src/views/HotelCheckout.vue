@@ -216,8 +216,8 @@ const onSubmit = () => {
       console.log('user exists')
       const userRef = doc(db, 'users', user.uid)
       const userTripsRef = await getDoc(userRef)
-      console.log({ usersCollection, id: user.uid, userTripsRef })
-      if (userTripsRef.exists()) {
+      console.log({ usersCollection, id: user.uid, data: userTripsRef.data() })
+      if (userTripsRef) {
         console.log('tripref exists')
         const userTrips = userTripsRef.data().trips
 
