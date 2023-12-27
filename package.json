@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@vuepic/vue-datepicker": "^7.2.2",
-    "axios": "^1.6.2",
     "firebase": "^10.7.1",
     "pinia": "^2.1.7",
     "vee-validate": "^4.11.8",
