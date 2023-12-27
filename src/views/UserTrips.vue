@@ -87,8 +87,12 @@ onMounted(() => {
       </template>
 
       <template v-slot:date>
-        <li class="results__card--item text-[#4F4F4F]">Check in: {{ trip.date.checkin }}</li>
-        <li class="results__card--item text-[#4F4F4F]">Check out: {{ trip.date.checkout }}</li>
+        <li class="results__card--item text-[#4F4F4F]">
+          Check in: <span>{{ trip.date.checkin }}</span>
+        </li>
+        <li class="results__card--item text-[#4F4F4F]">
+          Check out: <span>{{ trip.date.checkout }}</span>
+        </li>
         <li class="results__card--item text-[#4F4F4F]">
           {{ subtractDates(trip.date.checkin, trip.date.checkout) }} night stay
         </li>
@@ -112,7 +116,7 @@ onMounted(() => {
 
 <style scoped>
 .trips__container {
-  @apply bg-[#F4F4F4] w-full h-[1440px] px-72 py-24;
+  @apply bg-[#F4F4F4] w-full h-[100dvh] px-10 lg:px-72 py-24;
 }
 
 .trips__title {
@@ -120,24 +124,38 @@ onMounted(() => {
 }
 
 .results__card--title {
-  @apply text-3xl font-medium tracking-wide;
+  @apply text-2xl font-medium tracking-wide sm:text-3xl;
   color: #1a1a1a;
 }
 
 .result__card--img {
   @apply rounded-md;
   width: 28.5rem;
-  height: 20rem;
+  height: 100%;
   object-fit: cover;
+
+  @media screen and (width<=35em) {
+    width: 20.5rem;
+  }
+  @media screen and (width<=30em) {
+    width: 15.5rem;
+  }
+
+  @media screen and (width<=28.5em) {
+    display: none;
+  }
 }
 
 .results__card--review {
-  @apply text-lg leading-10;
+  @apply text-lg leading-10 ml-3;
   color: #4f4f4f;
 }
 
 .results__card--item {
   @apply text-xl leading-9 tracking-wide;
+  @media screen and (width<=40em) {
+    @apply flex flex-col;
+  }
 }
 
 .price--red {
@@ -147,5 +165,9 @@ onMounted(() => {
 .price--black {
   @apply text-2xl font-medium tracking-wide text-right;
   color: #333;
+}
+
+.icon-2 {
+  @apply w-[1.6rem] h-[1.6rem];
 }
 </style>

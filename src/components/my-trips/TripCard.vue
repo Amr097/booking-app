@@ -32,6 +32,9 @@
 
   grid-template-columns: max-content 1fr 1fr;
   border: 1px solid #e0e0e0;
+  @media screen and (width<=28.5em) {
+    @apply grid-cols-2;
+  }
 }
 
 .results__card--info {
