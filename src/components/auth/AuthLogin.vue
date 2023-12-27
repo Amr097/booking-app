@@ -26,6 +26,17 @@ function validateEmail(value) {
   return true
 }
 
+function validatePassword(value) {
+  // if the field is empty
+  if (!value) {
+    return 'This field is required'
+  }
+  const spacesRegex = /^\S*$/
+  if (!spacesRegex.test(value)) return 'Cannot contain white spaces'
+  // All is good
+  return true
+}
+
 //handling submission
 const email = ref('')
 const password = ref('')
@@ -94,7 +105,9 @@ function onSubmit() {
           class="auth__input"
           id="loginPassword"
           autoComplete="true"
+          :rules="validatePassword"
         />
+        <ErrorMessage name="Password" class="auth__err" />
         <svg
           class="show-icon"
           fill="none"
