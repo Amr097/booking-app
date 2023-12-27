@@ -214,7 +214,8 @@ const onSubmit = () => {
     console.log('onAuthStateChanged fired')
     if (user) {
       console.log('user exists')
-      const userTripsRef = await getDoc(doc(usersCollection, user.uid))
+      const userRef = doc(db, 'users', user.uid)
+      const userTripsRef = await getDoc(userRef)
       console.log({ usersCollection, id: user.uid, userTripsRef })
       if (userTripsRef.exists()) {
         console.log('tripref exists')
@@ -235,7 +236,8 @@ const onSubmit = () => {
             }
             const formattedDate = formatDate(date, 'checkout')
             hotel.value.data.date = formattedDate
-            await updateDoc(doc(usersCollection, user.uid), { trips: arrayUnion(hotel.value.data) })
+            const userRef = doc(db, 'users', user.uid)
+            await updateDoc(userRef, { trips: arrayUnion(hotel.value.data) })
             console.log('updated doc')
             formData.showModal = true
           } catch (err) {
