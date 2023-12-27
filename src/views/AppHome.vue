@@ -94,7 +94,7 @@ const tripsData = [
 <template>
   <AppModal v-if="firstLogin.modal" />
   <div class="container-c home">
-    <AppHeader :logoColor="'#2F80ED'" :textColor="'#333'" :bellColor="'#828282'" :showNav="true" />
+    <AppHeader :logoColor="'#2F80ED'" :bellColor="'#828282'" :showNav="true" />
     <AppHero />
     <div class="mt-48 relative -z-10 sm:mt-40"><HomeCovid /></div>
 

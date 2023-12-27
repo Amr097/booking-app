@@ -68,8 +68,8 @@ onMounted(() => {
             :fill="props.logoColor"
           />
         </svg>
-        <figcaption :style="{ color: props.textColor }" class="logo__caption">
-          My Dream Place
+        <figcaption :style="{ color: props.logoColor }" class="logo__caption">
+          Voyage en vue
         </figcaption></router-link
       >
     </figure>
@@ -163,11 +163,12 @@ onMounted(() => {
 }
 
 .logo__image {
-  @apply w-9 h-9;
+  @apply w-11 h-11;
 }
 
 .logo__caption {
-  @apply text-gray-900 text-3xl font-medium tracking-wide;
+  @apply text-5xl font-bold tracking-wide ml-3;
+  font-family: 'Parisienne', cursive !important;
 }
 
 .nav {
