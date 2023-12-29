@@ -73,6 +73,9 @@ function onRouteChange(to, from) {
   if (to.name === 'home' && from.meta.requiresAuth) {
     localStorage.removeItem('searchQuery')
   }
+  if (from.name === 'results') {
+    localStorage.removeItem('currentPage')
+  }
 }
 
 router.beforeEach(async (to, from, next) => {
