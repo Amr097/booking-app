@@ -112,7 +112,7 @@ export default defineStore('filteration', () => {
           isLoading.value = true
           errMessage.state = false
           errMessage.value = ''
-          hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+          // hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
 
           if (hotelsSnap.value.data.length === 0) {
             errMessage.state = true
@@ -127,6 +127,7 @@ export default defineStore('filteration', () => {
         //
         customBudget.min_budget = ''
         customBudget.max_budget = ''
+        queryData.budget = null
         errMessage.state = false
         errMessage.value = ''
         customBudgetErr.max_display = 'none'
