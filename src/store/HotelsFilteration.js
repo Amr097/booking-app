@@ -55,7 +55,6 @@ export default defineStore('filteration', () => {
   }
 
   //budget filteration
-
   const handleBudgetFilteration = (
     budget,
     hotelsDataSnap,
@@ -64,7 +63,7 @@ export default defineStore('filteration', () => {
     customBudgetErr
   ) => {
     const { max_budget, min_budget } = budget
-    queryData.budget = budget
+    queryData.budget = { ...budget }
 
     if (max_budget === '' || min_budget === '') {
       max_budget === '' ? (customBudgetErr.max_display = 'block') : null
@@ -102,50 +101,73 @@ export default defineStore('filteration', () => {
     toggleBudget,
     customBudget
   ) => {
-    const hotelsList = hotelsDataSnap.data.hotels
-    queryData.budget = null
-    const radioBtns = document.querySelectorAll('.ranges__check')
+    // check if  budget query data exist
+    if (queryData.budget.max_budget && queryData.budget.min_budget) {
+      const hotelsList = hotelsDataSnap.data.hotels
+      const radioBtns = document.querySelectorAll('.ranges__check')
+      //check if data are filtered by radio btn
+      radioBtns.forEach((btn) => {
+        if (btn.checked === true) {
+          btn.checked = false
+          isLoading.value = true
+          errMessage.state = false
+          errMessage.value = ''
+          hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
 
-    //
-    radioBtns.forEach((btn) => {
-      if (btn.checked === true) {
-        btn.checked = false
-        isLoading.value = true
+          if (hotelsSnap.value.data.length === 0) {
+            errMessage.state = true
+            errMessage.value = '🔎  0 results found for your search'
+          }
+
+          return
+        }
+      })
+
+      //check if data are filtered by custom budget
+
+      if (toggleBudget.state === true) {
+        //
+        customBudget.min_budget = ''
+        customBudget.max_budget = ''
         errMessage.state = false
         errMessage.value = ''
+        customBudgetErr.max_display = 'none'
+        customBudgetErr.min_display = 'none'
+
+        //
+        isLoading.value = true
         hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
 
         if (hotelsSnap.value.data.length === 0) {
           errMessage.state = true
           errMessage.value = '🔎  0 results found for your search'
         }
-
-        return
       }
-    })
 
-    if (toggleBudget.state === true) {
-      //
-      customBudget.min_budget = ''
-      customBudget.max_budget = ''
-      errMessage.state = false
-      errMessage.value = ''
-      customBudgetErr.max_display = 'none'
-      customBudgetErr.min_display = 'none'
+      console.log(queryData.budget)
 
-      //
-      isLoading.value = true
-      hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+      //check if query exists but neither toggle switch is on of radio btn checked
+      if (queryData.budget.max_budget && queryData.budget.min_budget) {
+        //reset refernce
+        queryData.budget = null
 
-      if (hotelsSnap.value.data.length === 0) {
-        errMessage.state = true
-        errMessage.value = '🔎  0 results found for your search'
+        //
+        isLoading.value = true
+        hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
+
+        if (hotelsSnap.value.data.length === 0) {
+          errMessage.state = true
+          errMessage.value = '🔎  0 results found for your search'
+        }
       }
+
+      //reset budget refernce
+      queryData.budget = null
+
+      setTimeout(() => {
+        isLoading.value = false
+      }, 50)
     }
-
-    setTimeout(() => {
-      isLoading.value = false
-    }, 50)
   }
 
   //toggle budget
@@ -158,7 +180,7 @@ export default defineStore('filteration', () => {
         queryData.budget = null
       }
     })
-
+    console.log(queryData.budget, 3)
     if (toggleBudget.state === true) {
       customBudget.min_budget = ''
       customBudget.max_budget = ''
