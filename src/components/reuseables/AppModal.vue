@@ -15,7 +15,10 @@ const toggleModal = () => {
         <img class="frame-1" src="/images/Frame.svg" alt="Boy image" />
       </div>
       <div class="modal__content">
-        <h1 class="modal__title">Welcome to My Dream Place</h1>
+        <h1 class="modal__title">
+          Welcome to <span class="v">V</span> oyage en
+          <span class="v" :style="{ marginRight: '0.4rem' }">v</span>ue
+        </h1>
         <p class="modal__desc">
           You can now enjoy your travel experience with easy access to resources and more
         </p>

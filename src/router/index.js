@@ -69,8 +69,8 @@ const router = createRouter({
 })
 
 // clear local storage on route change from search/results to '/'
-function onRouteChange(to) {
-  if (to.name === 'home') {
+function onRouteChange(to, from) {
+  if (to.name === 'home' && from.meta.requiresAuth) {
     localStorage.removeItem('searchQuery')
   }
 }

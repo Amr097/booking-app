@@ -53,7 +53,7 @@
 }
 
 .v {
-  @apply text-[#42b883];
+  @apply text-[#42b883] text-[3.5rem];
   text-shadow: 1.2px 1.2px 1.2px #35495e;
   font-family: 'Caveat', cursive;
 }

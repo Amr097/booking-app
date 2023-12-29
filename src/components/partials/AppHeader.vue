@@ -69,7 +69,8 @@ onMounted(() => {
           />
         </svg>
         <figcaption :style="{ color: props.logoColor }" class="logo__caption">
-          <span class="v">V</span>oyage en <span class="v">v</span>ue
+          <span class="v">V</span>oyage en
+          <span class="v" :style="{ marginRight: '0.15rem' }">v</span>ue
         </figcaption></router-link
       >
     </figure>

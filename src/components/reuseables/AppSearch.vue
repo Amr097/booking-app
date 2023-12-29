@@ -87,6 +87,8 @@ const router = useRouter()
 const { isLogged } = useUserStore()
 const { fetchHotels } = useHotelsStore()
 
+//Submission
+
 const onSubmit = async () => {
   isLoading.value = true
   if (!isLogged.logged) {
@@ -118,9 +120,11 @@ const onSubmit = async () => {
       await fetchHotels()
       isLoading.value = false
     }
-    localStorage.setItem('searchQuery', JSON.stringify(searchData))
+
     router.push({ name: 'results' })
   }
+
+  localStorage.setItem('searchQuery', JSON.stringify(searchData))
 }
 </script>
 
