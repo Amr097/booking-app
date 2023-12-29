@@ -102,7 +102,7 @@ export default defineStore('filteration', () => {
     customBudget
   ) => {
     // check if  budget query data exist
-    if (queryData.budget.max_budget && queryData.budget.min_budget) {
+    if (queryData.budget && queryData.budget.max_budget >= 0 && queryData.budget.min_budget >= 0) {
       const hotelsList = hotelsDataSnap.data.hotels
       const radioBtns = document.querySelectorAll('.ranges__check')
       //check if data are filtered by radio btn
@@ -118,14 +118,12 @@ export default defineStore('filteration', () => {
             errMessage.state = true
             errMessage.value = '🔎  0 results found for your search'
           }
-
-          return
         }
       })
 
       //check if data are filtered by custom budget
 
-      if (toggleBudget.state === true) {
+      if (toggleBudget.state) {
         //
         customBudget.min_budget = ''
         customBudget.max_budget = ''
@@ -145,10 +143,11 @@ export default defineStore('filteration', () => {
       }
 
       //check if query exists but neither toggle switch is on of radio btn checked
-      if (queryData.budget.max_budget && queryData.budget.min_budget) {
+      if (!toggleBudget.state) {
         //reset refernce
         queryData.budget = null
-
+        errMessage.state = false
+        errMessage.value = ''
         //
         isLoading.value = true
         hotelsSnap.value.data = filterBySearchQuery(hotelsList, queryData)
