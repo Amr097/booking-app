@@ -9,13 +9,9 @@ import LoadingSpinner from '../components/reuseables/LoadingSpinner.vue'
 
 import { subtractDates } from '/src/helper/subtractDates.js'
 
-import { doc, getDoc } from 'firebase/firestore'
-import { usersCollection, auth, onAuthStateChanged } from '/src/services/firebase.js'
+import useUserStore from '../store/User.js'
 
 import { onMounted, ref } from 'vue'
-
-const userTrips = ref({ data: [] })
-const id = ref('')
 
 const isLoading = ref({ state: false })
 const errMessage = ref({
@@ -23,25 +19,10 @@ const errMessage = ref({
   value: '🤕 Failed to connect to the server please check your connection and try again'
 })
 
-onMounted(() => {
-  isLoading.value.state = true
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      id.value = user.uid
-      try {
-        const fetchUserRef = await getDoc(doc(usersCollection, user.uid))
+const { userId, userTrips, fetchUserTrips } = useUserStore()
 
-        if (fetchUserRef.exists()) {
-          const trips = fetchUserRef.data().trips
-          userTrips.value.data = trips
-        }
-      } catch (error) {
-        errMessage.value.state = true
-        isLoading.value.state = false
-      }
-    }
-    isLoading.value.state = false
-  })
+onMounted(() => {
+  fetchUserTrips(isLoading, errMessage)
 })
 </script>
 
@@ -60,9 +41,12 @@ onMounted(() => {
     :message="errMessage.value"
     class="w-[90%] sm:w-[65%] text-4xl sm:text-5xl font-medium mx-auto text-center flex justify-center h-full leading-relaxed mt-44"
   />
-  <div class="trips__container container-grey" v-if="!isLoading.state && !errMessage.state">
+  <div
+    class="trips__container container-grey"
+    v-if="!isLoading.state && !errMessage.state && userTrips.data.length > 0"
+  >
     <h1 class="trips__title">My trips</h1>
-    <TripCard v-for="(trip, index) in userTrips.data" :key="index">
+    <TripCard v-for="(trip, index) in userTrips.data" :key="index" :id="trip.id" :index="index">
       <template v-slot:image>
         <img
           :src="trip && trip.image ? trip.image : '/images/fallback.webp'"
@@ -109,7 +93,7 @@ onMounted(() => {
       </template>
 
       <template v-slot:btn>
-        <router-link :to="`/trip/${id}&${trip.id}`" class="blue__btn mt-5 col-span-full"
+        <router-link :to="`/trip/${userId.value}&${trip.id}`" class="blue__btn mt-5 col-span-full"
           >View trip details</router-link
         >
       </template>
@@ -119,7 +103,7 @@ onMounted(() => {
 
 <style scoped>
 .trips__container {
-  @apply bg-[#F4F4F4] w-full h-[100dvh] px-10 lg:px-72 py-24;
+  @apply bg-[#F4F4F4] w-full h-[100vh] px-10 lg:px-72 py-24;
 }
 
 .trips__title {

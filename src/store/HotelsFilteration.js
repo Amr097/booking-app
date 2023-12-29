@@ -144,8 +144,6 @@ export default defineStore('filteration', () => {
         }
       }
 
-      console.log(queryData.budget)
-
       //check if query exists but neither toggle switch is on of radio btn checked
       if (queryData.budget.max_budget && queryData.budget.min_budget) {
         //reset refernce
