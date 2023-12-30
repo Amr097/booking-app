@@ -28,9 +28,9 @@
 ## 👨🏻‍💻 About The Project
 
 <p align="center">
-  <button><a href="https://my-dream-place.netlify.app/https://my-dream-place.netlify.app/"><img alt="Demo" src="https://amr-blogging-app.s3.eu-central-1.amazonaws.com/demo.png" target="_blank"></img></a></button>
+  <button><a href="https://my-dream-place.netlify.app/"><img alt="Demo" src="https://amr-blogging-app.s3.eu-central-1.amazonaws.com/demo.png" target="_blank"></img></a></button>
     
- Voayges en vue is my graduation project for [Algoriza](https://www.linkedin.com/company/algoriza/) Internship/Mentorship program, It represents a Hotels Booking Web Application that enables users to search for available properties in their desired destinations, access comprehensive property information, complete reservations, and conveniently view their checked-out bookings.
+ Voayge en vue is my graduation project for [Algoriza](https://www.linkedin.com/company/algoriza/) Internship/Mentorship program, It represents a Hotels Booking Web Application that enables users to search for available properties in their desired destinations, access comprehensive property information, complete reservations, and conveniently view their checked-out bookings.
 
 Built using Vue, styled with Tailwind/custom CSS and Integrated with Firebase for Database and Authentication. [Design link](https://www.figma.com/file/BQHVuw93nxwUFEnNuyPDdd/Untitled?mode=dev).
 
