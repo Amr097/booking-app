@@ -130,7 +130,7 @@ const onSubmit = async () => {
 
 <template>
   <veeForm class="form" action="POST" @submit="onSubmit">
-    <div class="form__input">
+    <div class="form__input select-query">
       <img src="/images/location 1.svg" alt="icon" class="icon" />
 
       <select
@@ -153,62 +153,63 @@ const onSubmit = async () => {
       <span v-show="destErr.state" class="cone-up"></span>
     </div>
 
-    <div class="form__date">
-      <p class="date-text">{{ searchData.checkInDate ? '' : 'Check in date' }}</p>
-      <VueDatePicker
-        v-model="searchData.checkInDate"
-        :enable-time-picker="false"
-        :format="formatDate"
-        auto-apply
-        model-type="yyyy-MM-dd"
-        @blur="validateCheckin(searchData, datpickerErr)"
-      />
-      <span v-show="datpickerErr.state" class="auth__err top date">{{ datpickerErr.message }}</span>
-      <span v-show="datpickerErr.state" class="cone-down date"></span>
-    </div>
-    <div class="form__date">
-      <p class="date-text" :style="!searchData.checkInDate ? { color: '#a8a29e' } : ''">
-        {{ searchData.checkOutDate ? '' : 'Check out date' }}
-      </p>
-
-      <VueDatePicker
-        v-model="searchData.checkOutDate"
-        :disabled="!searchData.checkInDate"
-        :enable-time-picker="false"
-        :format="formatDate"
-        auto-apply
-        model-type="yyyy-MM-dd"
-        required
-        @blur="validateCheckout(searchData, datpickerErr)"
-      />
-    </div>
-
-    <div class="form__input">
-      <img src="/images/user.svg" alt="icon" class="icon" />
-      <Field
-        name="guests"
-        class="input outline-none"
-        type="text"
-        placeholder="Guests"
-        v-model="searchData.guestsValue"
-        :rules="validateInput"
-      />
-      <ErrorMessage name="guests" class="auth__err bot" />
-      <ErrorMessage name="guests"><span class="cone-up cone-down"></span></ErrorMessage>
+    <div class="date-container">
+      <div class="form__date">
+        <VueDatePicker
+          v-model="searchData.checkInDate"
+          placeholder="Check in date"
+          :enable-time-picker="false"
+          :format="formatDate"
+          auto-apply
+          model-type="yyyy-MM-dd"
+          @blur="validateCheckin(searchData, datpickerErr)"
+        />
+      </div>
+      <div class="form__date">
+        <VueDatePicker
+          v-model="searchData.checkOutDate"
+          :disabled="!searchData.checkInDate"
+          :enable-time-picker="false"
+          :format="formatDate"
+          placeholder="Check in date"
+          auto-apply
+          model-type="yyyy-MM-dd"
+          required
+          @blur="validateCheckout(searchData, datpickerErr)"
+        />
+      </div>
+      <span v-show="datpickerErr.state" class="auth__err top">{{ datpickerErr.message }}</span>
+      <span v-show="datpickerErr.state" class="cone-down"></span>
     </div>
 
-    <div class="form__input">
-      <img src="/images/room.svg" alt="icon" class="icon" />
-      <Field
-        name="rooms"
-        class="input outline-none"
-        type="text"
-        placeholder="Rooms"
-        v-model="searchData.roomsValue"
-        :rules="validateInput"
-      />
-      <ErrorMessage name="rooms" class="auth__err top" />
-      <ErrorMessage name="rooms"><span class="cone-down"></span></ErrorMessage>
+    <div class="input-container">
+      <div class="form__input gap-2">
+        <img src="/images/user.svg" alt="icon" class="icon" />
+        <Field
+          name="guests"
+          class="input outline-none"
+          type="text"
+          placeholder="Guests"
+          v-model="searchData.guestsValue"
+          :rules="validateInput"
+        />
+        <ErrorMessage name="guests" class="auth__err bot" />
+        <ErrorMessage name="guests"><span class="cone-up cone-down"></span></ErrorMessage>
+      </div>
+
+      <div class="form__input gap-2">
+        <img src="/images/room.svg" alt="icon" class="icon" />
+        <Field
+          name="rooms"
+          class="input outline-none"
+          type="text"
+          placeholder="Rooms"
+          v-model="searchData.roomsValue"
+          :rules="validateInput"
+        />
+        <ErrorMessage name="rooms" class="auth__err bot" />
+        <ErrorMessage name="rooms"><span class="cone-up"></span></ErrorMessage>
+      </div>
     </div>
 
     <button type="submit" :disabled="isLoading" class="form__btn">Search</button>
@@ -219,24 +220,38 @@ const onSubmit = async () => {
 @import '/src/styles/containers/search.css';
 
 .form {
-  @apply flex justify-between px-3 py-4 self-center gap-3 lg:gap-6 bg-white rounded-lg shadow-xl absolute -bottom-14 sm:p-6  md:w-[87%] w-[97%];
+  @apply grid gap-4  px-3 py-4 self-center bg-white rounded-lg shadow-xl absolute -bottom-14 sm:p-6  md:w-[87%] w-[97%];
+  grid-template-columns: 22% 2fr 2fr 1fr;
   right: 50%;
   transform: translateX(50%);
+  @media screen and (width<=43.8125em) {
+    grid-template-columns: 1.25fr 2fr 0.75fr;
+  }
 }
 
 .form__input {
-  @apply flex justify-around items-center border border-solid border-transparent flex-1 transition-colors duration-75 hover:border-gray-300;
+  @apply flex  justify-around items-center border border-solid border-transparent flex-1 transition-colors duration-75 hover:border-gray-300;
 
   background-color: #f2f2f2;
 }
 
-.form__input:not(:first-child) {
-  @apply gap-4;
+.input-container {
+  @apply flex gap-4;
+
+  @media screen and (width<=43.8125em) {
+    @apply row-start-2 row-span-1 col-start-2 col-span-1;
+  }
 }
 
 .form__input,
 .form__select {
   @apply p-2.5 rounded-md relative;
+}
+
+.select-query {
+  @media screen and (width<=43.8125em) {
+    @apply row-start-1 row-span-2 self-center py-4;
+  }
 }
 
 .input::placeholder,
@@ -250,18 +265,27 @@ const onSubmit = async () => {
 
 select,
 input {
-  @apply w-full;
+  @apply w-full py-[0.2rem];
 }
 
 .icon {
   @apply translate-x-2;
   width: 2.4rem;
   height: 2.4rem;
+
+  @media screen and (width<=36.8125em) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 
 .form__btn {
   @apply rounded-md bg-blue-500 text-white text-2xl
   font-medium leading-8 tracking-tight flex justify-center items-center transition-colors ease-in-out hover:bg-blue-600 py-2 sm:px-[3.5rem] md:px-[5rem] lg:px-28;
+
+  @media screen and (width<=43.8125em) {
+    @apply row-start-1 row-span-2 col-start-3 self-center py-6;
+  }
 }
 
 .form__btn::disabled {
@@ -269,25 +293,22 @@ input {
 }
 
 .form__date {
-  @apply relative rounded-md;
+  @apply relative rounded-md flex items-center border border-solid border-transparent hover:border-[#D1D5DB];
 
   background-color: #f2f2f2;
 }
 
-.date-text {
-  @apply absolute top-1/2 transform -translate-y-1/2 text-xl font-normal tracking-tighter;
-
-  left: 4.3rem;
-  color: #4f4f4f;
+.auth__err {
+  @apply absolute bg-[#f2f2f2] px-5 py-3 rounded-md border-solid border-gray-300;
 }
 
-.auth__err {
-  @apply absolute bg-[#f2f2f2e3] px-5 py-3 rounded-md border-solid border-gray-300;
+.date-container {
+  @apply flex gap-4 relative;
 }
 
 .top,
 .bot {
-  @apply left-1/2 -translate-x-1/2 rounded-xl -top-24 px-[1rem] py-[1.2rem] sm:px-[1.7rem] sm:py-[1.3rem] sm:-top-[6.5rem] shadow-sm;
+  @apply -left-1/2 translate-x-1/2 rounded-xl -top-24 px-[1rem] py-[1.2rem] sm:px-[1.7rem] sm:py-[1.3rem] sm:-top-[6.5rem] shadow-sm;
 
   width: max-content;
 }
@@ -296,24 +317,24 @@ input {
   @apply top-[6rem] !important;
 }
 
-.auth__err.top.date {
-  @apply left-[4rem] sm:left-[15rem];
-}
-
-.cone-down.date {
-  @apply left-[3rem] sm:left-[13.5rem];
+.auth__err,
+.cone-up,
+.cone-down {
+  @apply left-[50%] -translate-x-1/2;
 }
 
 .cone-up,
 .cone-down {
-  @apply sm:left-[5.5rem];
   position: absolute;
   width: 0;
   height: 0;
-  top: -1.5rem;
   border-left: 1.5rem solid transparent;
   border-right: 1.5rem solid transparent;
-  border-top: 1.5rem solid #f2f2f2e3;
+  border-top: 1.5rem solid #f2f2f2;
+}
+
+.cone-down {
+  @apply -top-[1.5rem];
 }
 
 .cone-up {
@@ -322,7 +343,7 @@ input {
   top: 5.5rem !important;
   border-left: 1.5rem solid transparent !important;
   border-right: 1.5rem solid transparent !important;
-  border-bottom: 1.5rem solid #f2f2f2e3 !important;
+  border-bottom: 1.5rem solid #f2f2f2 !important;
   border-top: none !important;
 }
 </style>
@@ -330,17 +351,13 @@ input {
 <style>
 .dp__input {
   background-color: #f2f2f2 !important;
-  padding: 2rem 1.2rem !important;
+  font-size: 1.25rem;
+  letter-spacing: -0.05em;
+  line-height: 1.75rem;
+  color: #4f4f4f;
   border: none !important;
   border-radius: 4px !important;
   height: 100% !important;
-  background-clip: text;
-  -webkit-background-clip: text;
-  transform: translateX(3rem);
-
-  @media screen and (width<=41.875em) {
-    transform: none;
-  }
 }
 
 .dp__main {
@@ -349,23 +366,20 @@ input {
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dp__main:hover {
-  border: solid 1px rgb(209 213 219) !important;
-}
-
-.dp__input_icons {
-  width: 2.4rem;
-  height: 2.4rem;
-
-  @media screen and (width< 40.3125em) {
-    width: 0;
-    height: 0;
+.dp__icon.dp__input_icon.dp__input_icons {
+  @media screen and (width<=36.8125em) {
+    display: none;
   }
 }
 
-.dp__pointer {
-  @media screen and (width< 40.3125em) {
-    padding: 1.2rem !important;
+.dp__icon {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.dp__input_icon_pad {
+  @media screen and (width<=36.8125em) {
+    padding: 1rem;
   }
 }
 </style>

@@ -1,4 +1,4 @@
-.form {
+/* .form {
   container-name: search;
   container-type: inline-size;
 }
@@ -19,10 +19,6 @@
   }
 }
 @container search  (width< 810px) {
-  .dp__input_icons {
-    width: 2rem;
-    height: 2rem;
-  }
 }
 
 @container search (width< 600px) {
@@ -71,6 +67,6 @@
 
   button.form__btn {
     font-size: 1.2rem;
-    padding: 0;
+    padding: 0.7rem;
   }
-}
+} */

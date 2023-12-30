@@ -51,7 +51,7 @@ const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
   cursor: pointer;
   display: none;
 
-  @media screen and (width < 40em) {
+  @media screen and (width < 46.875em) {
     display: flex;
   }
 }

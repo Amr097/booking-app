@@ -42,10 +42,10 @@ onMounted(() => {
         <p class="review">{{ props.hotel.rating }} ({{ props.hotel.reviews }} Reviews)</p>
       </div>
       <p class="card__text text-[#EB5757]">Non refundable</p>
-      <p class="card__text text-[ #4F4F4F] flex flex-col sm:flex-row">
+      <p class="card__text text-[ #4F4F4F] flex">
         Check in: <span>{{ date.checkin }}</span>
       </p>
-      <p class="card__text text-[ #4F4F4F] flex flex-col sm:flex-row">
+      <p class="card__text text-[ #4F4F4F] flex">
         Check out: <span>{{ date.checkout }}</span>
       </p>
       <p class="card__text text-[ #4F4F4F] mt-1">
@@ -94,10 +94,6 @@ onMounted(() => {
 }
 .card__rating {
   @apply mb-7 flex gap-2;
-
-  @media screen and (width<= 37.5em) {
-    @apply flex-col gap-1;
-  }
 }
 
 .rating--stars {
@@ -109,7 +105,7 @@ onMounted(() => {
 }
 
 .review {
-  @apply text-lg leading-8 tracking-wide flex items-center shadow-sm;
+  @apply text-lg leading-8 tracking-wide flex items-center;
   color: var(--Gray-2, #4f4f4f);
 }
 

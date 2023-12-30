@@ -464,6 +464,17 @@ const onSubmit = () => {
   @apply grid gap-5 sm:gap-10;
 
   grid-template-columns: 1fr 38%;
+
+  @media screen and (width<= 37.5em) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkout__details {
+  @media screen and (width<= 37.5em) {
+    grid-row: 1 / span 1;
+    margin: 2rem 0;
+  }
 }
 
 .checkout__title {
@@ -473,9 +484,6 @@ const onSubmit = () => {
 
 .checkout__form {
   @apply flex flex-col gap-8;
-}
-
-.checkout__details {
 }
 
 /* room */
