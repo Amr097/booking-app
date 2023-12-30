@@ -32,7 +32,7 @@
     
  Voayge en vue is my graduation project for [Algoriza](https://www.linkedin.com/company/algoriza/) Internship/Mentorship program, It represents a Hotels Booking Web Application that enables users to search for available properties in their desired destinations, access comprehensive property information, complete reservations, and conveniently view their checked-out bookings.
 
-Built using Vue, styled with Tailwind/custom CSS and Integrated with Firebase for Database and Authentication. [Design link](https://www.figma.com/file/BQHVuw93nxwUFEnNuyPDdd/Untitled?mode=dev).
+Built using Vue, styled with Tailwind/custom CSS and Integrated with Firebase for Database and Authentication. [Design link](https://www.figma.com/file/BQHVuw93nxwUFEnNuyPDdd/Untitled?mode=dev) [Video Preview](https://www.linkedin.com/feed/update/urn:li:activity:7146839180482961408/).
 
 ## 🚀 Technologies
 
