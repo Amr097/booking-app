@@ -91,40 +91,41 @@ const { fetchHotels } = useHotelsStore()
 
 const onSubmit = async () => {
   isLoading.value = true
-  if (!isLogged.logged) {
-    router.push('/auth/login')
-  } else {
+  // Validating search input
+  if (
+    !(validateCheckin(searchData, datpickerErr) && validateCheckout(searchData, datpickerErr)) ||
+    !(searchData.checkInDate && searchData.checkOutDate) ||
+    !searchData.destinationValue
+  ) {
     if (!(searchData.checkInDate && searchData.checkOutDate)) {
       datpickerErr.state = true
       datpickerErr.message = 'both fields are required'
+    }
 
-      isLoading.value = false
-
-      return
-    } else if (
-      !(validateCheckin(searchData, datpickerErr) && validateCheckout(searchData, datpickerErr))
-    ) {
-      isLoading.value = false
-      return
-    } else if (!searchData.destinationValue) {
+    if (!searchData.destinationValue) {
       destErr.state = true
       destErr.message = 'This field is required'
-      isLoading.value = false
-
-      return
     }
 
-    if (router.currentRoute.value.name === 'results') {
-      localStorage.setItem('searchQuery', JSON.stringify(searchData))
-      localStorage.setItem('currentPage', 1)
-      await fetchHotels()
-      isLoading.value = false
-    }
-
-    router.push({ name: 'results' })
+    isLoading.value = false
+    return
+  }
+  // Check if we are on results page
+  if (router.currentRoute.value.name === 'results') {
+    localStorage.setItem('searchQuery', JSON.stringify(searchData))
+    //reset pagination
+    localStorage.setItem('currentPage', 1)
+    await fetchHotels()
+    isLoading.value = false
   }
 
   localStorage.setItem('searchQuery', JSON.stringify(searchData))
+
+  if (!isLogged.logged) {
+    router.push('/auth/login')
+  } else {
+    router.push({ name: 'results' })
+  }
 }
 </script>
 
@@ -139,7 +140,9 @@ const onSubmit = async () => {
         v-model="searchData.destinationValue"
         @change="validateSelect"
       >
-        <option disabled selected value="" class="form__option">Where are you going?</option>
+        <option disabled selected value="" class="form__option">
+          Where &nbsp;are&nbsp; you&nbsp; going?
+        </option>
         <option
           :value="item.city_name.toLowerCase()"
           class="form__option"
@@ -381,5 +384,8 @@ input {
   @media screen and (width<=36.8125em) {
     padding: 1rem;
   }
+}
+.dp__pointer.dp__input_readonly.dp__input.dp__input_icon_pad.dp__input_reg::placeholder {
+  color: black !important;
 }
 </style>

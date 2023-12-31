@@ -59,11 +59,21 @@ function onSubmit() {
       // ...
       isSubmitting.value = false
       userLogin()
-      message.type = 'success'
-      message.value = 'Successfully Logged in, redirecting to home page.'
-      setTimeout(() => {
-        router.push('/')
-      }, 500)
+      //Check if user has an on-going search query
+      const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+      if (searchQuery) {
+        message.type = 'success'
+        message.value = 'Successfully Logged in, running your search query.'
+        setTimeout(() => {
+          router.push({ name: 'results' })
+        }, 500)
+      } else {
+        message.type = 'success'
+        message.value = 'Successfully Logged in, redirecting to home page.'
+        setTimeout(() => {
+          router.push('/')
+        }, 500)
+      }
     })
     .catch((error) => {
       const extractMsg = error.message.split('auth/')[1].split(')')[0]
