@@ -223,11 +223,12 @@ const onSubmit = async () => {
 @import '/src/styles/containers/search.css';
 
 .form {
-  @apply grid gap-4  px-3 py-4 self-center bg-white rounded-lg shadow-xl absolute -bottom-14 sm:p-6  md:w-[87%] w-[97%];
+  @apply grid gap-4  px-3 py-4 self-center bg-white rounded-lg shadow-xl absolute -bottom-14 sm:p-6  md:w-[87%] w-[95%];
   grid-template-columns: 22% 2fr 2fr 1fr;
   right: 50%;
   transform: translateX(50%);
   @media screen and (width<=43.8125em) {
+    bottom: -6rem;
     grid-template-columns: 1.25fr 2fr 0.75fr;
   }
 }
