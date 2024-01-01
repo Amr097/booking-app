@@ -78,6 +78,9 @@ onMounted(() => {
           Check out: <span>{{ trip.date.checkout }}</span>
         </li>
         <li class="results__card--item text-[#4F4F4F]">
+          Suite: <span> {{ trip.room }}</span>
+        </li>
+        <li class="results__card--item text-[#4F4F4F]">
           {{ subtractDates(trip.date.checkin, trip.date.checkout) }} night stay
         </li>
       </template>

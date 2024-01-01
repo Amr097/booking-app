@@ -23,14 +23,16 @@ const roomCard = [
     title: 'Standard twin ben, Multiple beds',
     space: '300 sq ft',
     rooms: 'Sleeps 3',
-    beds: '1 double bed and 1 twin bed'
+    beds: '1 double bed and 1 twin bed',
+    number: 1
   },
   {
     image: '/images/room-2.webp',
     title: 'Standard twin ben, 1 Queen bed',
     space: '300 sq ft',
     rooms: 'Sleeps 3',
-    beds: '1 double bed and 1 twin bed'
+    beds: '1 double bed and 1 twin bed',
+    number: 2
   }
 ]
 
@@ -69,7 +71,6 @@ onMounted(async () => {
         meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
       }
     } catch (error) {
-      console.log(error)
       errMessage.value.state = true
     }
   } else if (prefix === 'ca') {
@@ -87,7 +88,6 @@ onMounted(async () => {
         meta.value.longidtude = hotelSnap.data().meta.coordinates.longidtude
       }
     } catch (error) {
-      console.log(error)
       errMessage.value.state = true
     }
   } else if (prefix === 'sh') {
@@ -185,7 +185,7 @@ onMounted(async () => {
       <h2 class="text-4xl font-semibold my-14">Available rooms</h2>
       <div class="cards-container">
         <CouponCard />
-        <RoomCard v-for="(item, index) in roomCard" :key="index">
+        <RoomCard v-for="(item, index) in roomCard" :key="index" :number="item.number">
           <template v-slot:image>
             <img :src="item.image" alt="room image" class="room__image" />
           </template>

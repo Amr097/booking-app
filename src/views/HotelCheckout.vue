@@ -51,6 +51,8 @@ const formData = reactive({
 
 const phoneNumber = ref('')
 
+const roomNumber = ref('')
+
 const isLoading = reactive({ value: false, errMessage: '' })
 
 function validateName(value) {
@@ -186,12 +188,20 @@ onMounted(async () => {
   const route = useRoute()
 
   const path = route.params.id
+  //hotel id on left, prefix/page number/room number on right
   const splitPath = path.split('*')
   const id = splitPath[0]
+  //split prefix and page number/room number
   const PagexPrefix = splitPath[1].split('$')
   const prefix = PagexPrefix[0]
-  const page = PagexPrefix[1]
+  //split page number and room number
+  const PagexRoom = PagexPrefix[1].split('&')
+  const page = PagexRoom[0]
+  const room = PagexRoom[1]
 
+  roomNumber.value = room
+
+  //if hotel belongs to hurgahda collection
   if (prefix === 'hu') {
     const hotelRef = doc(db, 'hurghada', `hurghada-${page}`)
     const hotelSnap = await getDoc(hotelRef)
@@ -203,7 +213,9 @@ onMounted(async () => {
       })
       hotel.value.data = currentHotel[0]
     }
-  } else if (prefix === 'ca') {
+  }
+  //if hotel belongs to cairo collection
+  else if (prefix === 'ca') {
     const hotelRef = doc(db, 'cairo', `cairo-${page}`)
 
     const hotelSnap = await getDoc(hotelRef)
@@ -216,7 +228,9 @@ onMounted(async () => {
       })
       hotel.value.data = currentHotel[0]
     }
-  } else if (prefix === 'sh') {
+  }
+  //if hotel belongs to sharm collection
+  else if (prefix === 'sh') {
     const hotelRef = doc(db, 'sharm-alsheikh', `sharm-alsheikh-${page}`)
     const hotelSnap = await getDoc(hotelRef)
     if (hotelSnap.exists()) {
@@ -242,18 +256,22 @@ const onSubmit = () => {
       if (userTripsRef.exists()) {
         const userTrips = userTripsRef.data().trips
         const checkForTrip = userTrips.filter((trip) => {
-          return hotel.value.data.id === trip.id
+          return roomNumber.value === trip.room
         })
         if (checkForTrip.length > 0) {
-          isLoading.errMessage = 'You have already reserved this trip.'
+          isLoading.errMessage = 'You have already reserved this room.'
         } else {
           try {
             const date = {
               checkin: JSON.parse(localStorage.getItem('searchQuery')).checkInDate,
               checkout: JSON.parse(localStorage.getItem('searchQuery')).checkOutDate
             }
+            // format date and add to hotel data
             const formattedDate = formatDate(date, 'checkout')
             hotel.value.data.date = formattedDate
+            // add room number to hotel data
+            hotel.value.data.room = roomNumber.value
+            //save hotel data to user trips in firestore
             const userRef = doc(db, 'users', user.uid)
             await updateDoc(userRef, { trips: arrayUnion(hotel.value.data) })
             formData.showModal = true

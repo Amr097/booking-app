@@ -32,7 +32,6 @@ export default defineStore('user', () => {
           const fetchUserRef = await getDoc(doc(usersCollection, user.uid))
 
           if (fetchUserRef.exists()) {
-            console.log(fetchUserRef.data())
             const trips = fetchUserRef.data().trips
             if (trips.length === 0) {
               errMessage.value.state = true
@@ -58,7 +57,6 @@ export default defineStore('user', () => {
     const userTripsCpy = [...userTrips.value.data]
 
     userTripsCpy.splice(index, 1)
-    console.log(userTripsCpy)
 
     onAuthStateChanged(auth, async (user) => {
       if (user) {
