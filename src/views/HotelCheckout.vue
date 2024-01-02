@@ -21,6 +21,16 @@ import { useRoute } from 'vue-router'
 import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
 
 import { formatDate } from '../helper/dateFormat.js'
+import {
+  validateName,
+  validateFirstName,
+  validateLastName,
+  validateCreditCard,
+  validateCVC,
+  validateYear,
+  validateMonth,
+  validateZip
+} from '../helper/checkoutValidation.js'
 
 const months = [
   'January',
@@ -55,123 +65,6 @@ const roomNumber = ref('')
 
 const isLoading = reactive({ value: false, errMessage: '' })
 
-function validateName(value) {
-  // if the field is empty
-  if (!value) {
-    formData.isCardName = false
-    return 'This field is required'
-  }
-  // if the field is not a valid email
-  const regex = /^[^\d\s!@#$%^&*()_+=\-[\]{};:'",.<>/?\\|]*$/
-  if (!regex.test(value)) {
-    formData.isCardName = false
-    return 'Name cannot contain numbers or symbols'
-  }
-  // All is good
-  formData.isCardName = true
-  return true
-}
-
-function validateFirstName(value) {
-  // if the field is empty
-
-  if (!value) {
-    return 'This field is required'
-  }
-  // only characters
-  const regex = /^[^\d\s!@#$%^&*()_+=\-[\]{};:'",.<>/?\\|]*$/
-  if (!regex.test(value)) {
-    return 'Name cannot contain numbers or symbols'
-  }
-  return true
-}
-
-function validateLastName(value) {
-  // if the field is empty
-  if (!value) {
-    return 'This field is required'
-  }
-  // only characters
-  const regex = /^[^\d\s!@#$%^&*()_+=\-[\]{};:'",.<>/?\\|]*$/
-  if (!regex.test(value)) {
-    return 'Name cannot contain numbers or symbols'
-  }
-  return true
-}
-
-function validateCreditCard(value) {
-  // if the field is empty
-  if (!value) {
-    formData.isCardNumber = false
-    return 'This field is required'
-  }
-  // if the field is not a valid email
-  const regex = /^\d{19}$/
-  if (!regex.test(value)) {
-    formData.isCardNumber = false
-    return 'Card number must be 19 digits'
-  }
-  // All is good
-  formData.isCardNumber = true
-  return true
-}
-
-function validateCVC(value) {
-  // if the field is empty
-  if (!value) {
-    formData.isSecCode = false
-    return 'This field is required'
-  }
-  // if the field is not a valid email
-  const regex = /^\d{3,4}$/
-  if (!regex.test(value)) {
-    formData.isSecCode = false
-    return 'CVC has to be 3 or 4 digits'
-  }
-  // All is good
-  formData.isSecCode = true
-  return true
-}
-
-function validateYear(value) {
-  // if the field is empty
-  if (!value) {
-    return 'This field is required'
-  }
-
-  // All is good
-  formData.isYear = true
-  return true
-}
-
-function validateMonth(value) {
-  // if the field is empty
-  if (!value) {
-    return 'This field is required'
-  }
-
-  // All is good
-  formData.isMonth = true
-  return true
-}
-
-function validateZip(value) {
-  // if the field is empty
-  if (!value) {
-    formData.isZipCode = false
-    return 'This field is required'
-  }
-  // if the field is not a valid email
-  const regex = /^\d{5}$/
-  if (!regex.test(value)) {
-    formData.isZipCode = false
-    return 'Zip code has to 5 digits'
-  }
-  // All is good
-  formData.isZipCode = true
-  return true
-}
-
 const yearOptions = computed(() => {
   let currentYear = new Date().getFullYear()
   const years = []
@@ -181,16 +74,18 @@ const yearOptions = computed(() => {
   return years
 })
 
+const route = useRoute()
+
+const path = route.params.id
+//hotel id on left, prefix/page number/room number on right
+const splitPath = path.split('*')
+const id = splitPath[0]
+
 const hotel = ref({ data: { rating: '' } })
 
 onMounted(async () => {
   //fetch hotel from firestore
-  const route = useRoute()
 
-  const path = route.params.id
-  //hotel id on left, prefix/page number/room number on right
-  const splitPath = path.split('*')
-  const id = splitPath[0]
   //split prefix and page number/room number
   const PagexPrefix = splitPath[1].split('$')
   const prefix = PagexPrefix[0]
@@ -256,10 +151,10 @@ const onSubmit = () => {
       if (userTripsRef.exists()) {
         const userTrips = userTripsRef.data().trips
         const checkForTrip = userTrips.filter((trip) => {
-          return roomNumber.value === trip.room
+          return trip.id === id && roomNumber.value === trip.room
         })
         if (checkForTrip.length > 0) {
-          isLoading.errMessage = 'You have already reserved this room.'
+          isLoading.errMessage = 'You have already reserved this suite.'
         } else {
           try {
             const date = {
@@ -347,7 +242,7 @@ const onSubmit = () => {
                   id="nameCard"
                   type="text"
                   class="input"
-                  :rules="validateName"
+                  :rules="validateName.bind(formData)"
                 />
                 <ErrorMessage name="nameCard" class="auth__err row-start-3 col-start-1" />
                 <img
@@ -366,7 +261,7 @@ const onSubmit = () => {
                   id="cardNumber"
                   type="text"
                   class="input"
-                  :rules="validateCreditCard"
+                  :rules="validateCreditCard.bind(formData)"
                 />
                 <ErrorMessage name="cardNumber" class="auth__err row-start-3 col-start-1" />
                 <img
@@ -387,7 +282,7 @@ const onSubmit = () => {
                   class="select"
                   required
                   v-model="formData.expireMonth"
-                  :rules="validateMonth"
+                  :rules="validateMonth.bind(formData)"
                 >
                   <option value="">Select month</option>
                   <option :value="month" v-for="(month, index) in months" :key="index">
@@ -404,7 +299,7 @@ const onSubmit = () => {
                   class="select"
                   required
                   v-model="formData.expireYear"
-                  :rules="validateYear"
+                  :rules="validateYear.bind(formData)"
                 >
                   <option value="">Select year</option>
                   <option :value="year" v-for="(year, index) in yearOptions" :key="index">
@@ -428,7 +323,7 @@ const onSubmit = () => {
                 id="secCode"
                 type="text"
                 class="input col-start-1 row-start-2"
-                :rules="validateCVC"
+                :rules="validateCVC.bind(formData)"
               />
               <ErrorMessage name="secCode" class="auth__err row-start-3 col-start-1" />
               <img
@@ -445,7 +340,7 @@ const onSubmit = () => {
                 id="zipCode"
                 type="text"
                 class="input col-start-2 row-start-2"
-                :rules="validateZip"
+                :rules="validateZip.bind(formData)"
               />
               <ErrorMessage name="zipCode" class="auth__err row-start-3 col-start-2" />
             </template>

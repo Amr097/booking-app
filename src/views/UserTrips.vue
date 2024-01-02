@@ -42,7 +42,7 @@ onMounted(() => {
     class="w-[90%] sm:w-[65%] text-4xl sm:text-5xl font-medium mx-auto text-center flex justify-center h-full leading-relaxed mt-44"
   />
   <div
-    class="trips__container container-grey"
+    class="trips__container container-c"
     v-if="!isLoading.state && !errMessage.state && userTrips.data.length > 0"
   >
     <h1 class="trips__title">My trips</h1>
@@ -106,7 +106,7 @@ onMounted(() => {
 
 <style scoped>
 .trips__container {
-  @apply bg-[#F4F4F4] w-full h-[100vh] px-10 lg:px-72 py-24;
+  @apply w-full px-10 lg:px-72 py-24;
 }
 
 .trips__title {
