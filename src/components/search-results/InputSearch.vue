@@ -53,8 +53,16 @@ const { handleFilteration, clearSearch } = useFilterationStore()
 <style scoped>
 .filter__property {
   @apply flex flex-col rounded-lg shadow-md;
+}
+
+.filter__title {
   @media screen and (width< 53.75em) {
-    grid-column: 1 / -1;
+    @apply p-4;
+  }
+}
+
+.filter__body {
+  @media screen and (width< 53.75em) {
   }
 }
 </style>

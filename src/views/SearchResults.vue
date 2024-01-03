@@ -55,20 +55,62 @@ onMounted(async () => {
           :isLoading="isLoading"
           :errMessage="errMessage"
         />
-        <h3 class="text-[#333] text-3xl font-semibold my-1 filter-by">Filter by</h3>
-        <!-- by budget -->
-        <BudgetFilter
-          :isLoading="isLoading"
-          :errMessage="errMessage"
-          :hotelsDataSnap="hotelsDataSnap"
-        />
-        <!-- rates -->
 
-        <RatingFilter
-          :isLoading="isLoading"
-          :errMessage="errMessage"
-          :hotelsDataSnap="hotelsDataSnap"
-        />
+        <input type="checkbox" id="popup" class="popup-checkbox" />
+        <label for="popup" class="popup-label"
+          ><svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="vuesax/outline/setting-4">
+              <g id="setting-4">
+                <path
+                  id="Vector"
+                  d="M1.33337 4.83334H5.33337C5.60671 4.83334 5.83337 4.60668 5.83337 4.33334C5.83337 4.06001 5.60671 3.83334 5.33337 3.83334H1.33337C1.06004 3.83334 0.833374 4.06001 0.833374 4.33334C0.833374 4.60668 1.06004 4.83334 1.33337 4.83334Z"
+                />
+                <path
+                  id="Vector_2"
+                  d="M12 4.83334H14.6667C14.94 4.83334 15.1667 4.60668 15.1667 4.33334C15.1667 4.06001 14.94 3.83334 14.6667 3.83334H12C11.7267 3.83334 11.5 4.06001 11.5 4.33334C11.5 4.60668 11.7267 4.83334 12 4.83334Z"
+                />
+                <path
+                  id="Vector_3"
+                  d="M9.33335 7.16667C10.8934 7.16667 12.1667 5.89333 12.1667 4.33333C12.1667 2.77333 10.8934 1.5 9.33335 1.5C7.77335 1.5 6.50002 2.77333 6.50002 4.33333C6.50002 5.89333 7.77335 7.16667 9.33335 7.16667ZM9.33335 2.5C10.3467 2.5 11.1667 3.32 11.1667 4.33333C11.1667 5.34667 10.3467 6.16667 9.33335 6.16667C8.32002 6.16667 7.50002 5.34667 7.50002 4.33333C7.50002 3.32 8.32002 2.5 9.33335 2.5Z"
+                />
+                <path
+                  id="Vector_4"
+                  d="M1.33333 12.1667H4C4.27333 12.1667 4.5 11.94 4.5 11.6667C4.5 11.3933 4.27333 11.1667 4 11.1667H1.33333C1.06 11.1667 0.833333 11.3933 0.833333 11.6667C0.833333 11.94 1.06 12.1667 1.33333 12.1667Z"
+                />
+                <path
+                  id="Vector_5"
+                  d="M10.6667 12.1667H14.6667C14.94 12.1667 15.1667 11.94 15.1667 11.6667C15.1667 11.3933 14.94 11.1667 14.6667 11.1667H10.6667C10.3934 11.1667 10.1667 11.3933 10.1667 11.6667C10.1667 11.94 10.3934 12.1667 10.6667 12.1667Z"
+                />
+                <path
+                  id="Vector_6"
+                  d="M6.66667 14.5C8.22667 14.5 9.5 13.2267 9.5 11.6667C9.5 10.1067 8.22667 8.83333 6.66667 8.83333C5.10667 8.83333 3.83333 10.1067 3.83333 11.6667C3.83333 13.2267 5.10667 14.5 6.66667 14.5ZM6.66667 9.83333C7.68 9.83333 8.5 10.6533 8.5 11.6667C8.5 12.68 7.68 13.5 6.66667 13.5C5.65333 13.5 4.83333 12.68 4.83333 11.6667C4.83333 10.6533 5.65333 9.83333 6.66667 9.83333Z"
+                />
+              </g>
+            </g></svg
+        ></label>
+
+        <div class="filter__container--popup">
+          <h3 class="text-[#333] text-3xl font-semibold my-1 filter-by">Filter by</h3>
+          <!-- by budget -->
+          <BudgetFilter
+            :isLoading="isLoading"
+            :errMessage="errMessage"
+            :hotelsDataSnap="hotelsDataSnap"
+          />
+          <!-- rates -->
+
+          <RatingFilter
+            :isLoading="isLoading"
+            :errMessage="errMessage"
+            :hotelsDataSnap="hotelsDataSnap"
+          />
+        </div>
       </div>
       <!-- results view -->
       <div class="results__view">
@@ -145,9 +187,57 @@ div.container-c {
 .filter {
   @apply flex flex-col gap-8 rounded-lg;
   @media screen and (width< 53.75em) {
-    @apply grid mb-20;
-    grid-template-columns: 1fr max-content max-content;
-    grid-template-rows: max-content min-content min-content;
+    @apply grid mb-16;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content;
+  }
+}
+
+.popup-checkbox,
+.popup-label {
+  @apply absolute top-[13.5rem] right-[22rem] sm:right-[26rem] z-20;
+  display: none;
+  @media screen and (width< 53.75em) {
+    display: block;
+  }
+}
+
+.popup-label svg {
+  @apply fill-[#8B8B8B];
+}
+
+.popup-checkbox {
+  @apply absolute invisible;
+}
+
+.popup-checkbox:checked ~ .filter__container--popup {
+  @apply scale-y-100 visible transition-transform duration-150;
+}
+
+.popup-checkbox:checked + .popup-label {
+  @apply bg-blue-500  border-white;
+}
+
+.popup-checkbox:checked + .popup-label svg {
+  @apply fill-white;
+}
+
+.popup-label {
+  @apply border border-solid border-gray-400 rounded-md py-2 px-4;
+}
+
+.filter__container--popup {
+  @apply flex flex-col gap-8 rounded-lg;
+
+  @media screen and (width< 53.75em) {
+    @apply scale-y-0 invisible h-fit
+    w-max absolute top-[18rem] right-[0.2rem] sm:right-[10rem] bg-white z-20 flex-row p-6 border shadow-lg origin-top;
+  }
+}
+
+.filter__container--popup .filter-by {
+  @media screen and (width< 53.75em) {
+    display: none;
   }
 }
 
