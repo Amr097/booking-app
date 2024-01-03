@@ -106,7 +106,7 @@ onMounted(() => {
 
 <style scoped>
 .trips__container {
-  @apply w-full px-10 lg:px-72 py-24;
+  @apply w-full px-10 lg:px-72 py-24 z-0;
 }
 
 .trips__title {

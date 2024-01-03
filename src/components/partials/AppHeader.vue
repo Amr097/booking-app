@@ -1,7 +1,8 @@
 <script setup>
+import UserTab from './UserTab.vue'
 import useUserStore from '../../store/User.js'
 
-import { auth, signOut, usersCollection, onAuthStateChanged } from '/src/services/firebase.js'
+import { auth, usersCollection, onAuthStateChanged } from '/src/services/firebase.js'
 import { doc, getDoc } from 'firebase/firestore'
 
 import HamMenu from '/src/components/partials/HamMenu.vue'
@@ -12,21 +13,6 @@ const props = defineProps(['logoColor', 'textColor', 'bellColor', 'showNav'])
 
 const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
 const authBtns = ['Register', 'Login']
-const userListItems = ['Manage account', 'Reward and wallet']
-
-const signUserOut = () => {
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-      location.reload()
-    })
-    .catch(() => {
-      // An error happened.
-      alert(
-        'Failed to sign user out, if the problem presists please report the problem to the app developer.'
-      )
-    })
-}
 
 const { isLogged } = useUserStore()
 
@@ -98,42 +84,75 @@ onMounted(() => {
       >
     </div>
     <!-- USER -->
+
     <div class="user" :style="props.showNav ? { marginRight: '7rem' } : ''" v-if="isLogged.logged">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="user__bell">
-        <path
-          d="m19.34 14.49-1-1.66c-0.21-0.37-0.4-1.07-0.4-1.48v-2.53c-0.0012-1.116-0.3183-2.2088-0.9147-3.152s-1.4476-1.6984-2.4553-2.178c-0.2571-0.45666-0.6323-0.83586-1.0861-1.098-0.4539-0.26211-0.9698-0.3975-1.4939-0.39203-1.09 0-2.07 0.59-2.59 1.52-1.95 0.97-3.3 2.98-3.3 5.3v2.53c0 0.41-0.19 1.11-0.4 1.47l-1.01 1.67c-0.4 0.67-0.49 1.41-0.24 2.09 0.24 0.67 0.81 1.19 1.55 1.44 1.94 0.66 3.98 0.98 6.02 0.98 2.04 0 4.08-0.32 6.02-0.97 0.7-0.23 1.24-0.76 1.5-1.45s0.19-1.45-0.2-2.09z"
-          :fill="props.bellColor"
-        />
-        <path
-          d="m14.83 20.01c-0.2103 0.5822-0.5947 1.0854-1.101 1.4415-0.5063 0.356-1.11 0.5475-1.729 0.5485-0.79 0-1.57-0.32-2.12-0.89-0.32-0.3-0.56-0.7-0.7-1.11 0.13 0.02 0.26 0.03 0.4 0.05 0.23 0.03 0.46997 0.06 0.70997 0.08 0.57 0.05 1.15 0.08 1.73 0.08 0.57 0 1.14-0.03 1.7-0.08 0.21-0.02 0.42-0.03 0.62-0.06l0.49-0.06z"
-          :fill="props.bellColor"
-        />
-        <circle cx="17" cy="6" r="5" fill="#EB5757" stroke-width="2" />
-      </svg>
       <div class="relative">
-        <img src="/images/user.webp" alt="User image" class="user__img" tabindex="0" />
-        <ul class="user__list">
-          <li class="user__item">
-            <router-link :to="{ name: 'trips' }" class="trips"
-              >My Trips
-              <span
-                class="bg-blue-500 text-white px-[6px] py-[3px] rounded-full text-base"
-                v-if="userTrips > 0"
-                >{{ userTrips }}</span
-              ></router-link
-            >
+        <label for="bell"
+          ><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="user__bell">
+            <path
+              d="m19.34 14.49-1-1.66c-0.21-0.37-0.4-1.07-0.4-1.48v-2.53c-0.0012-1.116-0.3183-2.2088-0.9147-3.152s-1.4476-1.6984-2.4553-2.178c-0.2571-0.45666-0.6323-0.83586-1.0861-1.098-0.4539-0.26211-0.9698-0.3975-1.4939-0.39203-1.09 0-2.07 0.59-2.59 1.52-1.95 0.97-3.3 2.98-3.3 5.3v2.53c0 0.41-0.19 1.11-0.4 1.47l-1.01 1.67c-0.4 0.67-0.49 1.41-0.24 2.09 0.24 0.67 0.81 1.19 1.55 1.44 1.94 0.66 3.98 0.98 6.02 0.98 2.04 0 4.08-0.32 6.02-0.97 0.7-0.23 1.24-0.76 1.5-1.45s0.19-1.45-0.2-2.09z"
+              :fill="props.bellColor"
+            />
+            <path
+              d="m14.83 20.01c-0.2103 0.5822-0.5947 1.0854-1.101 1.4415-0.5063 0.356-1.11 0.5475-1.729 0.5485-0.79 0-1.57-0.32-2.12-0.89-0.32-0.3-0.56-0.7-0.7-1.11 0.13 0.02 0.26 0.03 0.4 0.05 0.23 0.03 0.46997 0.06 0.70997 0.08 0.57 0.05 1.15 0.08 1.73 0.08 0.57 0 1.14-0.03 1.7-0.08 0.21-0.02 0.42-0.03 0.62-0.06l0.49-0.06z"
+              :fill="props.bellColor"
+            />
+            <circle cx="17" cy="6" r="5" fill="#EB5757" stroke-width="2" /></svg
+        ></label>
+        <input
+          type="checkbox"
+          name="bell"
+          id="bell"
+          class="absolute top-[0.5rem] right-[0.5rem] -z-20 invisible"
+        />
+        <ul class="notif__list">
+          <li class="notif__item">
+            <img
+              class="w-[3.5rem] h-[3.5rem] rounded-full"
+              src="/images/details-1.webp"
+              alt="property"
+            />
+            <p>user 22143 has reserver property no.3232r3</p>
           </li>
-          <li
-            class="user__item"
-            disabled="true"
-            v-for="(item, index) in userListItems"
-            :key="index"
-          >
-            {{ item }}
+          <li class="notif__item">
+            <img
+              class="w-[3.5rem] h-[3.5rem] rounded-full"
+              src="/images/details-1.webp"
+              alt="property"
+            />
+            <p>user 22143 has reserver property no.3232r3</p>
           </li>
-          <li class="user__item" @click="signUserOut">Sign out</li>
+          <li class="notif__item">
+            <img
+              class="w-[3.5rem] h-[3.5rem] rounded-full"
+              src="/images/details-1.webp"
+              alt="property"
+            />
+            <p>user 22143 has reserver property no.3232r3</p>
+          </li>
+          <li class="notif__item">
+            <img
+              class="w-[3.5rem] h-[3.5rem] rounded-full"
+              src="/images/details-1.webp"
+              alt="property"
+            />
+            <p>user 22143 has reserver property no.3232r3</p>
+          </li>
         </ul>
       </div>
+
+      <UserTab>
+        <template v-slot:trips-link>
+          <router-link :to="{ name: 'trips' }" class="trips"
+            >My Trips
+            <span
+              class="bg-blue-500 text-white px-[6px] py-[3px] rounded-full text-base"
+              v-if="userTrips > 0"
+              >{{ userTrips }}</span
+            ></router-link
+          >
+        </template>
+      </UserTab>
     </div>
     <HamMenu v-if="props.showNav" />
   </header>
@@ -210,31 +229,20 @@ onMounted(() => {
   cursor: pointer;
 }
 
-.user__img {
-  width: 4.4rem;
-  height: 4.4rem;
-  object-fit: cover;
-  border-radius: 4.4rem;
-  cursor: pointer;
+#bell:checked ~ .notif__list {
+  @apply visible z-30 pointer-events-auto;
+  transform: translateX(-50%) scaleY(1);
 }
 
-.user__list:hover {
-  display: block;
-}
-
-.user__img:focus ~ .user__list {
-  display: block;
-}
-
-.user__list {
-  @apply absolute bg-white w-max mt-2 rounded-md shadow-md hidden;
-  z-index: 1;
+.notif__list {
+  @apply absolute bg-white w-max mt-2 rounded-md shadow-md  pointer-events-none -z-20 transition-all duration-150 origin-top;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scaleY(0);
 }
 
-.user__item {
-  @apply text-xl bg-white rounded-md cursor-pointer;
+.notif__item {
+  @apply text-xl bg-white rounded-md cursor-pointer flex gap-3 items-center max-w-md;
+
   padding: 1rem 1rem 1rem 1.4rem;
   color: #4f4f4f;
   border-bottom: 0.3px solid #d6d6d6;
