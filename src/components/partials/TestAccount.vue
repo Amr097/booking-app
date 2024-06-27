@@ -8,7 +8,7 @@
 
 <script setup></script>
 
-<style scoped>
+<style scoped lang="postcss">
 .test {
   @apply absolute right-5 top-5 border border-solid border-black rounded-md shadow-sm p-4;
 }

@@ -55,7 +55,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .room {
   @apply flex flex-col shadow-sm;
 }

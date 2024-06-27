@@ -54,7 +54,7 @@ const props = defineProps(['id', 'index'])
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .results__card {
   @apply grid p-6 gap-x-6 mt-[2rem] rounded-md bg-white relative;
 

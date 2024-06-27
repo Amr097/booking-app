@@ -33,7 +33,7 @@
 
 <script setup></script>
 
-<style scoped>
+<style scoped lang="postcss">
 .covid-alert {
   @apply flex rounded-lg items-center px-8 py-6 gap-6 shadow-sm;
 

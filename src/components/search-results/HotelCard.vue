@@ -86,7 +86,7 @@ if (page) currentPage.value = page
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .results__card {
   @apply grid  p-6 sm:gap-x-6 w-full  sm:w-[95%] shadow-md;
   grid-template-columns: 1fr 35% 1fr;

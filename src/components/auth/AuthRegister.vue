@@ -211,7 +211,7 @@ function onSubmit() {
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .auth__modal {
   @apply mt-36;
 }

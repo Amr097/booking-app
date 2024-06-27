@@ -78,7 +78,7 @@ const helpItems = [
   </footer>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .footer {
   @apply pt-36 px-8 relative bg-white;
   display: grid;

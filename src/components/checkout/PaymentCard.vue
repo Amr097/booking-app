@@ -54,7 +54,7 @@ const icons = ['/images/pay.webp', '/images/visa.webp', '/images/ae.webp', '/ima
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .pay {
   @apply rounded-lg bg-white shadow-sm;
   width: 100%;

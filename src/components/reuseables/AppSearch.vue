@@ -219,7 +219,7 @@ const onSubmit = async () => {
   </veeForm>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 @import '/src/styles/containers/search.css';
 
 .form {

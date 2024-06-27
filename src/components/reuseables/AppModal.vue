@@ -28,7 +28,7 @@ const toggleModal = () => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .modal {
   @apply fixed w-full z-10 flex justify-center items-center;
   height: 100dvh;

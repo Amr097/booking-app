@@ -12,7 +12,7 @@
 
 <script setup></script>
 
-<style scoped>
+<style scoped lang="postcss">
 .download {
   @apply rounded-md relative bg-cover flex items-center justify-end sm:justify-normal shadow-md;
 

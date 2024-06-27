@@ -89,7 +89,7 @@ const uncheckRadio = (type) => {
   </label>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .toggle-bell {
   @apply absolute top-[0.5rem] right-[0.5rem] invisible pointer-events-none -z-30;
 }

@@ -53,7 +53,7 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .info {
   @apply rounded-lg bg-white shadow-sm;
   width: 100%;

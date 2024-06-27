@@ -19,7 +19,7 @@ const props = defineProps(['tripsData'])
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .trips {
   @apply flex flex-col gap-7 pb-3;
 }

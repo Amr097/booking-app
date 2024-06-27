@@ -65,7 +65,7 @@ const TopFacilities = [
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .info {
   @apply flex flex-col gap-y-10 mt-12;
 }

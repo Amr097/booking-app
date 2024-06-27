@@ -116,7 +116,7 @@ onMounted(() => {
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .header {
   @apply flex py-6 justify-between relative;
 

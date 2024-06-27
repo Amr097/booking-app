@@ -332,7 +332,7 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .hotel__images {
   @apply pt-10 relative;
   z-index: 1;

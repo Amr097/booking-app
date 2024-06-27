@@ -40,7 +40,7 @@
 const props = defineProps(['wrapper', 'text', 'details'])
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 div#wave {
   position: relative;
   text-align: center;

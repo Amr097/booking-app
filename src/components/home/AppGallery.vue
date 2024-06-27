@@ -23,7 +23,7 @@ const props = defineProps(['title', 'description', 'galleryData'])
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .gallery {
   @apply flex flex-col gap-5 mt-16 pb-16 bg-white;
   position: relative;

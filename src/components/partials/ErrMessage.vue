@@ -6,4 +6,4 @@
 const props = defineProps(['message'])
 </script>
 
-<style scoped></style>
+<style scoped lang="postcss"></style>

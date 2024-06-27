@@ -366,7 +366,7 @@ const onSubmit = () => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .container-grey {
   @apply w-full px-0 pb-40 grid lg:px-20 relative -z-0;
 

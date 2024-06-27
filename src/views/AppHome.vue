@@ -113,7 +113,7 @@ const tripsData = [
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .footer__copyright {
   @apply py-4 text-center bg-gray-200 text-gray-600 text-xl 
   font-normal leading-7 flex items-center justify-end mt-24 pr-72 relative;

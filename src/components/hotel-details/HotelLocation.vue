@@ -28,7 +28,7 @@ const explore = [
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .location {
   @apply p-12 flex flex-col gap-10;
 

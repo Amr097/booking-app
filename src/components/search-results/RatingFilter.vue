@@ -46,7 +46,7 @@ const { handleRatingFilteration, clearRating } = useFilterationStore()
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .rating {
   @apply shadow-md;
   border-radius: 6px;

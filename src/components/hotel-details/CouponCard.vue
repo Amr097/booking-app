@@ -26,7 +26,7 @@
 
 <script setup></script>
 
-<style scoped>
+<style scoped lang="postcss">
 .coupon {
   @apply rounded-md  grid items-center justify-center p-6 gap-x-2 shadow-md;
   background: linear-gradient(180deg, #4796ff 0%, #2366bf 100%);

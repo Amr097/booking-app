@@ -13,7 +13,7 @@
 import AppSearch from '../reuseables/AppSearch.vue'
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .hero {
   @apply mx-auto my-4 rounded-lg flex flex-col justify-center gap-12 relative shadow-lg;
   z-index: -1;

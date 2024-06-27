@@ -77,7 +77,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .card {
   @apply bg-white rounded-md shadow-sm;
 }

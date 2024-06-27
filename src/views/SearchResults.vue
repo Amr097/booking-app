@@ -164,7 +164,7 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 div.container-c {
   @apply relative -z-10;
 }

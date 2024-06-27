@@ -18,7 +18,7 @@
 
 <script setup></script>
 
-<style scoped>
+<style scoped lang="postcss">
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300');
 .container {
   @apply p-8 sm:p-0;

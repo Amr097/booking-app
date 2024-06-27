@@ -126,7 +126,7 @@ const customBudgetErr = ref({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .filter__budget {
   @apply shadow-md;
   border-radius: 6px;

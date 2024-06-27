@@ -33,7 +33,7 @@
 
 <script setup></script>
 
-<style scoped>
+<style scoped lang="postcss">
 .client {
   @apply rounded-lg shadow-sm;
   width: 100%;

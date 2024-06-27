@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .modal {
   @apply fixed w-full z-10 flex justify-center items-center shadow-md;
   height: 100dvh;

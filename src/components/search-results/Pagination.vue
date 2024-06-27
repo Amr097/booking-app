@@ -196,7 +196,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 button {
   @apply cursor-pointer;
 }

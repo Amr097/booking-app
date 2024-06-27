@@ -50,7 +50,7 @@ const { handleFilteration, clearSearch } = useFilterationStore()
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .filter__property {
   @apply flex flex-col rounded-lg shadow-md;
 }

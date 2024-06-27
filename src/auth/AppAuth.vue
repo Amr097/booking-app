@@ -53,7 +53,7 @@ function updatePathRef(value) {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .auth {
   @apply py-8;
 

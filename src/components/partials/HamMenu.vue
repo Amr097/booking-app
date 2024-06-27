@@ -33,7 +33,7 @@ const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
   </aside>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 /* .header__btn */
 .header__btn {
   background-color: white;
