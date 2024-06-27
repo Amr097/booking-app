@@ -51,7 +51,7 @@ const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
   cursor: pointer;
   display: none;
 
-  @media screen and (width < 46.875em) {
+  @media screen and (max-width: 46.875em) {
     display: flex;
   }
 }
@@ -66,7 +66,7 @@ const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
   visibility: hidden;
   display: none;
 
-  @media screen and (width < 46.875em) {
+  @media screen and (max-width: 46.875em) {
     display: inline-block;
   }
 }
@@ -111,7 +111,7 @@ const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
 
 .header__icon::after,
 .header__icon::before {
-  background-color: #3b82f6;
+  background-color: white;
   content: '';
   display: inline-block;
   position: absolute;
@@ -143,7 +143,7 @@ const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
   height: 100vh;
   display: none;
 
-  @media screen and (width < 46.875em) {
+  @media screen and (max-width: 46.875em) {
     display: block;
   }
 }

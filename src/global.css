@@ -17,59 +17,59 @@ html {
   font-size: 65.5%;
   scroll-behavior: smooth;
 
-  @media screen and (width < 250em) {
+  @media screen and (max-width: 250em) {
     font-size: 130%;
   }
 
-  @media screen and (width < 187.5em) {
+  @media screen and (max-width: 187.5em) {
     font-size: 120%;
   }
 
-  @media screen and (width < 168.75em) {
+  @media screen and (max-width: 168.75em) {
     font-size: 110%;
   }
 
-  @media screen and (width < 154.8125em) {
+  @media screen and (max-width: 154.8125em) {
     font-size: 100%;
   }
 
-  @media screen and (width < 141.25em) {
+  @media screen and (max-width: 141.25em) {
     font-size: 90%;
   }
 
-  @media screen and (width < 141.25em) {
+  @media screen and (max-width: 141.25em) {
     font-size: 90%;
   }
 
-  @media screen and (width < 125.25em) {
+  @media screen and (max-width: 125.25em) {
     font-size: 80%;
   }
 
-  @media screen and (width < 113.75em) {
+  @media screen and (max-width: 113.75em) {
     font-size: 70%;
   }
 
-  @media screen and (width < 100em) {
+  @media screen and (max-width: 100em) {
     font-size: 62.5%;
   }
 
-  @media screen and (width < 90.625em) {
+  @media screen and (max-width: 90.625em) {
     font-size: 56.5%;
   }
 
-  @media screen and (width <78.125em) {
+  @media screen and (max-width: 78.125em) {
     font-size: 50%;
   }
 
-  @media screen and (width <78.125em) {
+  @media screen and (max-width: 78.125em) {
     font-size: 50%;
   }
 
-  @media screen and (width <71.875em) {
+  @media screen and (max-width: 71.875em) {
     font-size: 45%;
   }
 
-  @media screen and (width <25.875em) {
+  @media screen and (max-width: 25.875em) {
     font-size: 40%;
   }
 }

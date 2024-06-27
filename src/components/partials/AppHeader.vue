@@ -150,7 +150,7 @@ onMounted(() => {
 
 .nav__list {
   @apply flex items-center gap-x-28;
-  @media screen and (width < 46.875em) {
+  @media screen and (max-width: 46.875em) {
     display: none;
   }
 }
@@ -167,7 +167,7 @@ onMounted(() => {
 .auth {
   @apply flex items-center gap-6;
 
-  @media screen and (width < 46.875em) {
+  @media screen and (max-width: 46.875em) {
     display: none;
   }
 }

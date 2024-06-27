@@ -203,7 +203,7 @@ img {
   @apply relative mx-auto;
   width: 90%;
 
-  @media screen and (width < 66.25em) {
+  @media screen and (max-width: 66.25em) {
     width: 95%;
   }
 }
