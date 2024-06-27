@@ -111,7 +111,7 @@ const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
 
 .header__icon::after,
 .header__icon::before {
-  background-color: white;
+  background-color: #3b82f6;
   content: '';
   display: inline-block;
   position: absolute;

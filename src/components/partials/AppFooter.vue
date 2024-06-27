@@ -82,10 +82,21 @@ const helpItems = [
 .footer {
   @apply pt-36 px-8 relative bg-white;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, calc(100% / 5.2)));
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   justify-items: center;
   margin-bottom: 2.5rem;
   z-index: -1;
+
+  @supports not (grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr))) {
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .container > * {
+      flex: 1 1 16rem;
+    }
+  }
 }
 
 .icon {
