@@ -3,7 +3,7 @@
   container-type: inline-size;
 }
 
-@container search  (width< 810px) {
+@container search  (max-width: 810px) {
   .form__input,
   .form__select {
     padding: 0;
@@ -18,10 +18,10 @@
     height: 2rem;
   }
 }
-@container search  (width< 810px) {
+@container search  (max-width: 810px) {
 }
 
-@container search (width< 600px) {
+@container search (max-width: 600px) {
   .icon {
     display: none;
   }
@@ -48,7 +48,7 @@
   }
 }
 
-@container search (width< 455px) {
+@container search (max-width: 455px) {
   .form__input input::placeholder {
     font-size: 1rem;
   }

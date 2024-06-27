@@ -99,7 +99,7 @@ onMounted(() => {
 .rating--stars {
   @apply flex items-center;
 
-  @media screen and (width<= 37.5em) {
+  @media screen and (max-width: 37.5em) {
     @apply order-2;
   }
 }

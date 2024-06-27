@@ -378,13 +378,13 @@ const onSubmit = () => {
 
   grid-template-columns: 1fr 38%;
 
-  @media screen and (width<= 37.5em) {
+  @media screen and (max-width: 37.5em) {
     grid-template-columns: 1fr;
   }
 }
 
 .checkout__details {
-  @media screen and (width<= 37.5em) {
+  @media screen and (max-width: 37.5em) {
     grid-row: 1 / span 1;
     margin: 2rem 0;
   }

@@ -32,7 +32,7 @@
   background: linear-gradient(180deg, #4796ff 0%, #2366bf 100%);
   grid-template-columns: repeat(2, 1fr);
 
-  @media screen and (width<=46.875em) {
+  @media screen and (max-width: 46.875em) {
     grid-column: 1/-1;
     order: 3;
     justify-self: center;

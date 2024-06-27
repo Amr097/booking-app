@@ -96,7 +96,7 @@ const navItems = ['Home', 'Discover', 'Activities', 'About', 'Contact']
   padding-right: 4rem;
   width: 65%;
   right: -2rem;
-  @media screen and (width<34.375em) {
+  @media screen and (max-width: 34.375em) {
     width: 100%;
   }
 }

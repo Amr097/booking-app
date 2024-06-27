@@ -113,7 +113,7 @@ if (page) currentPage.value = page
 .results__card--stars {
   @apply flex items-center mt-2;
 
-  @media screen and (width< 30em) {
+  @media screen and (max-width: 30em) {
     @apply grid gap-0;
     grid-template-columns: repeat(6, max-content);
   }
@@ -122,7 +122,7 @@ if (page) currentPage.value = page
   @apply text-lg leading-10 ml-1;
   color: #4f4f4f;
 
-  @media screen and (width< 30em) {
+  @media screen and (max-width: 30em) {
     @apply col-span-full row-start-1;
   }
 }
@@ -132,7 +132,7 @@ if (page) currentPage.value = page
 
   color: #4f4f4f;
 
-  @media screen and (width< 46.875em) {
+  @media screen and (max-width: 46.875em) {
     display: none;
   }
 }
@@ -176,7 +176,7 @@ if (page) currentPage.value = page
 }
 
 .icon-2 {
-  @media screen and (width< 46.875em) {
+  @media screen and (max-width: 46.875em) {
     @apply w-[1.55rem];
   }
 }

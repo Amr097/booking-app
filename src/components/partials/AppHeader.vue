@@ -122,7 +122,7 @@ onMounted(() => {
 
   margin: 0 auto;
 
-  @media screen and (width<40em) {
+  @media screen and (max-width: 40em) {
     .header .nav {
       display: none;
     }

@@ -124,14 +124,14 @@ onMounted(() => {
   height: 100%;
   object-fit: cover;
 
-  @media screen and (width<=35em) {
+  @media screen and (max-width: 35em) {
     width: 20.5rem;
   }
-  @media screen and (width<=30em) {
+  @media screen and (max-width: 30em) {
     width: 15.5rem;
   }
 
-  @media screen and (width<=28.5em) {
+  @media screen and (max-width: 28.5em) {
     display: none;
   }
 }
@@ -162,7 +162,7 @@ onMounted(() => {
 <style>
 .results__card--item {
   @apply text-xl leading-9  font-semibold tracking-wide;
-  @media screen and (width<=40em) {
+  @media screen and (max-width: 40em) {
     @apply flex flex-col;
   }
 }

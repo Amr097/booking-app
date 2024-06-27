@@ -132,7 +132,7 @@ onMounted(async () => {
   grid-template-columns: 70% 1fr;
   grid-template-rows: repeat(3, max-content);
 
-  @media screen and (width<=46.875em) {
+  @media screen and (max-width: 46.875em) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -148,7 +148,7 @@ img {
   height: 45rem;
   width: 100%;
 
-  @media screen and (width<=46.875em) {
+  @media screen and (max-width: 46.875em) {
     grid-row: 1 / span 1;
     grid-column: 1 / -1;
     height: 30rem;
@@ -159,7 +159,7 @@ img {
   grid-column: 2 / span 1;
   aspect-ratio: 2/1;
 
-  @media screen and (width<=46.875em) {
+  @media screen and (max-width: 46.875em) {
     grid-column: auto;
   }
 }
@@ -185,7 +185,7 @@ img {
 }
 
 .details-content {
-  @media screen and (width<= 40em) {
+  @media screen and (max-width: 40em) {
     flex-direction: column;
   }
 }

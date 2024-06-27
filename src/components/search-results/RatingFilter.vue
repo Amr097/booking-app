@@ -52,7 +52,7 @@ const { handleRatingFilteration, clearRating } = useFilterationStore()
   border-radius: 6px;
   border: 1px solid var(--Gray-5, #e0e0e0);
   background: #fff;
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     grid-row: 3 / span 1;
     grid-column: 3 / span 1;
     height: min-content;

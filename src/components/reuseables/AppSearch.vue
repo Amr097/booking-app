@@ -227,7 +227,7 @@ const onSubmit = async () => {
   grid-template-columns: 22% 2fr 2fr 1fr;
   right: 50%;
   transform: translateX(50%);
-  @media screen and (width<=43.8125em) {
+  @media screen and (max-width: 43.8125em) {
     bottom: -6rem;
     grid-template-columns: 1.25fr 2fr 0.75fr;
   }
@@ -242,7 +242,7 @@ const onSubmit = async () => {
 .input-container {
   @apply flex gap-4;
 
-  @media screen and (width<=43.8125em) {
+  @media screen and (max-width: 43.8125em) {
     @apply row-start-2 row-span-1 col-start-2 col-span-1;
   }
 }
@@ -253,7 +253,7 @@ const onSubmit = async () => {
 }
 
 .select-query {
-  @media screen and (width<=43.8125em) {
+  @media screen and (max-width: 43.8125em) {
     @apply row-start-1 row-span-2 self-center py-4;
   }
 }
@@ -277,7 +277,7 @@ input {
   width: 2.4rem;
   height: 2.4rem;
 
-  @media screen and (width<=36.8125em) {
+  @media screen and (max-width: 36.8125em) {
     width: 1.5rem;
     height: 1.5rem;
   }
@@ -287,7 +287,7 @@ input {
   @apply rounded-md bg-blue-500 text-white text-2xl
   font-medium leading-8 tracking-tight flex justify-center items-center transition-colors ease-in-out hover:bg-blue-600 py-2 sm:px-[3.5rem] md:px-[5rem] lg:px-28;
 
-  @media screen and (width<=43.8125em) {
+  @media screen and (max-width: 43.8125em) {
     @apply row-start-1 row-span-2 col-start-3 self-center py-6;
   }
 }
@@ -371,7 +371,7 @@ input {
 }
 
 .dp__icon.dp__input_icon.dp__input_icons {
-  @media screen and (width<=36.8125em) {
+  @media screen and (max-width: 36.8125em) {
     display: none;
   }
 }
@@ -382,7 +382,7 @@ input {
 }
 
 .dp__input_icon_pad {
-  @media screen and (width<=36.8125em) {
+  @media screen and (max-width: 36.8125em) {
     padding: 1rem;
   }
 }

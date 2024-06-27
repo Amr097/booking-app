@@ -179,14 +179,14 @@ div.container-c {
   @apply grid grid-cols-2 mt-40 mb-28 px-0 gap-x-6 py-0  sm:px-[5rem] sm:gap-x-0;
   grid-template-columns: min-content 1fr;
 
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     @apply flex flex-col;
   }
 }
 
 .filter {
   @apply flex flex-col gap-8 rounded-lg;
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     @apply grid mb-16;
     grid-template-columns: 1fr;
     grid-template-rows: max-content;
@@ -197,7 +197,7 @@ div.container-c {
 .popup-label {
   @apply absolute top-[13.5rem] right-[22rem] sm:right-[26rem] z-20;
   display: none;
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     display: block;
   }
 }
@@ -229,20 +229,20 @@ div.container-c {
 .filter__container--popup {
   @apply flex flex-col gap-8 rounded-lg;
 
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     @apply scale-y-0 invisible h-fit
     w-max absolute top-[18rem] right-[0.2rem] sm:right-[10rem] bg-white z-20 flex-row p-6 border shadow-lg origin-top;
   }
 }
 
 .filter__container--popup .filter-by {
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     display: none;
   }
 }
 
 .filter-by {
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     grid-row: 2 / span 1;
     grid-column: 1 / span 1;
   }
@@ -251,7 +251,7 @@ div.container-c {
 .results__view--head {
   @apply flex justify-between px-14 relative;
 
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     @apply justify-start px-6;
   }
 }

@@ -32,7 +32,7 @@ const explore = [
 .location {
   @apply p-12 flex flex-col gap-10;
 
-  @media screen and (width<=46.875em) {
+  @media screen and (max-width: 46.875em) {
     @apply px-0;
   }
 }

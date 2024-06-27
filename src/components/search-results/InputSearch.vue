@@ -56,13 +56,13 @@ const { handleFilteration, clearSearch } = useFilterationStore()
 }
 
 .filter__title {
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     @apply p-4;
   }
 }
 
 .filter__body {
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
   }
 }
 </style>

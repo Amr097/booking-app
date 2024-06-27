@@ -134,7 +134,7 @@ const customBudgetErr = ref({
   background: #fff;
   padding-bottom: 1rem;
 
-  @media screen and (width< 53.75em) {
+  @media screen and (max-width: 53.75em) {
     grid-row: 3 / span 1;
     grid-column: 1 / span 1;
   }
