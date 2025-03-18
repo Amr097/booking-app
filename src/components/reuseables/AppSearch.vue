@@ -1,134 +1,3 @@
-<script setup>
-import VueDatePicker from '@vuepic/vue-datepicker'
-import '@vuepic/vue-datepicker/dist/main.css'
-
-import { useRouter } from 'vue-router'
-
-import { ref, reactive, onMounted, watch } from 'vue'
-
-import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
-import { validateInput } from '../../helper/SearchValidation.js'
-
-import { formatDate } from '../../helper/dateFormat.js'
-import { validateCheckin, validateCheckout } from '../../helper/dateValidation.js'
-
-import useHotelsStore from '/src/store/Hotels.js'
-import useUserStore from '/src/store/User.js'
-
-const resDestinationData = ref([
-  { dest_id: '1', city_name: 'Cairo' },
-  { dest_id: '2', city_name: 'Hurghada' },
-  { dest_id: '3', city_name: 'Sharm-Alsheikh' }
-])
-
-const isLoading = ref(false)
-
-const searchData = reactive({
-  checkInDate: '',
-  checkOutDate: '',
-  guestsValue: '',
-  roomsValue: '',
-  destinationValue: ''
-})
-
-const datpickerErr = reactive({
-  state: false,
-  message: ''
-})
-
-const destErr = reactive({
-  state: false,
-  message: ''
-})
-
-// fetch hotel destinations and check for search query in local storage
-onMounted(() => {
-  const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
-
-  if (searchQuery) {
-    searchData.checkInDate = searchQuery.checkInDate
-    searchData.checkOutDate = searchQuery.checkOutDate
-    searchData.guestsValue = searchQuery.guestsValue
-    searchData.roomsValue = searchQuery.roomsValue
-    searchData.destinationValue = searchQuery.destinationValue
-  }
-})
-
-// Watch for Datepicker value changes
-
-watch(
-  () => [searchData.checkInDate, searchData.checkOutDate],
-  ([newCheckIn, newCheckOut], [oldCheckIn, oldCheckOut]) => {
-    if (!newCheckIn && oldCheckIn && datpickerErr.checkinErr) {
-      datpickerErr.state = false
-      datpickerErr.message = ''
-      return
-    }
-    if (!newCheckOut && oldCheckOut && datpickerErr.checkoutErr) {
-      datpickerErr.state = false
-      datpickerErr.message = ''
-      return
-    }
-  },
-  { deep: true }
-)
-
-//Validating Select
-
-const validateSelect = () => {
-  if (destErr.state) {
-    destErr.state = false
-    destErr.message = ''
-  }
-}
-
-const router = useRouter()
-
-const { isLogged } = useUserStore()
-const { fetchHotels } = useHotelsStore()
-
-//Submission
-
-const onSubmit = async () => {
-  isLoading.value = true
-  // Validating search input
-  if (
-    !(validateCheckin(searchData, datpickerErr) && validateCheckout(searchData, datpickerErr)) ||
-    !(searchData.checkInDate && searchData.checkOutDate) ||
-    !searchData.destinationValue
-  ) {
-    if (!(searchData.checkInDate && searchData.checkOutDate)) {
-      datpickerErr.state = true
-      datpickerErr.message = 'both fields are required'
-    }
-
-    if (!searchData.destinationValue) {
-      destErr.state = true
-      destErr.message = 'This field is required'
-    }
-
-    isLoading.value = false
-    return
-  }
-  // Check if we are on results page
-  if (router.currentRoute.value.name === 'results') {
-    localStorage.setItem('searchQuery', JSON.stringify(searchData))
-    //reset pagination
-    localStorage.setItem('currentPage', 1)
-    await fetchHotels()
-    isLoading.value = false
-  }
-
-  localStorage.setItem('searchQuery', JSON.stringify(searchData))
-
-  if (!isLogged.logged) {
-    router.push('/auth/login')
-  } else {
-    router.push({ name: 'results' })
-  }
-}
-</script>
-
 <template>
   <veeForm class="form" action="POST" @submit="onSubmit">
     <div class="form__input select-query">
@@ -163,9 +32,10 @@ const onSubmit = async () => {
           placeholder="Check in date"
           :enable-time-picker="false"
           :format="formatDate"
+          :min-date="today"
+          :max-date="maxDate"
           auto-apply
           model-type="yyyy-MM-dd"
-          @blur="validateCheckin(searchData, datpickerErr)"
         />
       </div>
       <div class="form__date">
@@ -174,11 +44,12 @@ const onSubmit = async () => {
           :disabled="!searchData.checkInDate"
           :enable-time-picker="false"
           :format="formatDate"
-          placeholder="Check in date"
+          :min-date="minCheckoutDate"
+          :max-date="maxCheckoutDate"
+          placeholder="Check out date"
           auto-apply
           model-type="yyyy-MM-dd"
           required
-          @blur="validateCheckout(searchData, datpickerErr)"
         />
       </div>
       <span v-show="datpickerErr.state" class="auth__err top">{{ datpickerErr.message }}</span>
@@ -218,6 +89,172 @@ const onSubmit = async () => {
     <button type="submit" :disabled="isLoading" class="form__btn">Search</button>
   </veeForm>
 </template>
+
+<script setup>
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
+
+import { useRouter } from 'vue-router'
+
+import { ref, reactive, onMounted, watch, computed } from 'vue'
+
+import { Form as veeForm, Field, ErrorMessage } from 'vee-validate'
+import { validateInput } from '../../helper/SearchValidation.js'
+
+import { formatDate } from '../../helper/dateFormat.js'
+import { validateCheckin, validateCheckout } from '../../helper/dateValidation.js'
+
+import useHotelsStore from '/src/store/Hotels.js'
+import useUserStore from '/src/store/User.js'
+
+const resDestinationData = ref([
+  { dest_id: '1', city_name: 'Cairo' },
+  { dest_id: '2', city_name: 'Hurghada' },
+  { dest_id: '3', city_name: 'Sharm-Alsheikh' }
+])
+
+const isLoading = ref(false)
+
+const searchData = reactive({
+  checkInDate: '',
+  checkOutDate: '',
+  guestsValue: '',
+  roomsValue: '',
+  destinationValue: ''
+})
+
+const datpickerErr = reactive({
+  state: false,
+  message: ''
+})
+
+const destErr = reactive({
+  state: false,
+  message: ''
+})
+
+// Date constraints
+const today = new Date()
+const maxDate = new Date(today)
+maxDate.setFullYear(today.getFullYear() + 1) // Allow booking up to 1 year in advance
+
+// Compute minimum checkout date (day after check-in or today if no check-in selected)
+const minCheckoutDate = computed(() => {
+  if (searchData.checkInDate) {
+    const nextDay = new Date(searchData.checkInDate)
+    nextDay.setDate(nextDay.getDate() + 1)
+    return nextDay
+  }
+  return today
+})
+
+// Compute maximum checkout date (30 days after check-in or max date if no check-in selected)
+const maxCheckoutDate = computed(() => {
+  if (searchData.checkInDate) {
+    const maxStay = new Date(searchData.checkInDate)
+    maxStay.setDate(maxStay.getDate() + 30) // Allow maximum 30-day stay
+    return maxStay < maxDate ? maxStay : maxDate
+  }
+  return maxDate
+})
+
+// fetch hotel destinations and check for search query in local storage
+onMounted(() => {
+  const searchQuery = JSON.parse(localStorage.getItem('searchQuery'))
+
+  if (searchQuery) {
+    searchData.checkInDate = searchQuery.checkInDate
+    searchData.checkOutDate = searchQuery.checkOutDate
+    searchData.guestsValue = searchQuery.guestsValue
+    searchData.roomsValue = searchQuery.roomsValue
+    searchData.destinationValue = searchQuery.destinationValue
+  }
+})
+
+// Watch for Datepicker value changes
+watch(
+  () => [searchData.checkInDate, searchData.checkOutDate],
+  ([newCheckIn, newCheckOut], [oldCheckIn, oldCheckOut]) => {
+    if (!newCheckIn && oldCheckIn && datpickerErr.checkinErr) {
+      datpickerErr.state = false
+      datpickerErr.message = ''
+      return
+    }
+    if (!newCheckOut && oldCheckOut && datpickerErr.checkoutErr) {
+      datpickerErr.state = false
+      datpickerErr.message = ''
+      return
+    }
+
+    // Reset checkout date if check-in date changes and checkout date is now invalid
+    if (newCheckIn && newCheckOut) {
+      const checkInDate = new Date(newCheckIn)
+      const checkOutDate = new Date(newCheckOut)
+
+      if (
+        checkOutDate <= checkInDate ||
+        checkOutDate > new Date(checkInDate.setDate(checkInDate.getDate() + 30))
+      ) {
+        searchData.checkOutDate = ''
+      }
+    }
+  },
+  { deep: true }
+)
+
+//Validating Select
+const validateSelect = () => {
+  if (destErr.state) {
+    destErr.state = false
+    destErr.message = ''
+  }
+}
+
+const router = useRouter()
+
+const { isLogged } = useUserStore()
+const { fetchHotels } = useHotelsStore()
+
+//Submission
+const onSubmit = async () => {
+  isLoading.value = true
+  // Validating search input
+  if (
+    !(validateCheckin(searchData, datpickerErr) && validateCheckout(searchData, datpickerErr)) ||
+    !(searchData.checkInDate && searchData.checkOutDate) ||
+    !searchData.destinationValue
+  ) {
+    if (!(searchData.checkInDate && searchData.checkOutDate)) {
+      datpickerErr.state = true
+      datpickerErr.message = 'both fields are required'
+    }
+
+    if (!searchData.destinationValue) {
+      destErr.state = true
+      destErr.message = 'This field is required'
+    }
+
+    isLoading.value = false
+    return
+  }
+  // Check if we are on results page
+  if (router.currentRoute.value.name === 'results') {
+    localStorage.setItem('searchQuery', JSON.stringify(searchData))
+    //reset pagination
+    localStorage.setItem('currentPage', 1)
+    await fetchHotels()
+    isLoading.value = false
+  }
+
+  localStorage.setItem('searchQuery', JSON.stringify(searchData))
+
+  if (!isLogged.logged) {
+    router.push('/auth/login')
+  } else {
+    router.push({ name: 'results' })
+  }
+}
+</script>
 
 <style scoped lang="postcss">
 @import '/src/styles/containers/search.css';
